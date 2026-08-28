@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dsucocti68co2"]
+
+[ext_resource type="Script" uid="uid://dkwxs5gsuvl0y" path="res://scripts/player_vr.gd" id="1_rihe0"]
+
+[node name="PlayerVR" type="XROrigin3D" unique_id=1613388773]
+script = ExtResource("1_rihe0")
+
+[node name="XRCamera3D" type="XRCamera3D" parent="." unique_id=1535857980]
