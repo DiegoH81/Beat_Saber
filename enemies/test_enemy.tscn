@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://b4dj6nob8d46c"]
 
-[ext_resource type="Script" uid="uid://d0mke4wpfdo7s" path="res://enemies/enemy.gd" id="1_lcl3f"]
+[ext_resource type="Script" uid="uid://d0mke4wpfdo7s" path="res://enemies/modules/movement.gd" id="1_lcl3f"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_75kqj"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_75kqj"]
 
-[node name="TestEnemy" type="Area3D" unique_id=1874969023]
+[node name="TestEnemy" type="Area3D" unique_id=1874969023 node_paths=PackedStringArray("enemy")]
 script = ExtResource("1_lcl3f")
+enemy = NodePath(".")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=896353033]
 shape = SubResource("SphereShape3D_75kqj")
