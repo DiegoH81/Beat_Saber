@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://digy3cefci8s1"]
+
+[ext_resource type="Script" uid="uid://bwxnjecgg00nb" path="res://src/enemies/generator/generator.gd" id="1_8vokg"]
+[ext_resource type="PackedScene" uid="uid://b4dj6nob8d46c" path="res://src/enemies/objects/test_enemy.tscn" id="2_nxf0w"]
+
+[node name="Generator" type="Node3D" unique_id=1789100008 node_paths=PackedStringArray("points")]
+script = ExtResource("1_8vokg")
+test_enemy = ExtResource("2_nxf0w")
+points = [NodePath("Point0"), NodePath("Point1"), NodePath("Point2"), NodePath("Point3"), NodePath("Point4"), NodePath("Point5"), NodePath("Point6"), NodePath("Point7")]
+
+[node name="Point0" type="Node3D" parent="." unique_id=411615881]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="Point1" type="Node3D" parent="." unique_id=1578581039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+
+[node name="Point2" type="Node3D" parent="." unique_id=1164302033]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="Point3" type="Node3D" parent="." unique_id=444843522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="Point4" type="Node3D" parent="." unique_id=792075459]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, 0)
+
+[node name="Point5" type="Node3D" parent="." unique_id=1776605429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -2.5, 0)
+
+[node name="Point6" type="Node3D" parent="." unique_id=132965994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -2.5, 0)
+
+[node name="Point7" type="Node3D" parent="." unique_id=22811917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, 0)

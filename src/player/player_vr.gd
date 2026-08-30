@@ -1,9 +1,11 @@
 extends XROrigin3D
 
+@export_category("Dependencies")
+@export var camera: XRCamera3D
+
+@export_category("Attributes")
 @export var mouse_sensitivity: float = 0.003
 @export var move_speed: float = 3.0
-
-@onready var camera: XRCamera3D = $XRCamera3D
 
 var xr_interface: XRInterface
 var is_vr_active: bool = false
