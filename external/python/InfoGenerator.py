@@ -1,6 +1,7 @@
 import os
 import librosa
 import numpy as np
+import json
 
 class MusicAnalyzer:
     def __init__(self, in_output_dir: str):
@@ -54,16 +55,14 @@ class MusicAnalyzer:
         song_file_name = os.path.basename(in_source_audio)
         song_base_name, _ = os.path.splitext(song_file_name)
         
-        txt_output_path = os.path.join(self.output_dir, f"{song_base_name}.txt")
+        json_output_path = os.path.join(self.output_dir, f"{song_base_name}.json")
         os.makedirs(self.output_dir, exist_ok=True)
         
-        with open(txt_output_path, 'w', encoding='utf-8') as f:
-            f.write("DATA\n")
-            f.write(f"SongName = {song_file_name}\n")
-            f.write(f"BPM = {round(float(bpm), 2)}\n")
-            f.write(f"Duration = {round(float(duration), 2)}\n")
-            f.write(f"TotalEvents = {len(events)}\n\n")
-            
-            f.write("Events\n")
-            for t, freq in events:
-                f.write(f"{t:.3f} | {freq}\n")
+        data = { "SongName": song_file_name,
+                "BPM": round(float(bpm), 2),
+                "Duration": round(float(duration), 2),
+                "TotalEvents": len(events),
+                "Events": [{"time": t, "freq": freq} for t, freq in events]}
+                
+        with open(json_output_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent = 3)
