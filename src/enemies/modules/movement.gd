@@ -1,4 +1,4 @@
-extends Area3D
+extends Node
 class_name MovementModule
 
 @export_category("Dependencies")
