@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bh6es4wb2lh2h"]
 
-[ext_resource type="Script" uid="uid://dd3tgmv82luda" path="res://scripts/menu.gd" id="1_0dynd"]
+[ext_resource type="Script" uid="uid://dd3tgmv82luda" path="res://src/ui/menu.gd" id="1_7w7rl"]
 
 [node name="Control" type="Control" unique_id=1651109105]
 layout_mode = 3
@@ -9,7 +9,7 @@ offset_left = 68.0
 offset_top = 52.0
 offset_right = 108.0
 offset_bottom = 92.0
-script = ExtResource("1_0dynd")
+script = ExtResource("1_7w7rl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=622210692]
 layout_mode = 1
