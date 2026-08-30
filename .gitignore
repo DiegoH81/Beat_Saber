@@ -15,3 +15,15 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Python ignores
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+env/
+venv/
+ENV/
+
+.vscode/
