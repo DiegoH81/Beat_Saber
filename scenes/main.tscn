@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cp2aarf0wgd2t"]
 
 [ext_resource type="Script" uid="uid://dqw4nr17bgfwi" path="res://scripts/main.gd" id="1_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://dsucocti68co2" path="res://scenes/entities/player/PlayerVR.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://dsucocti68co2" path="res://scenes/entities/player/player_vr.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://b4dj6nob8d46c" path="res://enemies/test_enemy.tscn" id="3_sugp2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ty0te"]
 size = Vector3(5, 0.1, 5)
@@ -39,3 +40,9 @@ environment = SubResource("Environment_ty0te")
 
 [node name="PlayerVR" parent="." unique_id=1613388773 instance=ExtResource("2_0wfyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9260392, 0.80983186)
+
+[node name="TestEnemy" parent="." unique_id=1874969023 instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.027118, -7.5109463)
+max_velocity = 10.0
+acceleration = 1.0
+direction = Vector3(0, 0, 1)
