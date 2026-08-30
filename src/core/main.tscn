@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dsucocti68co2" path="res://src/player/player_vr.tscn" id="2_x62ka"]
 [ext_resource type="PackedScene" uid="uid://digy3cefci8s1" path="res://src/enemies/generator/generator.tscn" id="3_ivtyw"]
 [ext_resource type="PackedScene" uid="uid://fldv1su4su1o" path="res://src/enemies/destructor/destructor.tscn" id="4_x62ka"]
+[ext_resource type="Shader" uid="uid://dfeoln1igrpio" path="res://assets/shaders/d1.gdshader" id="5_w61mg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ty0te"]
 size = Vector3(5, 0.1, 5)
@@ -21,6 +22,19 @@ sky_material = SubResource("ProceduralSkyMaterial_sugp2")
 background_mode = 2
 background_energy_multiplier = 1.25
 sky = SubResource("Sky_0wfyh")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ty0te"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q2b63"]
+render_priority = 0
+shader = ExtResource("5_w61mg")
+shader_parameter/tint_color = Color(0.8, 0.1, 0.9, 1)
+shader_parameter/tint_strength = 0.35
+shader_parameter/overall_alpha = 0.85
+shader_parameter/bar_count = 5.0
+shader_parameter/bar_speed = 0.685000982537499
+shader_parameter/bar_width = 0.1350000064125
+shader_parameter/bar_darkness = 0.4130000196175
 
 [node name="main" type="Node3D" unique_id=1836693454]
 script = ExtResource("1_ivtyw")
@@ -47,3 +61,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0757108, -15.17433)
 
 [node name="Destructor" parent="." unique_id=1128432705 instance=ExtResource("4_x62ka")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.557748)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1369655272]
+transform = Transform3D(5.069449, 0, 0, 0, 2.10714, 0, 0, 0, 1, 0.015715241, 1.0254223, -1.2775743)
+mesh = SubResource("QuadMesh_ty0te")
+surface_material_override/0 = SubResource("ShaderMaterial_q2b63")
