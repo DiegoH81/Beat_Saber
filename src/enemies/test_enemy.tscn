@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://b4dj6nob8d46c"]
 
-[ext_resource type="Script" uid="uid://d0mke4wpfdo7s" path="res://enemies/modules/movement.gd" id="1_lcl3f"]
+[ext_resource type="Script" uid="uid://d0mke4wpfdo7s" path="res://src/enemies/modules/movement.gd" id="1_lcl3f"]
+[ext_resource type="Script" uid="uid://d3lc22i36b7n4" path="res://src/enemies/modules/visual.gd" id="2_2bghh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_75kqj"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2bghh"]
+transparency = 1
+
 [sub_resource type="SphereMesh" id="SphereMesh_75kqj"]
+material = SubResource("StandardMaterial3D_2bghh")
 
 [node name="TestEnemy" type="Area3D" unique_id=1874969023 node_paths=PackedStringArray("enemy")]
 script = ExtResource("1_lcl3f")
@@ -15,3 +20,4 @@ shape = SubResource("SphereShape3D_75kqj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1056586296]
 mesh = SubResource("SphereMesh_75kqj")
+script = ExtResource("2_2bghh")

@@ -1,5 +1,5 @@
 extends Area3D
-class_name Enemy
+class_name MovementModule
 
 @export_category("Dependencies")
 @export var enemy: Area3D
