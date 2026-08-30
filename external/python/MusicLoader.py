@@ -1,9 +1,10 @@
 import os
 import yt_dlp
 import shutil
+from pydub import AudioSegment
 
 class MusicLoader:
-    def __init__(self, in_output_dir):
+    def __init__(self, in_output_dir: str):
         self.output_dir = in_output_dir
         os.makedirs(self.output_dir, exist_ok = True)
     
@@ -13,9 +14,15 @@ class MusicLoader:
             raise FileNotFoundError(f"File {source} does not exists!")
         
         file_name = os.path.basename(source)
-        output_path = os.path.join(self.output_dir, file_name)
+        base_name, _ = os.path.splitext(file_name)
+        output_path = os.path.join(self.output_dir, f"{base_name}.mp3")
         
-        shutil.copy(source, output_path)
+        if (source.lower().endswith(".mp3")):
+            shutil.copy(source, output_path)
+        else:
+            audio = AudioSegment.from_file(source)
+            audio.export(output_path, format="mp3", bitrate="192k")
+        
         
         return output_path
     
