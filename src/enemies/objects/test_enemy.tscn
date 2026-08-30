@@ -27,8 +27,8 @@ mesh = SubResource("SphereMesh_75kqj")
 script = ExtResource("1_lcl3f")
 enemy = NodePath("../..")
 hp = 1
-max_velocity = 10.0
-acceleration = 2.0
+max_velocity = 30.0
+acceleration = 15.0
 direction = Vector3(0, 0, 1)
 
 [node name="Visual" type="Node" parent="Node" unique_id=287461738]
