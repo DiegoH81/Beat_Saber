@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dqw4nr17bgfwi" path="res://src/core/main.gd" id="1_ivtyw"]
 [ext_resource type="PackedScene" uid="uid://dsucocti68co2" path="res://src/player/player_vr.tscn" id="2_x62ka"]
-[ext_resource type="PackedScene" uid="uid://b4dj6nob8d46c" path="res://src/enemies/test_enemy.tscn" id="3_w61mg"]
+[ext_resource type="PackedScene" uid="uid://digy3cefci8s1" path="res://src/enemies/generator/generator.tscn" id="3_ivtyw"]
+[ext_resource type="PackedScene" uid="uid://fldv1su4su1o" path="res://src/enemies/destructor/destructor.tscn" id="4_x62ka"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ty0te"]
 size = Vector3(5, 0.1, 5)
@@ -41,9 +42,8 @@ environment = SubResource("Environment_ty0te")
 [node name="PlayerVR" parent="." unique_id=1613388773 instance=ExtResource("2_x62ka")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9260392, 0.80983186)
 
-[node name="TestEnemy" parent="." unique_id=1874969023 instance=ExtResource("3_w61mg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.027118, -7.5109463)
-hp = 1
-max_velocity = 10.0
-acceleration = 1.0
-direction = Vector3(0, 0, 1)
+[node name="Generator" parent="." unique_id=1789100008 instance=ExtResource("3_ivtyw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0757108, -15.17433)
+
+[node name="Destructor" parent="." unique_id=1128432705 instance=ExtResource("4_x62ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.557748)

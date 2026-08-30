@@ -14,6 +14,10 @@ material = SubResource("StandardMaterial3D_2bghh")
 [node name="TestEnemy" type="Area3D" unique_id=1874969023 node_paths=PackedStringArray("enemy")]
 script = ExtResource("1_lcl3f")
 enemy = NodePath(".")
+hp = 1
+max_velocity = 10.0
+acceleration = 1.0
+direction = Vector3(0, 0, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=896353033]
 shape = SubResource("SphereShape3D_75kqj")
