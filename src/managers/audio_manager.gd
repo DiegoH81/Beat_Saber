@@ -17,14 +17,14 @@ func _ready() -> void:
 	sfx_player.bus = "SFX"
 
 func play_music(id: String) -> void:
-	music_player.stream = load(path + id)
+	music_player.stream = load(path + id + ".ogg")
 	music_player.play()
 
 func stop_music() -> void:
 	music_player.stop()
 
 func play_sfx(id: String) -> void:
-	sfx_player.stream = load(path + id)
+	sfx_player.stream = load(path + id + ".ogg")
 	sfx_player.play()
 
 func stop_sfx() -> void:
