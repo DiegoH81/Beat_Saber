@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://day6vkcp3hktw"]
+
+[ext_resource type="Script" uid="uid://bu3x7a4er7bvv" path="res://src/ui/level_selector.gd" id="1_q3s24"]
+
+[node name="LevelSelector" type="Control" unique_id=2100774335]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q3s24")
+
+[node name="Panel" type="Panel" parent="." unique_id=559697597]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=411822121]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1001092042]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=127241412]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "LEVELS"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1367958949]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 30
+columns = 3
+
+[node name="TestLevel" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer" unique_id=1717533046]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "TEST"
+
+[node name="Level1" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer" unique_id=1332575890]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "
+"
+
+[node name="Level2" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer" unique_id=2085966316]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "
+"
+
+[node name="Level3" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer" unique_id=1448331462]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "
+"
+
+[node name="Level4" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer" unique_id=2081810763]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "
+"
+
+[node name="Level5" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer" unique_id=175423618]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "
+"
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/GridContainer/TestLevel" to="." method="_on_test_level_pressed"]
