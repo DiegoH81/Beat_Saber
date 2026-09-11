@@ -1,13 +1,18 @@
 extends Node
-class_name AudioManager
 
 @export_category("Dependencies")
-@export var music_player: AudioStreamPlayer
-@export var sfx_player: AudioStreamPlayer
+var music_player: AudioStreamPlayer
+var sfx_player: AudioStreamPlayer
 
 const path: String = "res://levels_data/music/"
 
 func _ready() -> void:
+	music_player = AudioStreamPlayer.new()
+	sfx_player = AudioStreamPlayer.new()
+	
+	add_child(music_player)
+	add_child(sfx_player)
+	
 	music_player.bus = "Music"
 	sfx_player.bus = "SFX"
 

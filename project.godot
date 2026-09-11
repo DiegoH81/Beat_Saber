@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Beat_Saber"
-run/main_scene="uid://cp2aarf0wgd2t"
+run/main_scene="uid://bsx6nvc1vlxsm"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneManager="*uid://3ywmx2kbainl"
 
 [display]
 
