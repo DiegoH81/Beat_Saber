@@ -75,7 +75,7 @@ compositor = SubResource("Compositor_w61mg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9260392, 0.80983186)
 
 [node name="Generator" parent="." unique_id=1789100008 instance=ExtResource("4_htlye")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0757108, -15.17433)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0757108, -31.334612)
 
 [node name="Destructor" parent="." unique_id=1128432705 instance=ExtResource("5_8i8t4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.557748)
