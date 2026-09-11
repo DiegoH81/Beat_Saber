@@ -36,7 +36,6 @@ func change_shader(id: String) -> void:
 		return
 	
 	world_env.compositor.set_compositor_effects([shader])
-	
 
 func change_weapon_style(id: String) -> void:
 	pass
