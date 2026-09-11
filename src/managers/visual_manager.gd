@@ -31,15 +31,11 @@ func change_shader(id: String) -> void:
 	if not world_env:
 		return
 	
-	var shader: CompositorEffect = load(shader_path + id + ".gd").new()
+	var shader: CompositorEffect = MyEffects.new(shader_path + id + ".glsl")
 	if not shader:
 		return
 	
-	print("Cargando: ", shader_path + id + ".gd")
-	print("Shader cargado: ", shader)
-	
-	world_env.compositor.compositor_effects.clear()
-	world_env.compositor.compositor_effects.push_back(shader)
+	world_env.compositor.set_compositor_effects([shader])
 	
 
 func change_weapon_style(id: String) -> void:

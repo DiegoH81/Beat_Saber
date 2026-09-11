@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cp2aarf0wgd2t"]
 
 [ext_resource type="Script" uid="uid://dqw4nr17bgfwi" path="res://levels_data/scenes/test.gd" id="1_lseiu"]
-[ext_resource type="Script" uid="uid://dtrysrp5q53i" path="res://assets/shaders/effects.gd" id="2_2abqs"]
 [ext_resource type="PackedScene" uid="uid://dsucocti68co2" path="res://src/player/player_vr.tscn" id="3_xvr48"]
 [ext_resource type="PackedScene" uid="uid://digy3cefci8s1" path="res://src/enemies/generator/generator.tscn" id="4_htlye"]
 [ext_resource type="PackedScene" uid="uid://fldv1su4su1o" path="res://src/enemies/destructor/destructor.tscn" id="5_8i8t4"]
@@ -25,18 +24,7 @@ background_mode = 2
 background_energy_multiplier = 1.25
 sky = SubResource("Sky_0wfyh")
 
-[sub_resource type="CompositorEffect" id="CompositorEffect_q2b63"]
-resource_local_to_scene = false
-resource_name = ""
-enabled = true
-effect_callback_type = 4
-needs_motion_vectors = false
-needs_normal_roughness = true
-script = ExtResource("2_2abqs")
-metadata/_custom_type_script = "uid://dtrysrp5q53i"
-
 [sub_resource type="Compositor" id="Compositor_w61mg"]
-compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_q2b63")])
 
 [sub_resource type="QuadMesh" id="QuadMesh_ty0te"]
 

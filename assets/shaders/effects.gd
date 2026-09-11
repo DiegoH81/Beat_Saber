@@ -2,19 +2,25 @@
 extends CompositorEffect
 class_name MyEffects
 
+const DEFAULT_SHADER_PATH := "res://assets/shaders/classic.glsl"
+
 var rd := RenderingServer.get_rendering_device()
 var shader: RID
 var pipeline: RID
 var depth_sampler: RID
 
+func _init(glsl_path: String = DEFAULT_SHADER_PATH) -> void:
+	effect_callback_type = EFFECT_CALLBACK_TYPE_POST_TRANSPARENT
+	needs_normal_roughness = true
+	
+	var shader_file: RDShaderFile = load(glsl_path)
+	if not shader_file:
+		return
 
-func _init() -> void:
-	var shader_file := preload("res://assets/shaders/classic.glsl")
-		
 	var shader_spiriv := shader_file.get_spirv()
 	shader = rd.shader_create_from_spirv(shader_spiriv)
 	pipeline = rd.compute_pipeline_create(shader)
-	
+
 	depth_sampler = rd.sampler_create(RDSamplerState.new())
 	
 func _render_callback(effect_callback_type: int, render_data: RenderData) -> void:
