@@ -8,6 +8,7 @@
 [ext_resource type="Shader" uid="uid://dfeoln1igrpio" path="res://assets/shaders/d1.gdshader" id="5_w61mg"]
 [ext_resource type="Script" uid="uid://dbyodij3gx2i" path="res://src/core/wiimote_[test].gd" id="7_nxx65"]
 
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ty0te"]
 size = Vector3(5, 0.1, 5)
 
