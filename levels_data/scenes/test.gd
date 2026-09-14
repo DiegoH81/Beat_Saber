@@ -18,5 +18,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			number=1
 		elif number == 1:
 			VisualManager.change_shader("toon")
+			number=2
+		elif number == 2:
+			VisualManager.change_shader("new_mill")
+			number=3
+		elif number == 3:
+			VisualManager.change_shader("new_dec")
 			number=0
 			
