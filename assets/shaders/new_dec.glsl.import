@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://dvjsgopewnvev"
+path="res://.godot/imported/new_dec.glsl-bb556478d74b814d8f86b81cb287af76.res"
+
+[deps]
+
+source_file="res://assets/shaders/new_dec.glsl"
+dest_files=["res://.godot/imported/new_dec.glsl-bb556478d74b814d8f86b81cb287af76.res"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://t34yu8hperpe"
+path="res://.godot/imported/new_mill.glsl-8ff546df565fd5e98784ec116e125cd9.res"
+
+[deps]
+
+source_file="res://assets/shaders/new_mill.glsl"
+dest_files=["res://.godot/imported/new_mill.glsl-8ff546df565fd5e98784ec116e125cd9.res"]
+
+[params]
+
