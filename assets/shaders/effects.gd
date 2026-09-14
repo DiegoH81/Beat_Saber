@@ -62,7 +62,7 @@ func _render_callback(effect_callback_type: int, render_data: RenderData) -> voi
 
 	var bindings: Array[RDUniform] = [color_layer_uniform, depth_layer_uniform, normal_layer_uniform]
 	
-	var groups := Vector3i((size.x - 1) / 32, (size.y - 1) / 32, 1)
+	var groups := Vector3i((size.x + 31) / 32, (size.y + 31) / 32, 1)
 	var uniform_set := rd.uniform_set_create(bindings, shader, 0)
 	var compute_list := rd.compute_list_begin()
 	
