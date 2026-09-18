@@ -4,7 +4,7 @@ extends Node
 var music_player: AudioStreamPlayer
 var sfx_player: AudioStreamPlayer
 
-const path: String = "res://levels_data/music/"
+const path: String = "res://levels_data/data/"
 
 func _ready() -> void:
 	music_player = AudioStreamPlayer.new()
@@ -17,14 +17,14 @@ func _ready() -> void:
 	sfx_player.bus = "SFX"
 
 func play_music(id: String) -> void:
-	music_player.stream = load(path + id + ".ogg")
+	music_player.stream = load(path + id + "/song.ogg")
 	music_player.play()
 
 func stop_music() -> void:
 	music_player.stop()
 
 func play_sfx(id: String) -> void:
-	sfx_player.stream = load(path + id + ".ogg")
+	sfx_player.stream = load(path + id + "/effect.ogg")
 	sfx_player.play()
 
 func stop_sfx() -> void:

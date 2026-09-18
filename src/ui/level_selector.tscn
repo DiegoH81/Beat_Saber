@@ -52,33 +52,30 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "TEST"
 
-[node name="Level1" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer" unique_id=1332575890]
+[node name="RoommatesLevel" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer" unique_id=1332575890]
 custom_minimum_size = Vector2(600, 400)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "
+text = "Roommates"
+
+[node name="SevenNationArmyLevel" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer" unique_id=2085966316]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Seven Nation Army"
+
+[node name="SingSingSingLevel" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer" unique_id=1448331462]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Sing Sing Sing
 "
 
-[node name="Level2" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer" unique_id=2085966316]
+[node name="Vivaldi Four Seasons" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer" unique_id=2081810763]
 custom_minimum_size = Vector2(600, 400)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "
-"
-
-[node name="Level3" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer" unique_id=1448331462]
-custom_minimum_size = Vector2(600, 400)
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "
-"
-
-[node name="Level4" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer" unique_id=2081810763]
-custom_minimum_size = Vector2(600, 400)
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "
-"
+text = "Vivaldi Four Seasons"
 
 [node name="Level5" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer" unique_id=175423618]
 custom_minimum_size = Vector2(600, 400)
@@ -88,3 +85,7 @@ text = "
 "
 
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/GridContainer/TestLevel" to="." method="_on_test_level_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/GridContainer/RoommatesLevel" to="." method="_on_roommates_level_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/GridContainer/SevenNationArmyLevel" to="." method="_on_seven_nation_army_level_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/GridContainer/SingSingSingLevel" to="." method="_on_sing_sing_sing_level_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/GridContainer/Vivaldi Four Seasons" to="." method="_on_vivaldi_four_seasons_pressed"]

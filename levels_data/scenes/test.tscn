@@ -42,8 +42,10 @@ shader_parameter/bar_darkness = 0.4130000196175
 
 [sub_resource type="BoxMesh" id="BoxMesh_ty0te"]
 
-[node name="main" type="Node3D" unique_id=1836693454]
+[node name="main" type="Node3D" unique_id=1836693454 node_paths=PackedStringArray("player_vr", "generator")]
 script = ExtResource("1_lseiu")
+player_vr = NodePath("PlayerVR")
+generator = NodePath("Generator")
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=276938436]
 

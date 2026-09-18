@@ -1,4 +1,4 @@
-extends Node3D
+extends Level
 
 var xr_interface: XRInterface
 
