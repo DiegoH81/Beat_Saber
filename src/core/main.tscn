@@ -4,7 +4,10 @@
 [ext_resource type="Script" uid="uid://dtrysrp5q53i" path="res://assets/shaders/effects.gd" id="2_q2b63"]
 [ext_resource type="PackedScene" uid="uid://dsucocti68co2" path="res://src/player/player_vr.tscn" id="2_x62ka"]
 [ext_resource type="PackedScene" uid="uid://digy3cefci8s1" path="res://src/enemies/generator/generator.tscn" id="3_ivtyw"]
+[ext_resource type="Script" uid="uid://dbknyin4rril2" path="res://src/player/sword_connect.gd" id="4_2in8s"]
+[ext_resource type="Script" uid="uid://crc3yh6t1vopo" path="res://src/player/sword.gd" id="4_2uitn"]
 [ext_resource type="PackedScene" uid="uid://fldv1su4su1o" path="res://src/enemies/destructor/destructor.tscn" id="4_x62ka"]
+[ext_resource type="PackedScene" uid="uid://brm4bbtslt2eb" path="res://assets/models/swordtember_2024_day_25_bard.glb" id="5_nlf45"]
 [ext_resource type="Shader" uid="uid://dfeoln1igrpio" path="res://assets/shaders/d1.gdshader" id="5_w61mg"]
 [ext_resource type="Script" uid="uid://dbyodij3gx2i" path="res://src/core/wiimote_[test].gd" id="7_nxx65"]
 
@@ -75,6 +78,17 @@ compositor = SubResource("Compositor_w61mg")
 [node name="PlayerVR" parent="." unique_id=1613388773 instance=ExtResource("2_x62ka")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9260392, 0.80983186)
 
+[node name="Sword" type="Node3D" parent="PlayerVR" unique_id=653631695]
+script = ExtResource("4_2in8s")
+
+[node name="Sword2" parent="PlayerVR/Sword" unique_id=1222556950 instance=ExtResource("5_nlf45")]
+transform = Transform3D(0.28284273, -0.28284273, 0, 0.28284273, 0.28284273, 0, 0, 0, 0.4, 0.5, -1.05, -0.3)
+script = ExtResource("4_2uitn")
+
+[node name="Sword1" parent="PlayerVR/Sword" unique_id=1188512931 instance=ExtResource("5_nlf45")]
+transform = Transform3D(0.28284273, -0.28284273, 0, 0.28284273, 0.28284273, 0, 0, 0, 0.4, -0.5, -1.05, -0.3)
+script = ExtResource("4_2uitn")
+
 [node name="Generator" parent="." unique_id=1789100008 instance=ExtResource("3_ivtyw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0757108, -15.17433)
 
@@ -91,4 +105,5 @@ transform = Transform3D(0.7739682, 0, -0.6332246, 0, 1, 0, 0.6332246, 0, 0.77396
 mesh = SubResource("BoxMesh_ty0te")
 
 [node name="WIIMOTE_[TEST]" type="Node3D" parent="." unique_id=2032189579]
+visible = false
 script = ExtResource("7_nxx65")
