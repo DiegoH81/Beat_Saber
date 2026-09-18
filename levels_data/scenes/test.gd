@@ -10,8 +10,8 @@ func _ready():
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("Escape"):
-		get_tree().quit()
+	#if event.is_action_pressed("Escape"):
+	#	get_tree().quit()
 	if event.is_action_pressed("p_button"):
 		if number == 0:
 			VisualManager.change_shader("classic")

@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://cfuki5s4l0tgf"]
+
+[ext_resource type="Script" uid="uid://c1lkgjptlream" path="res://src/ui/menu_pause.gd" id="1_2dkfg"]
+[ext_resource type="Shader" uid="uid://2b3x34w71xoq" path="res://src/ui/pause_shader/menu_pause.gdshader" id="1_ow07y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ty0te"]
+shader = ExtResource("1_ow07y")
+shader_parameter/lod = 0.0
+
+[sub_resource type="Animation" id="Animation_ow07y"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0400000494]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2dkfg"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.902000042845]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0009999999, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfaci"]
+_data = {
+&"RESET": SubResource("Animation_ow07y"),
+&"blur": SubResource("Animation_2dkfg")
+}
+
+[node name="MenuPause" type="Control" unique_id=753026438]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2dkfg")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2029529596]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_ty0te")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=1377609240]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -459.8827
+offset_top = -263.0
+offset_right = 459.8827
+offset_bottom = 263.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=250261069]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -455.5
+offset_top = -122.5
+offset_right = 455.5
+offset_bottom = 122.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer" unique_id=213876657]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 76
+text = "Pause MENU"
+
+[node name="Resume" type="Button" parent="Panel/VBoxContainer" unique_id=1672007060]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 73
+text = "Resume"
+
+[node name="Quit" type="Button" parent="Panel/VBoxContainer" unique_id=1319056869]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 73
+text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=676192261]
+libraries/ = SubResource("AnimationLibrary_gfaci")
+
+[connection signal="pressed" from="Panel/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

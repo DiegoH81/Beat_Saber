@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://fldv1su4su1o" path="res://src/enemies/destructor/destructor.tscn" id="5_8i8t4"]
 [ext_resource type="Shader" uid="uid://dfeoln1igrpio" path="res://assets/shaders/d1.gdshader" id="6_62mq3"]
 [ext_resource type="Script" uid="uid://dbyodij3gx2i" path="res://src/core/wiimote_[test].gd" id="7_axoww"]
+[ext_resource type="PackedScene" uid="uid://cfuki5s4l0tgf" path="res://src/ui/menu_pause.tscn" id="7_ubpso"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ty0te"]
 size = Vector3(5, 0.1, 5)
@@ -79,3 +80,7 @@ mesh = SubResource("BoxMesh_ty0te")
 
 [node name="WIIMOTE_[TEST]" type="Node3D" parent="." unique_id=2032189579]
 script = ExtResource("7_axoww")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=988045829]
+
+[node name="MenuPause" parent="CanvasLayer" unique_id=753026438 instance=ExtResource("7_ubpso")]
