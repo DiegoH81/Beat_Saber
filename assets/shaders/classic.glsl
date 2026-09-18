@@ -8,7 +8,6 @@ layout(push_constant) uniform push_constants {
 	vec2 raster_size;
 } parameters;
 
-
 layout(rgba16f, set = 0, binding = 0) uniform image2D color_image;
 layout(set = 0, binding = 1) uniform sampler2D depth_image;
 layout(set = 0, binding = 2) uniform sampler2D normal_image;
@@ -61,7 +60,7 @@ void main()
     float depth_border = 1.0f;
     float normal_border = 1.0f;
 
-    vec3 grayscale = vec3(color.r + color.g + color.b) / 3.0f;
+    vec3 bright = color.rgb * 1.5f;
 
     for (float x = -RADIUS; x <= RADIUS; x++)
     {
@@ -90,5 +89,8 @@ void main()
 	}
 
     float border = min(depth_border, normal_border);
-    imageStore(color_image, uv, vec4(grayscale * border, 1.0));
+
+    vec3 final_color = bright * border;
+
+    imageStore(color_image, uv, vec4(final_color, color.a));
 }
