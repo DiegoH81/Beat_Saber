@@ -5,15 +5,15 @@ layout(local_size_x = 32, local_size_y = 32, local_size_z = 1) in;
 
 layout(push_constant) uniform push_constants {
     mat4 inv_proj_mat;
-	vec2 raster_size;
+    vec2 raster_size;
 } parameters;
 
 layout(rgba16f, set = 0, binding = 0) uniform image2D color_image;
 layout(set = 0, binding = 1) uniform sampler2D depth_image;
 layout(set = 0, binding = 2) uniform sampler2D normal_image;
 
-const float BANDS = 4.0;
-const float SMOOTHNESS = 0.05;
+const float BANDS = 5.0;
+const float SMOOTHNESS = 0.08;
 
 vec3 get_view_position(vec2 in_uv)
 {
@@ -28,6 +28,21 @@ vec3 get_view_position(vec2 in_uv)
 float get_linear_depth(vec2 in_uv)
 {
     return -get_view_position(in_uv).z;
+}
+
+vec3 vintage_color_grade(vec3 color)
+{
+    float luma = dot(color, vec3(0.299, 0.587, 0.114));
+    vec3 desaturated = mix(color, vec3(luma), 0.2f);
+
+    vec3 graded;
+    graded.r = desaturated.r * 1.20f + 0.04f;
+    graded.g = desaturated.g * 1.05f + 0.02f;
+    graded.b = desaturated.b * 0.80f + 0.00f;
+
+    graded += vec3(0.05f, 0.035f, 0.02f);
+
+    return graded;
 }
 
 vec3 posterize_color(vec3 color, float bands, float smoothness)
@@ -53,7 +68,8 @@ void main()
 
     vec4 color = imageLoad(color_image, uv);
 
-    vec3 posterized = posterize_color(color.rgb, BANDS, SMOOTHNESS);
+    vec3 graded_color = vintage_color_grade(color.rgb);
+    vec3 posterized = posterize_color(graded_color, BANDS, SMOOTHNESS);
 
     imageStore(color_image, uv, vec4(posterized, color.a));
 }
