@@ -7,11 +7,16 @@
 radius = 0.125
 height = 0.25
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_75kqj"]
+radius = 0.125
+height = 1.0
+
 [node name="PlayerVR" type="XROrigin3D" unique_id=1613388773 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_rihe0")
 camera = NodePath("XRCamera3D")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="." unique_id=1535857980]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.38751507)
 
 [node name="Body" type="Node3D" parent="." unique_id=9815244 node_paths=PackedStringArray("left_hand", "left_wrist", "left_elbow", "left_shoulder", "right_hand", "right_wrist", "right_elbow", "right_shoulder")]
 script = ExtResource("2_c1i6f")
@@ -30,6 +35,12 @@ right_shoulder = NodePath("Right/RightShoulder")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftHand" unique_id=402067880]
 mesh = SubResource("SphereMesh_75kqj")
+
+[node name="Node3D" type="Node3D" parent="Body/Left/LeftHand" unique_id=813446706]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36913848, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftHand/Node3D" unique_id=1263756505]
+mesh = SubResource("CapsuleMesh_75kqj")
 
 [node name="LeftWrist" type="Node3D" parent="Body/Left" unique_id=855772017]
 
