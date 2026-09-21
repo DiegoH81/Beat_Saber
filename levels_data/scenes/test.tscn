@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://digy3cefci8s1" path="res://src/enemies/generator/generator.tscn" id="4_htlye"]
 [ext_resource type="PackedScene" uid="uid://fldv1su4su1o" path="res://src/enemies/destructor/destructor.tscn" id="5_8i8t4"]
 [ext_resource type="Shader" uid="uid://dfeoln1igrpio" path="res://assets/shaders/d1.gdshader" id="6_62mq3"]
-[ext_resource type="Script" uid="uid://dbyodij3gx2i" path="res://src/core/wiimote_[test].gd" id="7_axoww"]
 [ext_resource type="PackedScene" uid="uid://cfuki5s4l0tgf" path="res://src/ui/menu_pause.tscn" id="7_ubpso"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ty0te"]
@@ -66,7 +65,7 @@ compositor = SubResource("Compositor_w61mg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9260392, 0.80983186)
 
 [node name="Generator" parent="." unique_id=1789100008 instance=ExtResource("4_htlye")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0757108, -31.334612)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -31.335)
 
 [node name="Destructor" parent="." unique_id=1128432705 instance=ExtResource("5_8i8t4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.557748)
@@ -79,9 +78,6 @@ surface_material_override/0 = SubResource("ShaderMaterial_q2b63")
 [node name="CUBE_[TEST]" type="MeshInstance3D" parent="." unique_id=529483403]
 transform = Transform3D(0.7739682, 0, -0.6332246, 0, 1, 0, 0.6332246, 0, 0.7739682, 1.7756469, 0.9673622, 0.9360013)
 mesh = SubResource("BoxMesh_ty0te")
-
-[node name="WIIMOTE_[TEST]" type="Node3D" parent="." unique_id=2032189579]
-script = ExtResource("7_axoww")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=988045829]
 

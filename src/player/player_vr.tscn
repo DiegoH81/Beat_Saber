@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://dsucocti68co2"]
 
 [ext_resource type="Script" uid="uid://dkwxs5gsuvl0y" path="res://src/player/player_vr.gd" id="1_rihe0"]
+[ext_resource type="Script" uid="uid://3ebdqq7ig0tt" path="res://src/player/body.gd" id="2_c1i6f"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_75kqj"]
+radius = 0.125
+height = 0.25
 
 [node name="PlayerVR" type="XROrigin3D" unique_id=1613388773 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_rihe0")
@@ -8,8 +13,57 @@ camera = NodePath("XRCamera3D")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="." unique_id=1535857980]
 
-[node name="Hands" type="Node3D" parent="." unique_id=9815244]
+[node name="Body" type="Node3D" parent="." unique_id=9815244 node_paths=PackedStringArray("left_hand", "left_wrist", "left_elbow", "left_shoulder", "right_hand", "right_wrist", "right_elbow", "right_shoulder")]
+script = ExtResource("2_c1i6f")
+left_hand = NodePath("Left/LeftHand")
+left_wrist = NodePath("Left/LeftWrist")
+left_elbow = NodePath("Left/LeftElbow")
+left_shoulder = NodePath("Left/LeftShoulder")
+right_hand = NodePath("Right/RightHand")
+right_wrist = NodePath("Right/RightWrist")
+right_elbow = NodePath("Right/RightElbow")
+right_shoulder = NodePath("Right/RightShoulder")
 
-[node name="Left" type="Node3D" parent="Hands" unique_id=1788189683]
+[node name="Left" type="Node3D" parent="Body" unique_id=2072163736]
 
-[node name="Right" type="Node3D" parent="Hands" unique_id=650020893]
+[node name="LeftHand" type="Node3D" parent="Body/Left" unique_id=1788189683]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftHand" unique_id=402067880]
+mesh = SubResource("SphereMesh_75kqj")
+
+[node name="LeftWrist" type="Node3D" parent="Body/Left" unique_id=855772017]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftWrist" unique_id=1582300533]
+mesh = SubResource("SphereMesh_75kqj")
+
+[node name="LeftElbow" type="Node3D" parent="Body/Left" unique_id=491820827]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftElbow" unique_id=2081652014]
+mesh = SubResource("SphereMesh_75kqj")
+
+[node name="LeftShoulder" type="Node3D" parent="Body/Left" unique_id=1643794546]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftShoulder" unique_id=869608284]
+mesh = SubResource("SphereMesh_75kqj")
+
+[node name="Right" type="Node3D" parent="Body" unique_id=964969113]
+
+[node name="RightHand" type="Node3D" parent="Body/Right" unique_id=436506547]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Right/RightHand" unique_id=1612093311]
+mesh = SubResource("SphereMesh_75kqj")
+
+[node name="RightWrist" type="Node3D" parent="Body/Right" unique_id=18549533]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Right/RightWrist" unique_id=1667754519]
+mesh = SubResource("SphereMesh_75kqj")
+
+[node name="RightElbow" type="Node3D" parent="Body/Right" unique_id=1253939935]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Right/RightElbow" unique_id=336063971]
+mesh = SubResource("SphereMesh_75kqj")
+
+[node name="RightShoulder" type="Node3D" parent="Body/Right" unique_id=1748358388]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Right/RightShoulder" unique_id=1499810043]
+mesh = SubResource("SphereMesh_75kqj")

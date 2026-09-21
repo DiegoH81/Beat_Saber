@@ -28,8 +28,6 @@ func load_map(notes_data: Array) -> void:
 		notes.push_back(enemy)
 
 func _process(delta: float) -> void:
-	print(duration)
-	print(notes[index].exect_time)
 	
 	if duration >= notes[index].exect_time:
 		var enemy: Enemy = notes[index]
