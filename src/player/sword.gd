@@ -4,7 +4,6 @@ extends Node3D
 @export var hand: Node3D
 @export var elbow: Node3D
 
-
 func _process(delta: float) -> void:
 	var direction: Vector3 = elbow.global_position - hand.global_position
 	if direction.length_squared() > 0.0001:

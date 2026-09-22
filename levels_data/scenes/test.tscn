@@ -68,7 +68,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9260392, 0.80983186)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -31.335)
 
 [node name="Destructor" parent="." unique_id=1128432705 instance=ExtResource("5_8i8t4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.557748)
+transform = Transform3D(1, 0, 0, 0, 30, 0, 0, 0, 30, 5.858961, 0, 9.557748)
 
 [node name="PURPLE WALL" type="MeshInstance3D" parent="." unique_id=1369655272]
 transform = Transform3D(5.069449, 0, 0, 0, 2.10714, 0, 0, 0, 1, 0.015715241, 1.0254223, -1.2775743)

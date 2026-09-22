@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dkwxs5gsuvl0y" path="res://src/player/player_vr.gd" id="1_rihe0"]
 [ext_resource type="Script" uid="uid://3ebdqq7ig0tt" path="res://src/player/body.gd" id="2_c1i6f"]
 [ext_resource type="Script" uid="uid://2yjs7n11owsa" path="res://src/player/sword.gd" id="3_kgfj8"]
+[ext_resource type="PackedScene" uid="uid://fldv1su4su1o" path="res://src/enemies/destructor/destructor.tscn" id="4_pbdtc"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_75kqj"]
 radius = 0.125
@@ -40,11 +41,14 @@ elbow = NodePath("LeftElbow")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftHand" unique_id=402067880]
 mesh = SubResource("SphereMesh_75kqj")
 
-[node name="Sword" type="Node3D" parent="Body/Left/LeftHand" unique_id=1902398739]
+[node name="Sword" type="Node3D" parent="Body/Left/LeftHand" unique_id=39984283]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftHand/Sword" unique_id=1934885833]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftHand/Sword" unique_id=2141000894]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4811629, 0)
 mesh = SubResource("BoxMesh_6ivru")
+
+[node name="Destructor" parent="Body/Left/LeftHand/Sword" unique_id=1128432705 instance=ExtResource("4_pbdtc")]
+transform = Transform3D(0.3, 0, 0, 0, 1, 0, 0, 0, 0.3, 0, 0.5305756, 0)
 
 [node name="LeftWrist" type="Node3D" parent="Body/Left" unique_id=855772017]
 
@@ -61,12 +65,25 @@ mesh = SubResource("SphereMesh_75kqj")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftShoulder" unique_id=869608284]
 mesh = SubResource("SphereMesh_75kqj")
 
-[node name="Right" type="Node3D" parent="Body" unique_id=964969113]
+[node name="Right" type="Node3D" parent="Body" unique_id=964969113 node_paths=PackedStringArray("sword", "hand", "elbow")]
+script = ExtResource("3_kgfj8")
+sword = NodePath("RightHand/Sword")
+hand = NodePath("RightHand")
+elbow = NodePath("RightElbow")
 
 [node name="RightHand" type="Node3D" parent="Body/Right" unique_id=436506547]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Right/RightHand" unique_id=1612093311]
 mesh = SubResource("SphereMesh_75kqj")
+
+[node name="Sword" type="Node3D" parent="Body/Right/RightHand" unique_id=1758562183]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Right/RightHand/Sword" unique_id=1806209414]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4811629, 0)
+mesh = SubResource("BoxMesh_6ivru")
+
+[node name="Destructor" parent="Body/Right/RightHand/Sword" unique_id=188524726 instance=ExtResource("4_pbdtc")]
+transform = Transform3D(0.3, 0, 0, 0, 1, 0, 0, 0, 0.3, 0, 0.5305756, 0)
 
 [node name="RightWrist" type="Node3D" parent="Body/Right" unique_id=18549533]
 

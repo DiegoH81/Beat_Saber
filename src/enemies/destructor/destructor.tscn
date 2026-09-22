@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cv1mumc3ycsym" path="res://src/enemies/destructor/destructor.gd" id="1_v4maa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gmmfb"]
-size = Vector3(30, 30, 1)
 
 [node name="Destructor" type="Area3D" unique_id=1128432705]
 script = ExtResource("1_v4maa")
