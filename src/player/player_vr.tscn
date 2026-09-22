@@ -47,7 +47,7 @@ mesh = SubResource("SphereMesh_75kqj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4811629, 0)
 mesh = SubResource("BoxMesh_6ivru")
 
-[node name="Destructor" parent="Body/Left/LeftHand/Sword" unique_id=1128432705 instance=ExtResource("4_pbdtc")]
+[node name="SwordDestructor" parent="Body/Left/LeftHand/Sword" unique_id=1128432705 instance=ExtResource("4_pbdtc")]
 transform = Transform3D(0.3, 0, 0, 0, 1, 0, 0, 0, 0.3, 0, 0.5305756, 0)
 
 [node name="LeftWrist" type="Node3D" parent="Body/Left" unique_id=855772017]
@@ -82,7 +82,7 @@ mesh = SubResource("SphereMesh_75kqj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4811629, 0)
 mesh = SubResource("BoxMesh_6ivru")
 
-[node name="Destructor" parent="Body/Right/RightHand/Sword" unique_id=188524726 instance=ExtResource("4_pbdtc")]
+[node name="SwordDestructor" parent="Body/Right/RightHand/Sword" unique_id=188524726 instance=ExtResource("4_pbdtc")]
 transform = Transform3D(0.3, 0, 0, 0, 1, 0, 0, 0, 0.3, 0, 0.5305756, 0)
 
 [node name="RightWrist" type="Node3D" parent="Body/Right" unique_id=18549533]
