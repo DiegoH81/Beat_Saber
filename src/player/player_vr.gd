@@ -53,8 +53,6 @@ func enable_keyboard_mode() -> void:
 	get_viewport().use_xr = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	camera.transform.basis = Basis.IDENTITY
-	camera.position = Vector3.ZERO
 	rotation_target = Vector3.ZERO
 	rotation = Vector3.ZERO
 	print("WIMP on")
