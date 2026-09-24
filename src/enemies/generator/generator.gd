@@ -1,24 +1,24 @@
-extends Node
+extends Node3D
 class_name Generator
 
+@export_category("Dependencies")
+@export var player_vr: XROrigin3D
+@export var n_beats: int = 3
 @export var test_enemy: PackedScene
 
+@export_category("Attributes")
 @export var points: Array[Node3D]
 
 var notes: Array[Enemy]
-
 var index: int = 0
 
-var max_intervals: float = 0.3
-var intervals: float = 0.3
+var bpm: float = 0
 var duration_max: float = 0
 var duration: float = 0
 
-func setup(duration_data: float, interval: float, notes_data: Array) -> void:
-	max_intervals = interval
-	intervals = interval
+func setup(duration_data: float, bpm_data: float, notes_data: Array) -> void:
 	duration_max = duration_data
-	
+	bpm = bpm_data
 	load_map(notes_data)
 
 func load_map(notes_data: Array) -> void:
@@ -27,10 +27,11 @@ func load_map(notes_data: Array) -> void:
 		enemy.init(note_data)
 		notes.push_back(enemy)
 
-func _process(delta: float) -> void:
-	
-	if duration >= notes[index].exect_time:
+func _physics_process(delta: float) -> void:
+	if duration <= duration_max and duration >= notes[index].exect_time:
 		var enemy: Enemy = notes[index]
+		enemy.movement.direction = -global_transform.basis.z
+		enemy.movement.velocity = (global_position.distance_to(player_vr.global_position) - 3) * bpm / (60 * n_beats)
 		points[enemy.lane].add_child(enemy)
 		index += 1
 	duration += delta

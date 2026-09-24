@@ -12,8 +12,9 @@ transparency = 1
 [sub_resource type="SphereMesh" id="SphereMesh_75kqj"]
 material = SubResource("StandardMaterial3D_2bghh")
 
-[node name="TestEnemy" type="Area3D" unique_id=1874969023]
+[node name="TestEnemy" type="Area3D" unique_id=1874969023 node_paths=PackedStringArray("movement")]
 script = ExtResource("1_rp6f4")
+movement = NodePath("Node/Movement")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=896353033]
 shape = SubResource("SphereShape3D_75kqj")
@@ -26,10 +27,6 @@ mesh = SubResource("SphereMesh_75kqj")
 [node name="Movement" type="Node" parent="Node" unique_id=1225685199 node_paths=PackedStringArray("enemy")]
 script = ExtResource("1_lcl3f")
 enemy = NodePath("../..")
-hp = 1
-max_velocity = 30.0
-acceleration = 15.0
-direction = Vector3(0, 0, 1)
 
 [node name="Visual" type="Node" parent="Node" unique_id=287461738]
 script = ExtResource("2_2bghh")

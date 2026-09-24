@@ -64,8 +64,9 @@ compositor = SubResource("Compositor_w61mg")
 [node name="PlayerVR" parent="." unique_id=1613388773 instance=ExtResource("3_xvr48")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9260392, 0.80983186)
 
-[node name="Generator" parent="." unique_id=1789100008 instance=ExtResource("4_htlye")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -31.335)
+[node name="Generator" parent="." unique_id=1789100008 node_paths=PackedStringArray("player_vr") instance=ExtResource("4_htlye")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1, -31.335)
+player_vr = NodePath("../PlayerVR")
 
 [node name="Destructor" parent="." unique_id=1128432705 instance=ExtResource("5_8i8t4")]
 transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 1, 0, 0, 9.558)

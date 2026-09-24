@@ -1,6 +1,8 @@
 extends Area3D
 class_name Enemy
 
+@export var movement: MovementModule
+
 var exect_time: float
 var lane: int
 var angle_offset: float
