@@ -7,6 +7,7 @@ class_name Generator
 @export var test_enemy: PackedScene
 
 @export_category("Attributes")
+@export var hit_window: float = 1.5
 @export var points: Array[Node3D]
 
 var notes: Array[Enemy]
@@ -31,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	if duration <= duration_max and duration >= notes[index].exect_time:
 		var enemy: Enemy = notes[index]
 		enemy.movement.direction = -global_transform.basis.z
-		enemy.movement.velocity = (global_position.distance_to(player_vr.global_position) - 3) * bpm / (60 * n_beats)
+		enemy.movement.velocity = (global_position.distance_to(player_vr.global_position) - hit_window) * bpm / (60 * n_beats)
 		points[enemy.lane].add_child(enemy)
 		index += 1
 	duration += delta
