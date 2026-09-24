@@ -47,6 +47,7 @@ player_vr = NodePath("PlayerVR")
 generator = NodePath("Generator")
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=276938436]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=321510325]
 shape = SubResource("BoxShape3D_ty0te")

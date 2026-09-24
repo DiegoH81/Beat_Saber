@@ -7,6 +7,16 @@
 inner_radius = 0.32
 outer_radius = 0.001
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxf0w"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.14509805)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nxf0w"]
+material = SubResource("StandardMaterial3D_nxf0w")
+top_radius = 0.025
+bottom_radius = 0.025
+height = 100.0
+
 [node name="Generator" type="Node3D" unique_id=1789100008 node_paths=PackedStringArray("points")]
 script = ExtResource("1_8vokg")
 test_enemy = ExtResource("2_nxf0w")
@@ -19,12 +29,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("TorusMesh_xqa4i")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Point0" unique_id=1845009301]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -50)
+mesh = SubResource("CylinderMesh_nxf0w")
+
 [node name="Point1" type="Node3D" parent="." unique_id=1391755669]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point1" unique_id=593833959]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("TorusMesh_xqa4i")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Point1" unique_id=394786048]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -50)
+mesh = SubResource("CylinderMesh_nxf0w")
 
 [node name="Point2" type="Node3D" parent="." unique_id=1718120519]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73822105, 1, 0)
@@ -33,12 +51,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73822105, 1, 0)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("TorusMesh_xqa4i")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Point2" unique_id=541926196]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -50)
+mesh = SubResource("CylinderMesh_nxf0w")
+
 [node name="Point3" type="Node3D" parent="." unique_id=459396289]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6654601, 1, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point3" unique_id=864379748]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("TorusMesh_xqa4i")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Point3" unique_id=885112345]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -50)
+mesh = SubResource("CylinderMesh_nxf0w")
 
 [node name="Point4" type="Node3D" parent="." unique_id=1967409115]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
@@ -47,11 +73,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("TorusMesh_xqa4i")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Point4" unique_id=1142903198]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -50)
+mesh = SubResource("CylinderMesh_nxf0w")
+
 [node name="Point5" type="Node3D" parent="." unique_id=480431385]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point5" unique_id=2109963019]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("TorusMesh_xqa4i")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Point5" unique_id=439100235]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -50)
+mesh = SubResource("CylinderMesh_nxf0w")
 
 [node name="Point6" type="Node3D" parent="." unique_id=377139041]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73822105, 0, 0)
@@ -60,12 +94,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73822105, 0, 0)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("TorusMesh_xqa4i")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Point6" unique_id=2056531278]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -50)
+mesh = SubResource("CylinderMesh_nxf0w")
+
 [node name="Point7" type="Node3D" parent="." unique_id=1315856379]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6654601, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point7" unique_id=711885858]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("TorusMesh_xqa4i")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Point7" unique_id=1887938611]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -50)
+mesh = SubResource("CylinderMesh_nxf0w")
 
 [node name="Point8" type="Node3D" parent="." unique_id=1063777246]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, 0)
@@ -74,12 +116,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, 0)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("TorusMesh_xqa4i")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Point8" unique_id=1428280351]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -50)
+mesh = SubResource("CylinderMesh_nxf0w")
+
 [node name="Point9" type="Node3D" parent="." unique_id=237504804]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point9" unique_id=2131867399]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("TorusMesh_xqa4i")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Point9" unique_id=1660753750]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -50)
+mesh = SubResource("CylinderMesh_nxf0w")
 
 [node name="Point10" type="Node3D" parent="." unique_id=34927200]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73822105, -1, 0)
@@ -88,9 +138,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73822105, -1, 0)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("TorusMesh_xqa4i")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Point10" unique_id=681615018]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -50)
+mesh = SubResource("CylinderMesh_nxf0w")
+
 [node name="Point11" type="Node3D" parent="." unique_id=1094156306]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6654601, -1, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point11" unique_id=715625158]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("TorusMesh_xqa4i")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Point11" unique_id=920959237]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -50)
+mesh = SubResource("CylinderMesh_nxf0w")
