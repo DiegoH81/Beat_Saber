@@ -29,7 +29,10 @@ func load_map(notes_data: Array) -> void:
 		notes.push_back(enemy)
 
 func _physics_process(delta: float) -> void:
-	if duration <= duration_max and duration >= notes[index].exect_time:
+	if notes.size() <= index:
+		SceneManager.to_level_selector()
+	
+	if duration >= notes[index].exect_time:
 		var enemy: Enemy = notes[index]
 		enemy.movement.direction = -global_transform.basis.z
 		enemy.movement.velocity = (global_position.distance_to(player_vr.global_position) - hit_window) * bpm / (60 * n_beats)

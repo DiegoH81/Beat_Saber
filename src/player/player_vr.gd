@@ -2,6 +2,7 @@ extends XROrigin3D
 
 @export_category("Dependencies")
 @export var camera: XRCamera3D
+@export var head: Node3D
 
 @export_category("Attributes")
 @export var mouse_sensitivity: float = 0.003
@@ -42,16 +43,14 @@ func enable_vr_mode() -> void:
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	
 	rotation_target = Vector3.ZERO
-	camera.transform.basis = Basis.IDENTITY
 	rotation = Vector3.ZERO
 	print("VR enabled")
 
 func enable_keyboard_mode() -> void:
 	is_vr_active = false
 	get_viewport().use_xr = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
 	
 	rotation_target = Vector3.ZERO
 	rotation = Vector3.ZERO
@@ -59,6 +58,7 @@ func enable_keyboard_mode() -> void:
 
 func _process(delta: float) -> void:
 	if is_vr_active:
+		camera.global_transform = Transform3D(camera.global_transform.basis, head.global_position)
 		return
 
 	var input_dir := Vector2.ZERO

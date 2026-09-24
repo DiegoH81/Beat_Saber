@@ -18,6 +18,7 @@ LANDMARK_TO_KINECT_JOINT = {
     5: PyKinectV2.JointType_ElbowRight,
     6: PyKinectV2.JointType_ShoulderLeft,
     7: PyKinectV2.JointType_ShoulderRight,
+    8: PyKinectV2.JointType_Head
 }
 
 
