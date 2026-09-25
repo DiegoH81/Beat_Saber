@@ -8,19 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://b4dj6nob8d46c" path="res://src/enemies/objects/enemy_base.tscn" id="4_kwtqq"]
 [ext_resource type="PackedScene" uid="uid://c8r8frk3aor57" path="res://levels_data/test/skin_enemy_test.tscn" id="5_5mtdr"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kwtqq"]
-ground_bottom_color = Color(0.13841793, 0.08044835, 0.10215574, 1)
-
-[sub_resource type="Sky" id="Sky_0wfyh"]
-sky_material = SubResource("ProceduralSkyMaterial_kwtqq")
-
-[sub_resource type="Environment" id="Environment_5mtdr"]
-background_mode = 2
-background_energy_multiplier = 1.25
-sky = SubResource("Sky_0wfyh")
-
-[sub_resource type="Compositor" id="Compositor_n7fy3"]
-
 [node name="Level" type="Node3D" unique_id=814822109 node_paths=PackedStringArray("player_vr", "generator")]
 script = ExtResource("1_5kcgd")
 player_vr = NodePath("PlayerVR")
@@ -28,10 +15,6 @@ generator = NodePath("Generator")
 
 [node name="Sun" type="DirectionalLight3D" parent="." unique_id=1999535529]
 transform = Transform3D(1, 0, 0, 0, 0.9241243, 0.38209203, 0, -0.38209203, 0.9241243, 0, 1.6036624, 2.25277)
-
-[node name="Ambient" type="WorldEnvironment" parent="." unique_id=1754290253]
-environment = SubResource("Environment_5mtdr")
-compositor = SubResource("Compositor_n7fy3")
 
 [node name="PlayerVR" parent="." unique_id=1613388773 instance=ExtResource("1_xsmr6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9260392, 0.80983186)
