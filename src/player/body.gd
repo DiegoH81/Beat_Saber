@@ -21,7 +21,7 @@ var udp := PacketPeerUDP.new()
 @export var right_shoulder: Node3D
 
 var landmark_nodes := {}
-var body_nodes := []  # todos los nodos que se desplazan junto con head
+var body_nodes := []
 
 func _ready() -> void:
 	process_priority = -1
@@ -84,7 +84,6 @@ func _update_landmarks(data: Dictionary) -> void:
 			continue
 
 		var values: Array = landmarks[index]
-		# values = [x, y, z, visibility]
 		var pos := Vector3(values[0], values[1], values[2])
 		node.position = pos
 
@@ -93,13 +92,10 @@ func _align_head_to_camera() -> void:
 	if xr_camera_3d == null or head == null:
 		return
 
-	# Diferencia entre la posición global de la cámara XR y la de head
 	var offset := xr_camera_3d.global_position - head.global_position
 
-	# Movemos head a la posición de la cámara
 	head.global_position = xr_camera_3d.global_position
 
-	# Aplicamos el mismo offset al resto del cuerpo para mantener la postura relativa
 	for node in body_nodes:
 		if node == null:
 			continue
