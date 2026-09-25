@@ -16,3 +16,6 @@ func init(data: Dictionary) -> void:
 	
 	scale = Vector3(intensity,intensity,intensity)
 	rotate_z(angle_offset)
+
+func set_skin(skin: PackedScene) -> void:
+	add_child(skin.instantiate())

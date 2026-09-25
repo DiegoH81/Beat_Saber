@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b4dj6nob8d46c"]
+
+[ext_resource type="Script" uid="uid://dm4nybkw7el2b" path="res://src/enemies/objects/enemy_base.gd" id="1_yaugn"]
+[ext_resource type="Script" uid="uid://d0mke4wpfdo7s" path="res://src/enemies/modules/movement.gd" id="2_k8uxd"]
+[ext_resource type="Script" uid="uid://d3lc22i36b7n4" path="res://src/enemies/modules/visual.gd" id="3_ejejq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_75kqj"]
+
+[node name="EnemyBase" type="Area3D" unique_id=1874969023 node_paths=PackedStringArray("movement")]
+script = ExtResource("1_yaugn")
+movement = NodePath("Node/Movement")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=896353033]
+shape = SubResource("SphereShape3D_75kqj")
+
+[node name="Node" type="Node" parent="." unique_id=968766421]
+
+[node name="Movement" type="Node" parent="Node" unique_id=1225685199 node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_k8uxd")
+enemy = NodePath("../..")
+
+[node name="Visual" type="Node" parent="Node" unique_id=287461738]
+script = ExtResource("3_ejejq")

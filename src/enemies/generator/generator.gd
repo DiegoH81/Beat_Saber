@@ -4,7 +4,9 @@ class_name Generator
 @export_category("Dependencies")
 @export var player_vr: XROrigin3D
 @export var n_beats: int = 3
-@export var test_enemy: PackedScene
+@export var enemy: PackedScene
+@export var skin_enemy: PackedScene
+
 
 @export_category("Attributes")
 @export var hit_window: float = 1.5
@@ -24,8 +26,9 @@ func setup(duration_data: float, bpm_data: float, notes_data: Array) -> void:
 
 func load_map(notes_data: Array) -> void:
 	for note_data in notes_data:
-		var enemy: Enemy = test_enemy.instantiate()
+		var enemy: Enemy = enemy.instantiate()
 		enemy.init(note_data)
+		enemy.set_skin(skin_enemy)
 		notes.push_back(enemy)
 
 func _physics_process(delta: float) -> void:

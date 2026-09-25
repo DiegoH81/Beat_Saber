@@ -60,11 +60,11 @@ func to_level(level_id: String) -> void:
 
 func load_level_scene(level_id: String) -> Level:
 	var level_scene: PackedScene
-	var level_scene_path: String = LEVELS_PATH + "scenes/"+ level_id + ".tscn"
+	var level_scene_path: String = LEVELS_PATH + "data/"+ level_id + "/level.tscn"
 	if ResourceLoader.exists(level_scene_path):
 		level_scene = load(level_scene_path)
 	else:
-		level_scene = load("res://levels_data/scenes/test.tscn")
+		level_scene = load("res://levels_data/test/level_test.tscn")
 	return level_scene.instantiate()
 
 func load_level_data(level_id: String) -> Dictionary:

@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://cp2aarf0wgd2t"]
 
-[ext_resource type="Script" uid="uid://dqw4nr17bgfwi" path="res://levels_data/scenes/test.gd" id="1_lseiu"]
+[ext_resource type="Script" uid="uid://dqw4nr17bgfwi" path="res://levels_data/test/level_test.gd" id="1_lseiu"]
 [ext_resource type="PackedScene" uid="uid://dsucocti68co2" path="res://src/player/player_vr.tscn" id="3_xvr48"]
+[ext_resource type="PackedScene" uid="uid://b4dj6nob8d46c" path="res://src/enemies/objects/enemy_base.tscn" id="4_gwp0u"]
 [ext_resource type="PackedScene" uid="uid://digy3cefci8s1" path="res://src/enemies/generator/generator.tscn" id="4_htlye"]
 [ext_resource type="PackedScene" uid="uid://fldv1su4su1o" path="res://src/enemies/destructor/destructor.tscn" id="5_8i8t4"]
+[ext_resource type="PackedScene" uid="uid://c8r8frk3aor57" path="res://levels_data/test/skin_enemy_test.tscn" id="5_e0blg"]
 [ext_resource type="Shader" uid="uid://dfeoln1igrpio" path="res://assets/shaders/d1.gdshader" id="6_62mq3"]
 [ext_resource type="PackedScene" uid="uid://cfuki5s4l0tgf" path="res://src/ui/menu_pause.tscn" id="7_ubpso"]
 
@@ -68,6 +70,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9260392, 0.80983186)
 [node name="Generator" parent="." unique_id=1789100008 node_paths=PackedStringArray("player_vr") instance=ExtResource("4_htlye")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.5, -31.335)
 player_vr = NodePath("../PlayerVR")
+enemy = ExtResource("4_gwp0u")
+skin_enemy = ExtResource("5_e0blg")
 
 [node name="Destructor" parent="." unique_id=1128432705 instance=ExtResource("5_8i8t4")]
 transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 1, 0, 0, 9.558)

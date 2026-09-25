@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dkfaeilckhcq8"]
+
+[ext_resource type="PackedScene" uid="uid://cye3p6aq1yoar" path="res://src/core/level.tscn" id="1_ju4l8"]
+[ext_resource type="PackedScene" uid="uid://bm1l6dky4bh4t" path="res://levels_data/data/Vivaldi_four_seasons/models/sword.glb" id="2_dlgdu"]
+[ext_resource type="PackedScene" uid="uid://4a4rda1fm7hp" path="res://levels_data/data/Vivaldi_four_seasons/models/enemy_base.glb" id="2_uaawb"]
+
+[node name="Level" unique_id=814822109 instance=ExtResource("1_ju4l8")]
+
+[node name="PlayerVR" parent="." index="2" unique_id=1613388773]
+sword_scene = ExtResource("2_dlgdu")
+
+[node name="Generator" parent="." index="3" unique_id=1789100008]
+skin_enemy = ExtResource("2_uaawb")

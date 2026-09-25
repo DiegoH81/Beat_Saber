@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://digy3cefci8s1" path="res://src/enemies/generator/generator.tscn" id="2_5kcgd"]
 [ext_resource type="PackedScene" uid="uid://fldv1su4su1o" path="res://src/enemies/destructor/destructor.tscn" id="3_a5w13"]
 [ext_resource type="PackedScene" uid="uid://cfuki5s4l0tgf" path="res://src/ui/menu_pause.tscn" id="4_8i58q"]
+[ext_resource type="PackedScene" uid="uid://b4dj6nob8d46c" path="res://src/enemies/objects/enemy_base.tscn" id="4_kwtqq"]
+[ext_resource type="PackedScene" uid="uid://c8r8frk3aor57" path="res://levels_data/test/skin_enemy_test.tscn" id="5_5mtdr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kwtqq"]
 ground_bottom_color = Color(0.13841793, 0.08044835, 0.10215574, 1)
@@ -34,8 +36,11 @@ compositor = SubResource("Compositor_n7fy3")
 [node name="PlayerVR" parent="." unique_id=1613388773 instance=ExtResource("1_xsmr6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9260392, 0.80983186)
 
-[node name="Generator" parent="." unique_id=1789100008 instance=ExtResource("2_5kcgd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0757108, -31.334612)
+[node name="Generator" parent="." unique_id=1789100008 node_paths=PackedStringArray("player_vr") instance=ExtResource("2_5kcgd")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.5551233, 3.0757108, -31.334612)
+player_vr = NodePath("../PlayerVR")
+enemy = ExtResource("4_kwtqq")
+skin_enemy = ExtResource("5_5mtdr")
 
 [node name="Destructor" parent="." unique_id=1128432705 instance=ExtResource("3_a5w13")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.557748)

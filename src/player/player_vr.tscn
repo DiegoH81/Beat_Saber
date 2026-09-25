@@ -17,13 +17,12 @@ height = 0.25
 radius = 0.063
 height = 0.125
 
-[sub_resource type="BoxMesh" id="BoxMesh_6ivru"]
-size = Vector3(0.032, 1.5, 0.032)
-
-[node name="PlayerVR" type="XROrigin3D" unique_id=1613388773 node_paths=PackedStringArray("camera", "head")]
+[node name="PlayerVR" type="XROrigin3D" unique_id=1613388773 node_paths=PackedStringArray("camera", "head", "left_sword", "right_sword")]
 script = ExtResource("1_rihe0")
 camera = NodePath("XRCamera3D")
 head = NodePath("Body/Head")
+left_sword = NodePath("Body/Left/LeftHand/Sword")
+right_sword = NodePath("Body/Right")
 mouse_sensitivity = 0.0
 move_speed = 0.0
 
@@ -63,10 +62,6 @@ mesh = SubResource("SphereMesh_75kqj")
 [node name="Sword" type="Node3D" parent="Body/Left/LeftHand" unique_id=39984283]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.011314034, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftHand/Sword" unique_id=2141000894]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4811629, 0)
-mesh = SubResource("BoxMesh_6ivru")
-
 [node name="SwordDestructor" parent="Body/Left/LeftHand/Sword" unique_id=1128432705 instance=ExtResource("4_pbdtc")]
 transform = Transform3D(0.3, 0, 0, 0, 1.5, 0, 0, 0, 0.3, 0, 0.5305756, 0)
 
@@ -101,10 +96,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.002373606, 0)
 
 [node name="SwordDestructor" parent="Body/Right/RightHand/Sword" unique_id=1259190961 instance=ExtResource("4_pbdtc")]
 transform = Transform3D(0.3, 0, 0, 0, 1.5, 0, 0, 0, 0.3, 0, 0.5305756, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Right/RightHand/Sword" unique_id=1673475382]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4811629, 0)
-mesh = SubResource("BoxMesh_6ivru")
 
 [node name="RightWrist" type="Node3D" parent="Body/Right" unique_id=18549533]
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://digy3cefci8s1"]
 
 [ext_resource type="Script" uid="uid://bwxnjecgg00nb" path="res://src/enemies/generator/generator.gd" id="1_8vokg"]
-[ext_resource type="PackedScene" uid="uid://b4dj6nob8d46c" path="res://src/enemies/objects/test_enemy.tscn" id="2_nxf0w"]
+[ext_resource type="PackedScene" uid="uid://b4dj6nob8d46c" path="res://src/enemies/objects/enemy_base.tscn" id="2_nxf0w"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_xqa4i"]
 inner_radius = 0.32
