@@ -3,11 +3,83 @@
 [ext_resource type="PackedScene" uid="uid://cye3p6aq1yoar" path="res://src/core/level.tscn" id="1_ju4l8"]
 [ext_resource type="PackedScene" uid="uid://bm1l6dky4bh4t" path="res://levels_data/data/Vivaldi_four_seasons/models/sword.glb" id="2_dlgdu"]
 [ext_resource type="PackedScene" uid="uid://4a4rda1fm7hp" path="res://levels_data/data/Vivaldi_four_seasons/models/enemy_base.glb" id="2_uaawb"]
+[ext_resource type="PackedScene" uid="uid://bowqf08dwagvw" path="res://levels_data/data/Vivaldi_four_seasons/models/Beethoven.glb" id="4_8ji72"]
+[ext_resource type="PackedScene" uid="uid://bxl8avnyue10o" path="res://levels_data/data/Vivaldi_four_seasons/models/level1.glb" id="5_1fb18"]
 
-[node name="Level" unique_id=814822109 instance=ExtResource("1_ju4l8")]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1fb18"]
+ground_bottom_color = Color(0.13841793, 0.08044835, 0.10215574, 1)
 
-[node name="PlayerVR" parent="." index="2" unique_id=1613388773]
+[sub_resource type="Sky" id="Sky_0wfyh"]
+sky_material = SubResource("ProceduralSkyMaterial_1fb18")
+
+[sub_resource type="Environment" id="Environment_guabt"]
+background_mode = 1
+sky = SubResource("Sky_0wfyh")
+ambient_light_energy = 0.0
+volumetric_fog_enabled = true
+
+[sub_resource type="Compositor" id="Compositor_s451c"]
+
+[node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient") instance=ExtResource("1_ju4l8")]
+ambient = NodePath("Ambient")
+
+[node name="Sun" parent="." index="0" unique_id=1999535529]
+transform = Transform3D(1, 0, 0, 0, -0.8655635, 0.5007991, 0, -0.5007991, -0.8655635, 0, 24.921965, -25.772339)
+light_color = Color(0.62853825, 0.08125042, 0.044717252, 1)
+light_energy = 2.0
+shadow_enabled = true
+sky_mode = 1
+
+[node name="PlayerVR" parent="." index="1" unique_id=1613388773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9260392, 5.95648)
 sword_scene = ExtResource("2_dlgdu")
 
-[node name="Generator" parent="." index="3" unique_id=1789100008]
+[node name="Generator" parent="." index="2" unique_id=1789100008]
+transform = Transform3D(-1, -2.1472688e-16, -8.742278e-08, -5.4783847e-08, 0.77929735, 0.6266542, 6.8128344e-08, 0.6266542, -0.77929735, 0, 26, -26)
 skin_enemy = ExtResource("2_uaawb")
+
+[node name="Ambient" type="WorldEnvironment" parent="." index="4" unique_id=1531568387]
+environment = SubResource("Environment_guabt")
+compositor = SubResource("Compositor_s451c")
+
+[node name="Beethoven" parent="." index="6" unique_id=1966967762 instance=ExtResource("4_8ji72")]
+transform = Transform3D(10, 0, 0, 0, 8.487923, -5.287264, 0, 5.287264, 8.487923, 0, 20.333279, -22.996096)
+
+[node name="level1" parent="." index="7" unique_id=1705648738 instance=ExtResource("5_1fb18")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="8" unique_id=610231602]
+transform = Transform3D(1, 0, 0, 0, 0.128848, -0.99166435, 0, 0.99166435, 0.128848, 0, 14.058057, -16.843103)
+spot_range = 15.498839
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="." index="9" unique_id=201635577]
+transform = Transform3D(-0.7322442, 0.2600959, -0.6294194, 0.01845412, 0.93143845, 0.3634308, 0.68079215, 0.25450468, -0.6868403, -15.692673, 10.542577, -14.159039)
+shadow_enabled = true
+shadow_bias = 10.0
+spot_range = 18.264372
+spot_angle = 77.34375
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="." index="10" unique_id=157429972]
+transform = Transform3D(-0.48318112, -0.2804999, -0.8293708, 0.089562684, 0.9264837, -0.36552238, 0.87092745, -0.2508942, -0.4225371, -13.878469, 2.7117739, -9.186321)
+shadow_enabled = true
+shadow_bias = 10.0
+spot_range = 18.264372
+spot_angle = 77.34375
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="." index="11" unique_id=2069025460]
+transform = Transform3D(-0.21599905, -0.5980206, 0.77182627, -0.29732907, 0.7932302, 0.53139573, -0.93002146, -0.11470543, -0.34914586, 15.442516, 8.635286, -12.378457)
+shadow_enabled = true
+shadow_bias = 10.0
+spot_range = 18.264372
+spot_angle = 77.34375
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="." index="12" unique_id=480399449]
+transform = Transform3D(-0.5139802, 0.08373801, 0.85370505, -0.2786401, 0.92495704, -0.25848454, -0.81128544, -0.37073237, -0.45207682, 12.638237, -0.7923374, -10.934876)
+shadow_enabled = true
+shadow_bias = 10.0
+spot_range = 18.264372
+spot_angle = 77.34375
+
+[node name="SpotLight3D6" type="SpotLight3D" parent="." index="13" unique_id=1011094597]
+transform = Transform3D(1, 0, 0, 0, 0.07423357, 0.9972409, 0, -0.9972409, 0.07423357, 0, 4.4009504, 6.2692757)
+spot_angle = 25.943008
