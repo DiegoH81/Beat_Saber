@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c8r8frk3aor57"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_75kqj"]
+
+[node name="SkinEnemyTest" type="MeshInstance3D" unique_id=1595218803]
+mesh = SubResource("SphereMesh_75kqj")

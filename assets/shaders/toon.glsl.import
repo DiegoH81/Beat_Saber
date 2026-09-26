@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://cmfm5jyu5t3mw"
+path="res://.godot/imported/toon.glsl-2b8610102a3f9b4d46215d5cf5fcecb4.res"
+
+[deps]
+
+source_file="res://assets/shaders/toon.glsl"
+dest_files=["res://.godot/imported/toon.glsl-2b8610102a3f9b4d46215d5cf5fcecb4.res"]
+
+[params]
+

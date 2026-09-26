@@ -2,6 +2,11 @@ extends XROrigin3D
 
 @export_category("Dependencies")
 @export var camera: XRCamera3D
+@export var head: Node3D
+@export var left_sword: Node3D
+@export var right_sword: Node3D
+
+@export var sword_scene: PackedScene
 
 @export_category("Attributes")
 @export var mouse_sensitivity: float = 0.003
@@ -18,6 +23,14 @@ func _ready() -> void:
 		enable_vr_mode()
 	else:
 		enable_keyboard_mode()
+	
+	if sword_scene == null:
+		var sword_res: Resource = load("res://levels_data/test/sword_test.tscn")
+		right_sword.add_child(sword_res.instantiate())
+		left_sword.add_child(sword_res.instantiate())
+	else:
+		right_sword.add_child(sword_scene.instantiate())
+		left_sword.add_child(sword_scene.instantiate())
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Toggle VR"):
@@ -42,25 +55,22 @@ func enable_vr_mode() -> void:
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	
 	rotation_target = Vector3.ZERO
-	camera.transform.basis = Basis.IDENTITY
 	rotation = Vector3.ZERO
 	print("VR enabled")
 
 func enable_keyboard_mode() -> void:
 	is_vr_active = false
 	get_viewport().use_xr = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
 	
-	camera.transform.basis = Basis.IDENTITY
-	camera.position = Vector3.ZERO
 	rotation_target = Vector3.ZERO
 	rotation = Vector3.ZERO
 	print("WIMP on")
 
 func _process(delta: float) -> void:
 	if is_vr_active:
+		camera.global_transform = Transform3D(camera.global_transform.basis, head.global_position)
 		return
 
 	var input_dir := Vector2.ZERO

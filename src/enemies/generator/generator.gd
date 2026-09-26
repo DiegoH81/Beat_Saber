@@ -1,38 +1,44 @@
-extends Node
+extends Node3D
 class_name Generator
 
-@export var test_enemy: PackedScene
+@export_category("Dependencies")
+@export var player_vr: XROrigin3D
+@export var n_beats: int = 3
+@export var enemy: PackedScene
+@export var skin_enemy: PackedScene
 
+
+@export_category("Attributes")
+@export var hit_window: float = 1.5
 @export var points: Array[Node3D]
 
-var memory: int = -1
+var notes: Array[Enemy]
+var index: int = 0
 
-var max_intervals: float = 2
-var intervals: float = 2
+var bpm: float = 0
+var duration_max: float = 0
+var duration: float = 0
 
-func _process(delta: float) -> void:
-	if intervals < 0:
-		intervals = max_intervals
-		
-		var index: int
-		if memory != -1:
-		
-			if memory == 2:
-				index = 3
-			elif memory == 3:
-				index = 2
-				
-			elif memory == 6:
-				index = 7
-			elif memory == 7:
-				index = 6
+func setup(duration_data: float, bpm_data: float, notes_data: Array) -> void:
+	duration_max = duration_data
+	bpm = bpm_data
+	load_map(notes_data)
 
-			memory = -1
-		else:
-			index = randi_range(0, points.size() - 1)
-			memory = index
-		points[index].add_child(test_enemy.instantiate())
-		
-		print(index)
+func load_map(notes_data: Array) -> void:
+	for note_data in notes_data:
+		var enemy: Enemy = enemy.instantiate()
+		enemy.init(note_data)
+		enemy.set_skin(skin_enemy)
+		notes.push_back(enemy)
+
+func _physics_process(delta: float) -> void:
+	if notes.size() <= index:
+		SceneManager.to_level_selector()
 	
-	intervals -= delta
+	if duration >= notes[index].exect_time:
+		var enemy: Enemy = notes[index]
+		enemy.movement.direction = -global_transform.basis.z
+		enemy.movement.velocity = (global_position.distance_to(player_vr.global_position) - hit_window) * bpm / (60 * n_beats)
+		points[enemy.lane].add_child(enemy)
+		index += 1
+	duration += delta

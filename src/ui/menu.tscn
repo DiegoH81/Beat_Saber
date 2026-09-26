@@ -1,39 +1,52 @@
-[gd_scene format=3 uid="uid://bh6es4wb2lh2h"]
+[gd_scene format=3 uid="uid://bra46iqq44ncn"]
 
-[ext_resource type="Script" uid="uid://dd3tgmv82luda" path="res://src/ui/menu.gd" id="1_7w7rl"]
+[ext_resource type="Script" uid="uid://wr2ajqmsem55" path="res://src/ui/menu.gd" id="1_7w7rl"]
 
-[node name="Control" type="Control" unique_id=1651109105]
+[node name="Menu" type="Control" unique_id=2067919662 node_paths=PackedStringArray("play_button")]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 68.0
-offset_top = 52.0
-offset_right = 108.0
-offset_bottom = 92.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_7w7rl")
+play_button = NodePath("Panel/MarginContainer/VBoxContainer/HBoxContainer/PlayButton")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=622210692]
+[node name="Panel" type="Panel" parent="." unique_id=892646072]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1875040052]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -14.5
-offset_top = -35.0
-offset_right = 1663.0
-offset_bottom = 949.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
 
-[node name="InputPath" type="LineEdit" parent="VBoxContainer" unique_id=1596288199]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=395067469]
 layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
 
-[node name="CheckIsUrl" type="CheckBox" parent="VBoxContainer" unique_id=483080288]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=74736456]
 layout_mode = 2
+theme_override_font_sizes/font_size = 160
+text = "BEAT SABER"
+horizontal_alignment = 1
 
-[node name="BtnProcess" type="Button" parent="VBoxContainer" unique_id=1421754753]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=186405307]
 layout_mode = 2
+alignment = 1
 
-[node name="LblStatus" type="Label" parent="VBoxContainer" unique_id=718506621]
+[node name="PlayButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1674412651]
 layout_mode = 2
+theme_override_font_sizes/font_size = 76
+text = "PLAY"
 
-[node name="TxtOutput" type="TextEdit" parent="VBoxContainer" unique_id=1351798119]
-layout_mode = 2
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

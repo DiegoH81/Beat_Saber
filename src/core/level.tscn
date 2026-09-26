@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cye3p6aq1yoar"]
+
+[ext_resource type="Script" uid="uid://soxgveqtkh27" path="res://src/core/level.gd" id="1_5kcgd"]
+[ext_resource type="PackedScene" uid="uid://dsucocti68co2" path="res://src/player/player_vr.tscn" id="1_xsmr6"]
+[ext_resource type="PackedScene" uid="uid://digy3cefci8s1" path="res://src/enemies/generator/generator.tscn" id="2_5kcgd"]
+[ext_resource type="PackedScene" uid="uid://fldv1su4su1o" path="res://src/enemies/destructor/destructor.tscn" id="3_a5w13"]
+[ext_resource type="PackedScene" uid="uid://cfuki5s4l0tgf" path="res://src/ui/menu_pause.tscn" id="4_8i58q"]
+[ext_resource type="PackedScene" uid="uid://b4dj6nob8d46c" path="res://src/enemies/objects/enemy_base.tscn" id="4_kwtqq"]
+[ext_resource type="PackedScene" uid="uid://c8r8frk3aor57" path="res://levels_data/test/skin_enemy_test.tscn" id="5_5mtdr"]
+
+[node name="Level" type="Node3D" unique_id=814822109 node_paths=PackedStringArray("player_vr", "generator")]
+script = ExtResource("1_5kcgd")
+player_vr = NodePath("PlayerVR")
+generator = NodePath("Generator")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1999535529]
+transform = Transform3D(1, 0, 0, 0, 0.9241243, 0.38209203, 0, -0.38209203, 0.9241243, 0, 1.6036624, 2.25277)
+
+[node name="PlayerVR" parent="." unique_id=1613388773 instance=ExtResource("1_xsmr6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9260392, 0.80983186)
+
+[node name="Generator" parent="." unique_id=1789100008 node_paths=PackedStringArray("player_vr") instance=ExtResource("2_5kcgd")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.5551233, 3.0757108, -31.334612)
+player_vr = NodePath("../PlayerVR")
+enemy = ExtResource("4_kwtqq")
+skin_enemy = ExtResource("5_5mtdr")
+
+[node name="Destructor" parent="." unique_id=1128432705 instance=ExtResource("3_a5w13")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.557748)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1899668595]
+
+[node name="MenuPause" parent="CanvasLayer" unique_id=753026438 instance=ExtResource("4_8i58q")]

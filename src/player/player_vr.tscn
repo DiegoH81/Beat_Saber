@@ -1,9 +1,113 @@
 [gd_scene format=3 uid="uid://dsucocti68co2"]
 
 [ext_resource type="Script" uid="uid://dkwxs5gsuvl0y" path="res://src/player/player_vr.gd" id="1_rihe0"]
+[ext_resource type="Script" uid="uid://3ebdqq7ig0tt" path="res://src/player/body.gd" id="2_c1i6f"]
+[ext_resource type="Script" uid="uid://2yjs7n11owsa" path="res://src/player/sword.gd" id="3_kgfj8"]
+[ext_resource type="PackedScene" uid="uid://fldv1su4su1o" path="res://src/enemies/destructor/destructor.tscn" id="4_pbdtc"]
 
-[node name="PlayerVR" type="XROrigin3D" unique_id=1613388773 node_paths=PackedStringArray("camera")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbdtc"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_pbdtc"]
+material = SubResource("StandardMaterial3D_pbdtc")
+radius = 0.125
+height = 0.25
+
+[sub_resource type="SphereMesh" id="SphereMesh_75kqj"]
+radius = 0.063
+height = 0.125
+
+[node name="PlayerVR" type="XROrigin3D" unique_id=1613388773 node_paths=PackedStringArray("camera", "head", "left_sword", "right_sword")]
 script = ExtResource("1_rihe0")
 camera = NodePath("XRCamera3D")
+head = NodePath("Body/Head")
+left_sword = NodePath("Body/Left/LeftHand/Sword")
+right_sword = NodePath("Body/Right/RightHand/Sword")
+mouse_sensitivity = 0.001
+move_speed = 0.89
 
 [node name="XRCamera3D" type="XRCamera3D" parent="." unique_id=1535857980]
+
+[node name="Body" type="Node3D" parent="." unique_id=9815244 node_paths=PackedStringArray("xr_camera_3d", "head", "body", "left_hand", "left_wrist", "left_elbow", "left_shoulder", "right_hand", "right_wrist", "right_elbow", "right_shoulder")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3493397)
+script = ExtResource("2_c1i6f")
+xr_camera_3d = NodePath("../XRCamera3D")
+head = NodePath("Head")
+body = NodePath(".")
+left_hand = NodePath("Left/LeftHand")
+left_wrist = NodePath("Left/LeftWrist")
+left_elbow = NodePath("Left/LeftElbow")
+left_shoulder = NodePath("Left/LeftShoulder")
+right_hand = NodePath("Right/RightHand")
+right_wrist = NodePath("Right/RightWrist")
+right_elbow = NodePath("Right/RightElbow")
+right_shoulder = NodePath("Right/RightShoulder")
+
+[node name="Head" type="Node3D" parent="Body" unique_id=1011112334]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Head" unique_id=758387986]
+mesh = SubResource("SphereMesh_pbdtc")
+
+[node name="Left" type="Node3D" parent="Body" unique_id=2072163736 node_paths=PackedStringArray("sword", "hand", "elbow")]
+script = ExtResource("3_kgfj8")
+sword = NodePath("LeftHand/Sword")
+hand = NodePath("LeftHand")
+elbow = NodePath("LeftElbow")
+
+[node name="LeftHand" type="Node3D" parent="Body/Left" unique_id=1788189683]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftHand" unique_id=402067880]
+mesh = SubResource("SphereMesh_75kqj")
+
+[node name="Sword" type="Node3D" parent="Body/Left/LeftHand" unique_id=39984283]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.011314034, 0)
+
+[node name="SwordDestructor" parent="Body/Left/LeftHand/Sword" unique_id=1128432705 instance=ExtResource("4_pbdtc")]
+transform = Transform3D(0.3, 0, 0, 0, 1.5, 0, 0, 0, 0.3, 0, 0.5305756, 0)
+
+[node name="LeftWrist" type="Node3D" parent="Body/Left" unique_id=855772017]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftWrist" unique_id=1582300533]
+mesh = SubResource("SphereMesh_75kqj")
+
+[node name="LeftElbow" type="Node3D" parent="Body/Left" unique_id=491820827]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftElbow" unique_id=2081652014]
+mesh = SubResource("SphereMesh_75kqj")
+
+[node name="LeftShoulder" type="Node3D" parent="Body/Left" unique_id=1643794546]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftShoulder" unique_id=869608284]
+mesh = SubResource("SphereMesh_75kqj")
+
+[node name="Right" type="Node3D" parent="Body" unique_id=964969113 node_paths=PackedStringArray("sword", "hand", "elbow")]
+script = ExtResource("3_kgfj8")
+sword = NodePath("RightHand/Sword")
+hand = NodePath("RightHand")
+elbow = NodePath("RightElbow")
+
+[node name="RightHand" type="Node3D" parent="Body/Right" unique_id=436506547]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Right/RightHand" unique_id=1612093311]
+mesh = SubResource("SphereMesh_75kqj")
+
+[node name="Sword" type="Node3D" parent="Body/Right/RightHand" unique_id=833564353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.002373606, 0)
+
+[node name="SwordDestructor" parent="Body/Right/RightHand/Sword" unique_id=1259190961 instance=ExtResource("4_pbdtc")]
+transform = Transform3D(0.3, 0, 0, 0, 1.5, 0, 0, 0, 0.3, 0, 0.5305756, 0)
+
+[node name="RightWrist" type="Node3D" parent="Body/Right" unique_id=18549533]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Right/RightWrist" unique_id=1667754519]
+mesh = SubResource("SphereMesh_75kqj")
+
+[node name="RightElbow" type="Node3D" parent="Body/Right" unique_id=1253939935]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Right/RightElbow" unique_id=336063971]
+mesh = SubResource("SphereMesh_75kqj")
+
+[node name="RightShoulder" type="Node3D" parent="Body/Right" unique_id=1748358388]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Right/RightShoulder" unique_id=1499810043]
+mesh = SubResource("SphereMesh_75kqj")
