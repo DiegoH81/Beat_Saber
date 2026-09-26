@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://4a4rda1fm7hp"
-path="res://.godot/imported/enemy_base.glb-630a21f79c446a65fcfdd88cdb623781.scn"
+uid="uid://e3t645ltfalx"
+path="res://.godot/imported/MAIN_MENU_SCENE.glb-59f109a541569e7d3d12ee9cf48f858b.scn"
 
 [deps]
 
-source_file="res://levels_data/data/Vivaldi_four_seasons/models/enemy_base.glb"
-dest_files=["res://.godot/imported/enemy_base.glb-630a21f79c446a65fcfdd88cdb623781.scn"]
+source_file="res://src/ui/main_menu/MAIN_MENU_SCENE.glb"
+dest_files=["res://.godot/imported/MAIN_MENU_SCENE.glb-59f109a541569e7d3d12ee9cf48f858b.scn"]
 
 [params]
 
@@ -19,7 +19,7 @@ nodes/root_script=null
 mesh_library/use_node_names_as_mesh_names=false
 array_mesh/deduplicate_surfaces=true
 nodes/apply_root_scale=true
-nodes/root_scale=0.5
+nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
@@ -36,7 +36,7 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-materials/extract=0
+materials/extract=1
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}

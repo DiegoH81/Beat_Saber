@@ -3,9 +3,11 @@ extends Node
 var scene_container: Node = null
 var current_scene: Node = null
 
-@onready var first_scene: PackedScene = preload("res://src/ui/menu.tscn")
+#@onready var first_scene: PackedScene = preload("res://src/ui/menu.tscn")
+@onready var first_scene: PackedScene = preload("res://src/ui/main_menu/main_menu_3D.tscn")
 
-const MENU_SCENE: PackedScene = preload("res://src/ui/menu.tscn")
+#const MENU_SCENE: PackedScene = preload("res://src/ui/menu.tscn")
+const MENU_SCENE: PackedScene = preload("res://src/ui/main_menu/main_menu_3D.tscn")
 const LEVEL_SELECTOR_SCENE: PackedScene = preload("res://src/ui/level_selector.tscn")
 
 const LEVELS_PATH: String = "res://levels_data/"

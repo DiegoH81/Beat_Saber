@@ -59,6 +59,7 @@ f_button={
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method.mobile="forward_plus"
+anti_aliasing/quality/msaa_3d=2
 anti_aliasing/screen_space_roughness_limiter/enabled=false
 
 [xr]
