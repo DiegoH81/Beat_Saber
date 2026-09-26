@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://cyvuy0k531q1g"]
+
+[ext_resource type="PackedScene" uid="uid://b4ciyppq5olco" path="res://src/ui/main_menu/RENDER_scene.tscn" id="2_q5te7"]
+[ext_resource type="Script" uid="uid://dw411xsarwao8" path="res://src/ui/main_menu/VBOX.gd" id="3_mmd50"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ets3f"]
+sky_top_color = Color(0.16470589, 0.16862746, 0.30980393, 1)
+sky_horizon_color = Color(0.3254902, 0.2901961, 0.36078432, 1)
+sky_curve = 0.063067295
+sky_cover_modulate = Color(0.8215984, 0.48958403, 0.5494948, 1)
+ground_bottom_color = Color(0.3254902, 0.2901961, 0.36078432, 1)
+ground_horizon_color = Color(0.3254902, 0.2901961, 0.36078432, 1)
+
+[sub_resource type="Sky" id="Sky_q5te7"]
+sky_material = SubResource("ProceduralSkyMaterial_ets3f")
+
+[sub_resource type="Environment" id="Environment_ty0te"]
+background_mode = 2
+background_energy_multiplier = 2.0
+sky = SubResource("Sky_q5te7")
+ambient_light_color = Color(0.90823805, 0.72411793, 0.80805457, 1)
+ambient_light_energy = 2.05
+sdfgi_enabled = true
+sdfgi_bounce_feedback = 0.72
+sdfgi_energy = 2.15
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0585
+volumetric_fog_albedo = Color(0.50348216, 0.36586174, 0.4673797, 1)
+volumetric_fog_emission = Color(0.2365565, 0.040205266, 0.27409443, 1)
+
+[node name="MainMenu3d" type="Node3D" unique_id=1725041238]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=724135124]
+transform = Transform3D(-0.9410363, 0.020051122, -0.33771104, 2.8052063e-09, 0.9982421, 0.05926922, 0.33830577, 0.055774484, -0.93938196, -1.4812421, 0.89807713, -3.122697)
+
+[node name="MAIN_MENU_SCENE" parent="." unique_id=917994279 instance=ExtResource("2_q5te7")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1944371403]
+offset_left = 9.0
+offset_top = 387.0
+offset_right = 759.0
+offset_bottom = 759.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+script = ExtResource("3_mmd50")
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1906127749]
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+theme_override_font_sizes/font_size = 130
+text = "BEAT SABER"
+
+[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=493650636]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 106
+text = "PLAY"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1438764997]
+environment = SubResource("Environment_ty0te")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=11181596]
+transform = Transform3D(-0.9418519, 3.5086718e-09, -0.33602837, -0.041376464, 0.9923901, 0.11597387, 0.33347118, 0.12313387, -0.9346845, -4.7182827, 9.291133, -19.212547)
+light_color = Color(0.6613119, 0.17572922, 0.556591, 1)
+light_energy = 4.097
+light_indirect_energy = 1.15
+directional_shadow_mode = 1
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="VBoxContainer" method="_on_play_button_pressed"]
