@@ -22,7 +22,7 @@ script = ExtResource("1_rihe0")
 camera = NodePath("XRCamera3D")
 head = NodePath("Body/Head")
 left_sword = NodePath("Body/Left/LeftHand/Sword")
-right_sword = NodePath("Body/Right")
+right_sword = NodePath("Body/Right/RightHand/Sword")
 mouse_sensitivity = 0.0
 move_speed = 0.0
 

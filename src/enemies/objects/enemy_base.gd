@@ -12,7 +12,7 @@ func init(data: Dictionary) -> void:
 	exect_time = data.get("time", 0.0)
 	lane = data.get("lane", 0)
 	angle_offset = data.get("angle_offset", 0.0)
-	intensity = clamp(data.get("intensity", 0.0) * 1, 1, 6)
+	intensity = clamp(data.get("intensity", 0.0) * 0.5, 0.5, 2)
 	
 	scale = Vector3(intensity,intensity,intensity)
 	rotate_z(angle_offset)

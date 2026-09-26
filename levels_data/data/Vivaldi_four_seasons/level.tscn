@@ -14,8 +14,8 @@ sky_material = SubResource("ProceduralSkyMaterial_1fb18")
 
 [sub_resource type="Environment" id="Environment_guabt"]
 background_mode = 1
+background_color = Color(0.17641908, 0.17641911, 0.17641902, 1)
 sky = SubResource("Sky_0wfyh")
-ambient_light_energy = 0.0
 volumetric_fog_enabled = true
 
 [sub_resource type="Compositor" id="Compositor_s451c"]
@@ -35,7 +35,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9260392, 5.95648)
 sword_scene = ExtResource("2_dlgdu")
 
 [node name="Generator" parent="." index="2" unique_id=1789100008]
-transform = Transform3D(-1, -2.1472688e-16, -8.742278e-08, -5.4783847e-08, 0.77929735, 0.6266542, 6.8128344e-08, 0.6266542, -0.77929735, 0, 26, -26)
+transform = Transform3D(-1, -2.1472688e-16, -8.742278e-08, -5.4783847e-08, 0.77929735, 0.6266542, 6.8128344e-08, 0.6266542, -0.77929735, 0, 27.381851, -26)
 skin_enemy = ExtResource("2_uaawb")
 
 [node name="Ambient" type="WorldEnvironment" parent="." index="4" unique_id=1531568387]

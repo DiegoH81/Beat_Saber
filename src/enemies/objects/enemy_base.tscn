@@ -21,3 +21,6 @@ enemy = NodePath("../..")
 
 [node name="Visual" type="Node" parent="Node" unique_id=287461738]
 script = ExtResource("3_ejejq")
+
+[node name="AreaLight3D" type="AreaLight3D" parent="." unique_id=1719807306]
+light_energy = 5.0

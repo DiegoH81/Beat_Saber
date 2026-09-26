@@ -2,7 +2,7 @@ extends Level
 
 var xr_interface: XRInterface
 
-var number: int = 0
+var number_: int = 0
 
 func _ready():
 	#AudioManager.play_music("test")
@@ -13,16 +13,16 @@ func _unhandled_input(event: InputEvent) -> void:
 	#if event.is_action_pressed("Escape"):
 	#	get_tree().quit()
 	if event.is_action_pressed("p_button"):
-		if number == 0:
+		if number_ == 0:
 			VisualManager.change_shader("classic")
-			number=1
-		elif number == 1:
+			number_=1
+		elif number_ == 1:
 			VisualManager.change_shader("toon")
-			number=2
-		elif number == 2:
+			number_=2
+		elif number_ == 2:
 			VisualManager.change_shader("new_mill")
-			number=3
-		elif number == 3:
+			number_=3
+		elif number_ == 3:
 			VisualManager.change_shader("new_dec")
-			number=0
+			number_=0
 			
