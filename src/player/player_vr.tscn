@@ -23,8 +23,8 @@ camera = NodePath("XRCamera3D")
 head = NodePath("Body/Head")
 left_sword = NodePath("Body/Left/LeftHand/Sword")
 right_sword = NodePath("Body/Right/RightHand/Sword")
-mouse_sensitivity = 0.0
-move_speed = 0.0
+mouse_sensitivity = 0.001
+move_speed = 0.89
 
 [node name="XRCamera3D" type="XRCamera3D" parent="." unique_id=1535857980]
 
