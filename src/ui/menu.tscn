@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://bra46iqq44ncn"]
 
-[ext_resource type="Script" uid="uid://wr2ajqmsem55" path="res://src/ui/menu.gd" id="1_7w7rl"]
+[sub_resource type="GDScript" id="GDScript_8k0mn"]
+script/source = "extends Control
+
+@export var play_button: Button
+
+func _on_play_button_pressed() -> void:
+	SceneManager.to_level_selector()
+"
 
 [node name="Menu" type="Control" unique_id=2067919662 node_paths=PackedStringArray("play_button")]
 layout_mode = 3
@@ -9,7 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7w7rl")
+script = SubResource("GDScript_8k0mn")
 play_button = NodePath("Panel/MarginContainer/VBoxContainer/HBoxContainer/PlayButton")
 
 [node name="Panel" type="Panel" parent="." unique_id=892646072]

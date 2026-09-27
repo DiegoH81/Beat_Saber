@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cyvuy0k531q1g"]
 
+[ext_resource type="Script" uid="uid://bdmn4upldhlw" path="res://src/ui/main_menu/main_menu.gd" id="1_mmd50"]
 [ext_resource type="PackedScene" uid="uid://b4ciyppq5olco" path="res://src/ui/main_menu/RENDER_scene.tscn" id="2_q5te7"]
-[ext_resource type="Script" uid="uid://dw411xsarwao8" path="res://src/ui/main_menu/VBOX.gd" id="3_mmd50"]
+[ext_resource type="PackedScene" uid="uid://dirnal0co32o0" path="res://src/ui/button/Button.tscn" id="3_mmd50"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ets3f"]
 sky_top_color = Color(0.16470589, 0.16862746, 0.30980393, 1)
@@ -29,43 +30,124 @@ volumetric_fog_density = 0.0585
 volumetric_fog_albedo = Color(0.50348216, 0.36586174, 0.4673797, 1)
 volumetric_fog_emission = Color(0.2365565, 0.040205266, 0.27409443, 1)
 
-[node name="MainMenu3d" type="Node3D" unique_id=1725041238]
+[sub_resource type="Curve3D" id="Curve3D_q5te7"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.4760284, 0.9055433, -3.1298997, 0.15329927, -0.12513709, -0.61122626, -0.15329927, 0.12513709, 0.61122626, -0.6164201, 1.1808314, -0.48672843, 0.75449324, -0.06275785, -0.6096089, -0.75449324, 0.06275785, 0.6096089, -2.6631956, 1.5232215, 2.640739, 0, 0, 0, 0, 0, 0, -5.864384, 1.524764, 3.2226133),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=724135124]
-transform = Transform3D(-0.9410363, 0.020051122, -0.33771104, 2.8052063e-09, 0.9982421, 0.05926922, 0.33830577, 0.055774484, -0.93938196, -1.4812421, 0.89807713, -3.122697)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q5te7"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.26020932, 0.28298697, 0.28844103, 1)
+emission_energy_multiplier = 4.23
+
+[sub_resource type="TextMesh" id="TextMesh_w4mfu"]
+material = SubResource("StandardMaterial3D_q5te7")
+text = "BEAT SABER"
+uppercase = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mmd50"]
+albedo_color = Color(0.18402147, 0.274891, 0.28016165, 1)
+emission_enabled = true
+emission = Color(0.35786918, 0.43649843, 0.489056, 1)
+emission_energy_multiplier = 6.02
+
+[sub_resource type="TextMesh" id="TextMesh_ty0te"]
+material = SubResource("StandardMaterial3D_mmd50")
+text = "LEVELS"
+font_size = 56
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ets3f"]
+albedo_color = Color(0.18520439, 0.38458994, 0.49039233, 1)
+emission_enabled = true
+emission = Color(0.1318785, 0.316897, 0.42382032, 1)
+emission_energy_multiplier = 1.95
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbacl"]
+albedo_color = Color(0.44291076, 0.44291076, 0.44291073, 1)
+emission_enabled = true
+emission = Color(0.28281513, 0.15470442, 0.21746486, 1)
+
+[node name="MainMenu3d" type="Node3D" unique_id=1725041238]
+script = ExtResource("1_mmd50")
+
+[node name="CameraTargets" type="Node3D" parent="." unique_id=879519356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5758348, 1.6268641, 3.2227178)
+
+[node name="MainMenuPos" type="Marker3D" parent="CameraTargets" unique_id=115392522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.111297, -0.73075217, -6.3528533)
+visible = false
+
+[node name="LevelSelectorPos" type="Marker3D" parent="CameraTargets" unique_id=1360297943]
+transform = Transform3D(0.60154134, 0.03015443, 0.79827225, -0.018147394, 0.99954516, -0.0240824, -0.7986353, 1.0274111e-08, 0.601815, -1.2885542, -0.10203886, 0)
 
 [node name="MAIN_MENU_SCENE" parent="." unique_id=917994279 instance=ExtResource("2_q5te7")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1944371403]
-offset_left = 9.0
-offset_top = 387.0
-offset_right = 759.0
-offset_bottom = 759.0
-size_flags_horizontal = 0
-size_flags_vertical = 4
-script = ExtResource("3_mmd50")
-
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=1906127749]
-layout_mode = 2
-size_flags_horizontal = 4
-offset_transform_enabled = true
-theme_override_font_sizes/font_size = 130
-text = "BEAT SABER"
-
-[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=493650636]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 106
-text = "PLAY"
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1438764997]
+[node name="Ambient" type="WorldEnvironment" parent="." unique_id=1438764997]
 environment = SubResource("Environment_ty0te")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=11181596]
+[node name="DirectSun" type="DirectionalLight3D" parent="." unique_id=11181596]
 transform = Transform3D(-0.9418519, 3.5086718e-09, -0.33602837, -0.041376464, 0.9923901, 0.11597387, 0.33347118, 0.12313387, -0.9346845, -4.7182827, 9.291133, -19.212547)
 light_color = Color(0.6613119, 0.17572922, 0.556591, 1)
 light_energy = 4.097
 light_indirect_energy = 1.15
 directional_shadow_mode = 1
 
-[connection signal="pressed" from="VBoxContainer/PlayButton" to="VBoxContainer" method="_on_play_button_pressed"]
+[node name="CameraPath" type="Path3D" parent="." unique_id=10213563]
+curve = SubResource("Curve3D_q5te7")
+
+[node name="CameraFollow" type="PathFollow3D" parent="CameraPath" unique_id=2001753231]
+transform = Transform3D(0.9999895, 0, 0, 0, 0.9999549, 0, 0, 0, 0.9999772, -1.4760284, 0.9055433, -3.1298997)
+rotation_mode = 0
+
+[node name="CameraPivot" type="Node3D" parent="CameraPath/CameraFollow" unique_id=1952080119]
+transform = Transform3D(-0.89497095, -1.8627506e-09, 0.44613546, -0.02944127, 0.99785817, -0.05906072, -0.44516698, -0.0659905, -0.8930281, 0.00752759, -0.0077883005, -0.0034508705)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPath/CameraFollow/CameraPivot" unique_id=724135124]
+transform = Transform3D(0.7926901, -0.026113324, 0.60907555, -0.012687002, 0.9981664, 0.05930694, -0.6095022, -0.05473894, 0.790903, -0.00023794174, 7.736683e-05, 0.00030446053)
+
+[node name="TitleMainMenu" type="MeshInstance3D" parent="." unique_id=999181946]
+transform = Transform3D(-0.8802697, -0.030591832, -0.47348642, -0.0018855383, 0.998137, -0.060983907, 0.4744699, -0.052789506, -0.8786874, -0.9785441, 1.0835325, -2.4267251)
+mesh = SubResource("TextMesh_w4mfu")
+
+[node name="TitleLevels" type="MeshInstance3D" parent="." unique_id=1252363944]
+transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, -7.61, 2.5184336, 3.214)
+mesh = SubResource("TextMesh_ty0te")
+
+[node name="PlayButton" parent="." unique_id=1510104222 instance=ExtResource("3_mmd50")]
+transform = Transform3D(-0.1760851, -0.0060958136, -0.09464078, -0.0003484146, 0.19962665, -0.012209709, 0.09483624, -0.0105848685, -0.17576702, -0.979, 0.77965605, -2.427)
+text = "PLAY"
+button_size = Vector3(2, 1, 0.2)
+button_material = SubResource("StandardMaterial3D_ets3f")
+
+[node name="VivaldiButton" parent="." unique_id=785738872 instance=ExtResource("3_mmd50")]
+transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, -7.5132904, 1.8035471, 3.9438236)
+text = "Vivaldi Four Seasons"
+button_size = Vector3(7, 2.5, 0.5)
+button_material = SubResource("StandardMaterial3D_gbacl")
+
+[node name="SingSingButton" parent="." unique_id=3602022 instance=ExtResource("3_mmd50")]
+transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, -7.5132904, 1.8035471, 2.3765812)
+text = "Sing Sing Sing"
+button_size = Vector3(7, 2.5, 0.5)
+button_material = SubResource("StandardMaterial3D_gbacl")
+
+[node name="SevenNationButton" parent="." unique_id=1489968042 instance=ExtResource("3_mmd50")]
+transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, -7.5130215, 1.21, 3.9436758)
+text = "Seven Nation Army"
+button_size = Vector3(7, 2.5, 0.5)
+button_material = SubResource("StandardMaterial3D_gbacl")
+
+[node name="RoommatesButton" parent="." unique_id=1925586736 instance=ExtResource("3_mmd50")]
+transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, -7.5130215, 1.21, 2.376277)
+text = "Roommates"
+button_size = Vector3(7, 2.5, 0.5)
+button_material = SubResource("StandardMaterial3D_gbacl")
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VivaldiButton" to="." method="_on_vivaldi_button_pressed"]
+[connection signal="pressed" from="SingSingButton" to="." method="_on_sing_sing_button_pressed"]
+[connection signal="pressed" from="SevenNationButton" to="." method="_on_seven_nation_button_pressed"]
+[connection signal="pressed" from="RoommatesButton" to="." method="_on_roommates_button_pressed"]
