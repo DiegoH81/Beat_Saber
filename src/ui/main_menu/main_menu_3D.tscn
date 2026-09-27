@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdmn4upldhlw" path="res://src/ui/main_menu/main_menu.gd" id="1_mmd50"]
 [ext_resource type="PackedScene" uid="uid://b4ciyppq5olco" path="res://src/ui/main_menu/RENDER_scene.tscn" id="2_q5te7"]
+[ext_resource type="PackedScene" uid="uid://dirnal0co32o0" path="res://src/ui/button/Button.tscn" id="3_mmd50"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ets3f"]
 sky_top_color = Color(0.16470589, 0.16862746, 0.30980393, 1)
@@ -36,6 +37,39 @@ _data = {
 }
 point_count = 4
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q5te7"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.26020932, 0.28298697, 0.28844103, 1)
+emission_energy_multiplier = 4.23
+
+[sub_resource type="TextMesh" id="TextMesh_w4mfu"]
+material = SubResource("StandardMaterial3D_q5te7")
+text = "BEAT SABER"
+uppercase = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mmd50"]
+albedo_color = Color(0.18402147, 0.274891, 0.28016165, 1)
+emission_enabled = true
+emission = Color(0.35786918, 0.43649843, 0.489056, 1)
+emission_energy_multiplier = 6.02
+
+[sub_resource type="TextMesh" id="TextMesh_ty0te"]
+material = SubResource("StandardMaterial3D_mmd50")
+text = "LEVELS"
+font_size = 56
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ets3f"]
+albedo_color = Color(0.18520439, 0.38458994, 0.49039233, 1)
+emission_enabled = true
+emission = Color(0.1318785, 0.316897, 0.42382032, 1)
+emission_energy_multiplier = 1.95
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbacl"]
+albedo_color = Color(0.44291076, 0.44291076, 0.44291073, 1)
+emission_enabled = true
+emission = Color(0.28281513, 0.15470442, 0.21746486, 1)
+
 [node name="MainMenu3d" type="Node3D" unique_id=1725041238]
 script = ExtResource("1_mmd50")
 
@@ -48,125 +82,6 @@ visible = false
 
 [node name="LevelSelectorPos" type="Marker3D" parent="CameraTargets" unique_id=1360297943]
 transform = Transform3D(0.60154134, 0.03015443, 0.79827225, -0.018147394, 0.99954516, -0.0240824, -0.7986353, 1.0274111e-08, 0.601815, -1.2885542, -0.10203886, 0)
-
-[node name="UI" type="CanvasLayer" parent="." unique_id=1425824445]
-
-[node name="MainMenu" type="Control" parent="UI" unique_id=953463314]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu" unique_id=1944371403]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 387.0
-offset_right = 759.0
-offset_bottom = 759.0
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="UI/MainMenu/VBoxContainer" unique_id=1906127749]
-layout_mode = 2
-size_flags_horizontal = 4
-offset_transform_enabled = true
-theme_override_font_sizes/font_size = 130
-text = "BEAT SABER"
-
-[node name="PlayButton" type="Button" parent="UI/MainMenu/VBoxContainer" unique_id=493650636]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 106
-text = "PLAY"
-
-[node name="LevelSelector" type="Control" parent="UI" unique_id=546311951]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/LevelSelector" unique_id=1456940410]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -657.0
-offset_top = -309.0
-offset_right = 657.0
-offset_bottom = 309.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/LevelSelector/MarginContainer" unique_id=276438675]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="UI/LevelSelector/MarginContainer/VBoxContainer" unique_id=488667040]
-layout_mode = 2
-theme_override_font_sizes/font_size = 138
-text = "Level Selector"
-horizontal_alignment = 1
-
-[node name="GridContainer" type="GridContainer" parent="UI/LevelSelector/MarginContainer/VBoxContainer" unique_id=555873002]
-layout_mode = 2
-theme_override_constants/h_separation = 11
-theme_override_constants/v_separation = 11
-columns = 3
-
-[node name="VivaldiLevel" type="Button" parent="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer" unique_id=1314883298]
-custom_minimum_size = Vector2(0, 177.1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 34
-text = "Vivaldi Four Seasons"
-
-[node name="SingSingLevel" type="Button" parent="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer" unique_id=931852570]
-custom_minimum_size = Vector2(0, 177.1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 34
-text = "Sing Sing Sing"
-
-[node name="SevenNationLevel" type="Button" parent="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer" unique_id=1249800714]
-custom_minimum_size = Vector2(0, 177.1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 34
-text = "Seven Nation Army"
-
-[node name="RoommatesLevel" type="Button" parent="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer" unique_id=1711849688]
-custom_minimum_size = Vector2(0, 177.1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 34
-text = "Roommates"
-
-[node name="Level5" type="Button" parent="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer" unique_id=514678299]
-custom_minimum_size = Vector2(0, 177.1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 34
-
-[node name="Level6" type="Button" parent="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer" unique_id=1098916983]
-custom_minimum_size = Vector2(0, 177.1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 34
 
 [node name="MAIN_MENU_SCENE" parent="." unique_id=917994279 instance=ExtResource("2_q5te7")]
 
@@ -191,10 +106,48 @@ rotation_mode = 0
 transform = Transform3D(-0.89497095, -1.8627506e-09, 0.44613546, -0.02944127, 0.99785817, -0.05906072, -0.44516698, -0.0659905, -0.8930281, 0.00752759, -0.0077883005, -0.0034508705)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPath/CameraFollow/CameraPivot" unique_id=724135124]
-transform = Transform3D(0.79228973, -0.03618549, 0.6090711, 0, 0.9982398, 0.059306376, -0.61014503, -0.04698783, 0.79089516, -0.00024211407, 7.712841e-05, 0.0003027916)
+transform = Transform3D(0.7926901, -0.026113324, 0.60907555, -0.012687002, 0.9981664, 0.05930694, -0.6095022, -0.05473894, 0.790903, -0.00023794174, 7.736683e-05, 0.00030446053)
 
-[connection signal="pressed" from="UI/MainMenu/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer/VivaldiLevel" to="." method="_on_vivaldi_level_pressed"]
-[connection signal="pressed" from="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer/SingSingLevel" to="." method="_on_sing_sing_level_pressed"]
-[connection signal="pressed" from="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer/SevenNationLevel" to="." method="_on_seven_nation_level_pressed"]
-[connection signal="pressed" from="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer/RoommatesLevel" to="." method="_on_roommates_level_pressed"]
+[node name="TitleMainMenu" type="MeshInstance3D" parent="." unique_id=999181946]
+transform = Transform3D(-0.8802697, -0.030591832, -0.47348642, -0.0018855383, 0.998137, -0.060983907, 0.4744699, -0.052789506, -0.8786874, -0.9785441, 1.0835325, -2.4267251)
+mesh = SubResource("TextMesh_w4mfu")
+
+[node name="TitleLevels" type="MeshInstance3D" parent="." unique_id=1252363944]
+transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, -7.61, 2.5184336, 3.214)
+mesh = SubResource("TextMesh_ty0te")
+
+[node name="PlayButton" parent="." unique_id=1510104222 instance=ExtResource("3_mmd50")]
+transform = Transform3D(-0.1760851, -0.0060958136, -0.09464078, -0.0003484146, 0.19962665, -0.012209709, 0.09483624, -0.0105848685, -0.17576702, -0.979, 0.77965605, -2.427)
+text = "PLAY"
+button_size = Vector3(2, 1, 0.2)
+button_material = SubResource("StandardMaterial3D_ets3f")
+
+[node name="VivaldiButton" parent="." unique_id=785738872 instance=ExtResource("3_mmd50")]
+transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, -7.5132904, 1.8035471, 3.9438236)
+text = "Vivaldi Four Seasons"
+button_size = Vector3(7, 2.5, 0.5)
+button_material = SubResource("StandardMaterial3D_gbacl")
+
+[node name="SingSingButton" parent="." unique_id=3602022 instance=ExtResource("3_mmd50")]
+transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, -7.5132904, 1.8035471, 2.3765812)
+text = "Sing Sing Sing"
+button_size = Vector3(7, 2.5, 0.5)
+button_material = SubResource("StandardMaterial3D_gbacl")
+
+[node name="SevenNationButton" parent="." unique_id=1489968042 instance=ExtResource("3_mmd50")]
+transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, -7.5130215, 1.21, 3.9436758)
+text = "Seven Nation Army"
+button_size = Vector3(7, 2.5, 0.5)
+button_material = SubResource("StandardMaterial3D_gbacl")
+
+[node name="RoommatesButton" parent="." unique_id=1925586736 instance=ExtResource("3_mmd50")]
+transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, -7.5130215, 1.21, 2.376277)
+text = "Roommates"
+button_size = Vector3(7, 2.5, 0.5)
+button_material = SubResource("StandardMaterial3D_gbacl")
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VivaldiButton" to="." method="_on_vivaldi_button_pressed"]
+[connection signal="pressed" from="SingSingButton" to="." method="_on_sing_sing_button_pressed"]
+[connection signal="pressed" from="SevenNationButton" to="." method="_on_seven_nation_button_pressed"]
+[connection signal="pressed" from="RoommatesButton" to="." method="_on_roommates_button_pressed"]
