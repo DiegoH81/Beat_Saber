@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cyvuy0k531q1g"]
 
+[ext_resource type="Script" uid="uid://bdmn4upldhlw" path="res://src/ui/main_menu/main_menu.gd" id="1_mmd50"]
 [ext_resource type="PackedScene" uid="uid://b4ciyppq5olco" path="res://src/ui/main_menu/RENDER_scene.tscn" id="2_q5te7"]
-[ext_resource type="Script" uid="uid://dw411xsarwao8" path="res://src/ui/main_menu/VBOX.gd" id="3_mmd50"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ets3f"]
 sky_top_color = Color(0.16470589, 0.16862746, 0.30980393, 1)
@@ -29,43 +29,172 @@ volumetric_fog_density = 0.0585
 volumetric_fog_albedo = Color(0.50348216, 0.36586174, 0.4673797, 1)
 volumetric_fog_emission = Color(0.2365565, 0.040205266, 0.27409443, 1)
 
+[sub_resource type="Curve3D" id="Curve3D_q5te7"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.4760284, 0.9055433, -3.1298997, 0.15329927, -0.12513709, -0.61122626, -0.15329927, 0.12513709, 0.61122626, -0.6164201, 1.1808314, -0.48672843, 0.75449324, -0.06275785, -0.6096089, -0.75449324, 0.06275785, 0.6096089, -2.6631956, 1.5232215, 2.640739, 0, 0, 0, 0, 0, 0, -5.864384, 1.524764, 3.2226133),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
 [node name="MainMenu3d" type="Node3D" unique_id=1725041238]
+script = ExtResource("1_mmd50")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=724135124]
-transform = Transform3D(-0.9410363, 0.020051122, -0.33771104, 2.8052063e-09, 0.9982421, 0.05926922, 0.33830577, 0.055774484, -0.93938196, -1.4812421, 0.89807713, -3.122697)
+[node name="CameraTargets" type="Node3D" parent="." unique_id=879519356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5758348, 1.6268641, 3.2227178)
 
-[node name="MAIN_MENU_SCENE" parent="." unique_id=917994279 instance=ExtResource("2_q5te7")]
+[node name="MainMenuPos" type="Marker3D" parent="CameraTargets" unique_id=115392522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.111297, -0.73075217, -6.3528533)
+visible = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1944371403]
+[node name="LevelSelectorPos" type="Marker3D" parent="CameraTargets" unique_id=1360297943]
+transform = Transform3D(0.60154134, 0.03015443, 0.79827225, -0.018147394, 0.99954516, -0.0240824, -0.7986353, 1.0274111e-08, 0.601815, -1.2885542, -0.10203886, 0)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1425824445]
+
+[node name="MainMenu" type="Control" parent="UI" unique_id=953463314]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu" unique_id=1944371403]
+layout_mode = 0
 offset_left = 9.0
 offset_top = 387.0
 offset_right = 759.0
 offset_bottom = 759.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
-script = ExtResource("3_mmd50")
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=1906127749]
+[node name="Label" type="Label" parent="UI/MainMenu/VBoxContainer" unique_id=1906127749]
 layout_mode = 2
 size_flags_horizontal = 4
 offset_transform_enabled = true
 theme_override_font_sizes/font_size = 130
 text = "BEAT SABER"
 
-[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=493650636]
+[node name="PlayButton" type="Button" parent="UI/MainMenu/VBoxContainer" unique_id=493650636]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 106
 text = "PLAY"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1438764997]
+[node name="LevelSelector" type="Control" parent="UI" unique_id=546311951]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/LevelSelector" unique_id=1456940410]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -657.0
+offset_top = -309.0
+offset_right = 657.0
+offset_bottom = 309.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/LevelSelector/MarginContainer" unique_id=276438675]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="UI/LevelSelector/MarginContainer/VBoxContainer" unique_id=488667040]
+layout_mode = 2
+theme_override_font_sizes/font_size = 138
+text = "Level Selector"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="UI/LevelSelector/MarginContainer/VBoxContainer" unique_id=555873002]
+layout_mode = 2
+theme_override_constants/h_separation = 11
+theme_override_constants/v_separation = 11
+columns = 3
+
+[node name="VivaldiLevel" type="Button" parent="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer" unique_id=1314883298]
+custom_minimum_size = Vector2(0, 177.1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 34
+text = "Vivaldi Four Seasons"
+
+[node name="SingSingLevel" type="Button" parent="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer" unique_id=931852570]
+custom_minimum_size = Vector2(0, 177.1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 34
+text = "Sing Sing Sing"
+
+[node name="SevenNationLevel" type="Button" parent="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer" unique_id=1249800714]
+custom_minimum_size = Vector2(0, 177.1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 34
+text = "Seven Nation Army"
+
+[node name="RoommatesLevel" type="Button" parent="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer" unique_id=1711849688]
+custom_minimum_size = Vector2(0, 177.1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 34
+text = "Roommates"
+
+[node name="Level5" type="Button" parent="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer" unique_id=514678299]
+custom_minimum_size = Vector2(0, 177.1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 34
+
+[node name="Level6" type="Button" parent="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer" unique_id=1098916983]
+custom_minimum_size = Vector2(0, 177.1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 34
+
+[node name="MAIN_MENU_SCENE" parent="." unique_id=917994279 instance=ExtResource("2_q5te7")]
+
+[node name="Ambient" type="WorldEnvironment" parent="." unique_id=1438764997]
 environment = SubResource("Environment_ty0te")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=11181596]
+[node name="DirectSun" type="DirectionalLight3D" parent="." unique_id=11181596]
 transform = Transform3D(-0.9418519, 3.5086718e-09, -0.33602837, -0.041376464, 0.9923901, 0.11597387, 0.33347118, 0.12313387, -0.9346845, -4.7182827, 9.291133, -19.212547)
 light_color = Color(0.6613119, 0.17572922, 0.556591, 1)
 light_energy = 4.097
 light_indirect_energy = 1.15
 directional_shadow_mode = 1
 
-[connection signal="pressed" from="VBoxContainer/PlayButton" to="VBoxContainer" method="_on_play_button_pressed"]
+[node name="CameraPath" type="Path3D" parent="." unique_id=10213563]
+curve = SubResource("Curve3D_q5te7")
+
+[node name="CameraFollow" type="PathFollow3D" parent="CameraPath" unique_id=2001753231]
+transform = Transform3D(0.9999895, 0, 0, 0, 0.9999549, 0, 0, 0, 0.9999772, -1.4760284, 0.9055433, -3.1298997)
+rotation_mode = 0
+
+[node name="CameraPivot" type="Node3D" parent="CameraPath/CameraFollow" unique_id=1952080119]
+transform = Transform3D(-0.89497095, -1.8627506e-09, 0.44613546, -0.02944127, 0.99785817, -0.05906072, -0.44516698, -0.0659905, -0.8930281, 0.00752759, -0.0077883005, -0.0034508705)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPath/CameraFollow/CameraPivot" unique_id=724135124]
+transform = Transform3D(0.79228973, -0.03618549, 0.6090711, 0, 0.9982398, 0.059306376, -0.61014503, -0.04698783, 0.79089516, -0.00024211407, 7.712841e-05, 0.0003027916)
+
+[connection signal="pressed" from="UI/MainMenu/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer/VivaldiLevel" to="." method="_on_vivaldi_level_pressed"]
+[connection signal="pressed" from="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer/SingSingLevel" to="." method="_on_sing_sing_level_pressed"]
+[connection signal="pressed" from="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer/SevenNationLevel" to="." method="_on_seven_nation_level_pressed"]
+[connection signal="pressed" from="UI/LevelSelector/MarginContainer/VBoxContainer/GridContainer/RoommatesLevel" to="." method="_on_roommates_level_pressed"]

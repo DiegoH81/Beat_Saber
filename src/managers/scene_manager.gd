@@ -3,12 +3,10 @@ extends Node
 var scene_container: Node = null
 var current_scene: Node = null
 
-#@onready var first_scene: PackedScene = preload("res://src/ui/menu.tscn")
+
 @onready var first_scene: PackedScene = preload("res://src/ui/main_menu/main_menu_3D.tscn")
 
-#const MENU_SCENE: PackedScene = preload("res://src/ui/menu.tscn")
 const MENU_SCENE: PackedScene = preload("res://src/ui/main_menu/main_menu_3D.tscn")
-const LEVEL_SELECTOR_SCENE: PackedScene = preload("res://src/ui/level_selector.tscn")
 
 const LEVELS_PATH: String = "res://levels_data/"
 
@@ -29,17 +27,6 @@ func to_menu() -> void:
 	var menu = MENU_SCENE.instantiate()
 	scene_container.add_child(menu)
 	current_scene = menu
-
-func to_level_selector() -> void:
-	if not scene_container:
-		return
-	
-	for child in scene_container.get_children():
-		child.queue_free()
-	
-	var level_selector = LEVEL_SELECTOR_SCENE.instantiate()
-	scene_container.add_child(level_selector)
-	current_scene = level_selector
 
 func to_level(level_id: String) -> void:
 	if not scene_container:
