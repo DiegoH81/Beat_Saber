@@ -69,6 +69,7 @@ func enable_keyboard_mode() -> void:
 	print("WIMP on")
 
 func _process(delta: float) -> void:
+	
 	if is_vr_active:
 		camera.global_transform = Transform3D(camera.global_transform.basis, head.global_position)
 		return
