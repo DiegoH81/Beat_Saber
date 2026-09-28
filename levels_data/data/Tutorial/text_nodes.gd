@@ -14,7 +14,6 @@ func enable_text_only(active_id : int) -> void:
 func _ready() -> void:
 	tutorial_texts = [text_1_tutorial, text_2_tutorial, text_3_tutorial]
 	
-	
 	enable_text_only(0)
 	await get_tree().create_timer(3.0).timeout
 	
@@ -24,6 +23,7 @@ func _ready() -> void:
 	enable_text_only(2)
 	await get_tree().create_timer(2.0).timeout
 	
+	# Oculta todos los textos
 	enable_text_only(-1)
 
 

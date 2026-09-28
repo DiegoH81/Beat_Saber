@@ -27,14 +27,14 @@ volumetric_fog_albedo = Color(0.3561367, 0.2407758, 0.3673487, 1)
 volumetric_fog_emission = Color(0.13060203, 0.17141393, 0.13123232, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_ty0te"]
-text = "¡Prepárate!
-Bloques vienen hacia ti."
+text = "Get ready!
+Blocks are coming at you"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24ph5"]
 
 [sub_resource type="TextMesh" id="TextMesh_24ph5"]
-text = "Usa tus manos
-¡Rómpelos como quieras!"
+text = "Use your hands
+Smash them any way you want!"
 
 [sub_resource type="TextMesh" id="TextMesh_w4mfu"]
 text = "READY?"
@@ -75,4 +75,6 @@ mesh = SubResource("TextMesh_24ph5")
 surface_material_override/0 = SubResource("StandardMaterial3D_24ph5")
 
 [node name="Text3_TUTORIAL" type="MeshInstance3D" parent="TextNodes" index="2" unique_id=1228805570]
+transform = Transform3D(1.98, 0, 0, 0, 1.98, 0, 0, 0, 1.98, 0, 2.652, -6.357)
 mesh = SubResource("TextMesh_w4mfu")
+surface_material_override/0 = SubResource("StandardMaterial3D_24ph5")
