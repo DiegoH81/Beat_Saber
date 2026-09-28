@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://d35nomgyjprb6"]
+
+[ext_resource type="PackedScene" uid="uid://dirnal0co32o0" path="res://src/ui/button/Button.tscn" id="1_pgi2h"]
+[ext_resource type="Script" uid="uid://d1ckds3hah85l" path="res://src/ui/pause_menu/pause_menu_scene.gd" id="1_ucjxt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgi2h"]
+no_depth_test = true
+albedo_color = Color(0.12435158, 0.26958916, 0.32818028, 1)
+emission_enabled = true
+emission_energy_multiplier = 5.05
+
+[sub_resource type="TextMesh" id="TextMesh_ty0te"]
+material = SubResource("StandardMaterial3D_pgi2h")
+text = "PAUSE"
+font_size = 67
+uppercase = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucjxt"]
+no_depth_test = true
+albedo_color = Color(0.32314757, 0.26032466, 0.44199094, 1)
+emission_enabled = true
+emission = Color(0.30231273, 0.26002866, 0.49995708, 1)
+emission_energy_multiplier = 3.39
+
+[node name="PauseMenu" type="Node3D" unique_id=348335489]
+script = ExtResource("1_ucjxt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1025130941]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8671627, 0)
+mesh = SubResource("TextMesh_ty0te")
+
+[node name="ResumeButton" parent="." unique_id=1510104222 instance=ExtResource("1_pgi2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9611141, 0)
+text = "RESUME"
+button_size = Vector3(3, 0.8, 0.2)
+padding = 2.775
+button_material = SubResource("StandardMaterial3D_ucjxt")
+
+[node name="QuitButton" parent="." unique_id=1781231299 instance=ExtResource("1_pgi2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0715788, 0)
+text = "QUIT"
+button_size = Vector3(3, 0.8, 0.2)
+button_material = SubResource("StandardMaterial3D_ucjxt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1140337138]
+
+[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

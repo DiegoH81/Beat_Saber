@@ -90,7 +90,7 @@ environment = SubResource("Environment_ty0te")
 
 [node name="DirectSun" type="DirectionalLight3D" parent="." unique_id=11181596]
 transform = Transform3D(-0.9418519, 3.5086718e-09, -0.33602837, -0.041376464, 0.9923901, 0.11597387, 0.33347118, 0.12313387, -0.9346845, -4.7182827, 9.291133, -19.212547)
-light_color = Color(0.6613119, 0.17572922, 0.556591, 1)
+light_color = Color(0.6627451, 0.1764706, 0.5568628, 1)
 light_energy = 4.097
 light_indirect_energy = 1.15
 directional_shadow_mode = 1
@@ -123,26 +123,32 @@ button_size = Vector3(2, 1, 0.2)
 button_material = SubResource("StandardMaterial3D_ets3f")
 
 [node name="VivaldiButton" parent="." unique_id=785738872 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, -7.5132904, 1.8035471, 3.9438236)
+transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.513, 1.804, 3.1480553)
 text = "Vivaldi Four Seasons"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_gbacl")
 
 [node name="SingSingButton" parent="." unique_id=3602022 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, -7.5132904, 1.8035471, 2.3765812)
+transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.513, 1.804, 2.2480555)
 text = "Sing Sing Sing"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_gbacl")
 
 [node name="SevenNationButton" parent="." unique_id=1489968042 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, -7.5130215, 1.21, 3.9436758)
+transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.5130215, 1.3498, 3.7973194)
 text = "Seven Nation Army"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_gbacl")
 
 [node name="RoommatesButton" parent="." unique_id=1925586736 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, -7.5130215, 1.21, 2.376277)
+transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.5130215, 1.3498, 2.5147324)
 text = "Roommates"
+button_size = Vector3(7, 2.5, 0.5)
+button_material = SubResource("StandardMaterial3D_gbacl")
+
+[node name="TutorialButton" parent="." unique_id=18494500 instance=ExtResource("3_mmd50")]
+transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.513, 1.804, 4.048055)
+text = "Tutorial"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_gbacl")
 
@@ -151,3 +157,4 @@ button_material = SubResource("StandardMaterial3D_gbacl")
 [connection signal="pressed" from="SingSingButton" to="." method="_on_sing_sing_button_pressed"]
 [connection signal="pressed" from="SevenNationButton" to="." method="_on_seven_nation_button_pressed"]
 [connection signal="pressed" from="RoommatesButton" to="." method="_on_roommates_button_pressed"]
+[connection signal="pressed" from="TutorialButton" to="." method="_on_tutorial_button_pressed"]
