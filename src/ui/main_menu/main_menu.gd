@@ -41,6 +41,9 @@ func _on_seven_nation_button_pressed() -> void:
 
 func _on_roommates_button_pressed() -> void:
 	SceneManager.to_level("Roommates")
+	
+func _on_tutorial_button_pressed() -> void:
+	SceneManager.to_level("Tutorial")
 
 func _process(delta: float) -> void:	
 	pass

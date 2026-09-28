@@ -1,5 +1,48 @@
 [gd_scene format=3 uid="uid://djur2icpk10fg"]
 
 [ext_resource type="PackedScene" uid="uid://cye3p6aq1yoar" path="res://src/core/level.tscn" id="1_q7ebg"]
+[ext_resource type="PackedScene" uid="uid://bbbwo1tee5n7r" path="res://levels_data/data/Tutorial/models/sword_scene.tscn" id="2_asf7o"]
+[ext_resource type="PackedScene" uid="uid://bmxvohbc3b17h" path="res://levels_data/data/Tutorial/models/level_render_scene.tscn" id="2_tq44i"]
+[ext_resource type="PackedScene" uid="uid://c1qu8hnre1aj" path="res://levels_data/data/Tutorial/models/enemy.glb" id="3_24ph5"]
 
-[node name="Level" unique_id=814822109 instance=ExtResource("1_q7ebg")]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3ahog"]
+sky_top_color = Color(0.16665873, 0.26326483, 0.60984695, 1)
+sky_horizon_color = Color(0.15294118, 0.2509804, 0.43529412, 1)
+ground_bottom_color = Color(0.110916816, 0.19011718, 0.33912805, 1)
+ground_horizon_color = Color(0.15294118, 0.2509804, 0.43529412, 1)
+
+[sub_resource type="Sky" id="Sky_w4mfu"]
+sky_material = SubResource("ProceduralSkyMaterial_3ahog")
+
+[sub_resource type="Environment" id="Environment_ty0te"]
+background_mode = 2
+background_energy_multiplier = 2.0
+sky = SubResource("Sky_w4mfu")
+sdfgi_enabled = true
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0585
+volumetric_fog_albedo = Color(0.3561367, 0.2407758, 0.3673487, 1)
+volumetric_fog_emission = Color(0.13060203, 0.17141393, 0.13123232, 1)
+
+[node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient") instance=ExtResource("1_q7ebg")]
+ambient = NodePath("Ambient")
+
+[node name="PlayerVR" parent="." index="2" unique_id=1613388773]
+sword_scene = ExtResource("2_asf7o")
+
+[node name="Generator" parent="." index="3" unique_id=1789100008]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.5551233, 2.8774743, -31.334612)
+skin_enemy = ExtResource("3_24ph5")
+
+[node name="level_RENDER" parent="." index="5" unique_id=524996336 instance=ExtResource("2_tq44i")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.4121344, 0, -4.061989)
+
+[node name="Ambient" type="WorldEnvironment" parent="." index="6" unique_id=475049797]
+environment = SubResource("Environment_ty0te")
+
+[node name="DirectSun" type="DirectionalLight3D" parent="." index="7" unique_id=1621759430]
+transform = Transform3D(1, 0, 0, 0, 0.959439, 0.2819163, 0, -0.2819163, 0.959439, 0, 9.225409, 13.923244)
+light_color = Color(0.46212673, 0.3158281, 0.7081464, 1)
+light_energy = 4.1
+light_indirect_energy = 1.15
