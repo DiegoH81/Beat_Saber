@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dxs5oy71xll4b"]
+
+[sub_resource type="TextMesh" id="TextMesh_ty0te"]
+
+[node name="ScoreScene" type="Node3D" unique_id=120538248]
+
+[node name="Score" type="MeshInstance3D" parent="." unique_id=751496237]
+mesh = SubResource("TextMesh_ty0te")

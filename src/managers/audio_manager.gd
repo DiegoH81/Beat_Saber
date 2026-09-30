@@ -18,8 +18,6 @@ func _ready() -> void:
 		add_child(p)
 		sfx_players.append(p)
 	
-	
-
 func play_music(id: String) -> void:
 	music_player.stream = load(path + id + "/song.ogg")
 	music_player.play()
