@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bbbwo1tee5n7r"]
+
+[ext_resource type="PackedScene" uid="uid://bdf5y2lbgguh7" path="res://levels_data/data/Tutorial/models/sword.glb" id="1_1b1ss"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1b1ss"]
+albedo_color = Color(0.8688633, 0.33223647, 0.40765673, 1)
+emission_enabled = true
+emission = Color(0.4090057, 0.26344994, 0.7941141, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4201"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="sword2" unique_id=1250495887 instance=ExtResource("1_1b1ss")]
+
+[node name="Cyber-sword_M_cybersword_0" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" parent_id_path=PackedInt32Array(1172374449) index="0" unique_id=757501536]
+surface_material_override/0 = SubResource("StandardMaterial3D_1b1ss")
+
+[node name="Cyber-sword_M_cybersword_0_003" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" parent_id_path=PackedInt32Array(1172374449) index="1" unique_id=607179012]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4201")
+
+[node name="Cyber-sword_M_cybersword_0_006" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" parent_id_path=PackedInt32Array(1172374449) index="3" unique_id=1521611375]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4201")
+
+[node name="Cyber-sword_M_cybersword_0_007" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" parent_id_path=PackedInt32Array(1172374449) index="4" unique_id=38229777]
+surface_material_override/0 = SubResource("StandardMaterial3D_v4201")

@@ -23,18 +23,18 @@ volumetric_fog_enabled = true
 [node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient") instance=ExtResource("1_ju4l8")]
 ambient = NodePath("Ambient")
 
-[node name="Sun" parent="." index="0" unique_id=1999535529]
+[node name="Sun" parent="." index="1" unique_id=1999535529]
 transform = Transform3D(1, 0, 0, 0, -0.8655635, 0.5007991, 0, -0.5007991, -0.8655635, 0, 24.921965, -25.772339)
 light_color = Color(0.62853825, 0.08125042, 0.044717252, 1)
 light_energy = 2.0
 shadow_enabled = true
 sky_mode = 1
 
-[node name="PlayerVR" parent="." index="1" unique_id=1613388773]
+[node name="PlayerVR" parent="." index="2" unique_id=1613388773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9260392, 5.95648)
 sword_scene = ExtResource("2_dlgdu")
 
-[node name="Generator" parent="." index="2" unique_id=1789100008]
+[node name="Generator" parent="." index="3" unique_id=1789100008]
 transform = Transform3D(-1, -2.1472688e-16, -8.742278e-08, -5.4783847e-08, 0.77929735, 0.6266542, 6.8128344e-08, 0.6266542, -0.77929735, 0, 27.381851, -26)
 skin_enemy = ExtResource("2_uaawb")
 
@@ -83,3 +83,6 @@ spot_angle = 77.34375
 [node name="SpotLight3D6" type="SpotLight3D" parent="." index="13" unique_id=1011094597]
 transform = Transform3D(1, 0, 0, 0, 0.07423357, 0.9972409, 0, -0.9972409, 0.07423357, 0, 4.4009504, 6.2692757)
 spot_angle = 25.943008
+
+[node name="ScoreScene" parent="." index="14" unique_id=120538248]
+transform = Transform3D(0.83229464, 0.118480265, 0.5415239, 0.06342948, 0.95012033, -0.30536526, -0.5506926, 0.2885024, 0.78326505, -3.2356613, 3.6715114, 1.0140319)
