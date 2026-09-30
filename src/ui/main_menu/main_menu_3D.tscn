@@ -48,14 +48,12 @@ material = SubResource("StandardMaterial3D_q5te7")
 text = "BEAT SABER"
 uppercase = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mmd50"]
-albedo_color = Color(0.18402147, 0.274891, 0.28016165, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u3og"]
 emission_enabled = true
-emission = Color(0.35786918, 0.43649843, 0.489056, 1)
-emission_energy_multiplier = 6.02
+emission = Color(1, 1, 1, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_ty0te"]
-material = SubResource("StandardMaterial3D_mmd50")
+material = SubResource("StandardMaterial3D_4u3og")
 text = "LEVELS"
 font_size = 56
 
@@ -111,6 +109,7 @@ transform = Transform3D(0.7926901, -0.026113324, 0.60907555, -0.012687002, 0.998
 [node name="TitleMainMenu" type="MeshInstance3D" parent="." unique_id=999181946]
 transform = Transform3D(-0.8802697, -0.030591832, -0.47348642, -0.0018855383, 0.998137, -0.060983907, 0.4744699, -0.052789506, -0.8786874, -0.9785441, 1.0835325, -2.4267251)
 mesh = SubResource("TextMesh_w4mfu")
+surface_material_override/0 = SubResource("StandardMaterial3D_4u3og")
 
 [node name="TitleLevels" type="MeshInstance3D" parent="." unique_id=1252363944]
 transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, -7.61, 2.5184336, 3.214)

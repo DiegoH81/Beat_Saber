@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dxs5oy71xll4b"]
+
+[ext_resource type="Script" uid="uid://dpudxlncob6nr" path="res://src/ui/score/score_scene.gd" id="1_1e4lg"]
+[ext_resource type="Shader" uid="uid://cg41h5f20pqr1" path="res://src/ui/score/score_scene.gdshader" id="2_7t3wa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1fb18"]
+emission_enabled = true
+emission = Color(0.80049086, 0.80049074, 0.80049074, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_ty0te"]
+material = SubResource("StandardMaterial3D_1fb18")
+text = "Combo"
+
+[sub_resource type="TextMesh" id="TextMesh_w4mfu"]
+material = SubResource("StandardMaterial3D_1fb18")
+text = "0"
+
+[sub_resource type="TextMesh" id="TextMesh_7ot7t"]
+material = SubResource("StandardMaterial3D_1fb18")
+text = "1"
+
+[sub_resource type="TorusMesh" id="TorusMesh_1e4lg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7t3wa"]
+transparency = 1
+albedo_color = Color(0.2527313, 0.2527313, 0.2527313, 0.48235294)
+
+[sub_resource type="TorusMesh" id="TorusMesh_7t3wa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1e4lg"]
+render_priority = 0
+shader = ExtResource("2_7t3wa")
+shader_parameter/progress = 0.25
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/emission_energy = 1.0
+
+[node name="ScoreScene" type="Node3D" unique_id=120538248]
+script = ExtResource("1_1e4lg")
+
+[node name="ComboLabel" type="MeshInstance3D" parent="." unique_id=751496237]
+transform = Transform3D(2.925, 0, 0, 0, 2.925, 0, 0, 0, 2.925, -1.1157153, 0.8345559, 0)
+mesh = SubResource("TextMesh_ty0te")
+
+[node name="ComboValue" type="MeshInstance3D" parent="." unique_id=731305145]
+transform = Transform3D(2.925, 0, 0, 0, 2.925, 0, 0, 0, 2.925, -1.1349499, 0.3728369, 0)
+mesh = SubResource("TextMesh_w4mfu")
+
+[node name="ProgressCircle" type="Node3D" parent="." unique_id=1497931781]
+
+[node name="MultiplierValue" type="MeshInstance3D" parent="ProgressCircle" unique_id=994373657]
+transform = Transform3D(2.925, 0, 0, 0, 2.925, 0, 0, 0, 2.925, 0.8025618, 0.40295124, 0)
+mesh = SubResource("TextMesh_7ot7t")
+
+[node name="Background" type="MeshInstance3D" parent="ProgressCircle" unique_id=141542860]
+transform = Transform3D(0.515, 0, 0, 0, -2.2511365e-08, -0.515, 0, 0.515, -2.2511365e-08, 0.76167023, 0.374138, 0)
+mesh = SubResource("TorusMesh_1e4lg")
+surface_material_override/0 = SubResource("StandardMaterial3D_7t3wa")
+
+[node name="Progress" type="MeshInstance3D" parent="ProgressCircle" unique_id=1646044945]
+transform = Transform3D(0.515, 0, 0, 0, -2.2511365e-08, -0.515, 0, 0.515, -2.2511365e-08, 0.76167023, 0.374138, 0)
+mesh = SubResource("TorusMesh_7t3wa")
+surface_material_override/0 = SubResource("ShaderMaterial_1e4lg")
