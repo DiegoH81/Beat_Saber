@@ -83,3 +83,6 @@ spot_angle = 77.34375
 [node name="SpotLight3D6" type="SpotLight3D" parent="." index="13" unique_id=1011094597]
 transform = Transform3D(1, 0, 0, 0, 0.07423357, 0.9972409, 0, -0.9972409, 0.07423357, 0, 4.4009504, 6.2692757)
 spot_angle = 25.943008
+
+[node name="ScoreScene" parent="." index="14" unique_id=120538248]
+transform = Transform3D(0.83229464, 0.118480265, 0.5415239, 0.06342948, 0.95012033, -0.30536526, -0.5506926, 0.2885024, 0.78326505, -3.2356613, 3.6715114, 1.0140319)
