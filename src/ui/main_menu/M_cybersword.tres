@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://jl1m3q20u2ou"]
+
+[resource]
+resource_name = "M_cybersword"
+roughness = 0.5

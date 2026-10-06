@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cctbngiubjnjd"]
+
+[resource]
+resource_name = "wood_Chair.006"
+cull_mode = 2
+albedo_color = Color(0.960177, 0.811477, 0.48008853, 1)
+roughness = 0.6
