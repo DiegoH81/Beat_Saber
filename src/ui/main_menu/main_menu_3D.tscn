@@ -104,8 +104,12 @@ rotation_mode = 0
 [node name="CameraPivot" type="Node3D" parent="CameraPath/CameraFollow" unique_id=1952080119]
 transform = Transform3D(-0.89497095, -1.8627506e-09, 0.44613546, -0.02944127, 0.99785817, -0.05906072, -0.44516698, -0.0659905, -0.8930281, 0.00752759, -0.0077883005, -0.0034508705)
 
+[node name="Camera3D" type="Camera3D" parent="CameraPath/CameraFollow/CameraPivot" unique_id=1036689133]
+transform = Transform3D(0.5980837, 0.03553027, 0.80065703, -0.059164405, 0.9982555, -0.00010346621, -0.7992549, -0.047308102, 0.59913725, 0, 0, 0)
+current = true
+
 [node name="PlayerVR" parent="CameraPath/CameraFollow/CameraPivot" unique_id=1613388773 instance=ExtResource("3_ets3f")]
-transform = Transform3D(0.69441295, 0.042952195, 0.71829426, -0.033451963, 0.9990653, -0.027401838, -0.7187989, -0.005000204, 0.69519997, -0.16913342, -1.5900764, 0.051734924)
+transform = Transform3D(0.69441295, 0.042952195, 0.71829426, -0.033451963, 0.9990653, -0.027401838, -0.7187989, -0.005000204, 0.69519997, -0.169, 0, 0.052)
 
 [node name="TitleMainMenu" type="MeshInstance3D" parent="." unique_id=999181946]
 transform = Transform3D(-0.8802697, -0.030591832, -0.47348642, -0.0018855383, 0.998137, -0.060983907, 0.4744699, -0.052789506, -0.8786874, -0.9785441, 1.0835325, -2.4267251)

@@ -1,12 +1,13 @@
 extends Node3D
 class_name Generator
 
+signal song_ended()
+
 @export_category("Dependencies")
 @export var player_vr: XROrigin3D
 @export var n_beats: int = 3
 @export var enemy: PackedScene
 @export var skin_enemy: PackedScene
-
 
 @export_category("Attributes")
 @export var hit_window: float = 1.5
@@ -34,6 +35,7 @@ func load_map(notes_data: Array) -> void:
 func _physics_process(delta: float) -> void:
 	if notes.size() <= index:
 		SceneManager.to_level_selector()
+		song_ended.emit()
 	
 	if duration >= notes[index].exect_time:
 		var enemy: Enemy = notes[index]
