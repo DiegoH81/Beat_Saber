@@ -3,13 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://cye3p6aq1yoar" path="res://src/core/level.tscn" id="1_q7ebg"]
 [ext_resource type="PackedScene" uid="uid://bmxvohbc3b17h" path="res://levels_data/data/Tutorial/models/level_render_scene.tscn" id="2_tq44i"]
 [ext_resource type="PackedScene" uid="uid://c1qu8hnre1aj" path="res://levels_data/data/Tutorial/models/enemy.glb" id="3_24ph5"]
+[ext_resource type="Script" uid="uid://cacmg6mc75hjr" path="res://levels_data/data/Tutorial/ambient.gd" id="4_u0wma"]
 [ext_resource type="Script" uid="uid://daa44nekfuap2" path="res://levels_data/data/Tutorial/text_nodes.gd" id="5_u0wma"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3ahog"]
-sky_top_color = Color(0.16665873, 0.26326483, 0.60984695, 1)
-sky_horizon_color = Color(0.15294118, 0.2509804, 0.43529412, 1)
-ground_bottom_color = Color(0.110916816, 0.19011718, 0.33912805, 1)
-ground_horizon_color = Color(0.15294118, 0.2509804, 0.43529412, 1)
+sky_top_color = Color(0.47843137, 0.18039216, 0.28627452, 1)
+sky_horizon_color = Color(0.36862746, 0.12941177, 0.21568628, 1)
+sky_curve = 0.68921864
+ground_bottom_color = Color(0.36862746, 0.12941177, 0.21568628, 1)
+ground_horizon_color = Color(0.36862746, 0.12941177, 0.21568628, 1)
+ground_curve = 0.088765584
 
 [sub_resource type="Sky" id="Sky_w4mfu"]
 sky_material = SubResource("ProceduralSkyMaterial_3ahog")
@@ -18,18 +21,31 @@ sky_material = SubResource("ProceduralSkyMaterial_3ahog")
 background_mode = 2
 background_energy_multiplier = 2.0
 sky = SubResource("Sky_w4mfu")
+ambient_light_source = 3
+ambient_light_color = Color(0.7085862, 0.17555755, 0.5071332, 1)
+ssao_enabled = true
 sdfgi_enabled = true
 glow_enabled = true
-volumetric_fog_enabled = true
+glow_intensity = 0.55
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.29586652, 0.2958665, 0.2958665, 1)
+fog_light_energy = 0.5
+fog_sky_affect = 0.67
+fog_depth_curve = 2.6390157
 volumetric_fog_density = 0.0585
 volumetric_fog_albedo = Color(0.3561367, 0.2407758, 0.3673487, 1)
 volumetric_fog_emission = Color(0.13060203, 0.17141393, 0.13123232, 1)
+adjustment_enabled = true
+adjustment_contrast = 1.08
+adjustment_saturation = 1.26
 
 [sub_resource type="TextMesh" id="TextMesh_ty0te"]
 text = "Get ready!
 Blocks are coming at you"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24ph5"]
+albedo_color = Color(0.47058824, 1, 1, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_24ph5"]
 text = "Use your hands
@@ -38,8 +54,26 @@ Smash them any way you want!"
 [sub_resource type="TextMesh" id="TextMesh_w4mfu"]
 text = "READY?"
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u0wma"]
+emission_shape_offset = Vector3(0, 0, -8.295)
+emission_shape_scale = Vector3(3.625, 1.84, 14.97)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, -0.1, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ty0te"]
+size = Vector2(0.1, 0.1)
+
 [node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient") instance=ExtResource("1_q7ebg")]
 ambient = NodePath("Ambient")
+
+[node name="Sun" parent="." index="1" unique_id=1999535529]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2.923747, 7.8188257)
+light_color = Color(0.39212516, 0.2589807, 0.48161942, 1)
+light_energy = 2.5
 
 [node name="Generator" parent="." index="2" unique_id=1789100008]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.5551233, 2.8774743, -31.334612)
@@ -56,14 +90,11 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.4
 
 [node name="Ambient" type="WorldEnvironment" parent="." index="6" unique_id=475049797]
 environment = SubResource("Environment_ty0te")
+script = ExtResource("4_u0wma")
+sensibilidad = 1.32
+intensidad = 0.365
 
-[node name="DirectSun" type="DirectionalLight3D" parent="." index="7" unique_id=1621759430]
-transform = Transform3D(1, 0, 0, 0, 0.959439, 0.2819163, 0, -0.2819163, 0.959439, 0, 9.225409, 13.923244)
-light_color = Color(0.46212673, 0.3158281, 0.7081464, 1)
-light_energy = 4.1
-light_indirect_energy = 1.15
-
-[node name="TextNodes" type="Node3D" parent="." index="8" unique_id=1809066718]
+[node name="TextNodes" type="Node3D" parent="." index="7" unique_id=1809066718]
 script = ExtResource("5_u0wma")
 
 [node name="Text1_TUTORIAL" type="MeshInstance3D" parent="TextNodes" index="0" unique_id=120232580]
@@ -80,3 +111,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_24ph5")
 transform = Transform3D(1.98, 0, 0, 0, 1.98, 0, 0, 0, 1.98, 0, 2.652, -6.357)
 mesh = SubResource("TextMesh_w4mfu")
 surface_material_override/0 = SubResource("StandardMaterial3D_24ph5")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="8" unique_id=2111852031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8317559, 0)
+amount = 80
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_u0wma")
+draw_pass_1 = SubResource("QuadMesh_ty0te")

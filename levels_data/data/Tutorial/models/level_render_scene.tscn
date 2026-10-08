@@ -75,6 +75,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hlpbc")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0wma"]
+albedo_color = Color(0.28399655, 0.48122442, 0.5003238, 1)
+emission_enabled = true
+emission = Color(0.3667181, 0.46727598, 0.41742536, 1)
+emission_energy_multiplier = 1.65
+
 [sub_resource type="Animation" id="Animation_bnn06"]
 resource_name = "Girar"
 length = 10.0
@@ -141,49 +147,50 @@ emission_energy_multiplier = 4.05
 [node name="level_RENDER" unique_id=524996336 instance=ExtResource("1_bnn06")]
 
 [node name="CubeBoss" type="MeshInstance3D" parent="." index="0" unique_id=547758555]
-transform = Transform3D(2.5606601, -0.43933985, 1.5, 1.5, 1.4999999, -2.1213205, -0.43933988, 2.56066, 1.5, 26.055305, 3.6321583, 0.14209878)
+transform = Transform3D(2.56066, -0.43933982, 1.4999999, 1.4999999, 1.4999998, -2.1213202, -0.43933985, 2.5606596, 1.4999999, 26.055305, 3.6321583, 0.14209878)
 mesh = SubResource("ArrayMesh_loi0x")
+surface_material_override/1 = SubResource("StandardMaterial3D_u0wma")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CubeBoss" index="0" unique_id=2146547485]
 libraries/ = SubResource("AnimationLibrary_eblii")
 autoplay = &"Girar"
 
-[node name="Cyber-sword" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode" parent_id_path=PackedInt32Array(1865836780) index="0" unique_id=2144133844]
+[node name="Cyber-sword" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode" parent_id_path=PackedInt32Array(1754823286) index="0" unique_id=961054998]
 transform = Transform3D(21.824818, -11.2035055, -96.94408, 89.15297, -38.11419, 24.475552, -39.691593, -91.770294, 1.6699142, -2.4155273, -10.827965, 3.270195)
 
-[node name="Cyber-sword_M_cybersword_0" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" index="0" unique_id=299771198]
+[node name="Cyber-sword_M_cybersword_0" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" index="0" unique_id=515028718]
 surface_material_override/0 = SubResource("StandardMaterial3D_355xq")
 
-[node name="Cyber-sword_M_cybersword_0_003" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" index="1" unique_id=1245053808]
+[node name="Cyber-sword_M_cybersword_0_003" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" index="1" unique_id=1220462832]
 surface_material_override/0 = SubResource("StandardMaterial3D_ro4mg")
 
-[node name="Cyber-sword_M_cybersword_0_006" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" index="3" unique_id=201233339]
+[node name="Cyber-sword_M_cybersword_0_006" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" index="3" unique_id=847954575]
 surface_material_override/0 = SubResource("StandardMaterial3D_ro4mg")
 
-[node name="Cyber-sword_M_cybersword_0_007" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" index="4" unique_id=1671049949]
+[node name="Cyber-sword_M_cybersword_0_007" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" index="4" unique_id=429407295]
 surface_material_override/0 = SubResource("StandardMaterial3D_ro4mg")
 
-[node name="Cube" parent="." index="2" unique_id=2041460905]
+[node name="Cube" parent="." index="2" unique_id=57503041]
 transform = Transform3D(14.403962, 0, 0, 0, 0.06475963, 0, 0, 0, 3.1279216, 4.7301025, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_bnn06")
 
-[node name="Cyber-sword_M_cybersword_0_001" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(260256088) index="0" unique_id=1946630530]
+[node name="Cyber-sword_M_cybersword_0_001" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(1689070468) index="0" unique_id=30183779]
 surface_material_override/0 = SubResource("StandardMaterial3D_355xq")
 
-[node name="Cyber-sword_M_cybersword_0_002" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(260256088) index="1" unique_id=292679490]
+[node name="Cyber-sword_M_cybersword_0_002" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(1689070468) index="1" unique_id=520441876]
 surface_material_override/0 = SubResource("StandardMaterial3D_ro4mg")
 
-[node name="Cyber-sword_M_cybersword_0_008" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(260256088) index="3" unique_id=787597662]
+[node name="Cyber-sword_M_cybersword_0_008" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(1689070468) index="3" unique_id=702953334]
 surface_material_override/0 = SubResource("StandardMaterial3D_ro4mg")
 
-[node name="Cyber-sword_M_cybersword_0_009" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(260256088) index="4" unique_id=71245547]
+[node name="Cyber-sword_M_cybersword_0_009" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(1689070468) index="4" unique_id=687786434]
 material_override = SubResource("StandardMaterial3D_ro4mg")
 
-[node name="Cube_Borders" parent="." index="4" unique_id=1684677441]
+[node name="Cube_Borders" parent="." index="4" unique_id=988670789]
 surface_material_override/1 = SubResource("StandardMaterial3D_i1say")
 
-[node name="Cube_Borders_004" parent="." index="33" unique_id=1034290857]
+[node name="Cube_Borders_004" parent="." index="33" unique_id=253980155]
 surface_material_override/1 = SubResource("StandardMaterial3D_q540b")
 
-[node name="Cube_Borders_007" parent="." index="36" unique_id=769969012]
+[node name="Cube_Borders_007" parent="." index="36" unique_id=1272408250]
 surface_material_override/1 = SubResource("StandardMaterial3D_eblii")

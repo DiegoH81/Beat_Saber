@@ -21,14 +21,10 @@ func _on_area_entered(area: Area3D) -> void:
 		else:
 			ScoreManager.register_miss()
 
-func _spawn_hit_particles(pos: Vector3, color: Color = Color(0.5294, 0.8078, 0.9216)) -> void:
+func _spawn_hit_particles(pos: Vector3) -> void:
 	if hit_particles_scene == null:
 		return
 		
 	var particles := hit_particles_scene.instantiate() as GPUParticles3D
 	get_tree().current_scene.add_child(particles)
 	particles.global_position = pos
-
-	var mat := particles.process_material.duplicate() as ParticleProcessMaterial
-	mat.color = color
-	particles.process_material = mat

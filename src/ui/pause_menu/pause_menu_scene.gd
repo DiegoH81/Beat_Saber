@@ -1,6 +1,5 @@
 extends Node3D
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var bar_music: Node3D = $BAR_music
 @onready var bar_sfx: Node3D = $BAR_sfx
 
@@ -8,7 +7,6 @@ extends Node3D
 func resume() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 	get_tree().paused = false;
-	animation_player.play_backwards("blur")
 	visible = false;
 	
 func pause() -> void:
@@ -17,7 +15,6 @@ func pause() -> void:
 	visible = true;
 	get_tree().paused = true;
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
-	animation_player.play("blur")
 	
 func _position_in_front_of_camera() -> void:
 	

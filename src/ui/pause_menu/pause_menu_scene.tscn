@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://l6vvgap0lf1y" path="res://src/ui/volumen_bar/VolumenBar3D.tscn" id="3_hq7kw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hq7kw"]
-albedo_color = Color(0.87661076, 0.92811257, 0.96404785, 1)
-emission_energy_multiplier = 0.0
+shading_mode = 0
+albedo_color = Color(0.89089257, 0.8642268, 0.9728821, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_hq7kw"]
 material = SubResource("StandardMaterial3D_hq7kw")
@@ -69,8 +69,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4947323, -0.005018592, 0.0
 text = "QUIT"
 button_size = Vector3(3, 0.8, 0.2)
 button_material = SubResource("StandardMaterial3D_ucjxt")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1140337138]
 
 [node name="IncMUSIC" parent="." unique_id=1715887551 instance=ExtResource("1_pgi2h")]
 transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 2.519589, 0.82394165, 0)
