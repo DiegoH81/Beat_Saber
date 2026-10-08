@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://3c0a18cfunlu"]
+
+[ext_resource type="PackedScene" uid="uid://dirnal0co32o0" path="res://src/ui/button/Button.tscn" id="1_gr5re"]
+[ext_resource type="Script" uid="uid://bj83loaakg127" path="res://src/ui/pop_ups/pop_up_3d.gd" id="1_xbwhe"]
+
+[sub_resource type="TextMesh" id="TextMesh_ty0te"]
+text = "Usa los botones con tus espadas"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gr5re"]
+albedo_color = Color(0.45452422, 0.45452428, 0.45452422, 1)
+emission_enabled = true
+emission = Color(0.28118682, 0.28118688, 0.28118682, 1)
+emission_energy_multiplier = 1.68
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbwhe"]
+albedo_color = Color(0.5119334, 0.81570464, 0.69473475, 1)
+
+[node name="PopUp3d" type="Node3D" unique_id=451488544]
+script = ExtResource("1_xbwhe")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1693971158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.010271788)
+
+[node name="Texto" type="MeshInstance3D" parent="." unique_id=1173078294]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.37978435, 0)
+mesh = SubResource("TextMesh_ty0te")
+surface_material_override/0 = SubResource("StandardMaterial3D_gr5re")
+
+[node name="Button" parent="." unique_id=1510104222 instance=ExtResource("1_gr5re")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0.4170588, -0.3174727, 0.01633422)
+text = "OK"
+button_size = Vector3(1.31, 0.6, 0.2)
+button_material = SubResource("StandardMaterial3D_xbwhe")

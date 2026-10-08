@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://c1qu8hnre1aj" path="res://levels_data/data/Tutorial/models/enemy.glb" id="3_24ph5"]
 [ext_resource type="Script" uid="uid://cacmg6mc75hjr" path="res://levels_data/data/Tutorial/ambient.gd" id="4_u0wma"]
 [ext_resource type="Script" uid="uid://daa44nekfuap2" path="res://levels_data/data/Tutorial/text_nodes.gd" id="5_u0wma"]
+[ext_resource type="PackedScene" uid="uid://3c0a18cfunlu" path="res://src/ui/pop_ups/PopUp3D.tscn" id="6_hv737"]
+[ext_resource type="Texture2D" uid="uid://bk7wdwy1ln2iq" path="res://assets/img/TUT_2.png" id="7_tvfrh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3ahog"]
 sky_top_color = Color(0.47843137, 0.18039216, 0.28627452, 1)
@@ -122,3 +124,10 @@ draw_pass_1 = SubResource("QuadMesh_ty0te")
 
 [node name="LevelResume" parent="." index="9" unique_id=1054654497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8239484, 0)
+
+[node name="PopUp3d" parent="." index="10" unique_id=451488544 instance=ExtResource("6_hv737")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4151286, -1.273696)
+texto = "Abre el menu cruzando
+los brazos"
+imagen_textura = ExtResource("7_tvfrh")
+escala_imagen = Vector3(0.045, 0.045, 1)

@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bdmn4upldhlw" path="res://src/ui/main_menu/main_menu.gd" id="1_mmd50"]
 [ext_resource type="PackedScene" uid="uid://b4ciyppq5olco" path="res://src/ui/main_menu/RENDER_scene.tscn" id="2_q5te7"]
 [ext_resource type="PackedScene" uid="uid://dirnal0co32o0" path="res://src/ui/button/Button.tscn" id="3_mmd50"]
+[ext_resource type="PackedScene" uid="uid://3c0a18cfunlu" path="res://src/ui/pop_ups/PopUp3D.tscn" id="4_ets3f"]
+[ext_resource type="Texture2D" uid="uid://do1u1w5x1rr81" path="res://assets/img/TUT_1.png" id="5_gbacl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ets3f"]
 sky_top_color = Color(0.16470589, 0.16862746, 0.30980393, 1)
@@ -28,7 +30,7 @@ glow_enabled = true
 glow_intensity = 0.56
 fog_enabled = true
 fog_light_color = Color(0.93596303, 0.76062036, 0.96417886, 1)
-fog_light_energy = 0.42
+fog_light_energy = 0.1
 fog_density = 0.1006
 fog_aerial_perspective = 0.07
 fog_sky_affect = 0.566
@@ -195,6 +197,12 @@ lifetime = 6.0
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_mmd50")
 draw_pass_1 = SubResource("QuadMesh_mmd50")
+
+[node name="PopUp3d" parent="." unique_id=451488544 instance=ExtResource("4_ets3f")]
+transform = Transform3D(-0.87997895, 0, -0.47501257, 0, 1, 0, 0.47501257, 0, -0.87997895, -1.2041328, 1.1242197, -2.5412543)
+texto = "Usa los botones con tus espadas"
+imagen_textura = ExtResource("5_gbacl")
+escala_imagen = Vector3(0.05, 0.05, 1)
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VivaldiButton" to="." method="_on_vivaldi_button_pressed"]

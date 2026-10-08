@@ -5,6 +5,8 @@ var music_player: AudioStreamPlayer
 var sfx_players: Array[AudioStreamPlayer3D] = []
 const SFX_POOL_SIZE: int = 12
 
+var _music_paused: bool = false
+
 var music_level: int = 5
 var sfx_level: int = 3
 var music_bus: int
@@ -35,6 +37,7 @@ func _ready() -> void:
 func play_music(id: String) -> void:
 	music_player.stream = load(path + id + "/song.ogg")
 	music_player.play()
+	music_player.stream_paused = _music_paused
 
 func stop_music() -> void:
 	music_player.stop()
@@ -93,3 +96,14 @@ func decrease_sfx() -> int:
 	sfx_level = clampi(sfx_level - 1, 0, 10)
 	_update_sfx_bus()
 	return sfx_level
+
+func pause_music() -> void:
+	_music_paused = true
+	music_player.stream_paused = true
+
+func resume_music() -> void:
+	_music_paused = false
+	music_player.stream_paused = false
+
+func get_music_position() -> float:
+	return music_player.get_playback_position()
