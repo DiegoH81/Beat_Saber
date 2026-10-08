@@ -9,7 +9,10 @@ func _on_area_entered(area: Area3D) -> void:
 		
 		if name == "SwordDestructor":
 			ScoreManager.add_hit()
-			AudioManager.play_sfx("default",position)
-			print("HIT")
+			
+			var random_index: int = randi_range(1, 24)
+			var audio_path: String = "swing_audios_sword/swing_%d" % random_index
+			
+			AudioManager.play_sfx(audio_path, global_position, 0.01)
 		else:
 			ScoreManager.register_miss()

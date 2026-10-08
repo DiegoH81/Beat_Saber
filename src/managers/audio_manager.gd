@@ -15,6 +15,10 @@ func _ready() -> void:
 	for i in SFX_POOL_SIZE:
 		var p := AudioStreamPlayer3D.new()
 		p.bus = "SFX"
+		
+		p.attenuation_filter_cutoff_hz = 20500
+		p.attenuation_filter_db = 0
+		
 		add_child(p)
 		sfx_players.append(p)
 	
@@ -25,13 +29,14 @@ func play_music(id: String) -> void:
 func stop_music() -> void:
 	music_player.stop()
 
-func play_sfx(id: String, position: Vector3 = Vector3.ZERO) -> AudioStreamPlayer3D:
+func play_sfx(id: String, position: Vector3 = Vector3.ZERO, volume: float = 1.0) -> AudioStreamPlayer3D:
 	var player : AudioStreamPlayer3D = get_free_sfx_player()
 	if player == null:
 		return null
 
 	player.stream = load(path + id + ".wav")
 	player.global_position = position
+	player.volume_db = linear_to_db(volume)
 	player.play()
 	return player
 
