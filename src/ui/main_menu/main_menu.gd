@@ -43,4 +43,6 @@ func _on_tutorial_button_pressed() -> void:
 	SceneManager.to_level("Tutorial")
 
 func _process(delta: float) -> void:	
+	if Input.is_action_just_pressed("TEMPORAL_TEST"):
+		SceneManager.to_level("Tutorial")
 	pass
