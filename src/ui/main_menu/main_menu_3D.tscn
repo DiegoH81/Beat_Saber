@@ -68,7 +68,7 @@ albedo_color = Color(0.44291076, 0.44291076, 0.44291073, 1)
 emission_enabled = true
 emission = Color(0.28281513, 0.15470442, 0.21746486, 1)
 
-[node name="MainMenu3d" type="Node3D" unique_id=1725041238]
+[node name="MainMenu3d" type="Node3D" unique_id=1344789317]
 script = ExtResource("1_mmd50")
 
 [node name="CameraTargets" type="Node3D" parent="." unique_id=879519356]
@@ -103,8 +103,9 @@ rotation_mode = 0
 [node name="CameraPivot" type="Node3D" parent="CameraPath/CameraFollow" unique_id=1952080119]
 transform = Transform3D(-0.89497095, -1.8627506e-09, 0.44613546, -0.02944127, 0.99785817, -0.05906072, -0.44516698, -0.0659905, -0.8930281, 0.00752759, -0.0077883005, -0.0034508705)
 
-[node name="Camera3D" type="Camera3D" parent="CameraPath/CameraFollow/CameraPivot" unique_id=724135124]
-transform = Transform3D(0.7926901, -0.026113324, 0.60907555, -0.012687002, 0.9981664, 0.05930694, -0.6095022, -0.05473894, 0.790903, -0.00023794174, 7.736683e-05, 0.00030446053)
+[node name="Camera3D" type="Camera3D" parent="CameraPath/CameraFollow/CameraPivot" unique_id=1036689133]
+transform = Transform3D(0.5980837, 0.03553027, 0.80065703, -0.059164405, 0.9982555, -0.00010346621, -0.7992549, -0.047308102, 0.59913725, 0, 0, 0)
+current = true
 
 [node name="TitleMainMenu" type="MeshInstance3D" parent="." unique_id=999181946]
 transform = Transform3D(-0.8802697, -0.030591832, -0.47348642, -0.0018855383, 0.998137, -0.060983907, 0.4744699, -0.052789506, -0.8786874, -0.9785441, 1.0835325, -2.4267251)

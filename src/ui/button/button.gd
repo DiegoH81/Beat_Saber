@@ -142,3 +142,6 @@ func _on_input_event(_camera: Node, event: InputEvent, _position: Vector3, _norm
 		return
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		emit_signal("pressed")
+
+func _on_area_entered(area: Area3D) -> void:
+	emit_signal("pressed")

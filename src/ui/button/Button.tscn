@@ -2,20 +2,25 @@
 
 [ext_resource type="Script" uid="uid://u4ym1gsann0x" path="res://src/ui/button/button.gd" id="1_56vhp"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_q6stx"]
+[sub_resource type="BoxMesh" id="BoxMesh_56vhp"]
+size = Vector3(2, 0.6, 0.2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_q6stx"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_pvphg"]
+size = Vector3(2, 0.6, 0.2)
 
 [node name="Button" type="Area3D" unique_id=1510104222]
 script = ExtResource("1_56vhp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1923018775]
-mesh = SubResource("BoxMesh_q6stx")
+mesh = SubResource("BoxMesh_56vhp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1286179368]
-shape = SubResource("BoxShape3D_q6stx")
+shape = SubResource("BoxShape3D_pvphg")
 
 [node name="Label3D" type="Label3D" parent="." unique_id=1791139588]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024541855, 0, 0.5265038)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024541855, 0, 0.11)
 outline_modulate = Color(0, 0, 0, 0)
+text = "None"
 font_size = 128
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

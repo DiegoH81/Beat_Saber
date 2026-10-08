@@ -4,9 +4,6 @@ extends Node3D
 @onready var camera_follow: PathFollow3D = $CameraPath/CameraFollow
 @onready var level_selector_pos: Marker3D = $CameraTargets/LevelSelectorPos
 
-
-# UI
-
 # Transitions
 func go_to_level_selector() -> void:
 	var tween = create_tween().set_parallel(true)

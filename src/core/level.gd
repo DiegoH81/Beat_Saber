@@ -4,6 +4,8 @@ class_name Level
 @export var player_vr: XROrigin3D
 @export var generator: Generator
 @export var ambient: WorldEnvironment
+@export var next_level_id: String
+@export var spawn: Node3D
 
 var number: int = 0
 
@@ -31,3 +33,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+func _to_next_level() -> void:
+	if not next_level_id.is_empty():
+		SceneManager.to_level(next_level_id)
+		return
+	SceneManager.to_menu()

@@ -1,6 +1,6 @@
 extends Node3D
 
-const UDP_PORT := 5555
+const UDP_PORT := 49152
 
 var udp := PacketPeerUDP.new()
 

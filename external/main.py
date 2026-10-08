@@ -7,7 +7,7 @@ from pykinect2.PyKinectV2 import *
 from pykinect2 import PyKinectRuntime
 
 UDP_IP = "127.0.0.1"
-UDP_PORT = 5555
+UDP_PORT = 49152
 
 LANDMARK_TO_KINECT_JOINT = {
     0: PyKinectV2.JointType_HandLeft,

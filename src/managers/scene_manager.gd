@@ -2,10 +2,11 @@ extends Node
 
 var scene_container: Node = null
 var current_scene: Node = null
+var player_vr: XROrigin3D = null
+var base: Node = null
 
 
 @onready var first_scene: PackedScene = preload("res://src/ui/main_menu/main_menu_3D.tscn")
-
 const MENU_SCENE: PackedScene = preload("res://src/ui/main_menu/main_menu_3D.tscn")
 
 const LEVELS_PATH: String = "res://levels_data/"
@@ -17,6 +18,12 @@ func register_scene_container(node: Node) -> void:
 	
 	to_menu()
 
+func register_base(node: Node) -> void: 
+	base = node
+
+func register_player(player: XROrigin3D) -> void:
+	player_vr = player
+
 func to_menu() -> void: 
 	if not scene_container:
 		return
@@ -26,9 +33,13 @@ func to_menu() -> void:
 	
 	var menu = MENU_SCENE.instantiate()
 	scene_container.add_child(menu)
+	player_vr.reparent(menu.camera_pivot)
+	player_vr.global_position += Vector3(-2,-0.5,-3)
+	player_vr.rotate_y(deg_to_rad(-150))
 	current_scene = menu
 
 func to_level(level_id: String) -> void:
+	player_vr.reparent(base)
 	if not scene_container:
 		return
 		
@@ -43,8 +54,14 @@ func to_level(level_id: String) -> void:
 	print(data.get("DURATION", ""))
 	
 	level.generator.setup(data.get("DURATION", 0.0),data.get("BPM", 0.0), data.get("NOTES",[]))
+	level.generator.player_vr = player_vr
 	
 	scene_container.add_child(level)
+	
+	if level.spawn != null:
+		player_vr.global_position = level.spawn.global_position
+		player_vr.rotation = level.spawn.rotation
+	
 	current_scene = level
 
 func load_level_scene(level_id: String) -> Level:

@@ -55,8 +55,8 @@ func enable_vr_mode() -> void:
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	rotation_target = Vector3.ZERO
-	rotation = Vector3.ZERO
+	#rotation_target = Vector3.ZERO
+	#rotation = Vector3.ZERO
 	print("VR enabled")
 
 func enable_keyboard_mode() -> void:
