@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://fldv1su4su1o" path="res://src/enemies/destructor/destructor.tscn" id="3_a5w13"]
 [ext_resource type="PackedScene" uid="uid://b4dj6nob8d46c" path="res://src/enemies/objects/enemy_base.tscn" id="4_kwtqq"]
 [ext_resource type="PackedScene" uid="uid://c8r8frk3aor57" path="res://levels_data/test/skin_enemy_test.tscn" id="5_5mtdr"]
+[ext_resource type="PackedScene" uid="uid://dtygi3skufray" path="res://src/ui/level_resume/LevelResume.tscn" id="8_5mtdr"]
 [ext_resource type="PackedScene" uid="uid://dxs5oy71xll4b" path="res://src/ui/score/score_scene.tscn" id="8_kwtqq"]
 
 [node name="Level" type="Node3D" unique_id=814822109 node_paths=PackedStringArray("generator")]
@@ -28,5 +29,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.557748)
 
 [node name="ScoreScene" parent="." unique_id=120538248 instance=ExtResource("8_kwtqq")]
 transform = Transform3D(0.8552113, 0, 0.5182795, 0, 1, 0, -0.5182795, 0, 0.8552113, -1.2763805, 1.1407318, -5.25914)
+
+[node name="LevelResume" parent="." unique_id=1054654497 instance=ExtResource("8_5mtdr")]
 
 [connection signal="song_ended" from="Generator" to="." method="_to_next_level"]

@@ -118,3 +118,6 @@ material_override = SubResource("StandardMaterial3D_guabt")
 amount = 90
 process_material = SubResource("ParticleProcessMaterial_1fb18")
 draw_pass_1 = SubResource("QuadMesh_1fb18")
+
+[node name="LevelResume" parent="." index="16" unique_id=1054654497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.081465304, 1.7001193, 4.514134)

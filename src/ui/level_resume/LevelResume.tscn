@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dtygi3skufray"]
+
+[ext_resource type="PackedScene" uid="uid://dirnal0co32o0" path="res://src/ui/button/Button.tscn" id="1_codys"]
+[ext_resource type="Script" uid="uid://bvbg7txi0yw4y" path="res://src/ui/level_resume/level_resume.gd" id="1_mkutp"]
+
+[sub_resource type="TextMesh" id="TextMesh_ty0te"]
+text = "RESUMEN"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mkutp"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_shssc"]
+text = "PUNTOS"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8bxo6"]
+shading_mode = 0
+albedo_color = Color(0.298143, 0.4127086, 0.65717906, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_codys"]
+text = "asd"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pcye2"]
+shading_mode = 0
+albedo_color = Color(0.18360588, 0.25149953, 0.5396497, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcbdx"]
+albedo_color = Color(0.34220302, 0.46041125, 0.7325018, 1)
+emission_enabled = true
+emission = Color(0.34117648, 0.45882353, 0.73333335, 1)
+emission_energy_multiplier = 1.15
+
+[sub_resource type="BoxMesh" id="BoxMesh_ty0te"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_codys"]
+shading_mode = 0
+albedo_color = Color(0.68503505, 0.760602, 0.83429843, 1)
+
+[node name="LevelResume" type="Node3D" unique_id=1054654497]
+script = ExtResource("1_mkutp")
+
+[node name="FINAL_TEXT" type="MeshInstance3D" parent="." unique_id=206276516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.465, 0, 0.40231532, 0)
+mesh = SubResource("TextMesh_ty0te")
+surface_material_override/0 = SubResource("StandardMaterial3D_mkutp")
+
+[node name="Puntos" type="MeshInstance3D" parent="." unique_id=914398593]
+transform = Transform3D(0.665, 0, 0, 0, 0.665, 0, 0, 0, 0.347, -0.20234594, 0.17478113, 0)
+mesh = SubResource("TextMesh_shssc")
+surface_material_override/0 = SubResource("StandardMaterial3D_8bxo6")
+
+[node name="Puntos_VALOR" type="MeshInstance3D" parent="." unique_id=296886960]
+transform = Transform3D(0.687, 0, 0, 0, 0.687, 0, 0, 0, 0.172, 0.23305432, 0.17907098, 0)
+mesh = SubResource("TextMesh_codys")
+surface_material_override/0 = SubResource("StandardMaterial3D_pcye2")
+
+[node name="Button" parent="." unique_id=1510104222 instance=ExtResource("1_codys")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, -0.024944305, 0)
+text = "Continuar"
+button_size = Vector3(3.17, 0.645, 0.2)
+button_material = SubResource("StandardMaterial3D_kcbdx")
+is_enabled = null
+
+[node name="Tablero" type="MeshInstance3D" parent="." unique_id=107297005]
+transform = Transform3D(0.915, 0, 0, 0, 0.417, 0, 0, 0, 0.051, 0, 0.109075755, -0.039)
+mesh = SubResource("BoxMesh_ty0te")
+surface_material_override/0 = SubResource("StandardMaterial3D_codys")

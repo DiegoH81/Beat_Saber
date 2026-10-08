@@ -63,36 +63,42 @@ text = "RESUME"
 button_size = Vector3(3, 0.8, 0.2)
 padding = 2.775
 button_material = SubResource("StandardMaterial3D_ucjxt")
+is_enabled = null
 
 [node name="QuitButton" parent="." unique_id=1781231299 instance=ExtResource("1_pgi2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4947323, -0.005018592, 0.088186264)
 text = "QUIT"
 button_size = Vector3(3, 0.8, 0.2)
 button_material = SubResource("StandardMaterial3D_ucjxt")
+is_enabled = null
 
 [node name="IncMUSIC" parent="." unique_id=1715887551 instance=ExtResource("1_pgi2h")]
 transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 2.519589, 0.82394165, 0)
 text = "+"
 button_size = Vector3(0.635, 0.545, 0.2)
 button_material = SubResource("StandardMaterial3D_ucjxt")
+is_enabled = null
 
 [node name="DecMUSIC" parent="." unique_id=196670696 instance=ExtResource("1_pgi2h")]
 transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 0.50943494, 0.82394165, 0)
 text = "-"
 button_size = Vector3(0.635, 0.545, 0.2)
 button_material = SubResource("StandardMaterial3D_ucjxt")
+is_enabled = null
 
 [node name="IncSFX" parent="." unique_id=512839369 instance=ExtResource("1_pgi2h")]
 transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 2.5198975, 0, 0)
 text = "+"
 button_size = Vector3(0.635, 0.545, 0.2)
 button_material = SubResource("StandardMaterial3D_ucjxt")
+is_enabled = null
 
 [node name="DecSFX" parent="." unique_id=99701358 instance=ExtResource("1_pgi2h")]
 transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 0.5098973, 0, 0)
 text = "-"
 button_size = Vector3(0.635, 0.545, 0.2)
 button_material = SubResource("StandardMaterial3D_ucjxt")
+is_enabled = null
 
 [node name="BAR_music" parent="." unique_id=1411365557 instance=ExtResource("3_hq7kw")]
 transform = Transform3D(1.945, 0, 0, 0, 1.945, 0, 0, 0, 1.945, 1.5927618, 0.824, 0)

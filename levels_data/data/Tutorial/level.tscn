@@ -31,6 +31,7 @@ fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.29586652, 0.2958665, 0.2958665, 1)
 fog_light_energy = 0.5
+fog_density = 1.0
 fog_sky_affect = 0.67
 fog_depth_curve = 2.6390157
 volumetric_fog_density = 0.0585
@@ -118,3 +119,6 @@ amount = 80
 lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_u0wma")
 draw_pass_1 = SubResource("QuadMesh_ty0te")
+
+[node name="LevelResume" parent="." index="9" unique_id=1054654497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8239484, 0)
