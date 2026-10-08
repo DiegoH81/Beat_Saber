@@ -3,12 +3,14 @@
 [ext_resource type="Script" uid="uid://bdmn4upldhlw" path="res://src/ui/main_menu/main_menu.gd" id="1_mmd50"]
 [ext_resource type="PackedScene" uid="uid://b4ciyppq5olco" path="res://src/ui/main_menu/RENDER_scene.tscn" id="2_q5te7"]
 [ext_resource type="PackedScene" uid="uid://dirnal0co32o0" path="res://src/ui/button/Button.tscn" id="3_mmd50"]
+[ext_resource type="PackedScene" uid="uid://3c0a18cfunlu" path="res://src/ui/pop_ups/PopUp3D.tscn" id="4_ets3f"]
+[ext_resource type="Texture2D" uid="uid://do1u1w5x1rr81" path="res://assets/img/TUT_1.png" id="5_gbacl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ets3f"]
 sky_top_color = Color(0.16470589, 0.16862746, 0.30980393, 1)
 sky_horizon_color = Color(0.3254902, 0.2901961, 0.36078432, 1)
 sky_curve = 0.063067295
-sky_cover_modulate = Color(0.8215984, 0.48958403, 0.5494948, 1)
+sky_cover_modulate = Color(0.3254902, 0.2901961, 0.36078432, 1)
 ground_bottom_color = Color(0.3254902, 0.2901961, 0.36078432, 1)
 ground_horizon_color = Color(0.3254902, 0.2901961, 0.36078432, 1)
 
@@ -25,7 +27,13 @@ sdfgi_enabled = true
 sdfgi_bounce_feedback = 0.72
 sdfgi_energy = 2.15
 glow_enabled = true
-volumetric_fog_enabled = true
+glow_intensity = 0.56
+fog_enabled = true
+fog_light_color = Color(0.93596303, 0.76062036, 0.96417886, 1)
+fog_light_energy = 0.1
+fog_density = 0.1006
+fog_aerial_perspective = 0.07
+fog_sky_affect = 0.566
 volumetric_fog_density = 0.0585
 volumetric_fog_albedo = Color(0.50348216, 0.36586174, 0.4673797, 1)
 volumetric_fog_emission = Color(0.2365565, 0.040205266, 0.27409443, 1)
@@ -50,7 +58,8 @@ uppercase = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u3og"]
 emission_enabled = true
-emission = Color(1, 1, 1, 1)
+emission = Color(1, 0, 0.49803922, 1)
+emission_energy_multiplier = 2.5
 
 [sub_resource type="TextMesh" id="TextMesh_ty0te"]
 material = SubResource("StandardMaterial3D_4u3og")
@@ -58,15 +67,44 @@ text = "LEVELS"
 font_size = 56
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ets3f"]
-albedo_color = Color(0.18520439, 0.38458994, 0.49039233, 1)
+albedo_color = Color(0.101960786, 0.13725491, 0.49411765, 1)
+metallic = 0.8
+roughness = 0.2
 emission_enabled = true
-emission = Color(0.1318785, 0.316897, 0.42382032, 1)
-emission_energy_multiplier = 1.95
+emission = Color(0.101960786, 0.13725491, 0.49411765, 1)
+emission_energy_multiplier = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbacl"]
-albedo_color = Color(0.44291076, 0.44291076, 0.44291073, 1)
+albedo_color = Color(0.0627451, 0.07058824, 0.101960786, 1)
+metallic = 0.8
+roughness = 0.2
 emission_enabled = true
 emission = Color(0.28281513, 0.15470442, 0.21746486, 1)
+emission_energy_multiplier = 1.85
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jc5pe"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.8156863, 0.8980392, 1, 1)
+emission_enabled = true
+emission = Color(0.91764706, 0.16862746, 0.91764706, 1)
+emission_energy_multiplier = 1.15
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+grow = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mmd50"]
+emission_shape = 3
+emission_box_extents = Vector3(9.135, 3.555, 9.705)
+initial_velocity_min = 0.049999997
+initial_velocity_max = 0.19999999
+gravity = Vector3(0, 0.05, 0)
+scale_min = 0.02
+scale_max = 0.049999997
+
+[sub_resource type="QuadMesh" id="QuadMesh_mmd50"]
+size = Vector2(0.1, 0.1)
 
 [node name="MainMenu3d" type="Node3D" unique_id=1344789317]
 script = ExtResource("1_mmd50")
@@ -76,7 +114,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5758348, 1.6268641, 3.2227
 
 [node name="MainMenuPos" type="Marker3D" parent="CameraTargets" unique_id=115392522]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.111297, -0.73075217, -6.3528533)
-visible = false
 
 [node name="LevelSelectorPos" type="Marker3D" parent="CameraTargets" unique_id=1360297943]
 transform = Transform3D(0.60154134, 0.03015443, 0.79827225, -0.018147394, 0.99954516, -0.0240824, -0.7986353, 1.0274111e-08, 0.601815, -1.2885542, -0.10203886, 0)
@@ -151,6 +188,21 @@ transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.245366
 text = "Tutorial"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_gbacl")
+
+[node name="AmbientParticles" type="GPUParticles3D" parent="." unique_id=2009157757]
+transform = Transform3D(1, 0, 0, 0, 0.5923183, 0, 0, 0, 1, 0.72034097, 2.1147952, 0.21540022)
+material_override = SubResource("StandardMaterial3D_jc5pe")
+amount = 110
+lifetime = 6.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_mmd50")
+draw_pass_1 = SubResource("QuadMesh_mmd50")
+
+[node name="PopUp3d" parent="." unique_id=451488544 instance=ExtResource("4_ets3f")]
+transform = Transform3D(-0.87997895, 0, -0.47501257, 0, 1, 0, 0.47501257, 0, -0.87997895, -1.2041328, 1.1242197, -2.5412543)
+texto = "Usa los botones con tus espadas"
+imagen_textura = ExtResource("5_gbacl")
+escala_imagen = Vector3(0.05, 0.05, 1)
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VivaldiButton" to="." method="_on_vivaldi_button_pressed"]

@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://l6vvgap0lf1y"]
+
+[ext_resource type="Script" uid="uid://b6xkuqb1xpb0c" path="res://src/ui/volumen_bar/volumen_bar_3d.gd" id="1_m0hur"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ty0te"]
+
+[node name="VolumenBar3d" type="Node3D" unique_id=1411365557]
+script = ExtResource("1_m0hur")
+
+[node name="B1" type="MeshInstance3D" parent="." unique_id=385468777]
+transform = Transform3D(0.065, 0, 0, 0, 0.105, 0, 0, 0, 0.025, -0.4, 0, 0)
+mesh = SubResource("BoxMesh_ty0te")
+
+[node name="B2" type="MeshInstance3D" parent="." unique_id=1296844054]
+transform = Transform3D(0.065, 0, 0, 0, 0.105, 0, 0, 0, 0.025, -0.32, 0, 0)
+mesh = SubResource("BoxMesh_ty0te")
+
+[node name="B3" type="MeshInstance3D" parent="." unique_id=1507258075]
+transform = Transform3D(0.065, 0, 0, 0, 0.105, 0, 0, 0, 0.025, -0.24, 0, 0)
+mesh = SubResource("BoxMesh_ty0te")
+
+[node name="B4" type="MeshInstance3D" parent="." unique_id=1044962171]
+transform = Transform3D(0.065, 0, 0, 0, 0.105, 0, 0, 0, 0.025, -0.16, 0, 0)
+mesh = SubResource("BoxMesh_ty0te")
+
+[node name="B5" type="MeshInstance3D" parent="." unique_id=1768801672]
+transform = Transform3D(0.065, 0, 0, 0, 0.105, 0, 0, 0, 0.025, -0.08, 0, 0)
+mesh = SubResource("BoxMesh_ty0te")
+
+[node name="B6" type="MeshInstance3D" parent="." unique_id=839585568]
+transform = Transform3D(0.065, 0, 0, 0, 0.105, 0, 0, 0, 0.025, 0, 0, 0)
+mesh = SubResource("BoxMesh_ty0te")
+
+[node name="B7" type="MeshInstance3D" parent="." unique_id=1485463650]
+transform = Transform3D(0.065, 0, 0, 0, 0.105, 0, 0, 0, 0.025, 0.08, 0, 0)
+mesh = SubResource("BoxMesh_ty0te")
+
+[node name="B8" type="MeshInstance3D" parent="." unique_id=1220007596]
+transform = Transform3D(0.065, 0, 0, 0, 0.105, 0, 0, 0, 0.025, 0.16, 0, 0)
+mesh = SubResource("BoxMesh_ty0te")
+
+[node name="B9" type="MeshInstance3D" parent="." unique_id=422749378]
+transform = Transform3D(0.065, 0, 0, 0, 0.105, 0, 0, 0, 0.025, 0.24, 0, 0)
+mesh = SubResource("BoxMesh_ty0te")
+
+[node name="B10" type="MeshInstance3D" parent="." unique_id=1408330838]
+transform = Transform3D(0.065, 0, 0, 0, 0.105, 0, 0, 0, 0.025, 0.32, 0, 0)
+mesh = SubResource("BoxMesh_ty0te")

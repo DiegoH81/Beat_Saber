@@ -49,6 +49,12 @@ signal pressed
 @export var hover_scale_factor: float = 1.08
 
 
+@export var is_enabled: bool = true:
+	set(value):
+		if is_enabled == value:
+			return
+		is_enabled = value
+		_update_enabled_state()
 
 
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
@@ -126,22 +132,34 @@ func _update_button() -> void:
 
 # Interaction
 func _on_mouse_entered() -> void:
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() or not is_enabled:
 		return
 	var tween = create_tween()
 	tween.tween_property(self, "scale", default_scale * hover_scale_factor, 0.12).set_trans(Tween.TRANS_QUAD)
 
 func _on_mouse_exited() -> void:
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() or not is_enabled:
 		return
 	var tween = create_tween()
 	tween.tween_property(self, "scale", default_scale, 0.12).set_trans(Tween.TRANS_QUAD)
 
 func _on_input_event(_camera: Node, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() or not is_enabled:
 		return
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		emit_signal("pressed")
 
 func _on_area_entered(area: Area3D) -> void:
+	if Engine.is_editor_hint() or not is_enabled:
+		return
 	emit_signal("pressed")
+	
+func set_enabled(enabled: bool) -> void:
+	is_enabled = enabled
+	
+func _update_enabled_state() -> void:
+	visible = is_enabled
+	if not is_node_ready():
+		await ready
+	if collision_shape:
+		collision_shape.set_deferred("disabled", not is_enabled)

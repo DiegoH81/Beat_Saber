@@ -2,22 +2,45 @@
 
 [ext_resource type="PackedScene" uid="uid://cye3p6aq1yoar" path="res://src/core/level.tscn" id="1_ju4l8"]
 [ext_resource type="PackedScene" uid="uid://4a4rda1fm7hp" path="res://levels_data/data/Vivaldi_four_seasons/models/enemy_base.glb" id="2_uaawb"]
+[ext_resource type="Script" uid="uid://bm83qrbo4eemh" path="res://levels_data/data/Vivaldi_four_seasons/ambient.gd" id="3_1fb18"]
 [ext_resource type="PackedScene" uid="uid://bowqf08dwagvw" path="res://levels_data/data/Vivaldi_four_seasons/models/Beethoven.glb" id="4_8ji72"]
 [ext_resource type="PackedScene" uid="uid://bxl8avnyue10o" path="res://levels_data/data/Vivaldi_four_seasons/models/level1.glb" id="5_1fb18"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1fb18"]
-ground_bottom_color = Color(0.13841793, 0.08044835, 0.10215574, 1)
+sky_top_color = Color(0.44313726, 0.19607843, 0.37254903, 1)
+sky_horizon_color = Color(0.25490198, 0.09803922, 0.21176471, 1)
+sky_curve = 0.34460926
+ground_bottom_color = Color(0.25490198, 0.09803922, 0.21176471, 1)
+ground_horizon_color = Color(0.25490198, 0.09803922, 0.21176471, 1)
 
 [sub_resource type="Sky" id="Sky_0wfyh"]
 sky_material = SubResource("ProceduralSkyMaterial_1fb18")
 
 [sub_resource type="Environment" id="Environment_guabt"]
-background_mode = 1
+background_mode = 2
 background_color = Color(0.17641908, 0.17641911, 0.17641902, 1)
 sky = SubResource("Sky_0wfyh")
-volumetric_fog_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.51029587, 0.5144445, 0.8154425, 1)
+fog_light_energy = 0.17
+fog_density = 0.0465
+fog_sky_affect = 0.88
 
 [sub_resource type="Compositor" id="Compositor_s451c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_guabt"]
+albedo_color = Color(0.496059, 0.17728457, 0.25214887, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1fb18"]
+emission_shape_scale = Vector3(8.16, 2.195, 7.17)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, -0.3, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_1fb18"]
+size = Vector2(0.1, 0.1)
 
 [node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient", "spawn") instance=ExtResource("1_ju4l8")]
 ambient = NodePath("Ambient")
@@ -37,6 +60,9 @@ skin_enemy = ExtResource("2_uaawb")
 [node name="Ambient" type="WorldEnvironment" parent="." index="4" unique_id=1531568387]
 environment = SubResource("Environment_guabt")
 compositor = SubResource("Compositor_s451c")
+script = ExtResource("3_1fb18")
+sensibilidad = 1.5
+intensidad = 0.265
 
 [node name="ScoreScene" parent="." index="5" unique_id=120538248]
 transform = Transform3D(0.83229464, 0.118480265, 0.5415239, 0.06342948, 0.95012033, -0.30536526, -0.5506926, 0.2885024, 0.78326505, -3.2356613, 3.6715114, 1.0140319)
@@ -85,3 +111,13 @@ spot_angle = 25.943008
 
 [node name="Spawn" type="Node3D" parent="." index="14" unique_id=478347165]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.926, 5.956)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="15" unique_id=589746203]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2811193, 0)
+material_override = SubResource("StandardMaterial3D_guabt")
+amount = 90
+process_material = SubResource("ParticleProcessMaterial_1fb18")
+draw_pass_1 = SubResource("QuadMesh_1fb18")
+
+[node name="LevelResume" parent="." index="16" unique_id=1054654497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.081465304, 1.7001193, 4.514134)
