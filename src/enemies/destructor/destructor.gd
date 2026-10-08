@@ -1,14 +1,18 @@
 extends Area3D
 class_name Destructor
 
-signal hit_registered(amount: int)
+@export var hit_particles_scene: PackedScene
 
+signal hit_registered(amount: int)
+	
 func _on_area_entered(area: Area3D) -> void:
 	if area is Enemy:
+		var impact_position: Vector3 = area.global_position
 		area.queue_free()
 		
 		if name == "SwordDestructor":
 			ScoreManager.add_hit()
+			_spawn_hit_particles(impact_position)
 			
 			var random_index: int = randi_range(1, 24)
 			var audio_path: String = "swing_audios_sword/swing_%d" % random_index
@@ -16,3 +20,9 @@ func _on_area_entered(area: Area3D) -> void:
 			AudioManager.play_sfx(audio_path, global_position, 0.01)
 		else:
 			ScoreManager.register_miss()
+
+func _spawn_hit_particles(pos: Vector3) -> void:
+	if hit_particles_scene:
+		var particles = hit_particles_scene.instantiate() as GPUParticles3D
+		get_tree().current_scene.add_child(particles)
+		particles.global_position = pos
