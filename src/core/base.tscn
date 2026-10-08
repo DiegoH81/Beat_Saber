@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://bsx6nvc1vlxsm"]
 
 [ext_resource type="Script" uid="uid://cdlgd1avnfpm0" path="res://src/core/base.gd" id="1_4xvqr"]
+[ext_resource type="PackedScene" uid="uid://dsucocti68co2" path="res://src/player/player_vr.tscn" id="2_4a1un"]
 
-[node name="Base" type="Node" unique_id=1959365744 node_paths=PackedStringArray("scene_container")]
+[node name="Base" type="Node" unique_id=1959365744 node_paths=PackedStringArray("scene_container", "player_vr")]
 script = ExtResource("1_4xvqr")
 scene_container = NodePath("SceneContainer")
+player_vr = NodePath("PlayerVR")
 
 [node name="SceneContainer" type="Node" parent="." unique_id=1876033211]
+
+[node name="PlayerVR" parent="." unique_id=1613388773 instance=ExtResource("2_4a1un")]

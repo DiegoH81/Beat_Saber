@@ -34,7 +34,6 @@ func load_map(notes_data: Array) -> void:
 
 func _physics_process(delta: float) -> void:
 	if notes.size() <= index:
-		SceneManager.to_level_selector()
 		song_ended.emit()
 	
 	if duration >= notes[index].exect_time:

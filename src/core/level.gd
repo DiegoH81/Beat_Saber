@@ -5,6 +5,7 @@ class_name Level
 @export var generator: Generator
 @export var ambient: WorldEnvironment
 @export var next_level_id: String
+@export var spawn: Node3D
 
 var number: int = 0
 

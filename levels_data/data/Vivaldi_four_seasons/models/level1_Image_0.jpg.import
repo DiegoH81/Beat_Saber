@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2e202gd3a4uf"
 path.s3tc="res://.godot/imported/level1_Image_0.jpg-00f8552ba1b1ef383691bc0f432f4635.s3tc.ctex"
+path.etc2="res://.godot/imported/level1_Image_0.jpg-00f8552ba1b1ef383691bc0f432f4635.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://levels_data/data/Vivaldi_four_seasons/models/level1_Image_0.jpg"
-dest_files=["res://.godot/imported/level1_Image_0.jpg-00f8552ba1b1ef383691bc0f432f4635.s3tc.ctex"]
+dest_files=["res://.godot/imported/level1_Image_0.jpg-00f8552ba1b1ef383691bc0f432f4635.s3tc.ctex", "res://.godot/imported/level1_Image_0.jpg-00f8552ba1b1ef383691bc0f432f4635.etc2.ctex"]
 
 [params]
 

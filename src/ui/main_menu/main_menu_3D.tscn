@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bdmn4upldhlw" path="res://src/ui/main_menu/main_menu.gd" id="1_mmd50"]
 [ext_resource type="PackedScene" uid="uid://b4ciyppq5olco" path="res://src/ui/main_menu/RENDER_scene.tscn" id="2_q5te7"]
-[ext_resource type="PackedScene" uid="uid://dsucocti68co2" path="res://src/player/player_vr.tscn" id="3_ets3f"]
 [ext_resource type="PackedScene" uid="uid://dirnal0co32o0" path="res://src/ui/button/Button.tscn" id="3_mmd50"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ets3f"]
@@ -107,9 +106,6 @@ transform = Transform3D(-0.89497095, -1.8627506e-09, 0.44613546, -0.02944127, 0.
 [node name="Camera3D" type="Camera3D" parent="CameraPath/CameraFollow/CameraPivot" unique_id=1036689133]
 transform = Transform3D(0.5980837, 0.03553027, 0.80065703, -0.059164405, 0.9982555, -0.00010346621, -0.7992549, -0.047308102, 0.59913725, 0, 0, 0)
 current = true
-
-[node name="PlayerVR" parent="CameraPath/CameraFollow/CameraPivot" unique_id=1613388773 instance=ExtResource("3_ets3f")]
-transform = Transform3D(0.69441295, 0.042952195, 0.71829426, -0.033451963, 0.9990653, -0.027401838, -0.7187989, -0.005000204, 0.69519997, -0.169, 0, 0.052)
 
 [node name="TitleMainMenu" type="MeshInstance3D" parent="." unique_id=999181946]
 transform = Transform3D(-0.8802697, -0.030591832, -0.47348642, -0.0018855383, 0.998137, -0.060983907, 0.4744699, -0.052789506, -0.8786874, -0.9785441, 1.0835325, -2.4267251)
