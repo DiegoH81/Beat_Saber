@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://b4ciyppq5olco"]
 
 [ext_resource type="PackedScene" uid="uid://e3t645ltfalx" path="res://src/ui/main_menu/MAIN_MENU_SCENE.glb" id="1_oom3b"]
+[ext_resource type="Material" uid="uid://dwcrqlnpwqkw3" path="res://src/ui/main_menu/Adentro.005.tres" id="2_jk42f"]
+[ext_resource type="Material" uid="uid://dlyo6vkx8pql2" path="res://src/ui/main_menu/Adentro.006.tres" id="3_ep5dr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58015"]
+albedo_color = Color(0.40192765, 0.7020052, 0.9053759, 1)
+emission_enabled = true
+emission = Color(0.25696146, 0.48472673, 0.7611418, 1)
+emission_energy_multiplier = 4.89
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lfg7s"]
 albedo_color = Color(0, 0, 0, 1)
@@ -13,14 +21,15 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqqtq"]
 albedo_color = Color(0.11764706, 0.07058824, 0.101960786, 1)
-metallic = 0.45
+metallic = 0.84
 metallic_specular = 0.64
+roughness = 0.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awjbi"]
 albedo_color = Color(0.8688633, 0.33223647, 0.40765673, 1)
 emission_enabled = true
 emission = Color(0.87058824, 0.33333334, 0.40784314, 1)
-emission_energy_multiplier = 5.0
+emission_energy_multiplier = 2.55
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jk42f"]
 albedo_color = Color(0, 0, 0, 1)
@@ -40,8 +49,8 @@ emission_energy_multiplier = 5.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ncigj"]
 albedo_color = Color(0.8156863, 0.89411765, 0.92941177, 1)
 emission_enabled = true
-emission = Color(0.8156863, 0.89411765, 0.92941177, 1)
-emission_energy_multiplier = 5.0
+emission = Color(0.39925653, 0.7884708, 0.9160144, 1)
+emission_energy_multiplier = 2.37
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cs24x"]
 albedo_color = Color(0.4392157, 0.22352941, 0.6117647, 1)
@@ -56,97 +65,104 @@ albedo_color = Color(0.7763759, 0.8303289, 0.9582061, 1)
 albedo_color = Color(0.7019608, 0.6313726, 0.89411765, 1)
 emission_enabled = true
 emission = Color(0.7019608, 0.6313726, 0.89411765, 1)
-emission_energy_multiplier = 6.32
+emission_energy_multiplier = 1.02
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qjlj"]
 albedo_color = Color(0.7490196, 0.21568628, 0.5803922, 1)
 emission_enabled = true
 emission = Color(0.7490196, 0.21568628, 0.5803922, 1)
-emission_energy_multiplier = 5.0
+emission_energy_multiplier = 3.71
 
 [node name="MAIN_MENU_SCENE" unique_id=917994279 instance=ExtResource("1_oom3b")]
 
-[node name="Cyber-sword_M_cybersword_0_003" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" parent_id_path=PackedInt32Array(1843961755) index="1" unique_id=1768097666]
+[node name="Cyber-sword_M_cybersword_0" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" parent_id_path=PackedInt32Array(10024472) index="0" unique_id=239726975]
+surface_material_override/0 = SubResource("StandardMaterial3D_58015")
+
+[node name="Cyber-sword_M_cybersword_0_003" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" parent_id_path=PackedInt32Array(10024472) index="1" unique_id=2110689873]
 surface_material_override/0 = SubResource("StandardMaterial3D_lfg7s")
 
-[node name="Cyber-sword_M_cybersword_0_006" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" parent_id_path=PackedInt32Array(1843961755) index="3" unique_id=124572106]
+[node name="Cyber-sword_M_cybersword_0_006" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" parent_id_path=PackedInt32Array(10024472) index="3" unique_id=1171873739]
 surface_material_override/0 = SubResource("StandardMaterial3D_ep5dr")
 
-[node name="Cyber-sword_M_cybersword_0_007" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" parent_id_path=PackedInt32Array(1843961755) index="4" unique_id=694849332]
+[node name="Cyber-sword_M_cybersword_0_007" parent="sword/Sketchfab_model/e5df124a6f1445138adb910626fe72d3_fbx/RootNode/Cyber-sword" parent_id_path=PackedInt32Array(10024472) index="4" unique_id=1265347975]
 surface_material_override/0 = SubResource("StandardMaterial3D_acqh0")
 
-[node name="Cube" parent="." index="1" unique_id=1881692193]
+[node name="Cube" parent="." index="1" unique_id=1668712070]
 transform = Transform3D(9.528605, 0, 0, 0, 0.06475963, 0, 0, 0, 9.873927, 0.96066284, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_kqqtq")
 
-[node name="Cyber-sword_M_cybersword_0_001" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(1160280202) index="0" unique_id=1944248259]
+[node name="Cyber-sword_M_cybersword_0_001" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(2104718626) index="0" unique_id=1108471752]
 surface_material_override/0 = SubResource("StandardMaterial3D_awjbi")
 
-[node name="Cyber-sword_M_cybersword_0_002" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(1160280202) index="1" unique_id=1657621810]
+[node name="Cyber-sword_M_cybersword_0_002" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(2104718626) index="1" unique_id=659413663]
 surface_material_override/0 = SubResource("StandardMaterial3D_jk42f")
 
-[node name="Cyber-sword_M_cybersword_0_008" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(1160280202) index="3" unique_id=1282530651]
+[node name="Cyber-sword_M_cybersword_0_008" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(2104718626) index="3" unique_id=1480122463]
 surface_material_override/0 = SubResource("StandardMaterial3D_4vqr7")
 
-[node name="Cyber-sword_M_cybersword_0_009" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(1160280202) index="4" unique_id=1619791027]
+[node name="Cyber-sword_M_cybersword_0_009" parent="sword_001/Sketchfab_model_001/e5df124a6f1445138adb910626fe72d3_fbx_001/RootNode_001/Cyber-sword_001" parent_id_path=PackedInt32Array(2104718626) index="4" unique_id=612642125]
 surface_material_override/0 = SubResource("StandardMaterial3D_oom3b")
 
-[node name="Cube_Borders" parent="." index="3" unique_id=325887932]
+[node name="Cube_Borders" parent="." index="3" unique_id=19140634]
 transform = Transform3D(0.9998477, 0.017452406, 0, -0.017452406, 0.9998477, 0, 0, 0, 1, 0, 0, 0)
 surface_material_override/1 = SubResource("StandardMaterial3D_vlfup")
 
-[node name="Cube_Borders_002" parent="." index="5" unique_id=1164168050]
+[node name="Cube_Borders_001" parent="." index="4" unique_id=213822308]
+surface_material_override/1 = ExtResource("2_jk42f")
+
+[node name="Cube_Borders_002" parent="." index="5" unique_id=1327064837]
 surface_material_override/1 = SubResource("StandardMaterial3D_ncigj")
 
-[node name="Cube_Borders_003" parent="." index="6" unique_id=1461054095]
+[node name="Cube_Borders_003" parent="." index="6" unique_id=1631532773]
 surface_material_override/1 = SubResource("StandardMaterial3D_cs24x")
 
-[node name="BOARD" parent="." index="7" unique_id=1251651236]
+[node name="BOARD" parent="." index="7" unique_id=978043420]
 surface_material_override/1 = SubResource("StandardMaterial3D_xxvrn")
 
-[node name="Object_3_005" parent="." index="11" unique_id=1116755814]
+[node name="Object_3_005" parent="." index="11" unique_id=334520574]
 transform = Transform3D(1, 0, 0, 0, 0.99939096, -0.034895957, 0, 0.034895957, 0.99939096, 0, 0, 0)
 
-[node name="DESK_001" parent="." index="27" unique_id=1499660901]
+[node name="DESK_001" parent="." index="27" unique_id=350917488]
 transform = Transform3D(0.9998477, 0.017452406, 0, -0.017452406, 0.9998477, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="DESK_002" parent="." index="28" unique_id=1280936268]
+[node name="DESK_002" parent="." index="28" unique_id=2267166]
 transform = Transform3D(1, 0, 0, 0, 0.9998477, -0.017452406, 0, 0.017452406, 0.9998477, 0, 0, 0)
 
-[node name="DESK_003" parent="." index="29" unique_id=843559286]
+[node name="DESK_003" parent="." index="29" unique_id=516433698]
 transform = Transform3D(0.9998477, 0, 0.017452406, 0, 1, 0, -0.017452406, 0, 0.9998477, 0, 0, 0)
 
-[node name="Cube_Borders_004" parent="." index="31" unique_id=1760493179]
+[node name="Cube_Borders_004" parent="." index="31" unique_id=1919188]
 transform = Transform3D(0.9998477, 0, 0.017452406, 0, 1, 0, -0.017452406, 0, 0.9998477, 0, 0, 0)
 surface_material_override/1 = SubResource("StandardMaterial3D_yt2t0")
 
-[node name="Cube_Borders_005" parent="." index="32" unique_id=319914502]
+[node name="Cube_Borders_005" parent="." index="32" unique_id=1542120187]
 transform = Transform3D(1, 0, 0, 0, 0.9998477, -0.017452406, 0, 0.017452406, 0.9998477, 0, 0, 0)
 
-[node name="Cube_Borders_006" parent="." index="33" unique_id=1123861097]
+[node name="Cube_Borders_006" parent="." index="33" unique_id=1241088086]
 transform = Transform3D(0.9998477, 0, 0.017452406, 0, 1, 0, -0.017452406, 0, 0.9998477, 0, 0, 0)
+surface_material_override/1 = ExtResource("3_ep5dr")
 
-[node name="Cube_Borders_007" parent="." index="34" unique_id=1127433284]
+[node name="Cube_Borders_007" parent="." index="34" unique_id=1365627786]
 transform = Transform3D(1, 0, 0, 0, 0.9998477, -0.017452406, 0, 0.017452406, 0.9998477, 0, 0, 0)
 surface_material_override/1 = SubResource("StandardMaterial3D_1qjlj")
 
-[node name="Object_3_001" parent="BézierCircle_003" parent_id_path=PackedInt32Array(364572641) index="0" unique_id=2106596326]
+[node name="Object_3_001" parent="BézierCircle_003" parent_id_path=PackedInt32Array(898479691) index="0" unique_id=894745972]
 transform = Transform3D(-0.03556863, -0.05163076, -0.0014546963, 0.051638443, -0.03557392, 3.928222e-11, -0.00061344856, -0.0008904706, 0.08434538, 0.16500902, 0.08373338, -0.07364983)
 
-[node name="Object_3_003" parent="BézierCircle_003" parent_id_path=PackedInt32Array(364572641) index="1" unique_id=1333264742]
+[node name="Object_3_003" parent="BézierCircle_003" parent_id_path=PackedInt32Array(898479691) index="1" unique_id=827633125]
 transform = Transform3D(-0.03556863, -0.05163076, -0.0014546963, 0.051638443, -0.03557392, 3.928222e-11, -0.00061344856, -0.0008904706, 0.08434538, 0.16500902, 0.08373338, -0.07364983)
 
-[node name="Object_3_009" parent="BézierCircle_003" parent_id_path=PackedInt32Array(364572641) index="2" unique_id=703332347]
+[node name="Object_3_009" parent="BézierCircle_003" parent_id_path=PackedInt32Array(898479691) index="2" unique_id=666587685]
 transform = Transform3D(-0.03556863, -0.05163076, -0.0014546963, 0.051638443, -0.03557392, 3.928222e-11, -0.00061344856, -0.0008904706, 0.08434538, 0.16500902, 0.08373338, -0.07364983)
 
-[node name="Object_3_012" parent="BézierCircle_003" parent_id_path=PackedInt32Array(364572641) index="3" unique_id=183227095]
+[node name="Object_3_012" parent="BézierCircle_003" parent_id_path=PackedInt32Array(898479691) index="3" unique_id=633924267]
 transform = Transform3D(-0.03556863, -0.05163076, -0.0014546963, 0.051638443, -0.03557392, 3.928222e-11, -0.00061344856, -0.0008904706, 0.08434538, 0.16500902, 0.08373338, -0.07364983)
 
-[node name="Object_3_013" parent="BézierCircle_003" parent_id_path=PackedInt32Array(364572641) index="4" unique_id=776372263]
+[node name="Object_3_013" parent="BézierCircle_003" parent_id_path=PackedInt32Array(898479691) index="4" unique_id=222065630]
 transform = Transform3D(-0.03556863, -0.05163076, -0.0014546963, 0.051638443, -0.03557392, 3.928222e-11, -0.00061344856, -0.0008904706, 0.08434538, 0.16500902, 0.08373338, -0.07364983)
 
-[node name="Object_3_017" parent="BézierCircle_003" parent_id_path=PackedInt32Array(364572641) index="5" unique_id=751934126]
+[node name="Object_3_017" parent="BézierCircle_003" parent_id_path=PackedInt32Array(898479691) index="5" unique_id=552847610]
 transform = Transform3D(-0.03556863, -0.05163076, -0.0014546963, 0.051638443, -0.03557392, 3.928222e-11, -0.00061344856, -0.0008904706, 0.08434538, 0.16500902, 0.08373338, -0.07364983)
 
-[node name="AnimationPlayer" parent="." index="39" unique_id=1438626932]
+[node name="AnimationPlayer" parent="." index="39" unique_id=1854130282]
 autoplay = &"Scene"
