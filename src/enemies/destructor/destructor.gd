@@ -17,7 +17,7 @@ func _on_area_entered(area: Area3D) -> void:
 			var random_index: int = randi_range(1, 24)
 			var audio_path: String = "swing_audios_sword/swing_%d" % random_index
 			
-			AudioManager.play_sfx(audio_path, global_position, 0.1)
+			AudioManager.play_sfx(audio_path, global_position)
 		else:
 			ScoreManager.register_miss()
 

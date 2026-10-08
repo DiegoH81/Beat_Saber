@@ -1,6 +1,8 @@
 extends Node3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var bar_music: Node3D = $BAR_music
+@onready var bar_sfx: Node3D = $BAR_sfx
 
 
 func resume() -> void:
@@ -34,9 +36,30 @@ func _on_resume_button_pressed() -> void:
 func _on_quit_button_pressed() -> void:
 	get_tree().quit();
 
+# Bar INC
+func _on_inc_music_pressed() -> void:
+	var new_level = AudioManager.increase_music()
+	bar_music.set_nivel(new_level)
+
+func _on_dec_music_pressed() -> void:
+	var new_level = AudioManager.decrease_music()
+	bar_music.set_nivel(new_level)
+
+func _on_inc_sfx_pressed() -> void:
+	var new_level = AudioManager.increase_sfx()
+	bar_sfx.set_nivel(new_level)
+	
+func _on_dec_sfx_pressed() -> void:
+	var new_level = AudioManager.decrease_sfx()
+	bar_sfx.set_nivel(new_level)
+
 
 func _ready() -> void:
 	visible = false
+	
+	bar_sfx.set_nivel(AudioManager.get_sfx_level())
+	bar_music.set_nivel(AudioManager.get_music_level())
+
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -45,3 +68,15 @@ func _unhandled_input(event: InputEvent) -> void:
 			resume()
 		else:
 			pause()
+			
+	
+	if get_tree().paused and event is InputEventKey and event.pressed:
+		match event.keycode:
+			KEY_UP:
+				_on_inc_music_pressed()
+			KEY_DOWN:
+				_on_dec_music_pressed()
+			KEY_RIGHT:
+				_on_inc_sfx_pressed()
+			KEY_LEFT:
+				_on_dec_sfx_pressed()
