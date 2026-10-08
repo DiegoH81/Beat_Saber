@@ -96,3 +96,8 @@ func _process(delta: float) -> void:
 
 	var move_direction := (forward * input_dir.y + right * input_dir.x)
 	global_position += move_direction * move_speed * delta
+	
+	if Input.is_key_pressed(KEY_SPACE):
+		global_position.y += move_speed * delta
+	if Input.is_key_pressed(KEY_SHIFT):
+		global_position.y -= move_speed * delta

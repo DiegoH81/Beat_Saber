@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://djur2icpk10fg"]
 
 [ext_resource type="PackedScene" uid="uid://cye3p6aq1yoar" path="res://src/core/level.tscn" id="1_q7ebg"]
-[ext_resource type="PackedScene" uid="uid://bbbwo1tee5n7r" path="res://levels_data/data/Tutorial/models/sword_scene.tscn" id="2_asf7o"]
 [ext_resource type="PackedScene" uid="uid://bmxvohbc3b17h" path="res://levels_data/data/Tutorial/models/level_render_scene.tscn" id="2_tq44i"]
 [ext_resource type="PackedScene" uid="uid://c1qu8hnre1aj" path="res://levels_data/data/Tutorial/models/enemy.glb" id="3_24ph5"]
 [ext_resource type="Script" uid="uid://daa44nekfuap2" path="res://levels_data/data/Tutorial/text_nodes.gd" id="5_u0wma"]
@@ -42,15 +41,15 @@ text = "READY?"
 [node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient") instance=ExtResource("1_q7ebg")]
 ambient = NodePath("Ambient")
 
-[node name="PlayerVR" parent="." index="2" unique_id=1613388773]
-sword_scene = ExtResource("2_asf7o")
-
-[node name="Generator" parent="." index="3" unique_id=1789100008]
+[node name="Generator" parent="." index="2" unique_id=1789100008]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.5551233, 2.8774743, -31.334612)
 skin_enemy = ExtResource("3_24ph5")
 
-[node name="Destructor" parent="." index="4" unique_id=1128432705]
+[node name="Destructor" parent="." index="3" unique_id=1128432705]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 2.7629046, 5.1150055)
+
+[node name="ScoreScene" parent="." index="4" unique_id=120538248]
+transform = Transform3D(0.8552113, 0, 0.5182795, 0, 1, 0, -0.5182795, 0, 0.8552113, -3.4315917, 1.1407318, -6.912939)
 
 [node name="level_RENDER" parent="." index="5" unique_id=524996336 instance=ExtResource("2_tq44i")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.4121344, 0, -4.061989)
@@ -81,6 +80,3 @@ surface_material_override/0 = SubResource("StandardMaterial3D_24ph5")
 transform = Transform3D(1.98, 0, 0, 0, 1.98, 0, 0, 0, 1.98, 0, 2.652, -6.357)
 mesh = SubResource("TextMesh_w4mfu")
 surface_material_override/0 = SubResource("StandardMaterial3D_24ph5")
-
-[node name="ScoreScene" parent="." index="9" unique_id=120538248]
-transform = Transform3D(0.8552113, 0, 0.5182795, 0, 1, 0, -0.5182795, 0, 0.8552113, -3.4315917, 1.1407318, -6.912939)

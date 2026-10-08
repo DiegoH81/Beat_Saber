@@ -1,9 +1,6 @@
 extends GPUParticles3D
 
-
 func _ready() -> void:
-	pass # Replace with function body.
-
-func _process(delta: float) -> void:
+	one_shot = true
 	finished.connect(queue_free)
-	emitting = true
+	restart()
