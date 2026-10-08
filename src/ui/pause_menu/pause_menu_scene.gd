@@ -37,6 +37,14 @@ func pause() -> void:
 	get_tree().paused = true;
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
 	
+func disable_buttons() -> void:
+	resume_button.is_enabled = false
+	quit_button.is_enabled = false
+	inc_music.is_enabled = false
+	dec_music.is_enabled = false
+	inc_sfx.is_enabled = false
+	dec_sfx.is_enabled = false
+	
 func _position_in_front_of_camera() -> void:
 	
 	var camera: Camera3D = get_viewport().get_camera_3d()
@@ -79,6 +87,7 @@ func _ready() -> void:
 	bar_music.set_nivel(AudioManager.get_music_level())
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	disable_buttons()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Escape"):

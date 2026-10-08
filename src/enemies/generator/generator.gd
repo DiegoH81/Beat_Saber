@@ -32,6 +32,13 @@ func load_map(notes_data: Array) -> void:
 		enemy.set_skin(skin_enemy)
 		notes.push_back(enemy)
 
+func set_active(active: bool) -> void:
+	var mode := Node.PROCESS_MODE_INHERIT if active else Node.PROCESS_MODE_DISABLED
+	process_mode = mode
+	for p in points:
+		if is_instance_valid(p):
+			p.process_mode = mode
+
 func _physics_process(delta: float) -> void:
 	if notes.size() <= index:
 		song_ended.emit()
