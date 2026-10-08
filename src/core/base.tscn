@@ -11,3 +11,4 @@ player_vr = NodePath("PlayerVR")
 [node name="SceneContainer" type="Node" parent="." unique_id=1876033211]
 
 [node name="PlayerVR" parent="." unique_id=1613388773 instance=ExtResource("2_4a1un")]
+move_speed = 2.0
