@@ -4,10 +4,13 @@ extends Node3D
 
 @onready var button: Area3D = $Button
 
+var is_paused: bool = false
+
 func _ready() -> void:
 	hide_all()
 
 func show_all() -> void:
+	is_paused = true
 	visible = true
 	button.is_enabled = true
 	set_process_input(true)
@@ -17,6 +20,7 @@ func show_all() -> void:
 		puntos_valor.mesh.text = str(ScoreManager.current_score)
 
 func hide_all() -> void:
+	is_paused = false
 	visible = false
 	button.is_enabled = false
 	set_process_input(false)

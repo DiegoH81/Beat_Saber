@@ -1,10 +1,14 @@
 extends XROrigin3D
 
+signal pause
+
 @export_category("Dependencies")
 @export var camera: XRCamera3D
 @export var head: Node3D
 @export var left_sword: Node3D
 @export var right_sword: Node3D
+@export var left_hand: Node3D
+@export var right_hand: Node3D
 
 @export var sword_scene: PackedScene
 
@@ -15,6 +19,8 @@ extends XROrigin3D
 var xr_interface: XRInterface
 var is_vr_active: bool = false
 var rotation_target: Vector3 = Vector3.ZERO
+
+var timer = 3
 
 func _ready() -> void:
 	xr_interface = XRServer.find_interface("OpenXR")
@@ -69,7 +75,12 @@ func enable_keyboard_mode() -> void:
 	print("WIMP on")
 
 func _process(delta: float) -> void:
-	
+	if right_hand.global_position.distance_to(left_hand.global_position) < 0.05:
+		timer -= delta
+		if timer <= 0:
+			pause.emit()
+			timer = 5
+
 	if is_vr_active:
 		camera.global_transform = Transform3D(camera.global_transform.basis, head.global_position)
 		return

@@ -6,6 +6,7 @@ class_name Level
 @export var ambient: WorldEnvironment
 @export var next_level_id: String
 @export var spawn: Node3D
+@export var pause_menu: Node3D
 
 var number: int = 0
 

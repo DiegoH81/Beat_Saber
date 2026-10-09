@@ -40,6 +40,8 @@ func to_menu() -> void:
 
 func to_level(level_id: String) -> void:
 	player_vr.reparent(base)
+	for connection in player_vr.pause.get_connections():
+		player_vr.pause.disconnect(connection.callable)
 	if not scene_container:
 		return
 		
@@ -62,6 +64,7 @@ func to_level(level_id: String) -> void:
 		player_vr.global_position = level.spawn.global_position
 		player_vr.rotation = level.spawn.rotation
 	
+	player_vr.pause.connect(level.pause_menu.pause)
 	current_scene = level
 
 func load_level_scene(level_id: String) -> Level:

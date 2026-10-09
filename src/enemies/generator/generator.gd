@@ -40,8 +40,9 @@ func set_active(active: bool) -> void:
 			p.process_mode = mode
 
 func _physics_process(delta: float) -> void:
-	if notes.size() <= index:
+	if notes.size() <= index or duration >= duration_max:
 		song_ended.emit()
+		return
 	
 	if duration >= notes[index].exect_time:
 		var enemy: Enemy = notes[index]

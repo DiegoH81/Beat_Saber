@@ -72,20 +72,21 @@ size = Vector2(0.1, 0.1)
 
 [node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient") instance=ExtResource("1_q7ebg")]
 ambient = NodePath("Ambient")
+next_level_id = "Vivaldi_four_seasons"
 
-[node name="Sun" parent="." index="1" unique_id=1999535529]
+[node name="Sun" parent="." index="0" unique_id=1999535529]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2.923747, 7.8188257)
 light_color = Color(0.39212516, 0.2589807, 0.48161942, 1)
 light_energy = 2.5
 
-[node name="Generator" parent="." index="2" unique_id=1789100008]
+[node name="Generator" parent="." index="1" unique_id=1789100008]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.5551233, 2.8774743, -31.334612)
 skin_enemy = ExtResource("3_24ph5")
 
-[node name="Destructor" parent="." index="3" unique_id=1128432705]
+[node name="Destructor" parent="." index="2" unique_id=1128432705]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 2.7629046, 5.1150055)
 
-[node name="ScoreScene" parent="." index="4" unique_id=120538248]
+[node name="ScoreScene" parent="." index="3" unique_id=120538248]
 transform = Transform3D(0.8552113, 0, 0.5182795, 0, 1, 0, -0.5182795, 0, 0.8552113, -3.4315917, 1.1407318, -6.912939)
 
 [node name="level_RENDER" parent="." index="5" unique_id=524996336 instance=ExtResource("2_tq44i")]
@@ -122,7 +123,7 @@ lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_u0wma")
 draw_pass_1 = SubResource("QuadMesh_ty0te")
 
-[node name="LevelResume" parent="." index="9" unique_id=1054654497]
+[node name="LevelResumeMenu" parent="." index="9" unique_id=1054654497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8239484, 0)
 
 [node name="PopUp3d" parent="." index="10" unique_id=451488544 instance=ExtResource("6_hv737")]

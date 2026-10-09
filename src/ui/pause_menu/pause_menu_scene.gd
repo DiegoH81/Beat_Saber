@@ -13,7 +13,6 @@ extends Node3D
 
 func resume() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
-	get_tree().paused = false;
 	
 	resume_button.is_enabled = false
 	quit_button.is_enabled = false
@@ -21,6 +20,8 @@ func resume() -> void:
 	dec_music.is_enabled = false
 	inc_sfx.is_enabled = false
 	dec_sfx.is_enabled = false
+	get_parent().generator.set_active(true)
+	AudioManager.resume_music()
 	visible = false;
 	
 func pause() -> void:
@@ -34,7 +35,9 @@ func pause() -> void:
 	dec_sfx.is_enabled = true
 	
 	visible = true;
-	get_tree().paused = true;
+	AudioManager.pause_music()
+	get_parent().generator.set_active(false)
+
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
 	
 func disable_buttons() -> void:

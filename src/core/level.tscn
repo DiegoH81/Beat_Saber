@@ -9,12 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://dtygi3skufray" path="res://src/ui/level_resume/LevelResume.tscn" id="8_5mtdr"]
 [ext_resource type="PackedScene" uid="uid://dxs5oy71xll4b" path="res://src/ui/score/score_scene.tscn" id="8_kwtqq"]
 
-[node name="Level" type="Node3D" unique_id=814822109 node_paths=PackedStringArray("generator")]
+[node name="Level" type="Node3D" unique_id=814822109 node_paths=PackedStringArray("generator", "pause_menu")]
 script = ExtResource("1_5kcgd")
 generator = NodePath("Generator")
-
-[node name="PauseMenu" parent="." unique_id=348335489 instance=ExtResource("2_8i58q")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.69660276, 0)
+pause_menu = NodePath("PauseMenu")
 
 [node name="Sun" type="DirectionalLight3D" parent="." unique_id=1999535529]
 transform = Transform3D(1, 0, 0, 0, 0.9241243, 0.38209203, 0, -0.38209203, 0.9241243, 0, 1.6036624, 2.25277)
@@ -30,6 +28,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.557748)
 [node name="ScoreScene" parent="." unique_id=120538248 instance=ExtResource("8_kwtqq")]
 transform = Transform3D(0.8552113, 0, 0.5182795, 0, 1, 0, -0.5182795, 0, 0.8552113, -1.2763805, 1.1407318, -5.25914)
 
-[node name="LevelResume" parent="." unique_id=1054654497 instance=ExtResource("8_5mtdr")]
+[node name="PauseMenu" parent="." unique_id=348335489 instance=ExtResource("2_8i58q")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.69660276, 0)
+
+[node name="LevelResumeMenu" parent="." unique_id=1054654497 instance=ExtResource("8_5mtdr")]
 
 [connection signal="song_ended" from="Generator" to="." method="_to_next_level"]
