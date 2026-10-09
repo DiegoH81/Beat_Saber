@@ -1,1160 +1,2360 @@
 {
-	"NAME": "Escape",
-	"ARTIST": "Jaroslav Beck",
-	"DURATION": 162.87,
-	"BPM": 175.0,
-	"NOTES": [
-		{
-			"time": 11.743,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.68
-		},
-		{
-			"time": 13.114,
-			"lane": 11,
-			"direccion_corte": "Derecha",
-			"intensity": 0.673
-		},
-		{
-			"time": 14.486,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.48
-		},
-		{
-			"time": 15.857,
-			"lane": 8,
-			"direccion_corte": "Izquierda",
-			"intensity": 0.695
-		},
-		{
-			"time": 17.229,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.668
-		},
-		{
-			"time": 18.6,
-			"lane": 7,
-			"direccion_corte": "Derecha",
-			"intensity": 0.854
-		},
-		{
-			"time": 19.971,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.753
-		},
-		{
-			"time": 21.343,
-			"lane": 4,
-			"direccion_corte": "Izquierda",
-			"intensity": 0.925
-		},
-		{
-			"time": 22.714,
-			"lane": 11,
-			"direccion_corte": "Abajo",
-			"intensity": 0.783
-		},
-		{
-			"time": 24.086,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.278
-		},
-		{
-			"time": 24.771,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.514
-		},
-		{
-			"time": 25.457,
-			"lane": 8,
-			"direccion_corte": "Izquierda",
-			"intensity": 0.383
-		},
-		{
-			"time": 26.829,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.262
-		},
-		{
-			"time": 27.514,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.522
-		},
-		{
-			"time": 28.2,
-			"lane": 11,
-			"direccion_corte": "Abajo",
-			"intensity": 0.552
-		},
-		{
-			"time": 29.571,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.285
-		},
-		{
-			"time": 30.257,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.423
-		},
-		{
-			"time": 30.943,
-			"lane": 4,
-			"direccion_corte": "Izquierda",
-			"intensity": 0.419
-		},
-		{
-			"time": 32.314,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.268
-		},
-		{
-			"time": 33.0,
-			"lane": 9,
-			"direccion_corte": "Derecha",
-			"intensity": 0.508
-		},
-		{
-			"time": 33.686,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.555
-		},
-		{
-			"time": 35.057,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.428
-		},
-		{
-			"time": 35.743,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.486
-		},
-		{
-			"time": 36.429,
-			"lane": 4,
-			"direccion_corte": "Izquierda",
-			"intensity": 0.622
-		},
-		{
-			"time": 37.8,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.332
-		},
-		{
-			"time": 38.486,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.536
-		},
-		{
-			"time": 39.171,
-			"lane": 7,
-			"direccion_corte": "Derecha",
-			"intensity": 0.638
-		},
-		{
-			"time": 40.543,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.425
-		},
-		{
-			"time": 41.229,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.302
-		},
-		{
-			"time": 41.914,
-			"lane": 4,
-			"direccion_corte": "Izquierda",
-			"intensity": 0.756
-		},
-		{
-			"time": 43.286,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.977
-		},
-		{
-			"time": 43.971,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 47.4,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.966
-		},
-		{
-			"time": 47.4,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.966
-		},
-		{
-			"time": 48.086,
-			"lane": 7,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 48.771,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 49.457,
-			"lane": 4,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 49.8,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 50.143,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 50.829,
-			"lane": 11,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 51.514,
-			"lane": 8,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 52.2,
-			"lane": 11,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 52.543,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 52.886,
-			"lane": 10,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 53.571,
-			"lane": 9,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 54.257,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 54.943,
-			"lane": 8,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 55.286,
-			"lane": 7,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 55.629,
-			"lane": 4,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 56.314,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 57.0,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 57.686,
-			"lane": 11,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 58.371,
-			"lane": 9,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 58.371,
-			"lane": 10,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 59.057,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 59.743,
-			"lane": 11,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 60.429,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 60.771,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.992
-		},
-		{
-			"time": 61.114,
-			"lane": 4,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 61.8,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.997
-		},
-		{
-			"time": 62.486,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 63.171,
-			"lane": 8,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 63.514,
-			"lane": 7,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 63.857,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 64.543,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.963
-		},
-		{
-			"time": 65.229,
-			"lane": 8,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 65.914,
-			"lane": 11,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 66.257,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.988
-		},
-		{
-			"time": 66.6,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 67.286,
-			"lane": 7,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 67.971,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 68.657,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 69.343,
-			"lane": 4,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 70.029,
-			"lane": 7,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 70.714,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 71.4,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 72.771,
-			"lane": 9,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 73.457,
-			"lane": 11,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 74.143,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 75.514,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 76.2,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 76.886,
-			"lane": 8,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 77.571,
-			"lane": 10,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 78.943,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 79.629,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 80.314,
-			"lane": 7,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 81.686,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 82.371,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 83.057,
-			"lane": 4,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 84.429,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 85.114,
-			"lane": 11,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 85.8,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 87.171,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 87.857,
-			"lane": 8,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 88.543,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 89.914,
-			"lane": 11,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 90.6,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 91.286,
-			"lane": 7,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 93.343,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.484
-		},
-		{
-			"time": 94.029,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.658
-		},
-		{
-			"time": 95.4,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.544
-		},
-		{
-			"time": 96.086,
-			"lane": 8,
-			"direccion_corte": "Izquierda",
-			"intensity": 0.744
-		},
-		{
-			"time": 96.771,
-			"lane": 11,
-			"direccion_corte": "Derecha",
-			"intensity": 0.797
-		},
-		{
-			"time": 98.143,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.516
-		},
-		{
-			"time": 98.829,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.727
-		},
-		{
-			"time": 99.514,
-			"lane": 10,
-			"direccion_corte": "Arriba",
-			"intensity": 0.908
-		},
-		{
-			"time": 100.886,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.538
-		},
-		{
-			"time": 101.571,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.846
-		},
-		{
-			"time": 102.257,
-			"lane": 4,
-			"direccion_corte": "Izquierda",
-			"intensity": 0.86
-		},
-		{
-			"time": 103.629,
-			"lane": 8,
-			"direccion_corte": "Abajo",
-			"intensity": 0.716
-		},
-		{
-			"time": 104.314,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.733
-		},
-		{
-			"time": 105.0,
-			"lane": 11,
-			"direccion_corte": "Derecha",
-			"intensity": 0.923
-		},
-		{
-			"time": 106.371,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.59
-		},
-		{
-			"time": 107.057,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.907
-		},
-		{
-			"time": 107.743,
-			"lane": 4,
-			"direccion_corte": "Izquierda",
-			"intensity": 0.872
-		},
-		{
-			"time": 109.114,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.645
-		},
-		{
-			"time": 109.8,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.677
-		},
-		{
-			"time": 110.486,
-			"lane": 7,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 113.229,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 113.229,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 113.914,
-			"lane": 4,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 114.6,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 115.286,
-			"lane": 7,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 115.629,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.994
-		},
-		{
-			"time": 115.971,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 116.657,
-			"lane": 8,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 117.343,
-			"lane": 11,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 118.029,
-			"lane": 8,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 118.371,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 118.714,
-			"lane": 9,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 119.4,
-			"lane": 10,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 120.086,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 120.771,
-			"lane": 11,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 121.114,
-			"lane": 4,
-			"direccion_corte": "Izquierda",
-			"intensity": 0.979
-		},
-		{
-			"time": 121.457,
-			"lane": 7,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 122.143,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.999
-		},
-		{
-			"time": 122.829,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 123.514,
-			"lane": 8,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 124.2,
-			"lane": 9,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 124.2,
-			"lane": 10,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 124.886,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 125.571,
-			"lane": 8,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 126.257,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 126.6,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 126.943,
-			"lane": 7,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 127.629,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.989
-		},
-		{
-			"time": 128.314,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 129.0,
-			"lane": 11,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 129.343,
-			"lane": 4,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 129.686,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 130.371,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 131.057,
-			"lane": 11,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 131.743,
-			"lane": 8,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 132.086,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 132.429,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 133.114,
-			"lane": 4,
-			"direccion_corte": "Arriba",
-			"intensity": 0.981
-		},
-		{
-			"time": 133.8,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 134.486,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 135.171,
-			"lane": 7,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 135.857,
-			"lane": 4,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 136.543,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 137.229,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 138.6,
-			"lane": 10,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 139.286,
-			"lane": 8,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 139.971,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 141.343,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 142.029,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 142.714,
-			"lane": 11,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 143.4,
-			"lane": 9,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 144.771,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 145.457,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 146.143,
-			"lane": 4,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 147.514,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 148.2,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 148.886,
-			"lane": 7,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 150.257,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 150.943,
-			"lane": 8,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 151.629,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 153.0,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 153.686,
-			"lane": 11,
-			"direccion_corte": "Derecha",
-			"intensity": 1.0
-		},
-		{
-			"time": 154.371,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 155.743,
-			"lane": 8,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 156.429,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 157.114,
-			"lane": 4,
-			"direccion_corte": "Arriba",
-			"intensity": 1.0
-		},
-		{
-			"time": 158.486,
-			"lane": 7,
-			"direccion_corte": "Derecha",
-			"intensity": 0.99
-		},
-		{
-			"time": 159.857,
-			"lane": 4,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 161.229,
-			"lane": 7,
-			"direccion_corte": "Derecha",
-			"intensity": 0.987
-		},
-		{
-			"time": 162.6,
-			"lane": 4,
-			"direccion_corte": "Izquierda",
-			"intensity": 1.0
-		},
-		{
-			"time": 163.971,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 165.343,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 1.0
-		},
-		{
-			"time": 166.714,
-			"lane": 9,
-			"direccion_corte": "Abajo",
-			"intensity": 0.999
-		},
-		{
-			"time": 166.714,
-			"lane": 10,
-			"direccion_corte": "Abajo",
-			"intensity": 0.999
-		}
-	]
+    "NAME": "Hayloft",
+    "ARTIST": "Mother Mother",
+    "DURATION": 184.99,
+    "BPM": 192.0,
+    "NOTES": [
+        {
+            "time": 2.5,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.319
+        },
+        {
+            "time": 3.75,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.344
+        },
+        {
+            "time": 5.0,
+            "lane": 6,
+            "direccion_corte": "Arriba",
+            "intensity": 0.361
+        },
+        {
+            "time": 6.25,
+            "lane": 5,
+            "direccion_corte": "Arriba",
+            "intensity": 0.378
+        },
+        {
+            "time": 7.5,
+            "lane": 10,
+            "direccion_corte": "Diagonal_Abajo_Izquierda",
+            "intensity": 0.911
+        },
+        {
+            "time": 8.125,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 0.915
+        },
+        {
+            "time": 8.75,
+            "lane": 9,
+            "direccion_corte": "Diagonal_Abajo_Derecha",
+            "intensity": 0.437
+        },
+        {
+            "time": 9.375,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 0.823
+        },
+        {
+            "time": 10.0,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.968
+        },
+        {
+            "time": 10.625,
+            "lane": 6,
+            "direccion_corte": "Arriba",
+            "intensity": 0.877
+        },
+        {
+            "time": 11.25,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.429
+        },
+        {
+            "time": 11.875,
+            "lane": 4,
+            "direccion_corte": "Arriba",
+            "intensity": 0.876
+        },
+        {
+            "time": 12.5,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.853
+        },
+        {
+            "time": 12.812,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.904
+        },
+        {
+            "time": 13.125,
+            "lane": 3,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 13.75,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 14.062,
+            "lane": 0,
+            "direccion_corte": "Arriba",
+            "intensity": 0.868
+        },
+        {
+            "time": 14.375,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 15.0,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.916
+        },
+        {
+            "time": 15.312,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 15.625,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 16.25,
+            "lane": 8,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 16.562,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 0.685
+        },
+        {
+            "time": 16.875,
+            "lane": 4,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 17.5,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 17.812,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.793
+        },
+        {
+            "time": 18.125,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 18.75,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 19.062,
+            "lane": 4,
+            "direccion_corte": "Arriba",
+            "intensity": 0.907
+        },
+        {
+            "time": 19.375,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 20.0,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.92
+        },
+        {
+            "time": 20.312,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.954
+        },
+        {
+            "time": 20.625,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 21.094,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 21.406,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 21.719,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.984
+        },
+        {
+            "time": 21.875,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 22.188,
+            "lane": 0,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 22.5,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 22.812,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 23.125,
+            "lane": 10,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 23.438,
+            "lane": 8,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 23.75,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 24.062,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 24.375,
+            "lane": 10,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 24.688,
+            "lane": 8,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 25.0,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.946
+        },
+        {
+            "time": 25.312,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 25.625,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 0.878
+        },
+        {
+            "time": 25.938,
+            "lane": 4,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 26.406,
+            "lane": 11,
+            "direccion_corte": "Abajo",
+            "intensity": 0.905
+        },
+        {
+            "time": 26.719,
+            "lane": 10,
+            "direccion_corte": "Diagonal_Abajo_Derecha",
+            "intensity": 0.721
+        },
+        {
+            "time": 27.031,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 0.785
+        },
+        {
+            "time": 27.344,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 0.73
+        },
+        {
+            "time": 27.5,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.981
+        },
+        {
+            "time": 27.812,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 28.125,
+            "lane": 10,
+            "direccion_corte": "Arriba",
+            "intensity": 0.947
+        },
+        {
+            "time": 28.438,
+            "lane": 8,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 28.75,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 29.062,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 29.375,
+            "lane": 10,
+            "direccion_corte": "Arriba",
+            "intensity": 0.946
+        },
+        {
+            "time": 29.688,
+            "lane": 8,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 30.0,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.992
+        },
+        {
+            "time": 30.312,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 30.625,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 0.939
+        },
+        {
+            "time": 30.938,
+            "lane": 4,
+            "direccion_corte": "Arriba",
+            "intensity": 0.957
+        },
+        {
+            "time": 32.5,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 32.812,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.807
+        },
+        {
+            "time": 33.125,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 0.844
+        },
+        {
+            "time": 33.75,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 34.062,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 0.836
+        },
+        {
+            "time": 34.375,
+            "lane": 3,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 0.858
+        },
+        {
+            "time": 35.0,
+            "lane": 10,
+            "direccion_corte": "Diagonal_Abajo_Derecha",
+            "intensity": 0.932
+        },
+        {
+            "time": 35.312,
+            "lane": 11,
+            "direccion_corte": "Abajo",
+            "intensity": 0.771
+        },
+        {
+            "time": 35.625,
+            "lane": 1,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 0.968
+        },
+        {
+            "time": 36.25,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 36.562,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 0.95
+        },
+        {
+            "time": 36.875,
+            "lane": 0,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 37.5,
+            "lane": 10,
+            "direccion_corte": "Diagonal_Abajo_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 37.812,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.775
+        },
+        {
+            "time": 38.125,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 38.75,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 39.062,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 0.822
+        },
+        {
+            "time": 39.375,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 40.0,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.938
+        },
+        {
+            "time": 40.312,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.822
+        },
+        {
+            "time": 40.625,
+            "lane": 0,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 41.094,
+            "lane": 9,
+            "direccion_corte": "Diagonal_Abajo_Derecha",
+            "intensity": 0.957
+        },
+        {
+            "time": 41.406,
+            "lane": 0,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 0.892
+        },
+        {
+            "time": 41.719,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 41.875,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.9
+        },
+        {
+            "time": 42.188,
+            "lane": 0,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 42.5,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.988
+        },
+        {
+            "time": 43.125,
+            "lane": 7,
+            "direccion_corte": "Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 43.75,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.891
+        },
+        {
+            "time": 44.375,
+            "lane": 4,
+            "direccion_corte": "Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 45.0,
+            "lane": 9,
+            "direccion_corte": "Diagonal_Abajo_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 45.625,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 0.86
+        },
+        {
+            "time": 46.406,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.905
+        },
+        {
+            "time": 46.719,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.97
+        },
+        {
+            "time": 47.031,
+            "lane": 9,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 47.344,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 0.855
+        },
+        {
+            "time": 47.5,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 48.125,
+            "lane": 4,
+            "direccion_corte": "Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 48.75,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 49.375,
+            "lane": 7,
+            "direccion_corte": "Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 50.0,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 50.625,
+            "lane": 4,
+            "direccion_corte": "Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 51.406,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.961
+        },
+        {
+            "time": 51.719,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.942
+        },
+        {
+            "time": 51.875,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 0.887
+        },
+        {
+            "time": 52.188,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 0.903
+        },
+        {
+            "time": 52.5,
+            "lane": 9,
+            "direccion_corte": "Diagonal_Abajo_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 52.812,
+            "lane": 8,
+            "direccion_corte": "Abajo",
+            "intensity": 0.968
+        },
+        {
+            "time": 53.125,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 53.75,
+            "lane": 9,
+            "direccion_corte": "Diagonal_Abajo_Izquierda",
+            "intensity": 0.977
+        },
+        {
+            "time": 54.062,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 0.73
+        },
+        {
+            "time": 54.375,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 55.0,
+            "lane": 9,
+            "direccion_corte": "Diagonal_Abajo_Derecha",
+            "intensity": 0.768
+        },
+        {
+            "time": 55.312,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 55.625,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 56.25,
+            "lane": 9,
+            "direccion_corte": "Diagonal_Abajo_Derecha",
+            "intensity": 0.984
+        },
+        {
+            "time": 56.406,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 0.973
+        },
+        {
+            "time": 56.875,
+            "lane": 0,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 57.5,
+            "lane": 9,
+            "direccion_corte": "Diagonal_Abajo_Izquierda",
+            "intensity": 0.907
+        },
+        {
+            "time": 57.812,
+            "lane": 8,
+            "direccion_corte": "Abajo",
+            "intensity": 0.983
+        },
+        {
+            "time": 58.125,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 58.75,
+            "lane": 10,
+            "direccion_corte": "Diagonal_Abajo_Izquierda",
+            "intensity": 0.967
+        },
+        {
+            "time": 59.062,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 0.959
+        },
+        {
+            "time": 59.375,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 60.0,
+            "lane": 9,
+            "direccion_corte": "Diagonal_Abajo_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 60.312,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.911
+        },
+        {
+            "time": 60.625,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 0.964
+        },
+        {
+            "time": 61.25,
+            "lane": 8,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 61.406,
+            "lane": 3,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 61.875,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 0.951
+        },
+        {
+            "time": 62.5,
+            "lane": 10,
+            "direccion_corte": "Diagonal_Abajo_Izquierda",
+            "intensity": 0.939
+        },
+        {
+            "time": 62.812,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 63.125,
+            "lane": 7,
+            "direccion_corte": "Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 63.75,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 64.062,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 64.375,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 65.0,
+            "lane": 10,
+            "direccion_corte": "Diagonal_Abajo_Derecha",
+            "intensity": 0.99
+        },
+        {
+            "time": 65.312,
+            "lane": 11,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 65.625,
+            "lane": 4,
+            "direccion_corte": "Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 66.25,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 66.562,
+            "lane": 7,
+            "direccion_corte": "Arriba",
+            "intensity": 0.951
+        },
+        {
+            "time": 66.875,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 67.5,
+            "lane": 10,
+            "direccion_corte": "Diagonal_Abajo_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 67.812,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.893
+        },
+        {
+            "time": 68.125,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 68.75,
+            "lane": 10,
+            "direccion_corte": "Diagonal_Abajo_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 69.062,
+            "lane": 0,
+            "direccion_corte": "Arriba",
+            "intensity": 0.945
+        },
+        {
+            "time": 69.375,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 70.0,
+            "lane": 9,
+            "direccion_corte": "Diagonal_Abajo_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 70.312,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.998
+        },
+        {
+            "time": 70.625,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 71.25,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 71.875,
+            "lane": 1,
+            "direccion_corte": "Cualquiera",
+            "intensity": 1.0
+        },
+        {
+            "time": 71.875,
+            "lane": 2,
+            "direccion_corte": "Cualquiera",
+            "intensity": 1.0
+        },
+        {
+            "time": 72.5,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 73.125,
+            "lane": 7,
+            "direccion_corte": "Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 73.75,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 74.375,
+            "lane": 4,
+            "direccion_corte": "Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 75.0,
+            "lane": 9,
+            "direccion_corte": "Diagonal_Abajo_Izquierda",
+            "intensity": 0.925
+        },
+        {
+            "time": 75.625,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 76.406,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.913
+        },
+        {
+            "time": 76.719,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.959
+        },
+        {
+            "time": 77.031,
+            "lane": 9,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 77.344,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 77.5,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.884
+        },
+        {
+            "time": 78.125,
+            "lane": 4,
+            "direccion_corte": "Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 78.75,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 79.375,
+            "lane": 7,
+            "direccion_corte": "Derecha",
+            "intensity": 0.971
+        },
+        {
+            "time": 80.0,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.996
+        },
+        {
+            "time": 80.625,
+            "lane": 4,
+            "direccion_corte": "Izquierda",
+            "intensity": 0.92
+        },
+        {
+            "time": 82.5,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 82.5,
+            "lane": 11,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 85.0,
+            "lane": 5,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 85.0,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 86.094,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.937
+        },
+        {
+            "time": 86.094,
+            "lane": 11,
+            "direccion_corte": "Abajo",
+            "intensity": 0.937
+        },
+        {
+            "time": 87.5,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 87.5,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 90.0,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 90.0,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 91.094,
+            "lane": 5,
+            "direccion_corte": "Arriba",
+            "intensity": 0.983
+        },
+        {
+            "time": 91.094,
+            "lane": 6,
+            "direccion_corte": "Arriba",
+            "intensity": 0.983
+        },
+        {
+            "time": 92.5,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 92.812,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 93.125,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 93.438,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 93.75,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 94.062,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 94.375,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 94.688,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 95.0,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 95.312,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 95.625,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 95.938,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 96.25,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 96.562,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.966
+        },
+        {
+            "time": 96.875,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 97.188,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 97.5,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 97.5,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 100.0,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 100.0,
+            "lane": 3,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 101.094,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 101.094,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 101.406,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 0.885
+        },
+        {
+            "time": 101.719,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 101.875,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 102.031,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 102.188,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 102.344,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 102.5,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 103.724,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.773
+        },
+        {
+            "time": 104.949,
+            "lane": 6,
+            "direccion_corte": "Arriba",
+            "intensity": 0.753
+        },
+        {
+            "time": 106.173,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.587
+        },
+        {
+            "time": 107.092,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 107.092,
+            "lane": 3,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 107.398,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.971
+        },
+        {
+            "time": 108.01,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 0.935
+        },
+        {
+            "time": 108.623,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.925
+        },
+        {
+            "time": 109.235,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 0.929
+        },
+        {
+            "time": 109.847,
+            "lane": 9,
+            "direccion_corte": "Diagonal_Abajo_Izquierda",
+            "intensity": 0.958
+        },
+        {
+            "time": 110.459,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 0.916
+        },
+        {
+            "time": 111.072,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.908
+        },
+        {
+            "time": 111.684,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 0.908
+        },
+        {
+            "time": 112.296,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 112.602,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 112.908,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 112.908,
+            "lane": 3,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 113.52,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 113.827,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 114.133,
+            "lane": 0,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 114.133,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 114.745,
+            "lane": 10,
+            "direccion_corte": "Diagonal_Abajo_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 115.051,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.975
+        },
+        {
+            "time": 115.357,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 115.357,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 116.123,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.943
+        },
+        {
+            "time": 116.429,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 116.735,
+            "lane": 4,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 117.041,
+            "lane": 7,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 117.194,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 117.5,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.991
+        },
+        {
+            "time": 117.806,
+            "lane": 0,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 117.806,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 118.418,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 118.724,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 119.031,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 119.031,
+            "lane": 3,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 119.643,
+            "lane": 9,
+            "direccion_corte": "Diagonal_Abajo_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 119.949,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 120.255,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 120.255,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 121.021,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 121.327,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 121.48,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 121.786,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 126.99,
+            "lane": 9,
+            "direccion_corte": "Cualquiera",
+            "intensity": 0.491
+        },
+        {
+            "time": 126.99,
+            "lane": 10,
+            "direccion_corte": "Cualquiera",
+            "intensity": 0.491
+        },
+        {
+            "time": 131.276,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 131.276,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 131.888,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 132.194,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 132.5,
+            "lane": 0,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 132.5,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 132.959,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.956
+        },
+        {
+            "time": 133.112,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 133.418,
+            "lane": 7,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 133.724,
+            "lane": 4,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 133.724,
+            "lane": 0,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 134.337,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.991
+        },
+        {
+            "time": 134.643,
+            "lane": 8,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 134.949,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 134.949,
+            "lane": 3,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 135.408,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 135.561,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 135.868,
+            "lane": 3,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 136.173,
+            "lane": 4,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 136.173,
+            "lane": 0,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 136.786,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 137.092,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 137.398,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 138.01,
+            "lane": 11,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 138.316,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 138.623,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 0.995
+        },
+        {
+            "time": 139.235,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 139.541,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 139.847,
+            "lane": 3,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 140.153,
+            "lane": 0,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 140.459,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 0.973
+        },
+        {
+            "time": 140.765,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 141.072,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 141.377,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 0.966
+        },
+        {
+            "time": 141.684,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.93
+        },
+        {
+            "time": 142.296,
+            "lane": 7,
+            "direccion_corte": "Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 142.908,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 143.52,
+            "lane": 4,
+            "direccion_corte": "Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 144.133,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 144.745,
+            "lane": 7,
+            "direccion_corte": "Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 145.51,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.947
+        },
+        {
+            "time": 145.816,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 146.123,
+            "lane": 9,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 146.429,
+            "lane": 10,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 146.582,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 147.194,
+            "lane": 4,
+            "direccion_corte": "Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 147.806,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 148.418,
+            "lane": 7,
+            "direccion_corte": "Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 149.031,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 149.643,
+            "lane": 4,
+            "direccion_corte": "Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 150.408,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 0.999
+        },
+        {
+            "time": 150.714,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 150.867,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 151.02,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 151.173,
+            "lane": 7,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 151.327,
+            "lane": 4,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 151.479,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 151.786,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 152.092,
+            "lane": 7,
+            "direccion_corte": "Arriba",
+            "intensity": 0.986
+        },
+        {
+            "time": 152.398,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 152.704,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 153.01,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 153.316,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 153.622,
+            "lane": 0,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 153.929,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 154.235,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 154.541,
+            "lane": 7,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 154.847,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 155.153,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 155.459,
+            "lane": 8,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 155.765,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 156.072,
+            "lane": 0,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 156.378,
+            "lane": 10,
+            "direccion_corte": "Diagonal_Abajo_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 156.684,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 156.99,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 157.296,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 157.602,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 157.908,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 158.214,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 158.52,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 158.827,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 159.133,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 159.439,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 159.745,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 160.204,
+            "lane": 10,
+            "direccion_corte": "Diagonal_Abajo_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 160.51,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 160.663,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 160.969,
+            "lane": 3,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 161.276,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 161.276,
+            "lane": 11,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 163.724,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 163.724,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 164.796,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 164.796,
+            "lane": 11,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 166.173,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 166.173,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 168.622,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 168.622,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 169.694,
+            "lane": 5,
+            "direccion_corte": "Arriba",
+            "intensity": 0.979
+        },
+        {
+            "time": 169.694,
+            "lane": 6,
+            "direccion_corte": "Arriba",
+            "intensity": 0.979
+        },
+        {
+            "time": 171.072,
+            "lane": 10,
+            "direccion_corte": "Diagonal_Abajo_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 171.378,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 171.684,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 171.99,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 172.296,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 172.602,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 172.908,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 173.214,
+            "lane": 4,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 173.521,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 173.827,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 174.133,
+            "lane": 7,
+            "direccion_corte": "Diagonal_Arriba_Derecha",
+            "intensity": 1.0
+        },
+        {
+            "time": 174.439,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 174.745,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 175.051,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 175.357,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 175.663,
+            "lane": 0,
+            "direccion_corte": "Diagonal_Arriba_Izquierda",
+            "intensity": 1.0
+        },
+        {
+            "time": 175.969,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 175.969,
+            "lane": 11,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 178.418,
+            "lane": 5,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 178.418,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 179.337,
+            "lane": 6,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 179.49,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 180.868,
+            "lane": 2,
+            "direccion_corte": "Arriba",
+            "intensity": 0.799
+        },
+        {
+            "time": 181.48,
+            "lane": 1,
+            "direccion_corte": "Arriba",
+            "intensity": 0.26
+        },
+        {
+            "time": 181.939,
+            "lane": 10,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 182.092,
+            "lane": 9,
+            "direccion_corte": "Abajo",
+            "intensity": 1.0
+        },
+        {
+            "time": 182.245,
+            "lane": 6,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        },
+        {
+            "time": 182.398,
+            "lane": 5,
+            "direccion_corte": "Arriba",
+            "intensity": 1.0
+        }
+    ]
 }
