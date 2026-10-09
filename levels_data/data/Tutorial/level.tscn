@@ -70,9 +70,10 @@ gravity = Vector3(0, -0.1, 0)
 [sub_resource type="QuadMesh" id="QuadMesh_ty0te"]
 size = Vector2(0.1, 0.1)
 
-[node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient") instance=ExtResource("1_q7ebg")]
+[node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient", "spawn") instance=ExtResource("1_q7ebg")]
 ambient = NodePath("Ambient")
 next_level_id = "Vivaldi_four_seasons"
+spawn = NodePath("Spawn")
 
 [node name="Sun" parent="." index="0" unique_id=1999535529]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2.923747, 7.8188257)
@@ -132,3 +133,6 @@ texto = "Abre el menu cruzando
 los brazos"
 imagen_textura = ExtResource("7_tvfrh")
 escala_imagen = Vector3(0.045, 0.045, 1)
+
+[node name="Spawn" type="Node3D" parent="." index="11" unique_id=761678666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.507)

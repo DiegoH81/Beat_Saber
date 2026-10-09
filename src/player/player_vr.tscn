@@ -25,7 +25,7 @@ shader = ExtResource("3_eijg3")
 shader_parameter/alpha = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_75kqj"]
-size = Vector2(3, 3)
+size = Vector2(10, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbdtc"]
 albedo_color = Color(1, 0, 0, 1)
@@ -60,7 +60,7 @@ material_override = SubResource("ShaderMaterial_eijg3")
 mesh = SubResource("QuadMesh_eijg3")
 
 [node name="Fade" type="MeshInstance3D" parent="XRCamera3D" unique_id=1580512091]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4826901)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.14189902)
 visible = false
 material_override = SubResource("ShaderMaterial_7evuu")
 mesh = SubResource("QuadMesh_75kqj")
