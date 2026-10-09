@@ -10,6 +10,7 @@ signal pause
 @export var left_hand: Node3D
 @export var right_hand: Node3D
 @export var ring: MeshInstance3D
+@export var fade: MeshInstance3D
 
 @export var sword_scene: PackedScene
 
@@ -24,6 +25,7 @@ var rotation_target: Vector3 = Vector3.ZERO
 const HOLD_TIME: float = 3
 var timer = HOLD_TIME
 var is_paused: bool = false
+var _fade_alpha: float = 0.0
 
 func _ready() -> void:
 	ring.visible = false
@@ -124,3 +126,26 @@ func _process(delta: float) -> void:
 		global_position.y += move_speed * delta
 	if Input.is_key_pressed(KEY_SHIFT):
 		global_position.y -= move_speed * delta
+
+func fade_to(target: float, duration: float = 0.5) -> void:
+	var mat := fade.material_override as ShaderMaterial
+	if mat == null:
+		return
+
+	var target_alpha := 1.0 - target   # target 1.0 = normal, 0.0 = negro
+	fade.visible = true
+
+	if duration > 0.0:
+		var tw := create_tween()
+		tw.tween_method(
+			func(v: float) -> void:
+				_fade_alpha = v
+				mat.set_shader_parameter("alpha", v),
+			_fade_alpha, target_alpha, duration)
+		await tw.finished
+	else:
+		_fade_alpha = target_alpha
+		mat.set_shader_parameter("alpha", target_alpha)
+
+	if target_alpha <= 0.0:
+		fade.visible = false

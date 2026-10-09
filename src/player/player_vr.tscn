@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dkwxs5gsuvl0y" path="res://src/player/player_vr.gd" id="1_rihe0"]
 [ext_resource type="Script" uid="uid://3ebdqq7ig0tt" path="res://src/player/body.gd" id="2_c1i6f"]
+[ext_resource type="Shader" uid="uid://ceka518qjs7hb" path="res://assets/shaders/fade.gdshader" id="3_eijg3"]
 [ext_resource type="Script" uid="uid://2yjs7n11owsa" path="res://src/player/sword.gd" id="3_kgfj8"]
 [ext_resource type="PackedScene" uid="uid://fldv1su4su1o" path="res://src/enemies/destructor/destructor.tscn" id="4_pbdtc"]
 [ext_resource type="PackedScene" uid="uid://cmd5mqh8g37yu" path="res://src/vfx/hit_particles.tscn" id="5_m7b7p"]
@@ -18,6 +19,14 @@ shader_parameter/outer_radius = 0.5
 [sub_resource type="QuadMesh" id="QuadMesh_eijg3"]
 size = Vector2(0.5, 0.5)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7evuu"]
+render_priority = 100
+shader = ExtResource("3_eijg3")
+shader_parameter/alpha = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_75kqj"]
+size = Vector2(3, 3)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbdtc"]
 albedo_color = Color(1, 0, 0, 1)
 
@@ -30,7 +39,7 @@ height = 0.25
 radius = 0.063
 height = 0.125
 
-[node name="PlayerVR" type="XROrigin3D" unique_id=1613388773 node_paths=PackedStringArray("camera", "head", "left_sword", "right_sword", "left_hand", "right_hand", "ring")]
+[node name="PlayerVR" type="XROrigin3D" unique_id=1613388773 node_paths=PackedStringArray("camera", "head", "left_sword", "right_sword", "left_hand", "right_hand", "ring", "fade")]
 script = ExtResource("1_rihe0")
 camera = NodePath("XRCamera3D")
 head = NodePath("Body/Head")
@@ -39,6 +48,7 @@ right_sword = NodePath("Body/Right/RightHand/Sword")
 left_hand = NodePath("Body/Left/LeftHand")
 right_hand = NodePath("Body/Right/RightHand")
 ring = NodePath("XRCamera3D/Ring")
+fade = NodePath("XRCamera3D/Fade")
 mouse_sensitivity = 0.001
 move_speed = 0.89
 
@@ -48,6 +58,12 @@ move_speed = 0.89
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14290059, -1.0265579)
 material_override = SubResource("ShaderMaterial_eijg3")
 mesh = SubResource("QuadMesh_eijg3")
+
+[node name="Fade" type="MeshInstance3D" parent="XRCamera3D" unique_id=1580512091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4826901)
+visible = false
+material_override = SubResource("ShaderMaterial_7evuu")
+mesh = SubResource("QuadMesh_75kqj")
 
 [node name="Body" type="Node3D" parent="." unique_id=9815244 node_paths=PackedStringArray("xr_camera_3d", "head", "body", "left_hand", "left_wrist", "left_elbow", "left_shoulder", "right_hand", "right_wrist", "right_elbow", "right_shoulder")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3493397)
