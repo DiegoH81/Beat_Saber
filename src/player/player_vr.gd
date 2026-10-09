@@ -22,7 +22,7 @@ var xr_interface: XRInterface
 var is_vr_active: bool = false
 var rotation_target: Vector3 = Vector3.ZERO
 
-const HOLD_TIME: float = 3
+const HOLD_TIME: float = 1.5
 var timer = HOLD_TIME
 var is_paused: bool = false
 var _fade_alpha: float = 0.0
@@ -81,7 +81,7 @@ func enable_keyboard_mode() -> void:
 	print("WIMP on")
 
 func _process(delta: float) -> void:
-	if not is_paused and right_hand.global_position.distance_to(left_hand.global_position) < 0.05:
+	if not is_paused and right_hand.global_position.distance_to(left_hand.global_position) < 0.15:
 		ring.visible = true
 		timer -= delta
 		var mat:ShaderMaterial= ring.material_override as ShaderMaterial

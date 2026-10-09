@@ -40,7 +40,7 @@ volumetric_fog_emission = Color(0.2365565, 0.040205266, 0.27409443, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_q5te7"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.4760284, 0.9055433, -3.1298997, 0.15329927, -0.12513709, -0.61122626, -0.15329927, 0.12513709, 0.61122626, -0.6164201, 1.1808314, -0.48672843, 0.75449324, -0.06275785, -0.6096089, -0.75449324, 0.06275785, 0.6096089, -2.6631956, 1.5232215, 2.640739, 0, 0, 0, 0, 0, 0, -5.864384, 1.524764, 3.2226133),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.4760284, 0.9055433, -3.1298997, 0.15329927, -0.12513709, -0.61122626, -0.15329927, 0.12513709, 0.61122626, -0.6164201, 1.1808314, -0.48672843, 0.75449324, -0.06275785, -0.6096089, -0.75449324, 0.06275785, 0.6096089, -2.6631956, 1.5232215, 2.640739, 0, 0, 0, 0, 0, 0, -6.502648, 1.6548432, 3.4779003),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
@@ -110,13 +110,13 @@ size = Vector2(0.1, 0.1)
 script = ExtResource("1_mmd50")
 
 [node name="CameraTargets" type="Node3D" parent="." unique_id=879519356]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5758348, 1.6268641, 3.2227178)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5758348, 1.6086475, 3.2227178)
 
 [node name="MainMenuPos" type="Marker3D" parent="CameraTargets" unique_id=115392522]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.111297, -0.73075217, -6.3528533)
 
 [node name="LevelSelectorPos" type="Marker3D" parent="CameraTargets" unique_id=1360297943]
-transform = Transform3D(0.60154134, 0.03015443, 0.79827225, -0.018147394, 0.99954516, -0.0240824, -0.7986353, 1.0274111e-08, 0.601815, -1.2885542, -0.10203886, 0)
+transform = Transform3D(0.7225486, 0.029759113, 0.6906792, -0.018147388, 0.9995451, -0.024082398, -0.6910816, 0.00486669, 0.7227601, -1.5100484, 0.060358763, 0)
 
 [node name="MAIN_MENU_SCENE" parent="." unique_id=917994279 instance=ExtResource("2_q5te7")]
 
@@ -124,13 +124,14 @@ transform = Transform3D(0.60154134, 0.03015443, 0.79827225, -0.018147394, 0.9995
 environment = SubResource("Environment_ty0te")
 
 [node name="DirectSun" type="DirectionalLight3D" parent="." unique_id=11181596]
-transform = Transform3D(-0.9418519, 3.5086718e-09, -0.33602837, -0.041376464, 0.9923901, 0.11597387, 0.33347118, 0.12313387, -0.9346845, -4.7182827, 9.291133, -19.212547)
+transform = Transform3D(-0.9418519, 3.5086718e-09, -0.33602837, -0.041376464, 0.9923901, 0.11597387, 0.33347118, 0.12313387, -0.9346845, -4.7182827, 9.272917, -19.212547)
 light_color = Color(0.6627451, 0.1764706, 0.5568628, 1)
 light_energy = 4.097
 light_indirect_energy = 1.15
 directional_shadow_mode = 1
 
 [node name="CameraPath" type="Path3D" parent="." unique_id=10213563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01821661, 0)
 curve = SubResource("Curve3D_q5te7")
 
 [node name="CameraFollow" type="PathFollow3D" parent="CameraPath" unique_id=2001753231]
@@ -145,52 +146,62 @@ transform = Transform3D(0.5980837, 0.03553027, 0.80065703, -0.059164405, 0.99825
 current = true
 
 [node name="TitleMainMenu" type="MeshInstance3D" parent="." unique_id=999181946]
-transform = Transform3D(-0.8802697, -0.030591832, -0.47348642, -0.0018855383, 0.998137, -0.060983907, 0.4744699, -0.052789506, -0.8786874, -0.9785441, 1.0835325, -2.4267251)
+transform = Transform3D(-0.8802697, -0.030591832, -0.47348642, -0.0018855383, 0.998137, -0.060983907, 0.4744699, -0.052789506, -0.8786874, -0.9785441, 1.0653158, -2.4267251)
 mesh = SubResource("TextMesh_w4mfu")
 surface_material_override/0 = SubResource("StandardMaterial3D_4u3og")
 
 [node name="TitleLevels" type="MeshInstance3D" parent="." unique_id=1252363944]
-transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, -7.61, 2.5184336, 3.214)
+transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, -7.61, 2.500217, 3.214)
 mesh = SubResource("TextMesh_ty0te")
 
 [node name="PlayButton" parent="." unique_id=1510104222 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-0.1760851, -0.0060958136, -0.09464078, -0.0003484146, 0.19962665, -0.012209709, 0.09483624, -0.0105848685, -0.17576702, -0.979, 0.77965605, -2.427)
+transform = Transform3D(-0.1760851, -0.0060958136, -0.09464078, -0.0003484146, 0.19962665, -0.012209709, 0.09483624, -0.0105848685, -0.17576702, -0.979, 0.76143944, -2.427)
 text = "PLAY"
 button_size = Vector3(2, 1, 0.2)
 button_material = SubResource("StandardMaterial3D_ets3f")
 
+[node name="ExitButton" parent="." unique_id=1652354433 instance=ExtResource("3_mmd50")]
+transform = Transform3D(-0.19989577, -0.0007411223, -0.0064130425, -0.00034841357, 0.19962665, -0.01220971, 0.0064463094, -0.012192173, -0.1995239, -1.5220685, 0.76143944, -2.2962976)
+visible = false
+text = "QUIT"
+button_size = Vector3(2, 1, 0.2)
+button_material = SubResource("StandardMaterial3D_ets3f")
+
 [node name="VivaldiButton" parent="." unique_id=785738872 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.513, 1.804, 3.1480553)
+transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.513, 1.7857834, 3.1480553)
 text = "Vivaldi Four Seasons"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_gbacl")
 
 [node name="SingSingButton" parent="." unique_id=3602022 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.513, 1.804, 2.2480555)
+transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.513, 1.7857834, 2.2480555)
+visible = false
 text = "Sing Sing Sing"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_gbacl")
 
 [node name="SevenNationButton" parent="." unique_id=1489968042 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.5130215, 1.3498, 3.7973194)
+transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.5130215, 1.3315834, 3.7973194)
+visible = false
 text = "Seven Nation Army"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_gbacl")
 
 [node name="RoommatesButton" parent="." unique_id=1925586736 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.5130215, 1.3498, 2.5147324)
+transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.5130215, 1.3315834, 2.5147324)
+visible = false
 text = "Roommates"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_gbacl")
 
 [node name="TutorialButton" parent="." unique_id=18494500 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.513, 1.804, 4.048055)
+transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.513, 1.7857834, 4.048055)
 text = "Tutorial"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_gbacl")
 
 [node name="AmbientParticles" type="GPUParticles3D" parent="." unique_id=2009157757]
-transform = Transform3D(1, 0, 0, 0, 0.5923183, 0, 0, 0, 1, 0.72034097, 2.1147952, 0.21540022)
+transform = Transform3D(1, 0, 0, 0, 0.5923183, 0, 0, 0, 1, 0.72034097, 2.0965786, 0.21540022)
 material_override = SubResource("StandardMaterial3D_jc5pe")
 amount = 110
 lifetime = 6.0
@@ -199,12 +210,13 @@ process_material = SubResource("ParticleProcessMaterial_mmd50")
 draw_pass_1 = SubResource("QuadMesh_mmd50")
 
 [node name="PopUp3d" parent="." unique_id=451488544 instance=ExtResource("4_ets3f")]
-transform = Transform3D(-0.87997895, 0, -0.47501257, 0, 1, 0, 0.47501257, 0, -0.87997895, -1.2041328, 1.1242197, -2.5412543)
+transform = Transform3D(-0.87997895, 0, -0.47501257, 0, 1, 0, 0.47501257, 0, -0.87997895, -1.2041328, 1.106003, -2.5412543)
 texto = "Usa los botones con tus espadas"
 imagen_textura = ExtResource("5_gbacl")
 escala_imagen = Vector3(0.05, 0.05, 1)
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VivaldiButton" to="." method="_on_vivaldi_button_pressed"]
 [connection signal="pressed" from="SingSingButton" to="." method="_on_sing_sing_button_pressed"]
 [connection signal="pressed" from="SevenNationButton" to="." method="_on_seven_nation_button_pressed"]

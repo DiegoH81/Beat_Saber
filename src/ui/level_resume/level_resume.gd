@@ -17,7 +17,7 @@ func _position_in_front_of_camera() -> void:
 	var head_transform: Transform3D = camera.global_transform
 	var forward_dir: Vector3 = -head_transform.basis.z
 
-	global_position = head_transform.origin + (forward_dir * 0.8)
+	global_position = head_transform.origin + (forward_dir * 1.5)
 	global_rotation = camera.global_rotation
 
 func show_all() -> void:

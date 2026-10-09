@@ -1,14 +1,14 @@
 extends Node3D
 
-@onready var bar_music: Node3D = $BAR_music
-@onready var bar_sfx: Node3D = $BAR_sfx
+@onready var bar_music: Node3D = $Music/BAR_music
+@onready var bar_sfx: Node3D = $Effects/BAR_sfx
 
 @onready var resume_button: Area3D = $ResumeButton
 @onready var quit_button: Area3D = $QuitButton
-@onready var inc_music: Area3D = $IncMUSIC
-@onready var dec_music: Area3D = $DecMUSIC
-@onready var inc_sfx: Area3D = $IncSFX
-@onready var dec_sfx: Area3D = $DecSFX
+@onready var inc_music: Area3D = $Music/IncMUSIC
+@onready var dec_music: Area3D = $Music/DecMUSIC
+@onready var inc_sfx: Area3D = $Effects/IncSFX
+@onready var dec_sfx: Area3D = $Effects/DecSFX
 
 func resume() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
@@ -27,16 +27,18 @@ func resume() -> void:
 func pause() -> void:
 	_position_in_front_of_camera()
 	
+
+	
+	await get_tree().create_timer(0.5).timeout
+	visible = true;
+	AudioManager.pause_music()
+	get_parent().generator.set_active(false)
 	resume_button.is_enabled = true
 	quit_button.is_enabled = true
 	inc_music.is_enabled = true
 	dec_music.is_enabled = true
 	inc_sfx.is_enabled = true
 	dec_sfx.is_enabled = true
-	
-	visible = true;
-	AudioManager.pause_music()
-	get_parent().generator.set_active(false)
 
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
 	
@@ -55,7 +57,7 @@ func _position_in_front_of_camera() -> void:
 	var head_transform: Transform3D = camera.global_transform
 	var forward_dir: Vector3 = -head_transform.basis.z
 
-	global_position = head_transform.origin + (forward_dir * 0.8)
+	global_position = head_transform.origin + (forward_dir * 1.2)
 	global_rotation = camera.global_rotation
 	
 
@@ -63,7 +65,7 @@ func _on_resume_button_pressed() -> void:
 	resume();
 
 func _on_quit_button_pressed() -> void:
-	get_tree().quit();
+	SceneManager.to_menu()
 
 # Bar INC
 func _on_inc_music_pressed() -> void:

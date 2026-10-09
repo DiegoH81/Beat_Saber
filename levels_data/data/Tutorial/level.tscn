@@ -81,7 +81,7 @@ light_color = Color(0.39212516, 0.2589807, 0.48161942, 1)
 light_energy = 2.5
 
 [node name="Generator" parent="." index="1" unique_id=1789100008]
-transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.5551233, 2.8774743, -31.334612)
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.5551233, 1.7724366, -31.334612)
 skin_enemy = ExtResource("3_24ph5")
 
 [node name="Destructor" parent="." index="2" unique_id=1128432705]
@@ -135,4 +135,4 @@ imagen_textura = ExtResource("7_tvfrh")
 escala_imagen = Vector3(0.045, 0.045, 1)
 
 [node name="Spawn" type="Node3D" parent="." index="11" unique_id=761678666]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.507)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.10103381)

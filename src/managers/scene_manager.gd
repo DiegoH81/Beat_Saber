@@ -36,8 +36,9 @@ func to_menu() -> void:
 	var menu = MENU_SCENE.instantiate()
 	scene_container.add_child(menu)
 	player_vr.reparent(menu.camera_pivot)
+	player_vr.global_position = Vector3.ZERO
 	player_vr.global_position += Vector3(-2, -0.5, -3)
-	player_vr.rotate_y(deg_to_rad(-150))
+	player_vr.rotate_y(deg_to_rad(-160))
 	current_scene = menu
 	player_vr.is_paused = true
 	
@@ -72,6 +73,18 @@ func to_level(level_id: String) -> void:
 		player_vr.global_position = level.spawn.global_position
 		player_vr.rotation = level.spawn.rotation
 	
+	var sword_res: Resource = load(LEVELS_PATH + "data/" + level_id + "/models/sword.glb")
+	if sword_res != null:
+		for i in player_vr.right_sword.get_children():
+			if i.name == "sword":
+				i.queue_free()
+				break
+		for i in player_vr.left_sword.get_children():
+			if i.name == "sword":
+				i.queue_free()
+				break
+		player_vr.right_sword.add_child(sword_res.instantiate())
+		player_vr.left_sword.add_child(sword_res.instantiate())
 	player_vr.pause.connect(level.pause_menu.pause)
 	current_scene = level
 	
@@ -83,7 +96,7 @@ func load_level_scene(level_id: String) -> Level:
 	if ResourceLoader.exists(level_scene_path):
 		level_scene = load(level_scene_path)
 	else:
-		level_scene = load("res://levels_data/test/level_test.tscn")
+		level_scene = load("res://levels_data/data/Tutorial/level.tscn")
 	return level_scene.instantiate()
 
 func load_level_data(level_id: String) -> Dictionary:

@@ -62,3 +62,7 @@ func _process(delta: float) -> void:
 
 func _on_popup_finished() -> void:
 	play_button.is_enabled = true
+
+
+func _on_exit_button_area_entered(area: Area3D) -> void:
+	get_tree().quit()

@@ -34,8 +34,9 @@ func _ready() -> void:
 		add_child(p)
 		sfx_players.append(p)
 	
-func play_music(id: String) -> void:
-	music_player.stream = load(path + id + "/song.ogg")
+func play_music(id_song: String) -> void:
+	music_player.stream = load(path + id_song + "/song.ogg")
+	print(path + id_song + "/song.ogg")
 	music_player.play()
 	music_player.stream_paused = _music_paused
 
