@@ -9,6 +9,7 @@ signal pause
 @export var right_sword: Node3D
 @export var left_hand: Node3D
 @export var right_hand: Node3D
+@export var ring: MeshInstance3D
 
 @export var sword_scene: PackedScene
 
@@ -20,9 +21,12 @@ var xr_interface: XRInterface
 var is_vr_active: bool = false
 var rotation_target: Vector3 = Vector3.ZERO
 
-var timer = 3
+const HOLD_TIME: float = 3
+var timer = HOLD_TIME
+var is_paused: bool = false
 
 func _ready() -> void:
+	ring.visible = false
 	xr_interface = XRServer.find_interface("OpenXR")
 	
 	if xr_interface and xr_interface.is_initialized():
@@ -75,11 +79,19 @@ func enable_keyboard_mode() -> void:
 	print("WIMP on")
 
 func _process(delta: float) -> void:
-	if right_hand.global_position.distance_to(left_hand.global_position) < 0.05:
+	if not is_paused and right_hand.global_position.distance_to(left_hand.global_position) < 0.05:
+		ring.visible = true
 		timer -= delta
+		var mat:ShaderMaterial= ring.material_override as ShaderMaterial
+		if mat != null:
+			mat.set_shader_parameter("progress", 1.0 - timer / HOLD_TIME)
 		if timer <= 0:
 			pause.emit()
-			timer = 5
+			timer = HOLD_TIME
+			is_paused = true
+	else:
+		timer = HOLD_TIME
+		ring.visible = false
 
 	if is_vr_active:
 		camera.global_transform = Transform3D(camera.global_transform.basis, head.global_position)

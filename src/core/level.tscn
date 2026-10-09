@@ -33,4 +33,4 @@ transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.69660276, 0)
 
 [node name="LevelResumeMenu" parent="." unique_id=1054654497 instance=ExtResource("8_5mtdr")]
 
-[connection signal="song_ended" from="Generator" to="." method="_to_next_level"]
+[connection signal="song_ended" from="Generator" to="LevelResumeMenu" method="show_all"]

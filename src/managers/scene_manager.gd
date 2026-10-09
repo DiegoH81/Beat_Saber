@@ -37,9 +37,11 @@ func to_menu() -> void:
 	player_vr.global_position += Vector3(-2,-0.5,-3)
 	player_vr.rotate_y(deg_to_rad(-150))
 	current_scene = menu
+	player_vr.is_paused = true
 
 func to_level(level_id: String) -> void:
 	player_vr.reparent(base)
+	player_vr.is_paused = false
 	for connection in player_vr.pause.get_connections():
 		player_vr.pause.disconnect(connection.callable)
 	if not scene_container:
@@ -54,9 +56,9 @@ func to_level(level_id: String) -> void:
 	var data: Dictionary = load_level_data(level_id)
 	
 	print(data.get("DURATION", ""))
-	
-	level.generator.setup(data.get("DURATION", 0.0),data.get("BPM", 0.0), data.get("NOTES",[]))
+	level.player_vr = player_vr
 	level.generator.player_vr = player_vr
+	level.generator.setup(data.get("DURATION", 0.0),data.get("BPM", 0.0), data.get("NOTES",[]))
 	
 	scene_container.add_child(level)
 	

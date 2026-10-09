@@ -20,6 +20,8 @@ var bpm: float = 0
 var duration_max: float = 0
 var duration: float = 0
 
+var is_song_ended: bool = false
+
 func setup(duration_data: float, bpm_data: float, notes_data: Array) -> void:
 	duration_max = duration_data
 	bpm = bpm_data
@@ -40,8 +42,12 @@ func set_active(active: bool) -> void:
 			p.process_mode = mode
 
 func _physics_process(delta: float) -> void:
+	if is_song_ended:
+		return
+		
 	if notes.size() <= index or duration >= duration_max:
 		song_ended.emit()
+		is_song_ended = true
 		return
 	
 	if duration >= notes[index].exect_time:

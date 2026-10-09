@@ -10,7 +10,6 @@ extends Node3D
 @onready var inc_sfx: Area3D = $IncSFX
 @onready var dec_sfx: Area3D = $DecSFX
 
-
 func resume() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 	
@@ -21,6 +20,7 @@ func resume() -> void:
 	inc_sfx.is_enabled = false
 	dec_sfx.is_enabled = false
 	get_parent().generator.set_active(true)
+	get_parent().player_vr.is_paused = false
 	AudioManager.resume_music()
 	visible = false;
 	
