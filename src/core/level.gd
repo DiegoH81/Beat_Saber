@@ -10,8 +10,10 @@ class_name Level
 
 var number: int = 0
 
+@export var song_name: String
+
 func _enter_tree() -> void:
-	AudioManager.play_music(name)
+	AudioManager.play_music(song_name)
 	VisualManager.register_world_env(ambient)
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -74,6 +74,7 @@ size = Vector2(0.1, 0.1)
 ambient = NodePath("Ambient")
 next_level_id = "Vivaldi_four_seasons"
 spawn = NodePath("Spawn")
+song_name = "Tutorial"
 
 [node name="Sun" parent="." index="0" unique_id=1999535529]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2.923747, 7.8188257)
@@ -103,17 +104,17 @@ intensidad = 0.365
 script = ExtResource("5_u0wma")
 
 [node name="Text1_TUTORIAL" type="MeshInstance3D" parent="TextNodes" index="0" unique_id=120232580]
-transform = Transform3D(1.98, 0, 0, 0, 1.98, 0, 0, 0, 1.98, 0, 2.6516938, -6.356767)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 2.6516938, -6.356767)
 mesh = SubResource("TextMesh_ty0te")
 surface_material_override/0 = SubResource("StandardMaterial3D_24ph5")
 
 [node name="Text2_TUTORIAL" type="MeshInstance3D" parent="TextNodes" index="1" unique_id=334784715]
-transform = Transform3D(1.98, 0, 0, 0, 1.98, 0, 0, 0, 1.98, 0, 2.652, -6.356885)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 2.652, -6.356885)
 mesh = SubResource("TextMesh_24ph5")
 surface_material_override/0 = SubResource("StandardMaterial3D_24ph5")
 
 [node name="Text3_TUTORIAL" type="MeshInstance3D" parent="TextNodes" index="2" unique_id=1228805570]
-transform = Transform3D(1.98, 0, 0, 0, 1.98, 0, 0, 0, 1.98, 0, 2.652, -6.357)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 2.652, -6.357)
 mesh = SubResource("TextMesh_w4mfu")
 surface_material_override/0 = SubResource("StandardMaterial3D_24ph5")
 

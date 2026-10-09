@@ -45,17 +45,21 @@ size = Vector2(0.1, 0.1)
 [node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient", "spawn") instance=ExtResource("1_ju4l8")]
 ambient = NodePath("Ambient")
 spawn = NodePath("Spawn")
+song_name = "Vivaldi_four_seasons"
 
-[node name="Sun" parent="." index="1" unique_id=1999535529]
+[node name="Sun" parent="." index="0" unique_id=1999535529]
 transform = Transform3D(1, 0, 0, 0, -0.8655635, 0.5007991, 0, -0.5007991, -0.8655635, 0, 24.921965, -25.772339)
 light_color = Color(0.62853825, 0.08125042, 0.044717252, 1)
 light_energy = 2.0
 shadow_enabled = true
 sky_mode = 1
 
-[node name="Generator" parent="." index="2" unique_id=1789100008]
-transform = Transform3D(-1, -2.1472688e-16, -8.742278e-08, -5.4783847e-08, 0.77929735, 0.6266542, 6.8128344e-08, 0.6266542, -0.77929735, 0, 27.381851, -26)
+[node name="Generator" parent="." index="1" unique_id=1789100008]
+transform = Transform3D(-1, -2.9833472e-15, -8.742278e-08, -2.2629234e-08, 0.96591806, 0.25884834, 8.4443236e-08, 0.25884834, -0.96591806, 0, 10.610665, -26)
 skin_enemy = ExtResource("2_uaawb")
+
+[node name="ScoreScene" parent="." index="3" unique_id=120538248]
+transform = Transform3D(0.83229464, 0.118480265, 0.5415239, 0.06342948, 0.95012033, -0.30536526, -0.5506926, 0.2885024, 0.78326505, -3.2356613, 3.6715114, 1.0140319)
 
 [node name="Ambient" type="WorldEnvironment" parent="." index="4" unique_id=1531568387]
 environment = SubResource("Environment_guabt")
@@ -63,9 +67,6 @@ compositor = SubResource("Compositor_s451c")
 script = ExtResource("3_1fb18")
 sensibilidad = 1.5
 intensidad = 0.265
-
-[node name="ScoreScene" parent="." index="5" unique_id=120538248]
-transform = Transform3D(0.83229464, 0.118480265, 0.5415239, 0.06342948, 0.95012033, -0.30536526, -0.5506926, 0.2885024, 0.78326505, -3.2356613, 3.6715114, 1.0140319)
 
 [node name="Beethoven" parent="." index="6" unique_id=1966967762 instance=ExtResource("4_8ji72")]
 transform = Transform3D(10, 0, 0, 0, 8.487923, -5.287264, 0, 5.287264, 8.487923, 0, 20.333279, -22.996096)
@@ -119,5 +120,5 @@ amount = 90
 process_material = SubResource("ParticleProcessMaterial_1fb18")
 draw_pass_1 = SubResource("QuadMesh_1fb18")
 
-[node name="LevelResume" parent="." index="16" unique_id=1054654497]
+[node name="LevelResumeMenu" parent="." index="16" unique_id=1054654497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.081465304, 1.7001193, 4.514134)

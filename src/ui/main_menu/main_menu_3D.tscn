@@ -155,42 +155,14 @@ transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-
 mesh = SubResource("TextMesh_ty0te")
 
 [node name="PlayButton" parent="." unique_id=1510104222 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-0.1760851, -0.0060958136, -0.09464078, -0.0003484146, 0.19962665, -0.012209709, 0.09483624, -0.0105848685, -0.17576702, -0.979, 0.76143944, -2.427)
+transform = Transform3D(-0.1760851, -0.0060958136, -0.09464078, -0.0003484146, 0.19962665, -0.012209709, 0.09483624, -0.0105848685, -0.17576702, -0.87569535, 0.76143944, -2.1370406)
 text = "PLAY"
 button_size = Vector3(2, 1, 0.2)
 button_material = SubResource("StandardMaterial3D_ets3f")
 
-[node name="ExitButton" parent="." unique_id=1652354433 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-0.19989577, -0.0007411223, -0.0064130425, -0.00034841357, 0.19962665, -0.01220971, 0.0064463094, -0.012192173, -0.1995239, -1.5220685, 0.76143944, -2.2962976)
-visible = false
-text = "QUIT"
-button_size = Vector3(2, 1, 0.2)
-button_material = SubResource("StandardMaterial3D_ets3f")
-
 [node name="VivaldiButton" parent="." unique_id=785738872 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.513, 1.7857834, 3.1480553)
+transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.513, 1.7857834, 2.3011668)
 text = "Vivaldi Four Seasons"
-button_size = Vector3(7, 2.5, 0.5)
-button_material = SubResource("StandardMaterial3D_gbacl")
-
-[node name="SingSingButton" parent="." unique_id=3602022 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.513, 1.7857834, 2.2480555)
-visible = false
-text = "Sing Sing Sing"
-button_size = Vector3(7, 2.5, 0.5)
-button_material = SubResource("StandardMaterial3D_gbacl")
-
-[node name="SevenNationButton" parent="." unique_id=1489968042 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.5130215, 1.3315834, 3.7973194)
-visible = false
-text = "Seven Nation Army"
-button_size = Vector3(7, 2.5, 0.5)
-button_material = SubResource("StandardMaterial3D_gbacl")
-
-[node name="RoommatesButton" parent="." unique_id=1925586736 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.5130215, 1.3315834, 2.5147324)
-visible = false
-text = "Roommates"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_gbacl")
 
@@ -216,9 +188,5 @@ imagen_textura = ExtResource("5_gbacl")
 escala_imagen = Vector3(0.05, 0.05, 1)
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="ExitButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VivaldiButton" to="." method="_on_vivaldi_button_pressed"]
-[connection signal="pressed" from="SingSingButton" to="." method="_on_sing_sing_button_pressed"]
-[connection signal="pressed" from="SevenNationButton" to="." method="_on_seven_nation_button_pressed"]
-[connection signal="pressed" from="RoommatesButton" to="." method="_on_roommates_button_pressed"]
 [connection signal="pressed" from="TutorialButton" to="." method="_on_tutorial_button_pressed"]
