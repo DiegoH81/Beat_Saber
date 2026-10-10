@@ -3,6 +3,12 @@ extends Area3D
 
 signal pressed
 
+@export var timer: Timer
+@export var timer_wait_time: float = 1
+@onready var start_color: Color = button_material.albedo_color
+@onready var end_color: Color = start_color.lightened(0.8)
+
+var button_progress: float = 0
 
 @export_group("Text")
 @export var text: String = "None":
@@ -71,7 +77,19 @@ func _ready() -> void:
 		mouse_entered.connect(_on_mouse_entered)
 		mouse_exited.connect(_on_mouse_exited)
 		input_event.connect(_on_input_event)
+	
+	button_material = button_material.duplicate()
 
+func _process(delta: float) -> void:
+	if not timer.is_stopped():
+		button_progress = 1.0 - timer.time_left / timer.wait_time
+		button_progress = clamp(button_progress,0,1)
+		
+		button_material.albedo_color = start_color.lerp(
+			end_color,
+			button_progress
+		)
+		
 
 func _update_button() -> void:
 	if not is_node_ready():
@@ -152,8 +170,16 @@ func _on_input_event(_camera: Node, event: InputEvent, _position: Vector3, _norm
 func _on_area_entered(area: Area3D) -> void:
 	if Engine.is_editor_hint() or not is_enabled:
 		return
-	emit_signal("pressed")
-	
+	if timer.is_stopped():
+		timer.start(timer_wait_time)
+
+func _on_area_exited(area: Area3D) -> void:
+	if not timer.is_stopped():
+		timer.stop()
+		timer.wait_time = timer_wait_time
+	button_material.albedo_color = start_color
+	button_progress = 0.0
+
 func set_enabled(enabled: bool) -> void:
 	is_enabled = enabled
 	
@@ -163,3 +189,10 @@ func _update_enabled_state() -> void:
 		await ready
 	if collision_shape:
 		collision_shape.set_deferred("disabled", not is_enabled)
+
+
+func _on_timer_timeout() -> void:
+	emit_signal("pressed")
+	timer.start(timer_wait_time)
+	button_material.albedo_color = start_color
+	button_progress = 0.0

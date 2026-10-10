@@ -2,16 +2,22 @@
 
 [ext_resource type="Script" uid="uid://u4ym1gsann0x" path="res://src/ui/button/button.gd" id="1_56vhp"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvphg"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_56vhp"]
 size = Vector3(2, 0.6, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pvphg"]
 size = Vector3(2, 0.6, 0.2)
 
-[node name="Button" type="Area3D" unique_id=1510104222]
+[node name="Button" type="Area3D" unique_id=1510104222 node_paths=PackedStringArray("timer")]
 script = ExtResource("1_56vhp")
+timer = NodePath("Timer")
+timer_wait_time = null
+button_material = SubResource("StandardMaterial3D_pvphg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1923018775]
+material_override = SubResource("StandardMaterial3D_pvphg")
 mesh = SubResource("BoxMesh_56vhp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1286179368]
@@ -23,4 +29,9 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "None"
 font_size = 128
 
+[node name="Timer" type="Timer" parent="." unique_id=1920105300]
+one_shot = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
