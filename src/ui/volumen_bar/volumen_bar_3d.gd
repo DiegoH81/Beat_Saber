@@ -13,7 +13,9 @@ func _obtener_segmentos() -> void:
 		for child in get_children():
 			if child is MeshInstance3D:
 				var mat = StandardMaterial3D.new()
+				mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 				child.material_override = mat
+				child.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 				segmentos.append(child)
 
 func set_nivel(valor: int) -> void:

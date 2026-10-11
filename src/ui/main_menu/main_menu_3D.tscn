@@ -66,7 +66,7 @@ material = SubResource("StandardMaterial3D_4u3og")
 text = "LEVELS"
 font_size = 56
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ets3f"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbacl"]
 albedo_color = Color(0.101960786, 0.13725491, 0.49411765, 1)
 metallic = 0.8
 roughness = 0.2
@@ -74,7 +74,15 @@ emission_enabled = true
 emission = Color(0.101960786, 0.13725491, 0.49411765, 1)
 emission_energy_multiplier = 0.5
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbacl"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eh44x"]
+albedo_color = Color(0.0627451, 0.07058824, 0.101960786, 1)
+metallic = 0.8
+roughness = 0.2
+emission_enabled = true
+emission = Color(0.28281513, 0.15470442, 0.21746486, 1)
+emission_energy_multiplier = 1.85
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77p6d"]
 albedo_color = Color(0.0627451, 0.07058824, 0.101960786, 1)
 metallic = 0.8
 roughness = 0.2
@@ -156,21 +164,24 @@ mesh = SubResource("TextMesh_ty0te")
 
 [node name="PlayButton" parent="." unique_id=1510104222 instance=ExtResource("3_mmd50")]
 transform = Transform3D(-0.1760851, -0.0060958136, -0.09464078, -0.0003484146, 0.19962665, -0.012209709, 0.09483624, -0.0105848685, -0.17576702, -0.87569535, 0.76143944, -2.1370406)
+timer_wait_time = 1.0
 text = "PLAY"
 button_size = Vector3(2, 1, 0.2)
-button_material = SubResource("StandardMaterial3D_ets3f")
+button_material = SubResource("StandardMaterial3D_gbacl")
 
 [node name="VivaldiButton" parent="." unique_id=785738872 instance=ExtResource("3_mmd50")]
 transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.513, 1.7857834, 2.3011668)
+timer_wait_time = 1.0
 text = "Vivaldi Four Seasons"
 button_size = Vector3(7, 2.5, 0.5)
-button_material = SubResource("StandardMaterial3D_gbacl")
+button_material = SubResource("StandardMaterial3D_eh44x")
 
 [node name="TutorialButton" parent="." unique_id=18494500 instance=ExtResource("3_mmd50")]
 transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.513, 1.7857834, 4.048055)
+timer_wait_time = 1.0
 text = "Tutorial"
 button_size = Vector3(7, 2.5, 0.5)
-button_material = SubResource("StandardMaterial3D_gbacl")
+button_material = SubResource("StandardMaterial3D_77p6d")
 
 [node name="AmbientParticles" type="GPUParticles3D" parent="." unique_id=2009157757]
 transform = Transform3D(1, 0, 0, 0, 0.5923183, 0, 0, 0, 1, 0.72034097, 2.0965786, 0.21540022)

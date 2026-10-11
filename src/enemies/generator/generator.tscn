@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://digy3cefci8s1"]
 
 [ext_resource type="Script" uid="uid://bwxnjecgg00nb" path="res://src/enemies/generator/generator.gd" id="1_8vokg"]
-[ext_resource type="PackedScene" uid="uid://b4dj6nob8d46c" path="res://src/enemies/objects/enemy_base.tscn" id="2_nxf0w"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_xqa4i"]
 inner_radius = 0.32
@@ -19,7 +18,6 @@ height = 100.0
 
 [node name="Generator" type="Node3D" unique_id=1789100008 node_paths=PackedStringArray("points")]
 script = ExtResource("1_8vokg")
-test_enemy = ExtResource("2_nxf0w")
 points = [NodePath("Point0"), NodePath("Point1"), NodePath("Point2"), NodePath("Point3"), NodePath("Point4"), NodePath("Point5"), NodePath("Point6"), NodePath("Point7"), NodePath("Point8"), NodePath("Point9"), NodePath("Point10"), NodePath("Point11")]
 
 [node name="Point0" type="Node3D" parent="." unique_id=411615881]
