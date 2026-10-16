@@ -3,19 +3,29 @@ extends Node
 signal hit_registered(new_score: int)
 signal combo_updated(new_combo: int)
 signal multiplier_updated(progress: float, multiplier_level: int, just_leveled_up: bool)
+signal misses_updated(new_misses: int)
+
+const MAX_MISSES: int = 20
 
 var current_score: int = 0
 var current_combo: int = 0
+var misses: int = 0
+
 
 var current_multiplier: float = 1.0
 var current_multiplier_hits: int = 0
 var multiplier_level: int = 1
 
 
+
 func add_hit(amount: int = 1) -> void:
 	current_combo += 1
 	current_multiplier_hits += 1
 	
+	if misses > 0:
+		misses = 0
+		misses_updated.emit(misses)
+		
 	print("HIT combo=", current_combo + 1)
 
 	
@@ -40,24 +50,29 @@ func add_hit(amount: int = 1) -> void:
 	multiplier_updated.emit(progress, multiplier_level, just_leveled_up)
 
 func register_miss() -> void:
-	print("MISS")
 
+	misses += 1
 	current_combo = 0
 	current_multiplier_hits = 0
+	
+	print("MISS", misses)
 	
 	multiplier_level = max(1, multiplier_level - 1)
 	current_multiplier = float(multiplier_level)
 	
+	misses_updated.emit(misses)
 	combo_updated.emit(current_combo)
 	multiplier_updated.emit(0.0, multiplier_level, false)
 
 func reset_score() -> void:
 	current_score = 0
 	current_combo = 0
+	misses = 0
 	current_multiplier_hits = 0
 	multiplier_level = 1
 	current_multiplier = 1.0
 	
+	misses_updated.emit(misses)
 	hit_registered.emit(current_score)
 	combo_updated.emit(current_combo)
 	multiplier_updated.emit(0.0, multiplier_level, false)

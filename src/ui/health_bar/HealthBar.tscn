@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dlhrifcxktpp"]
+
+[ext_resource type="Script" uid="uid://cg5drigmw8b4a" path="res://src/ui/health_bar/health_bar.gd" id="1_ghhlr"]
+
+[sub_resource type="TextMesh" id="TextMesh_ty0te"]
+text = "Fallos"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ghhlr"]
+shading_mode = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ty0te"]
+size = Vector3(2.06, 0.21, 0.02)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3v6v"]
+shading_mode = 0
+albedo_color = Color(0.288518, 0.288518, 0.2885179, 1)
+
+[node name="HealthBarUi" type="Node3D" unique_id=631553282]
+script = ExtResource("1_ghhlr")
+
+[node name="MissText" type="MeshInstance3D" parent="." unique_id=1212866028]
+transform = Transform3D(1.615, 0, 0, 0, 1.615, 0, 0, 0, 1.615, 0, 0.2852682, 0)
+mesh = SubResource("TextMesh_ty0te")
+surface_material_override/0 = SubResource("StandardMaterial3D_ghhlr")
+
+[node name="Frame" type="MeshInstance3D" parent="." unique_id=1318452718]
+mesh = SubResource("BoxMesh_ty0te")
+surface_material_override/0 = SubResource("StandardMaterial3D_f3v6v")
+
+[node name="Fill" type="MeshInstance3D" parent="." unique_id=601548370]
