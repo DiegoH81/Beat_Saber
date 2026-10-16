@@ -76,15 +76,22 @@ emission = Color(0.101960786, 0.13725491, 0.49411765, 1)
 emission_energy_multiplier = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77p6d"]
-albedo_color = Color(0.0627451, 0.07058824, 0.101960786, 1)
+albedo_color = Color(0.21987891, 0.23772857, 0.3088555, 1)
 metallic = 0.8
 roughness = 0.2
 emission_enabled = true
 emission = Color(0.28281513, 0.15470442, 0.21746486, 1)
 emission_energy_multiplier = 1.85
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6t60n"]
+albedo_color = Color(0.29586652, 0.2958665, 0.2958665, 1)
+metallic = 0.8
+roughness = 0.2
+emission = Color(0.28281513, 0.15470442, 0.21746486, 1)
+emission_energy_multiplier = 1.85
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cubkn"]
-albedo_color = Color(0.0627451, 0.07058824, 0.101960786, 1)
+albedo_color = Color(0.25, 0.25, 0.25, 1)
 metallic = 0.8
 roughness = 0.2
 emission_enabled = true
@@ -176,12 +183,15 @@ transform = Transform3D(-0.17608508, -0.006095814, -0.09464078, -0.0003484146, 0
 text = "PLAY"
 button_size = Vector3(2, 1, 0.2)
 button_material = SubResource("StandardMaterial3D_eh44x")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
 
 [node name="TutorialButton" parent="." unique_id=18494500 instance=ExtResource("3_mmd50")]
 transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.513, 1.7857834, 4.048055)
 text = "Tutorial"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_77p6d")
+locked_material = SubResource("StandardMaterial3D_6t60n")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
 lock_scene = ExtResource("4_4u3og")
 lock_anchor = Vector2(1, -1)
 lock_scale = 0.245
@@ -191,6 +201,8 @@ transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.245366
 text = "Vivaldi Four Seasons"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_cubkn")
+locked_material = SubResource("StandardMaterial3D_6t60n")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
 lock_scene = ExtResource("4_4u3og")
 lock_anchor = Vector2(1, -1)
 lock_scale = 0.245
@@ -200,6 +212,8 @@ transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.245366
 text = "Seven Nation Army"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_dup0m")
+locked_material = SubResource("StandardMaterial3D_6t60n")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
 lock_scene = ExtResource("4_4u3og")
 lock_anchor = Vector2(1, -1)
 lock_scale = 0.245

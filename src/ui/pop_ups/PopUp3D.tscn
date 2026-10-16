@@ -4,13 +4,10 @@
 [ext_resource type="Script" uid="uid://bj83loaakg127" path="res://src/ui/pop_ups/pop_up_3d.gd" id="1_xbwhe"]
 
 [sub_resource type="TextMesh" id="TextMesh_ty0te"]
-text = "Usa los botones con tus espadas"
+text = "Text"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gr5re"]
-albedo_color = Color(0.45452422, 0.45452428, 0.45452422, 1)
-emission_enabled = true
-emission = Color(0.28118682, 0.28118688, 0.28118682, 1)
-emission_energy_multiplier = 1.68
+shading_mode = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbwhe"]
 albedo_color = Color(0.5119334, 0.81570464, 0.69473475, 1)
@@ -31,3 +28,4 @@ transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0.4170588, -0.317
 text = "OK"
 button_size = Vector3(1.31, 0.6, 0.2)
 button_material = SubResource("StandardMaterial3D_xbwhe")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
