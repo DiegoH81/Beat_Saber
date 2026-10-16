@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c8r8frk3aor57" path="res://levels_data/test/skin_enemy_test.tscn" id="5_5mtdr"]
 [ext_resource type="PackedScene" uid="uid://dtygi3skufray" path="res://src/ui/level_resume/LevelResume.tscn" id="8_5mtdr"]
 [ext_resource type="PackedScene" uid="uid://dxs5oy71xll4b" path="res://src/ui/score/score_scene.tscn" id="8_kwtqq"]
+[ext_resource type="PackedScene" uid="uid://dlhrifcxktpp" path="res://src/ui/health_bar/HealthBar.tscn" id="9_5mtdr"]
 
 [node name="Level" type="Node3D" unique_id=814822109 node_paths=PackedStringArray("generator", "pause_menu")]
 script = ExtResource("1_5kcgd")
@@ -33,5 +34,8 @@ transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0.69660276, 0)
 
 [node name="LevelResumeMenu" parent="." unique_id=1054654497 instance=ExtResource("8_5mtdr")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="HealthBarUi" parent="." unique_id=631553282 instance=ExtResource("9_5mtdr")]
+transform = Transform3D(1.675, 0, 0, 0, 1.675, 0, 0, 0, 1.675, 2.7241406, 1.6579578, -5.3736553)
 
 [connection signal="song_ended" from="Generator" to="LevelResumeMenu" method="show_all"]

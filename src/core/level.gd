@@ -13,6 +13,11 @@ var number: int = 0
 
 @export var song_name: String
 
+
+func _ready() -> void:
+	ScoreManager.reset_score()
+	ScoreManager.misses_updated.connect(_on_misses_updated)
+	
 func _enter_tree() -> void:
 	AudioManager.play_music(song_name)
 	VisualManager.register_world_env(ambient)
@@ -38,6 +43,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+func _on_misses_updated(value: int) -> void:
+	if value >= ScoreManager.MAX_MISSES:
+		ScoreManager.misses_updated.disconnect(_on_misses_updated)
+		_restart_level()
 
 func _to_next_level() -> void:
 	ProgressManager.complete_level(own_id)
@@ -45,3 +54,7 @@ func _to_next_level() -> void:
 		SceneManager.to_level(next_level_id)
 		return
 	SceneManager.to_menu()
+	
+
+func _restart_level() -> void:
+	SceneManager.to_level.call_deferred(own_id)

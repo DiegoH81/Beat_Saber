@@ -57,7 +57,7 @@ shadow_enabled = true
 sky_mode = 1
 
 [node name="Generator" parent="." index="1" unique_id=1789100008]
-transform = Transform3D(-1, -2.9833472e-15, -8.742278e-08, -2.2629234e-08, 0.96591806, 0.25884834, 8.4443236e-08, 0.25884834, -0.96591806, 0, 10.610665, -26)
+transform = Transform3D(-1, -1.5180806e-08, 8.609462e-08, 0, 0.9848077, 0.17364818, -8.742278e-08, 0.17364818, -0.9848077, 0, 7.6438217, -26)
 skin_enemy = ExtResource("2_uaawb")
 
 [node name="ScoreScene" parent="." index="3" unique_id=120538248]
@@ -124,3 +124,6 @@ draw_pass_1 = SubResource("QuadMesh_1fb18")
 
 [node name="LevelResumeMenu" parent="." index="16" unique_id=1054654497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.081465304, 1.7001193, 4.514134)
+
+[node name="HealthBarUi" parent="." index="17" unique_id=631553282]
+transform = Transform3D(1.3770912, -0.2914937, -0.9078965, 0, 1.5948167, -0.51203966, 0.95354325, 0.42097032, 1.311169, 3.236, 3.672, 1.014)
