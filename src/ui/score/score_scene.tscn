@@ -4,8 +4,7 @@
 [ext_resource type="Shader" uid="uid://cg41h5f20pqr1" path="res://src/ui/score/score_scene.gdshader" id="2_7t3wa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1fb18"]
-emission_enabled = true
-emission = Color(0.80049086, 0.80049074, 0.80049074, 1)
+shading_mode = 0
 
 [sub_resource type="TextMesh" id="TextMesh_ty0te"]
 material = SubResource("StandardMaterial3D_1fb18")
@@ -32,7 +31,7 @@ render_priority = 0
 shader = ExtResource("2_7t3wa")
 shader_parameter/progress = 0.25
 shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/emission_energy = 1.0
+shader_parameter/emission_energy = 4.00000019
 
 [node name="ScoreScene" type="Node3D" unique_id=120538248]
 script = ExtResource("1_1e4lg")

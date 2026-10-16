@@ -44,18 +44,18 @@ adjustment_contrast = 1.08
 adjustment_saturation = 1.26
 
 [sub_resource type="TextMesh" id="TextMesh_ty0te"]
-text = "Get ready!
-Blocks are coming at you"
+text = "¡Preparate!
+Bloques vienen hacia ti"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24ph5"]
-albedo_color = Color(0.47058824, 1, 1, 1)
+shading_mode = 0
 
 [sub_resource type="TextMesh" id="TextMesh_24ph5"]
-text = "Use your hands
-Smash them any way you want!"
+text = "Usa tus manos
+¡Destruyelos como quieras!"
 
 [sub_resource type="TextMesh" id="TextMesh_w4mfu"]
-text = "READY?"
+text = "¿Listo?"
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u0wma"]
 emission_shape_offset = Vector3(0, 0, -8.295)
