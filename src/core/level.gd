@@ -5,6 +5,7 @@ class_name Level
 @export var generator: Generator
 @export var ambient: WorldEnvironment
 @export var next_level_id: String
+@export var own_id: String
 @export var spawn: Node3D
 @export var pause_menu: Node3D
 
@@ -39,6 +40,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _to_next_level() -> void:
+	ProgressManager.complete_level(own_id)
 	if not next_level_id.is_empty():
 		SceneManager.to_level(next_level_id)
 		return

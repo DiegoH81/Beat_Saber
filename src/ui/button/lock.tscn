@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cwscmwvdp3yuw"]
+
+[ext_resource type="PackedScene" uid="uid://1ijvlvybwft7" path="res://src/ui/button/Lock.glb" id="1_6iojj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rlgsl"]
+albedo_color = Color(0.5884625, 0.55239797, 0.3046439, 1)
+metallic = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dni2v"]
+metallic = 1.0
+
+[node name="Lock" unique_id=652719003 instance=ExtResource("1_6iojj")]
+transform = Transform3D(-3.496911e-09, 0, 0.08, 0, 0.08, 0, -0.08, 0, -3.496911e-09, 0, 0, 0)
+
+[node name="Cube_001_Material_002_0" parent="Sketchfab_model/6524f67dc646417e86f61fa0e8e2bd47_fbx/RootNode/Cube_001" parent_id_path=PackedInt32Array(105394806) index="0" unique_id=1674529190]
+surface_material_override/0 = SubResource("StandardMaterial3D_rlgsl")
+
+[node name="Torus_Material_001_0" parent="Sketchfab_model/6524f67dc646417e86f61fa0e8e2bd47_fbx/RootNode/Torus" parent_id_path=PackedInt32Array(1583515986) index="0" unique_id=549483746]
+surface_material_override/0 = SubResource("StandardMaterial3D_dni2v")
