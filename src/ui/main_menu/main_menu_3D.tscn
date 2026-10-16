@@ -183,6 +183,13 @@ text = "Tutorial"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_77p6d")
 
+[node name="SevenNationArmyButton" parent="." unique_id=1903435745 instance=ExtResource("3_mmd50")]
+transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.511, 1.3452778, 3.175)
+timer_wait_time = 1.0
+text = "Seven Nation Army"
+button_size = Vector3(7, 2.5, 0.5)
+button_material = SubResource("StandardMaterial3D_eh44x")
+
 [node name="AmbientParticles" type="GPUParticles3D" parent="." unique_id=2009157757]
 transform = Transform3D(1, 0, 0, 0, 0.5923183, 0, 0, 0, 1, 0.72034097, 2.0965786, 0.21540022)
 material_override = SubResource("StandardMaterial3D_jc5pe")
@@ -201,3 +208,4 @@ escala_imagen = Vector3(0.05, 0.05, 1)
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VivaldiButton" to="." method="_on_vivaldi_button_pressed"]
 [connection signal="pressed" from="TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="SevenNationArmyButton" to="." method="_on_seven_nation_army_button_pressed"]

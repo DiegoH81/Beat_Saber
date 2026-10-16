@@ -34,15 +34,9 @@ func _on_play_button_pressed() -> void:
 func _on_vivaldi_button_pressed() -> void:
 	SceneManager.to_level("Vivaldi_four_seasons")
 
-func _on_sing_sing_button_pressed() -> void:
-	SceneManager.to_level("Sing_Sing_Sing")
-
-func _on_seven_nation_button_pressed() -> void:
+func _on_seven_nation_army_button_pressed() -> void:
 	SceneManager.to_level("Seven_nation_army")
 
-func _on_roommates_button_pressed() -> void:
-	SceneManager.to_level("Roommates")
-	
 func _on_tutorial_button_pressed() -> void:
 	SceneManager.to_level("Tutorial")
 
