@@ -73,7 +73,12 @@ var button_progress: float = 0
 		is_locked = value
 		_update_lock_visuals()
 
-@export var locked_color: Color = Color(0.25, 0.25, 0.25)
+@export var locked_material: Material:
+	set(value):
+		locked_material = value
+		_update_lock_visuals()
+
+@export var locked_text_color: Color = Color(0.6, 0.6, 0.6)
 
 @export var lock_scene: PackedScene:
 	set(value):
@@ -124,16 +129,16 @@ func _process(delta: float) -> void:
 			end_color,
 			button_progress
 		)
-		
+	
 func _update_lock_visuals() -> void:
 	if not is_node_ready():
 		await ready
-	if button_material:
-		button_material.albedo_color = locked_color if is_locked else start_color
+
+	if mesh_instance:
+		mesh_instance.material_override = _get_active_material()
 	if label_3d:
-		label_3d.modulate = text_color.darkened(0.6) if is_locked else text_color
-	
-	
+		label_3d.modulate = _get_text_color()
+
 	if is_locked and lock_scene and not lock_instance:
 		_setup_lock()
 	if lock_instance:
@@ -153,7 +158,7 @@ func _update_button() -> void:
 	if label_3d:
 		label_3d.text = text
 		label_3d.font_size = font_size
-		label_3d.modulate = text_color
+		label_3d.modulate = _get_text_color()
 
 	# Bttn size
 	var final_size: Vector3 = button_size
@@ -177,8 +182,9 @@ func _update_button() -> void:
 			
 		box_mesh.size = final_size
 		
-		if button_material:
-			mesh_instance.material_override = button_material
+		var mat := _get_active_material()
+		if mat:
+			mesh_instance.material_override = mat
 	
 	
 	# Re-size collision
@@ -277,3 +283,12 @@ func _position_lock(final_size: Vector3) -> void:
 		final_size.z / 2.0
 	) + lock_offset
 	lock_instance.scale = Vector3.ONE * lock_scale
+
+# Helpers
+func _get_active_material() -> Material:
+	if is_locked and locked_material:
+		return locked_material
+	return button_material
+
+func _get_text_color() -> Color:
+	return locked_text_color if is_locked else text_color
