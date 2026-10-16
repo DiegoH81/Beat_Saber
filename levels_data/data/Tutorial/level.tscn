@@ -138,3 +138,6 @@ escala_imagen = Vector3(0.045, 0.045, 1)
 
 [node name="Spawn" type="Node3D" parent="." index="11" unique_id=761678666]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.10103381)
+
+[node name="HealthBarUi" parent="." index="12" unique_id=631553282]
+transform = Transform3D(1.4327351, 0, -0.8676952, 0, 1.675, 0, 0.8676952, 0, 1.4327351, 3.432, 1.141, -6.913)
