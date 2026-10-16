@@ -15,6 +15,7 @@ sky_curve = 0.68921864
 ground_bottom_color = Color(0.36862746, 0.12941177, 0.21568628, 1)
 ground_horizon_color = Color(0.36862746, 0.12941177, 0.21568628, 1)
 ground_curve = 0.088765584
+sun_angle_max = 0.0
 
 [sub_resource type="Sky" id="Sky_w4mfu"]
 sky_material = SubResource("ProceduralSkyMaterial_3ahog")

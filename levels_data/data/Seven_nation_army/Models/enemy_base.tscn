@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://xo513p1dcbdp"]
+
+[ext_resource type="PackedScene" uid="uid://bj5d2n7b4yspw" path="res://levels_data/data/Seven_nation_army/Models/enemy_base.glb" id="1_ddsm5"]
+
+[node name="enemy_base" unique_id=32425871 instance=ExtResource("1_ddsm5")]
+
+[node name="Cube" parent="." index="0" unique_id=665370209]
+transform = Transform3D(1.376909e-08, -1.3769086e-08, -0.315, 4.7563677e-08, -0.315, 1.3769088e-08, -0.315, -4.7563677e-08, -1.3769087e-08, 0, 0, 0)

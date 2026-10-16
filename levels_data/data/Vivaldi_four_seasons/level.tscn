@@ -44,7 +44,7 @@ size = Vector2(0.1, 0.1)
 
 [node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient", "spawn") instance=ExtResource("1_ju4l8")]
 ambient = NodePath("Ambient")
-next_level_id = "Seven_nation_army"
+next_level_id = "Sing_Sing_Sing"
 own_id = "Vivaldi_four_seasons"
 spawn = NodePath("Spawn")
 song_name = "Vivaldi_four_seasons"

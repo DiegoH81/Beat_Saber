@@ -5,6 +5,7 @@ extends Node3D
 @onready var level_selector_pos: Marker3D = $CameraTargets/LevelSelectorPos
 
 @onready var vivaldi_button: Area3D = $VivaldiButton
+@onready var sing_sing_sing_button: Area3D = $SingSingSingButton
 @onready var seven_nation_army_button: Area3D = $SevenNationArmyButton
 @onready var tutorial_button: Area3D = $TutorialButton
 
@@ -15,6 +16,7 @@ extends Node3D
 @onready var level_buttons: Dictionary = {
 	"Tutorial": $TutorialButton,
 	"Vivaldi_four_seasons": $VivaldiButton,
+	"Sing_Sing_Sing": $SingSingSingButton,
 	"Seven_nation_army": $SevenNationArmyButton,
 }
 
@@ -47,6 +49,9 @@ func _on_play_button_pressed() -> void:
 func _on_vivaldi_button_pressed() -> void:
 	SceneManager.to_level("Vivaldi_four_seasons")
 
+func _on_sing_sing_sing_pressed() -> void:
+	SceneManager.to_level("Sing_Sing_Sing")
+
 func _on_seven_nation_army_button_pressed() -> void:
 	SceneManager.to_level("Seven_nation_army")
 
@@ -58,8 +63,16 @@ func _ready() -> void:
 	pop_up_3d.visible = true
 	if pop_up_3d.has_signal("popup_finished"):
 		pop_up_3d.popup_finished.connect(_on_popup_finished)
+		
+	ProgressManager.progress_changed.connect(_refresh_level_buttons)
 	_refresh_level_buttons()
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_1: ProgressManager.debug_toggle_level("Vivaldi_four_seasons")
+			KEY_2: ProgressManager.debug_toggle_level("Sing_Sing_Sing")
+			KEY_3: ProgressManager.debug_toggle_level("Seven_nation_army")
 
 func _process(delta: float) -> void:	
 	if Input.is_action_just_pressed("TEMPORAL_TEST"):

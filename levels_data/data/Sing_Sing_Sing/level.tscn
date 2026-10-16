@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://7755puadk81n"]
+
+[ext_resource type="PackedScene" uid="uid://cye3p6aq1yoar" path="res://src/core/level.tscn" id="1_7robt"]
+[ext_resource type="PackedScene" uid="uid://c8slooifkhior" path="res://levels_data/data/Sing_Sing_Sing/Models/level2.glb" id="2_nlyaf"]
+[ext_resource type="PackedScene" uid="uid://0h5lgnscl5y" path="res://levels_data/data/Sing_Sing_Sing/Models/enemy_base.tscn" id="3_t3cjk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nlyaf"]
+albedo_color = Color(0.376035, 0.2816943, 0.20079547, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t3cjk"]
+emission_shape_scale = Vector3(8.16, 2.195, 7.17)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, -0.3, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_1onw8"]
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1onw8"]
+sky_top_color = Color(0.64705884, 0.44313726, 0.24705882, 1)
+sky_horizon_color = Color(0.40784314, 0.3137255, 0.17254902, 1)
+sky_curve = 0.35676202
+sky_energy_multiplier = 1.85
+ground_bottom_color = Color(0.40784314, 0.3137255, 0.17254902, 1)
+ground_horizon_color = Color(0.40784314, 0.3137255, 0.17254902, 1)
+ground_curve = 0.22627431
+ground_energy_multiplier = 3.45
+sun_angle_max = 0.0
+
+[sub_resource type="Sky" id="Sky_t3cjk"]
+sky_material = SubResource("ProceduralSkyMaterial_1onw8")
+
+[sub_resource type="Environment" id="Environment_nlyaf"]
+background_mode = 2
+sky = SubResource("Sky_t3cjk")
+ambient_light_color = Color(0.5243066, 0.22433746, 0.23294124, 1)
+ambient_light_energy = 2.5
+glow_enabled = true
+glow_intensity = 0.38
+fog_enabled = true
+fog_light_color = Color(0.6874256, 0.5118873, 0.3044, 1)
+fog_light_energy = 1.5
+fog_density = 0.005
+adjustment_enabled = true
+adjustment_contrast = 0.9
+adjustment_saturation = 1.2
+
+[node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient") instance=ExtResource("1_7robt")]
+ambient = NodePath("Ambient")
+next_level_id = "Seven_nation_army"
+own_id = "Sing_Sing_Sing"
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="0" unique_id=1562677771]
+transform = Transform3D(1.66, 0, 0, 0, 1.66, 0, 0, 0, 1.66, 0, 3.2811193, 0)
+material_override = SubResource("StandardMaterial3D_nlyaf")
+amount = 90
+process_material = SubResource("ParticleProcessMaterial_t3cjk")
+draw_pass_1 = SubResource("QuadMesh_1onw8")
+
+[node name="Sun" parent="." index="1" unique_id=1999535529]
+transform = Transform3D(1, 0, 0, 0, 0.9241243, 0.38209203, 0, -0.38209203, 0.9241243, 0, 13.628585, 7.936156)
+light_color = Color(0.7302364, 0.3801348, 0.36741439, 1)
+light_energy = 2.633
+light_indirect_energy = 2.375
+
+[node name="Generator" parent="." index="2" unique_id=1789100008]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.5551233, 1.8270774, -31.334612)
+skin_enemy = ExtResource("3_t3cjk")
+
+[node name="Destructor" parent="." index="3" unique_id=1128432705]
+transform = Transform3D(240.2, 0, 0, 0, 240.2, 0, 0, 0, 240.2, 0, 1.8431408, 11.748938)
+
+[node name="ScoreScene" parent="." index="4" unique_id=120538248]
+transform = Transform3D(0.8552113, 0, 0.5182795, 0, 1, 0, -0.5182795, 0, 0.8552113, -3.71, 1.141, -5.259)
+
+[node name="LevelResumeMenu" parent="." index="6" unique_id=1054654497]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.2030199, 0)
+
+[node name="HealthBarUi" parent="." index="7" unique_id=631553282]
+transform = Transform3D(1.4327351, 0, -0.8676952, 0, 1.675, 0, 0.8676952, 0, 1.4327351, 3.7099895, 1.141, -5.259)
+
+[node name="level2" parent="." index="8" unique_id=1029060324 instance=ExtResource("2_nlyaf")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.46732664, -1.8412013, 6.4933653)
+
+[node name="Ambient" type="WorldEnvironment" parent="." index="9" unique_id=404794971]
+environment = SubResource("Environment_nlyaf")
