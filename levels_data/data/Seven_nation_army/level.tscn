@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b8ymsqhklrgnu" path="res://levels_data/data/Seven_nation_army/Models/level3.glb" id="3_vonxh"]
 
 [node name="Level" unique_id=814822109 instance=ExtResource("1_odwny")]
+own_id = "Seven_nation_army"
 
 [node name="Generator" parent="." index="1" unique_id=1789100008]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.498557, 0.15377998, -7.7525077)

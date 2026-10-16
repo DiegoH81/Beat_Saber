@@ -4,24 +4,23 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvphg"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_56vhp"]
+[sub_resource type="BoxMesh" id="BoxMesh_i1cle"]
 size = Vector3(2, 0.6, 0.2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_pvphg"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_5agf2"]
 size = Vector3(2, 0.6, 0.2)
 
 [node name="Button" type="Area3D" unique_id=1510104222 node_paths=PackedStringArray("timer")]
 script = ExtResource("1_56vhp")
 timer = NodePath("Timer")
-timer_wait_time = null
 button_material = SubResource("StandardMaterial3D_pvphg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1923018775]
 material_override = SubResource("StandardMaterial3D_pvphg")
-mesh = SubResource("BoxMesh_56vhp")
+mesh = SubResource("BoxMesh_i1cle")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1286179368]
-shape = SubResource("BoxShape3D_pvphg")
+shape = SubResource("BoxShape3D_5agf2")
 
 [node name="Label3D" type="Label3D" parent="." unique_id=1791139588]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024541855, 0, 0.11)
