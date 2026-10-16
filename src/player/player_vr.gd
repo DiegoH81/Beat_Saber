@@ -1,10 +1,16 @@
 extends XROrigin3D
 
+signal pause
+
 @export_category("Dependencies")
 @export var camera: XRCamera3D
 @export var head: Node3D
 @export var left_sword: Node3D
 @export var right_sword: Node3D
+@export var left_hand: Node3D
+@export var right_hand: Node3D
+@export var ring: MeshInstance3D
+@export var fade: MeshInstance3D
 
 @export var sword_scene: PackedScene
 
@@ -16,7 +22,13 @@ var xr_interface: XRInterface
 var is_vr_active: bool = false
 var rotation_target: Vector3 = Vector3.ZERO
 
+const HOLD_TIME: float = 1.5
+var timer = HOLD_TIME
+var is_paused: bool = false
+var _fade_alpha: float = 0.0
+
 func _ready() -> void:
+	ring.visible = false
 	xr_interface = XRServer.find_interface("OpenXR")
 	
 	if xr_interface and xr_interface.is_initialized():
@@ -69,7 +81,20 @@ func enable_keyboard_mode() -> void:
 	print("WIMP on")
 
 func _process(delta: float) -> void:
-	
+	if not is_paused and right_hand.global_position.distance_to(left_hand.global_position) < 0.15:
+		ring.visible = true
+		timer -= delta
+		var mat:ShaderMaterial= ring.material_override as ShaderMaterial
+		if mat != null:
+			mat.set_shader_parameter("progress", 1.0 - timer / HOLD_TIME)
+		if timer <= 0:
+			pause.emit()
+			timer = HOLD_TIME
+			is_paused = true
+	else:
+		timer = HOLD_TIME
+		ring.visible = false
+
 	if is_vr_active:
 		camera.global_transform = Transform3D(camera.global_transform.basis, head.global_position)
 		return
@@ -101,3 +126,26 @@ func _process(delta: float) -> void:
 		global_position.y += move_speed * delta
 	if Input.is_key_pressed(KEY_SHIFT):
 		global_position.y -= move_speed * delta
+
+func fade_to(target: float, duration: float = 0.5) -> void:
+	var mat := fade.material_override as ShaderMaterial
+	if mat == null:
+		return
+
+	var target_alpha := 1.0 - target   # target 1.0 = normal, 0.0 = negro
+	fade.visible = true
+
+	if duration > 0.0:
+		var tw := create_tween()
+		tw.tween_method(
+			func(v: float) -> void:
+				_fade_alpha = v
+				mat.set_shader_parameter("alpha", v),
+			_fade_alpha, target_alpha, duration)
+		await tw.finished
+	else:
+		_fade_alpha = target_alpha
+		mat.set_shader_parameter("alpha", target_alpha)
+
+	if target_alpha <= 0.0:
+		fade.visible = false

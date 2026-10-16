@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://digy3cefci8s1"]
 
 [ext_resource type="Script" uid="uid://bwxnjecgg00nb" path="res://src/enemies/generator/generator.gd" id="1_8vokg"]
-[ext_resource type="PackedScene" uid="uid://b4dj6nob8d46c" path="res://src/enemies/objects/enemy_base.tscn" id="2_nxf0w"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_xqa4i"]
 inner_radius = 0.32
@@ -19,14 +18,14 @@ height = 100.0
 
 [node name="Generator" type="Node3D" unique_id=1789100008 node_paths=PackedStringArray("points")]
 script = ExtResource("1_8vokg")
-test_enemy = ExtResource("2_nxf0w")
 points = [NodePath("Point0"), NodePath("Point1"), NodePath("Point2"), NodePath("Point3"), NodePath("Point4"), NodePath("Point5"), NodePath("Point6"), NodePath("Point7"), NodePath("Point8"), NodePath("Point9"), NodePath("Point10"), NodePath("Point11")]
 
 [node name="Point0" type="Node3D" parent="." unique_id=411615881]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.73432934, 0.7470304, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point0" unique_id=514495878]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("TorusMesh_xqa4i")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Point0" unique_id=1845009301]
@@ -34,10 +33,11 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 mesh = SubResource("CylinderMesh_nxf0w")
 
 [node name="Point1" type="Node3D" parent="." unique_id=1391755669]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7470304, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point1" unique_id=593833959]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("TorusMesh_xqa4i")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Point1" unique_id=394786048]
@@ -45,10 +45,11 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 mesh = SubResource("CylinderMesh_nxf0w")
 
 [node name="Point2" type="Node3D" parent="." unique_id=1718120519]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73822105, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73822105, 0.7470304, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point2" unique_id=1318668121]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("TorusMesh_xqa4i")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Point2" unique_id=541926196]
@@ -56,10 +57,11 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 mesh = SubResource("CylinderMesh_nxf0w")
 
 [node name="Point3" type="Node3D" parent="." unique_id=459396289]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6654601, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.470176, 0.7470304, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point3" unique_id=864379748]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("TorusMesh_xqa4i")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Point3" unique_id=885112345]
@@ -67,10 +69,11 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 mesh = SubResource("CylinderMesh_nxf0w")
 
 [node name="Point4" type="Node3D" parent="." unique_id=1967409115]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.73432934, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point4" unique_id=1452315137]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("TorusMesh_xqa4i")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Point4" unique_id=1142903198]
@@ -81,6 +84,7 @@ mesh = SubResource("CylinderMesh_nxf0w")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point5" unique_id=2109963019]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("TorusMesh_xqa4i")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Point5" unique_id=439100235]
@@ -92,6 +96,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73822105, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point6" unique_id=1688596416]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("TorusMesh_xqa4i")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Point6" unique_id=2056531278]
@@ -99,10 +104,11 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 mesh = SubResource("CylinderMesh_nxf0w")
 
 [node name="Point7" type="Node3D" parent="." unique_id=1315856379]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6654601, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.470176, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point7" unique_id=711885858]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("TorusMesh_xqa4i")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Point7" unique_id=1887938611]
@@ -110,10 +116,11 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 mesh = SubResource("CylinderMesh_nxf0w")
 
 [node name="Point8" type="Node3D" parent="." unique_id=1063777246]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.73432934, -0.7515919, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point8" unique_id=375450581]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("TorusMesh_xqa4i")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Point8" unique_id=1428280351]
@@ -121,10 +128,11 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 mesh = SubResource("CylinderMesh_nxf0w")
 
 [node name="Point9" type="Node3D" parent="." unique_id=237504804]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7515919, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point9" unique_id=2131867399]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("TorusMesh_xqa4i")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Point9" unique_id=1660753750]
@@ -132,10 +140,11 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 mesh = SubResource("CylinderMesh_nxf0w")
 
 [node name="Point10" type="Node3D" parent="." unique_id=34927200]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73822105, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73822105, -0.7515919, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point10" unique_id=2067883420]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("TorusMesh_xqa4i")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Point10" unique_id=681615018]
@@ -143,10 +152,11 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 mesh = SubResource("CylinderMesh_nxf0w")
 
 [node name="Point11" type="Node3D" parent="." unique_id=1094156306]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6654601, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.470176, -0.7515919, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Point11" unique_id=715625158]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("TorusMesh_xqa4i")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Point11" unique_id=920959237]

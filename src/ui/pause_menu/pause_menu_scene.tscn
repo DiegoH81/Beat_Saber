@@ -4,22 +4,10 @@
 [ext_resource type="Script" uid="uid://d1ckds3hah85l" path="res://src/ui/pause_menu/pause_menu_scene.gd" id="1_ucjxt"]
 [ext_resource type="PackedScene" uid="uid://l6vvgap0lf1y" path="res://src/ui/volumen_bar/VolumenBar3D.tscn" id="3_hq7kw"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hq7kw"]
-shading_mode = 0
-albedo_color = Color(0.89089257, 0.8642268, 0.9728821, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_hq7kw"]
-material = SubResource("StandardMaterial3D_hq7kw")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgi2h"]
-no_depth_test = true
 albedo_color = Color(0.12435158, 0.26958916, 0.32818028, 1)
 emission_enabled = true
 emission_energy_multiplier = 5.05
-
-[sub_resource type="TextMesh" id="TextMesh_ucjxt"]
-material = SubResource("StandardMaterial3D_pgi2h")
-text = "Efectos"
 
 [sub_resource type="TextMesh" id="TextMesh_ty0te"]
 material = SubResource("StandardMaterial3D_pgi2h")
@@ -27,12 +15,45 @@ text = "PAUSA"
 font_size = 67
 uppercase = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hq7kw"]
+albedo_color = Color(0.32314757, 0.26032466, 0.44199094, 1)
+emission_enabled = true
+emission = Color(0.30231273, 0.26002866, 0.49995708, 1)
+emission_energy_multiplier = 1.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kx2cx"]
+albedo_color = Color(0.32314757, 0.26032466, 0.44199094, 1)
+emission_enabled = true
+emission = Color(0.30231273, 0.26002866, 0.49995708, 1)
+emission_energy_multiplier = 1.15
+
 [sub_resource type="TextMesh" id="TextMesh_w4mfu"]
 material = SubResource("StandardMaterial3D_pgi2h")
 text = "Música"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucjxt"]
-no_depth_test = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgryp"]
+albedo_color = Color(0.32314757, 0.26032466, 0.44199094, 1)
+emission_enabled = true
+emission = Color(0.30231273, 0.26002866, 0.49995708, 1)
+emission_energy_multiplier = 1.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3oxa0"]
+albedo_color = Color(0.32314757, 0.26032466, 0.44199094, 1)
+emission_enabled = true
+emission = Color(0.30231273, 0.26002866, 0.49995708, 1)
+emission_energy_multiplier = 1.15
+
+[sub_resource type="TextMesh" id="TextMesh_ucjxt"]
+material = SubResource("StandardMaterial3D_pgi2h")
+text = "Efectos"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ku7w"]
+albedo_color = Color(0.32314757, 0.26032466, 0.44199094, 1)
+emission_enabled = true
+emission = Color(0.30231273, 0.26002866, 0.49995708, 1)
+emission_energy_multiplier = 1.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7pd6"]
 albedo_color = Color(0.32314757, 0.26032466, 0.44199094, 1)
 emission_enabled = true
 emission = Color(0.30231273, 0.26002866, 0.49995708, 1)
@@ -41,74 +62,75 @@ emission_energy_multiplier = 1.15
 [node name="PauseMenu" type="Node3D" unique_id=348335489]
 script = ExtResource("1_ucjxt")
 
-[node name="BACKGROUND" type="MeshInstance3D" parent="." unique_id=2086406083]
-transform = Transform3D(6.7, 0, 0, 0, 2.25, 0, 0, 0, 0.105, -0.10826689, 0.41652083, -0.08)
-mesh = SubResource("BoxMesh_hq7kw")
-
-[node name="music_TEXT2" type="MeshInstance3D" parent="." unique_id=1133567752]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.5147942, 0.4, 0)
-mesh = SubResource("TextMesh_ucjxt")
-
 [node name="PAUSE_TEXT" type="MeshInstance3D" parent="." unique_id=1025130941]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15432715, 1.8671627, 0)
 mesh = SubResource("TextMesh_ty0te")
 
-[node name="music_TEXT" type="MeshInstance3D" parent="." unique_id=1724806972]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.5147942, 1.2239417, 0)
-mesh = SubResource("TextMesh_w4mfu")
-
 [node name="ResumeButton" parent="." unique_id=1510104222 instance=ExtResource("1_pgi2h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4947323, 0.8845167, 0.088186264)
+transform = Transform3D(0.8459856, 0, 0.5332057, 0, 1, 0, -0.5332057, 0, 0.8459856, -4.1636176, 0.8845167, 0.3035922)
+timer_wait_time = 1.0
 text = "RESUME"
 button_size = Vector3(3, 0.8, 0.2)
 padding = 2.775
-button_material = SubResource("StandardMaterial3D_ucjxt")
-is_enabled = null
+button_material = SubResource("StandardMaterial3D_hq7kw")
 
 [node name="QuitButton" parent="." unique_id=1781231299 instance=ExtResource("1_pgi2h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4947323, -0.005018592, 0.088186264)
+transform = Transform3D(0.97937715, 0, 0.20204067, 0, 1, 0, -0.20204067, 0, 0.97937715, -0.95004386, 0.9253175, -0.9814105)
+timer_wait_time = 1.0
 text = "QUIT"
 button_size = Vector3(3, 0.8, 0.2)
-button_material = SubResource("StandardMaterial3D_ucjxt")
-is_enabled = null
+button_material = SubResource("StandardMaterial3D_kx2cx")
 
-[node name="IncMUSIC" parent="." unique_id=1715887551 instance=ExtResource("1_pgi2h")]
-transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 2.519589, 0.82394165, 0)
+[node name="Music" type="Node3D" parent="." unique_id=27714371]
+transform = Transform3D(2.1048894, 0, -1.3488665, 0, 2.5, 0, 1.3488665, 0, 2.1048894, 5.3255143, 1.1766323, 0.8306178)
+
+[node name="music_TEXT" type="MeshInstance3D" parent="Music" unique_id=1724806972]
+transform = Transform3D(0.9999999, 0, 5.9604645e-08, 0, 0.99999994, 0, -5.9604645e-08, 0, 0.9999999, 0, 0, 0)
+mesh = SubResource("TextMesh_w4mfu")
+
+[node name="IncMUSIC" parent="Music" unique_id=1715887551 instance=ExtResource("1_pgi2h")]
+transform = Transform3D(0.16499999, 0, 0, 0, 0.16499999, 0, 0, 0, 0.16499999, 0.5023978, -0.20000005, 5.9604645e-08)
+timer_wait_time = 0.5
 text = "+"
-button_size = Vector3(0.635, 0.545, 0.2)
-button_material = SubResource("StandardMaterial3D_ucjxt")
-is_enabled = null
+button_size = Vector3(1, 1, 0.2)
+button_material = SubResource("StandardMaterial3D_pgryp")
 
-[node name="DecMUSIC" parent="." unique_id=196670696 instance=ExtResource("1_pgi2h")]
-transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 0.50943494, 0.82394165, 0)
+[node name="DecMUSIC" parent="Music" unique_id=196670696 instance=ExtResource("1_pgi2h")]
+transform = Transform3D(0.16499999, 0, 0, 0, 0.16499999, 0, 0, 0, 0.16499999, -0.50267935, -0.20000005, 5.9604645e-08)
+timer_wait_time = 0.5
 text = "-"
-button_size = Vector3(0.635, 0.545, 0.2)
-button_material = SubResource("StandardMaterial3D_ucjxt")
-is_enabled = null
+button_size = Vector3(1, 1, 0.2)
+button_material = SubResource("StandardMaterial3D_3oxa0")
 
-[node name="IncSFX" parent="." unique_id=512839369 instance=ExtResource("1_pgi2h")]
-transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 2.5198975, 0, 0)
+[node name="BAR_music" parent="Music" unique_id=1411365557 instance=ExtResource("3_hq7kw")]
+transform = Transform3D(0.97249997, 0, 0, 0, 0.97249997, 0, 0, 0, 0.97249997, 0.03475213, -0.19997087, -0.014263272)
+
+[node name="Effects" type="Node3D" parent="." unique_id=688564360]
+transform = Transform3D(2.353712, 0, -0.8426381, 0, 2.5, 0, 0.8426381, 0, 2.353712, 2.4204967, 1.2258433, -0.46846902)
+
+[node name="music_TEXT2" type="MeshInstance3D" parent="Effects" unique_id=1133567752]
+mesh = SubResource("TextMesh_ucjxt")
+
+[node name="IncSFX" parent="Effects" unique_id=512839369 instance=ExtResource("1_pgi2h")]
+transform = Transform3D(0.16500002, 0, 3.7252903e-09, 0, 0.165, 0, -3.7252903e-09, 0, 0.16500002, 0.5025516, -0.20000002, 0)
+timer_wait_time = 0.5
 text = "+"
-button_size = Vector3(0.635, 0.545, 0.2)
-button_material = SubResource("StandardMaterial3D_ucjxt")
-is_enabled = null
+button_size = Vector3(1, 1, 0.2)
+button_material = SubResource("StandardMaterial3D_3ku7w")
 
-[node name="DecSFX" parent="." unique_id=99701358 instance=ExtResource("1_pgi2h")]
-transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 0.5098973, 0, 0)
+[node name="DecSFX" parent="Effects" unique_id=99701358 instance=ExtResource("1_pgi2h")]
+transform = Transform3D(0.16500002, 0, 3.7252903e-09, 0, 0.165, 0, -3.7252903e-09, 0, 0.16500002, -0.50244844, -0.20000002, 0)
+timer_wait_time = 0.5
 text = "-"
-button_size = Vector3(0.635, 0.545, 0.2)
-button_material = SubResource("StandardMaterial3D_ucjxt")
-is_enabled = null
+button_size = Vector3(1, 1, 0.2)
+button_material = SubResource("StandardMaterial3D_i7pd6")
 
-[node name="BAR_music" parent="." unique_id=1411365557 instance=ExtResource("3_hq7kw")]
-transform = Transform3D(1.945, 0, 0, 0, 1.945, 0, 0, 0, 1.945, 1.5927618, 0.824, 0)
-
-[node name="BAR_sfx" parent="." unique_id=1829167336 instance=ExtResource("3_hq7kw")]
-transform = Transform3D(1.945, 0, 0, 0, 1.945, 0, 0, 0, 1.945, 1.5927618, 0, 0)
+[node name="BAR_sfx" parent="Effects" unique_id=1829167336 instance=ExtResource("3_hq7kw")]
+transform = Transform3D(0.9725001, 0, 2.9802322e-08, 0, 0.9725, 0, -2.9802322e-08, 0, 0.9725001, 0.038983762, -0.20000002, 0)
 
 [connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="IncMUSIC" to="." method="_on_inc_music_pressed"]
-[connection signal="pressed" from="DecMUSIC" to="." method="_on_dec_music_pressed"]
-[connection signal="pressed" from="IncSFX" to="." method="_on_inc_sfx_pressed"]
-[connection signal="pressed" from="DecSFX" to="." method="_on_dec_sfx_pressed"]
+[connection signal="pressed" from="Music/IncMUSIC" to="." method="_on_inc_music_pressed"]
+[connection signal="pressed" from="Music/DecMUSIC" to="." method="_on_dec_music_pressed"]
+[connection signal="pressed" from="Effects/IncSFX" to="." method="_on_inc_sfx_pressed"]
+[connection signal="pressed" from="Effects/DecSFX" to="." method="_on_dec_sfx_pressed"]

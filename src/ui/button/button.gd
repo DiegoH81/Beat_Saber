@@ -3,6 +3,12 @@ extends Area3D
 
 signal pressed
 
+@export var timer: Timer
+@export var timer_wait_time: float = 1
+@onready var start_color: Color = button_material.albedo_color
+@onready var end_color: Color = start_color.lightened(0.8)
+
+var button_progress: float = 0
 
 @export_group("Text")
 @export var text: String = "None":
@@ -61,17 +67,83 @@ signal pressed
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var label_3d: Label3D = $Label3D
 
+@export_group("Lock")
+@export var is_locked: bool = false:
+	set(value):
+		is_locked = value
+		_update_lock_visuals()
+
+@export var locked_color: Color = Color(0.25, 0.25, 0.25)
+
+@export var lock_scene: PackedScene:
+	set(value):
+		lock_scene = value
+		_setup_lock()
+		
+@export var lock_anchor: Vector2 = Vector2(1, 1):
+	set(value):
+		lock_anchor = value
+		_update_button()
+
+@export var lock_offset: Vector3 = Vector3.ZERO: # ajuste fino
+	set(value):
+		lock_offset = value
+		_update_button()
+
+@export var lock_scale: float = 1.0:
+	set(value):
+		lock_scale = value
+		_update_button()
+
+
+var lock_instance: Node3D
 var default_scale: Vector3
 
 func _ready() -> void:
 	default_scale = scale
+	_setup_lock()
+
 	_update_button()
 	
 	if not Engine.is_editor_hint():
 		mouse_entered.connect(_on_mouse_entered)
 		mouse_exited.connect(_on_mouse_exited)
 		input_event.connect(_on_input_event)
+	
+	button_material = button_material.duplicate()
 
+func _process(delta: float) -> void:
+	if is_locked:
+		return
+		
+	if not timer.is_stopped():
+		button_progress = 1.0 - timer.time_left / timer.wait_time
+		button_progress = clamp(button_progress,0,1)
+		
+		button_material.albedo_color = start_color.lerp(
+			end_color,
+			button_progress
+		)
+		
+func _update_lock_visuals() -> void:
+	if not is_node_ready():
+		await ready
+	if button_material:
+		button_material.albedo_color = locked_color if is_locked else start_color
+	if label_3d:
+		label_3d.modulate = text_color.darkened(0.6) if is_locked else text_color
+	
+	
+	if is_locked and lock_scene and not lock_instance:
+		_setup_lock()
+	if lock_instance:
+		lock_instance.visible = is_locked
+
+	var icon := get_node_or_null("LockIcon")
+	if icon:
+		icon.visible = is_locked
+	if is_locked:
+		scale = default_scale
 
 func _update_button() -> void:
 	if not is_node_ready():
@@ -127,33 +199,43 @@ func _update_button() -> void:
 	# Move label 3D
 	if label_3d:
 		label_3d.position.z = (final_size.z / 2.0) + 0.01
+		
+	_position_lock(final_size)
 
 
 
 # Interaction
 func _on_mouse_entered() -> void:
-	if Engine.is_editor_hint() or not is_enabled:
+	if Engine.is_editor_hint() or not is_enabled or is_locked:
 		return
 	var tween = create_tween()
 	tween.tween_property(self, "scale", default_scale * hover_scale_factor, 0.12).set_trans(Tween.TRANS_QUAD)
 
 func _on_mouse_exited() -> void:
-	if Engine.is_editor_hint() or not is_enabled:
+	if Engine.is_editor_hint() or not is_enabled or is_locked:
 		return
 	var tween = create_tween()
 	tween.tween_property(self, "scale", default_scale, 0.12).set_trans(Tween.TRANS_QUAD)
 
 func _on_input_event(_camera: Node, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if Engine.is_editor_hint() or not is_enabled:
+	if Engine.is_editor_hint() or not is_enabled or is_locked:
 		return
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		emit_signal("pressed")
 
 func _on_area_entered(area: Area3D) -> void:
-	if Engine.is_editor_hint() or not is_enabled:
+	if Engine.is_editor_hint() or not is_enabled or is_locked:
 		return
-	emit_signal("pressed")
-	
+	if timer.is_stopped():
+		timer.start(timer_wait_time)
+
+func _on_area_exited(area: Area3D) -> void:
+	if not timer.is_stopped():
+		timer.stop()
+		timer.wait_time = timer_wait_time
+	button_material.albedo_color = start_color
+	button_progress = 0.0
+
 func set_enabled(enabled: bool) -> void:
 	is_enabled = enabled
 	
@@ -163,3 +245,35 @@ func _update_enabled_state() -> void:
 		await ready
 	if collision_shape:
 		collision_shape.set_deferred("disabled", not is_enabled)
+
+
+func _on_timer_timeout() -> void:
+	if is_locked:
+		timer.stop()
+		return
+		
+	emit_signal("pressed")
+	timer.start(timer_wait_time)
+	button_material.albedo_color = start_color
+	button_progress = 0.0
+
+func _setup_lock() -> void:
+	if not is_node_ready():
+		return
+	if lock_instance:
+		lock_instance.queue_free()
+		lock_instance = null
+	if lock_scene and is_locked:
+		lock_instance = lock_scene.instantiate()
+		add_child(lock_instance)
+		_update_button()
+
+func _position_lock(final_size: Vector3) -> void:
+	if not lock_instance:
+		return
+	lock_instance.position = Vector3(
+		lock_anchor.x * final_size.x / 2.0,
+		lock_anchor.y * final_size.y / 2.0,
+		final_size.z / 2.0
+	) + lock_offset
+	lock_instance.scale = Vector3.ONE * lock_scale

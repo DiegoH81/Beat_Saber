@@ -147,7 +147,7 @@ emission_energy_multiplier = 4.05
 [node name="level_RENDER" unique_id=524996336 instance=ExtResource("1_bnn06")]
 
 [node name="CubeBoss" type="MeshInstance3D" parent="." index="0" unique_id=547758555]
-transform = Transform3D(2.56066, -0.43933982, 1.4999999, 1.4999999, 1.4999998, -2.1213202, -0.43933985, 2.5606596, 1.4999999, 26.055305, 3.6321583, 0.14209878)
+transform = Transform3D(2.5606596, -0.43933973, 1.4999998, 1.4999998, 1.4999995, -2.1213202, -0.43933982, 2.5606592, 1.4999998, 26.055305, 1.9180408, 0.14209878)
 mesh = SubResource("ArrayMesh_loi0x")
 surface_material_override/1 = SubResource("StandardMaterial3D_u0wma")
 

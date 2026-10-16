@@ -4,9 +4,19 @@ extends Node3D
 @onready var camera_follow: PathFollow3D = $CameraPath/CameraFollow
 @onready var level_selector_pos: Marker3D = $CameraTargets/LevelSelectorPos
 
+@onready var vivaldi_button: Area3D = $VivaldiButton
+@onready var seven_nation_army_button: Area3D = $SevenNationArmyButton
+@onready var tutorial_button: Area3D = $TutorialButton
+
 
 @onready var pop_up_3d: Node3D = $PopUp3d
 @onready var play_button: Area3D = $PlayButton
+
+@onready var level_buttons: Dictionary = {
+	"Tutorial": $TutorialButton,
+	"Vivaldi_four_seasons": $VivaldiButton,
+	"Seven_nation_army": $SevenNationArmyButton,
+}
 
 # Transitions
 func go_to_level_selector() -> void:
@@ -24,6 +34,9 @@ func go_to_level_selector() -> void:
 
 	await tween.finished
 
+func _refresh_level_buttons() -> void:
+	for level_id in level_buttons:
+		level_buttons[level_id].is_locked = not ProgressManager.is_unlocked(level_id)
 
 
 # Main menu
@@ -34,15 +47,9 @@ func _on_play_button_pressed() -> void:
 func _on_vivaldi_button_pressed() -> void:
 	SceneManager.to_level("Vivaldi_four_seasons")
 
-func _on_sing_sing_button_pressed() -> void:
-	SceneManager.to_level("Sing_Sing_Sing")
-
-func _on_seven_nation_button_pressed() -> void:
+func _on_seven_nation_army_button_pressed() -> void:
 	SceneManager.to_level("Seven_nation_army")
 
-func _on_roommates_button_pressed() -> void:
-	SceneManager.to_level("Roommates")
-	
 func _on_tutorial_button_pressed() -> void:
 	SceneManager.to_level("Tutorial")
 
@@ -51,6 +58,7 @@ func _ready() -> void:
 	pop_up_3d.visible = true
 	if pop_up_3d.has_signal("popup_finished"):
 		pop_up_3d.popup_finished.connect(_on_popup_finished)
+	_refresh_level_buttons()
 
 
 func _process(delta: float) -> void:	
@@ -62,3 +70,7 @@ func _process(delta: float) -> void:
 
 func _on_popup_finished() -> void:
 	play_button.is_enabled = true
+
+
+func _on_exit_button_area_entered(area: Area3D) -> void:
+	get_tree().quit()
