@@ -10,15 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://dxs5oy71xll4b" path="res://src/ui/score/score_scene.tscn" id="8_kwtqq"]
 [ext_resource type="PackedScene" uid="uid://dlhrifcxktpp" path="res://src/ui/health_bar/HealthBar.tscn" id="9_5mtdr"]
 [ext_resource type="Script" uid="uid://drspf67ksj5rf" path="res://src/core/turret_controller.gd" id="10_n7fy3"]
+[ext_resource type="PackedScene" uid="uid://eul5gjh2l8cd" path="res://src/core/shield.tscn" id="11_yrtgi"]
 
 [node name="Level" type="Node3D" unique_id=814822109 node_paths=PackedStringArray("generator", "pause_menu", "turret_controller")]
 script = ExtResource("1_5kcgd")
 generator = NodePath("Generator")
-next_level_id = null
-own_id = null
 pause_menu = NodePath("PauseMenu")
 turret_controller = NodePath("TurretController")
-song_name = null
 
 [node name="Sun" type="DirectionalLight3D" parent="." unique_id=1999535529]
 transform = Transform3D(1, 0, 0, 0, 0.9241243, 0.38209203, 0, -0.38209203, 0.9241243, 0, 1.6036624, 2.25277)
@@ -43,23 +41,153 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 [node name="HealthBarUi" parent="." unique_id=631553282 instance=ExtResource("9_5mtdr")]
 transform = Transform3D(1.675, 0, 0, 0, 1.675, 0, 0, 0, 1.675, 2.7241406, 1.6579578, -5.3736553)
 
-[node name="TurretController" type="Node" parent="." unique_id=173134273 node_paths=PackedStringArray("turrets")]
+[node name="TurretController" type="Node" parent="." unique_id=173134273 node_paths=PackedStringArray("turrets", "ui_turret")]
 script = ExtResource("10_n7fy3")
-turrets = [NodePath("Turret1"), NodePath("Turret2"), NodePath("Turret3"), NodePath("Turret4"), NodePath("Turret5")]
+turrets = [NodePath("Turrets/Turret1"), NodePath("Turrets/Turret2"), NodePath("Turrets/Turret3"), NodePath("Turrets/Turret4"), NodePath("Turrets/Turret5")]
+ui_turret = NodePath("../UITurret")
 
-[node name="Turret1" type="Camera3D" parent="TurretController" unique_id=1987414570]
+[node name="Turrets" type="Node3D" parent="TurretController" unique_id=1003223217]
+
+[node name="Turret1" type="Camera3D" parent="TurretController/Turrets" unique_id=1987414570]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.3875802, -4.573973)
 
-[node name="Turret2" type="Camera3D" parent="TurretController" unique_id=1939579556]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.3875802, -4.573973)
+[node name="Turret2" type="Camera3D" parent="TurretController/Turrets" unique_id=1939579556]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.2715473, 1.3875802, -4.573973)
 
-[node name="Turret3" type="Camera3D" parent="TurretController" unique_id=770100617]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.3875802, -4.573973)
+[node name="Turret3" type="Camera3D" parent="TurretController/Turrets" unique_id=770100617]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.9202322, 1.3875802, -4.573973)
 
-[node name="Turret4" type="Camera3D" parent="TurretController" unique_id=1121996116]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.3875802, -4.573973)
+[node name="Turret4" type="Camera3D" parent="TurretController/Turrets" unique_id=1121996116]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 2.6829805, -4.573973)
 
-[node name="Turret5" type="Camera3D" parent="TurretController" unique_id=248208429]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.3875802, -4.573973)
+[node name="Turret5" type="Camera3D" parent="TurretController/Turrets" unique_id=248208429]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.22641993, -4.573973)
+
+[node name="Shields" type="Node3D" parent="TurretController" unique_id=476083240]
+
+[node name="Shield1" parent="TurretController/Shields" unique_id=139325361 instance=ExtResource("11_yrtgi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.85, -8)
+
+[node name="Shield2" parent="TurretController/Shields" unique_id=2140698190 instance=ExtResource("11_yrtgi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 3.85, -8)
+
+[node name="Shield3" parent="TurretController/Shields" unique_id=304668607 instance=ExtResource("11_yrtgi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 3.85, -8)
+
+[node name="Shield4" parent="TurretController/Shields" unique_id=1908460044 instance=ExtResource("11_yrtgi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 3.85, -8)
+
+[node name="Shield5" parent="TurretController/Shields" unique_id=438865675 instance=ExtResource("11_yrtgi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.1, -8)
+
+[node name="Shield6" parent="TurretController/Shields" unique_id=406977879 instance=ExtResource("11_yrtgi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 3.1, -8)
+
+[node name="Shield7" parent="TurretController/Shields" unique_id=1843171661 instance=ExtResource("11_yrtgi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 3.1, -8)
+
+[node name="Shield8" parent="TurretController/Shields" unique_id=1577000910 instance=ExtResource("11_yrtgi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 3.1, -8)
+
+[node name="Shield9" parent="TurretController/Shields" unique_id=1314071120 instance=ExtResource("11_yrtgi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.3, -8)
+
+[node name="Shield10" parent="TurretController/Shields" unique_id=195238011 instance=ExtResource("11_yrtgi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 2.3, -8)
+
+[node name="Shield11" parent="TurretController/Shields" unique_id=1005247429 instance=ExtResource("11_yrtgi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 2.3, -8)
+
+[node name="Shield12" parent="TurretController/Shields" unique_id=1606204427 instance=ExtResource("11_yrtgi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 2.3, -8)
+
+[node name="UITurret" type="CanvasLayer" parent="." unique_id=1195384379]
+follow_viewport_enabled = true
+
+[node name="PanelContainer" type="Control" parent="UITurret" unique_id=1407579917]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UITurret/PanelContainer" unique_id=749844125]
+layout_mode = 0
+offset_left = 1420.0
+offset_top = 686.0
+offset_right = 1832.0
+offset_bottom = 994.0
+
+[node name="Label" type="Label" parent="UITurret/PanelContainer/VBoxContainer" unique_id=1100810982]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SHIELDS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="UITurret/PanelContainer/VBoxContainer" unique_id=1977215252]
+layout_mode = 2
+columns = 4
+
+[node name="Button1" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=2086058721]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/h_separation = 100
+
+[node name="Button2" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=831861905]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/h_separation = 100
+
+[node name="Button3" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=799410901]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/h_separation = 100
+
+[node name="Button4" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=1356661988]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/h_separation = 100
+
+[node name="Button5" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=111651759]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/h_separation = 100
+
+[node name="Button6" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=1448020801]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/h_separation = 100
+
+[node name="Button7" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=221120975]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/h_separation = 100
+
+[node name="Button8" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=349280577]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/h_separation = 100
+
+[node name="Button9" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=1811809901]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/h_separation = 100
+
+[node name="Button10" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=155160686]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/h_separation = 100
+
+[node name="Button11" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=1649125903]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/h_separation = 100
+
+[node name="Button12" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=401402610]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/h_separation = 100
 
 [connection signal="song_ended" from="Generator" to="LevelResumeMenu" method="show_all"]
