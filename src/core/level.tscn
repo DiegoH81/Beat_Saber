@@ -9,12 +9,16 @@
 [ext_resource type="PackedScene" uid="uid://dtygi3skufray" path="res://src/ui/level_resume/LevelResume.tscn" id="8_5mtdr"]
 [ext_resource type="PackedScene" uid="uid://dxs5oy71xll4b" path="res://src/ui/score/score_scene.tscn" id="8_kwtqq"]
 [ext_resource type="PackedScene" uid="uid://dlhrifcxktpp" path="res://src/ui/health_bar/HealthBar.tscn" id="9_5mtdr"]
+[ext_resource type="Script" uid="uid://drspf67ksj5rf" path="res://src/core/turret_controller.gd" id="10_n7fy3"]
 
-[node name="Level" type="Node3D" unique_id=814822109 node_paths=PackedStringArray("generator", "pause_menu", "turrets")]
+[node name="Level" type="Node3D" unique_id=814822109 node_paths=PackedStringArray("generator", "pause_menu", "turret_controller")]
 script = ExtResource("1_5kcgd")
 generator = NodePath("Generator")
+next_level_id = null
+own_id = null
 pause_menu = NodePath("PauseMenu")
-turrets = [NodePath("Turret1"), NodePath("Turret2"), NodePath("Turret3"), NodePath("Turret4"), NodePath("Turret5")]
+turret_controller = NodePath("TurretController")
+song_name = null
 
 [node name="Sun" type="DirectionalLight3D" parent="." unique_id=1999535529]
 transform = Transform3D(1, 0, 0, 0, 0.9241243, 0.38209203, 0, -0.38209203, 0.9241243, 0, 1.6036624, 2.25277)
@@ -39,19 +43,23 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 [node name="HealthBarUi" parent="." unique_id=631553282 instance=ExtResource("9_5mtdr")]
 transform = Transform3D(1.675, 0, 0, 0, 1.675, 0, 0, 0, 1.675, 2.7241406, 1.6579578, -5.3736553)
 
-[node name="Turret1" type="Camera3D" parent="." unique_id=1987414570]
+[node name="TurretController" type="Node" parent="." unique_id=173134273 node_paths=PackedStringArray("turrets")]
+script = ExtResource("10_n7fy3")
+turrets = [NodePath("Turret1"), NodePath("Turret2"), NodePath("Turret3"), NodePath("Turret4"), NodePath("Turret5")]
+
+[node name="Turret1" type="Camera3D" parent="TurretController" unique_id=1987414570]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.3875802, -4.573973)
 
-[node name="Turret2" type="Camera3D" parent="." unique_id=1939579556]
+[node name="Turret2" type="Camera3D" parent="TurretController" unique_id=1939579556]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.3875802, -4.573973)
 
-[node name="Turret3" type="Camera3D" parent="." unique_id=770100617]
+[node name="Turret3" type="Camera3D" parent="TurretController" unique_id=770100617]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.3875802, -4.573973)
 
-[node name="Turret4" type="Camera3D" parent="." unique_id=1121996116]
+[node name="Turret4" type="Camera3D" parent="TurretController" unique_id=1121996116]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.3875802, -4.573973)
 
-[node name="Turret5" type="Camera3D" parent="." unique_id=248208429]
+[node name="Turret5" type="Camera3D" parent="TurretController" unique_id=248208429]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.3875802, -4.573973)
 
 [connection signal="song_ended" from="Generator" to="LevelResumeMenu" method="show_all"]

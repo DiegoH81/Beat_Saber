@@ -8,7 +8,7 @@ class_name Level
 @export var own_id: String
 @export var spawn: Node3D
 @export var pause_menu: Node3D
-@export var turrets: Array[Node3D]
+@export var turret_controller: TurrentController
 var number: int = 0
 
 @export var song_name: String
@@ -18,9 +18,7 @@ func _ready() -> void:
 	ScoreManager.reset_score()
 	ScoreManager.misses_updated.connect(_on_misses_updated)
 	
-	
-	turrets[0].current = not multiplayer.is_server()
-		
+	turret_controller.changed_to_turret(0, not multiplayer.is_server())
 	
 func _enter_tree() -> void:
 	AudioManager.play_music(song_name)
