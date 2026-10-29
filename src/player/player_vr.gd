@@ -29,17 +29,27 @@ var _fade_alpha: float = 0.0
 
 func _ready() -> void:
 	ring.visible = false
+	
+	_setup_swords_local()
+
+	if not multiplayer.is_server():
+		set_process(false)
+		set_process_unhandled_input(false)
+		return
+
 	xr_interface = XRServer.find_interface("OpenXR")
 	
 	if xr_interface and xr_interface.is_initialized():
 		enable_vr_mode()
 	else:
 		enable_keyboard_mode()
-	
+
+func _setup_swords_local() -> void:
 	if sword_scene == null:
 		var sword_res: Resource = load("res://levels_data/test/sword_test.tscn")
-		right_sword.add_child(sword_res.instantiate())
-		left_sword.add_child(sword_res.instantiate())
+		if sword_res:
+			right_sword.add_child(sword_res.instantiate())
+			left_sword.add_child(sword_res.instantiate())
 	else:
 		right_sword.add_child(sword_scene.instantiate())
 		left_sword.add_child(sword_scene.instantiate())
@@ -64,27 +74,22 @@ func enable_vr_mode() -> void:
 	is_vr_active = true
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	get_viewport().use_xr = true
-	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
-	#rotation_target = Vector3.ZERO
-	#rotation = Vector3.ZERO
-	print("VR enabled")
+	print("VR enabled (Server)")
 
 func enable_keyboard_mode() -> void:
 	is_vr_active = false
 	get_viewport().use_xr = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
-	
 	rotation_target = Vector3.ZERO
 	rotation = Vector3.ZERO
-	print("WIMP on")
+	print("WIMP on (Server)")
 
 func _process(delta: float) -> void:
 	if not is_paused and right_hand.global_position.distance_to(left_hand.global_position) < 0.15:
 		ring.visible = true
 		timer -= delta
-		var mat:ShaderMaterial= ring.material_override as ShaderMaterial
+		var mat: ShaderMaterial = ring.material_override as ShaderMaterial
 		if mat != null:
 			mat.set_shader_parameter("progress", 1.0 - timer / HOLD_TIME)
 		if timer <= 0:
@@ -132,7 +137,7 @@ func fade_to(target: float, duration: float = 0.5) -> void:
 	if mat == null:
 		return
 
-	var target_alpha := 1.0 - target   # target 1.0 = normal, 0.0 = negro
+	var target_alpha := 1.0 - target
 	fade.visible = true
 
 	if duration > 0.0:

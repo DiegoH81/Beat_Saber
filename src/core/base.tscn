@@ -3,12 +3,14 @@
 [ext_resource type="Script" uid="uid://cdlgd1avnfpm0" path="res://src/core/base.gd" id="1_4xvqr"]
 [ext_resource type="PackedScene" uid="uid://dsucocti68co2" path="res://src/player/player_vr.tscn" id="2_4a1un"]
 
-[node name="Base" type="Node" unique_id=1959365744 node_paths=PackedStringArray("scene_container", "player_vr")]
+[node name="Base" type="Node" unique_id=1959365744 node_paths=PackedStringArray("scene_container")]
 script = ExtResource("1_4xvqr")
 scene_container = NodePath("SceneContainer")
-player_vr = NodePath("PlayerVR")
+player_scene = ExtResource("2_4a1un")
 
 [node name="SceneContainer" type="Node" parent="." unique_id=1876033211]
 
-[node name="PlayerVR" parent="." unique_id=1613388773 instance=ExtResource("2_4a1un")]
-move_speed = 2.0
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=740682676]
+_spawnable_scenes = PackedStringArray("uid://dsucocti68co2")
+spawn_path = NodePath("../SceneContainer")
+spawn_limit = 1
