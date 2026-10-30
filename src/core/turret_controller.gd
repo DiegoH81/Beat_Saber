@@ -2,6 +2,7 @@ extends Node
 class_name TurrentController
 
 @export var turrets: Array[Camera3D]
+@export var shields: Array[Node3D]
 
 @export var sensitivity: float = 0.002
 @export var min_pitch: float = -80.0
@@ -52,7 +53,6 @@ func setup_ray() -> void:
 	add_child(ray_timer)
 
 func _ready() -> void:
-	# Inicializar la malla del rayo en todos los pares (servidor y clientes)
 	setup_ray()
 
 	if multiplayer.is_server():
@@ -77,17 +77,14 @@ func draw_ray(origin: Vector3, end: Vector3) -> void:
 	if distance <= 0.001:
 		return
 
-	# Centrar el cilindro entre la cámara y el impacto.
 	ray_instance.global_position = (origin + end) / 2.0
 
-	# Orientar el eje Y del cilindro hacia el objetivo.
 	ray_instance.look_at(
 		ray_instance.global_position + direction,
 		Vector3.FORWARD
 	)
 	ray_instance.rotate_object_local(Vector3.RIGHT, PI / 2.0)
 
-	# Ajustar grosor y longitud.
 	ray_instance.scale = Vector3(
 		ray_thickness,
 		distance,
@@ -116,7 +113,6 @@ func raycast_from_camera() -> void:
 
 	var visual_origin := origin + current_turret.global_transform.basis * Vector3(0, -0.25, 0)
 	
-	# Transmitir el origen y el destino del rayo a todos los pares
 	draw_ray.rpc(visual_origin, end)
 
 func changed_to_turret(index: int, value: bool = true) -> void:
@@ -132,6 +128,29 @@ func changed_to_turret(index: int, value: bool = true) -> void:
 
 	pitch = current_turret.rotation.x
 
+@rpc("call_local", "any_peer", "reliable")
+func set_shield_visible(index: int, value: bool) -> void:
+	if index < 0 or index >= shields.size():
+		return
+	shields[index].visible = value
+
+var shield_pending: Dictionary = {}
+
+func active_shield(index: int) -> void:
+	if index < 0 or index >= shields.size():
+		return
+
+	if shields[index].visible or shield_pending.get(index, false):
+		return
+
+	shield_pending[index] = true
+	set_shield_visible.rpc(index, true)
+	await get_tree().create_timer(3.0).timeout
+	shield_pending[index] = false
+	set_shield_visible.rpc(index, false)
+
+
+
 func _input(event: InputEvent) -> void:
 	if current_turret == null:
 		return
@@ -139,12 +158,10 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var mouse_motion := event as InputEventMouseMotion
 
-		# Rotación horizontal.
 		current_turret.rotate_y(
 			-mouse_motion.relative.x * sensitivity
 		)
 
-		# Rotación vertical.
 		pitch -= mouse_motion.relative.y * sensitivity
 		pitch = clamp(
 			pitch,

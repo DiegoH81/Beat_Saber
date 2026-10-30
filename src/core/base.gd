@@ -3,7 +3,7 @@ extends Node
 @export var scene_container: Node
 @export var player_scene: PackedScene
 
-@export var server_ip: String = "127.0.0.1"
+@export var server_ip: String = "172.20.10.4"
 @export var port: int = 8910
 
 func _ready() -> void:

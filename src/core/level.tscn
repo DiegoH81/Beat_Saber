@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dlhrifcxktpp" path="res://src/ui/health_bar/HealthBar.tscn" id="9_5mtdr"]
 [ext_resource type="Script" uid="uid://drspf67ksj5rf" path="res://src/core/turret_controller.gd" id="10_n7fy3"]
 [ext_resource type="PackedScene" uid="uid://eul5gjh2l8cd" path="res://src/core/shield.tscn" id="11_yrtgi"]
+[ext_resource type="Script" uid="uid://c8egb0ix1ycxy" path="res://src/ui/ui_turret.gd" id="12_4502m"]
 
 [node name="Level" type="Node3D" unique_id=814822109 node_paths=PackedStringArray("generator", "pause_menu", "turret_controller")]
 script = ExtResource("1_5kcgd")
@@ -41,9 +42,10 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 [node name="HealthBarUi" parent="." unique_id=631553282 instance=ExtResource("9_5mtdr")]
 transform = Transform3D(1.675, 0, 0, 0, 1.675, 0, 0, 0, 1.675, 2.7241406, 1.6579578, -5.3736553)
 
-[node name="TurretController" type="Node" parent="." unique_id=173134273 node_paths=PackedStringArray("turrets", "ui_turret")]
+[node name="TurretController" type="Node" parent="." unique_id=173134273 node_paths=PackedStringArray("turrets", "shields", "ui_turret")]
 script = ExtResource("10_n7fy3")
 turrets = [NodePath("Turrets/Turret1"), NodePath("Turrets/Turret2"), NodePath("Turrets/Turret3"), NodePath("Turrets/Turret4"), NodePath("Turrets/Turret5")]
+shields = [NodePath("Shields/Shield1"), NodePath("Shields/Shield2"), NodePath("Shields/Shield3"), NodePath("Shields/Shield4"), NodePath("Shields/Shield5"), NodePath("Shields/Shield6"), NodePath("Shields/Shield7"), NodePath("Shields/Shield8"), NodePath("Shields/Shield9"), NodePath("Shields/Shield10"), NodePath("Shields/Shield11"), NodePath("Shields/Shield12")]
 ui_turret = NodePath("../UITurret")
 
 [node name="Turrets" type="Node3D" parent="TurretController" unique_id=1003223217]
@@ -67,42 +69,58 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 
 [node name="Shield1" parent="TurretController/Shields" unique_id=139325361 instance=ExtResource("11_yrtgi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.85, -8)
+visible = false
 
 [node name="Shield2" parent="TurretController/Shields" unique_id=2140698190 instance=ExtResource("11_yrtgi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 3.85, -8)
+visible = false
 
 [node name="Shield3" parent="TurretController/Shields" unique_id=304668607 instance=ExtResource("11_yrtgi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 3.85, -8)
+visible = false
 
 [node name="Shield4" parent="TurretController/Shields" unique_id=1908460044 instance=ExtResource("11_yrtgi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 3.85, -8)
+visible = false
 
 [node name="Shield5" parent="TurretController/Shields" unique_id=438865675 instance=ExtResource("11_yrtgi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.1, -8)
+visible = false
 
 [node name="Shield6" parent="TurretController/Shields" unique_id=406977879 instance=ExtResource("11_yrtgi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 3.1, -8)
+visible = false
 
 [node name="Shield7" parent="TurretController/Shields" unique_id=1843171661 instance=ExtResource("11_yrtgi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 3.1, -8)
+visible = false
 
 [node name="Shield8" parent="TurretController/Shields" unique_id=1577000910 instance=ExtResource("11_yrtgi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 3.1, -8)
+visible = false
 
 [node name="Shield9" parent="TurretController/Shields" unique_id=1314071120 instance=ExtResource("11_yrtgi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.3, -8)
+visible = false
 
 [node name="Shield10" parent="TurretController/Shields" unique_id=195238011 instance=ExtResource("11_yrtgi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 2.3, -8)
+visible = false
 
 [node name="Shield11" parent="TurretController/Shields" unique_id=1005247429 instance=ExtResource("11_yrtgi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 2.3, -8)
+visible = false
 
 [node name="Shield12" parent="TurretController/Shields" unique_id=1606204427 instance=ExtResource("11_yrtgi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 2.3, -8)
+visible = false
 
-[node name="UITurret" type="CanvasLayer" parent="." unique_id=1195384379]
+[node name="UITurret" type="CanvasLayer" parent="." unique_id=1195384379 node_paths=PackedStringArray("turret_controller", "shield_buttons_container", "turret_buttons_container")]
 follow_viewport_enabled = true
+script = ExtResource("12_4502m")
+turret_controller = NodePath("../TurretController")
+shield_buttons_container = NodePath("PanelContainer/VBoxContainer/GridContainer")
+turret_buttons_container = NodePath("PanelContainer/HBoxContainer")
 
 [node name="PanelContainer" type="Control" parent="UITurret" unique_id=1407579917]
 layout_mode = 3
@@ -190,4 +208,47 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_constants/h_separation = 100
 
+[node name="HBoxContainer" type="HBoxContainer" parent="UITurret/PanelContainer" unique_id=1577165955]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 791.0
+offset_top = 938.0
+offset_right = -713.0
+offset_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Button1" type="Button" parent="UITurret/PanelContainer/HBoxContainer" unique_id=1301875169]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "1"
+
+[node name="Button2" type="Button" parent="UITurret/PanelContainer/HBoxContainer" unique_id=755473761]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "2"
+
+[node name="Button3" type="Button" parent="UITurret/PanelContainer/HBoxContainer" unique_id=164964588]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "3"
+
+[node name="Button4" type="Button" parent="UITurret/PanelContainer/HBoxContainer" unique_id=272251392]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "4"
+
+[node name="Button5" type="Button" parent="UITurret/PanelContainer/HBoxContainer" unique_id=524354081]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "5"
+
 [connection signal="song_ended" from="Generator" to="LevelResumeMenu" method="show_all"]
+[connection signal="pressed" from="UITurret/PanelContainer/HBoxContainer/Button1" to="UITurret" method="_on_button_1_pressed"]
+[connection signal="pressed" from="UITurret/PanelContainer/HBoxContainer/Button2" to="UITurret" method="_on_button_2_pressed"]
+[connection signal="pressed" from="UITurret/PanelContainer/HBoxContainer/Button3" to="UITurret" method="_on_button_3_pressed"]
+[connection signal="pressed" from="UITurret/PanelContainer/HBoxContainer/Button4" to="UITurret" method="_on_button_4_pressed"]
+[connection signal="pressed" from="UITurret/PanelContainer/HBoxContainer/Button5" to="UITurret" method="_on_button_5_pressed"]

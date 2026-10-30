@@ -59,6 +59,10 @@ func _on_tutorial_button_pressed() -> void:
 	SceneManager.to_level("Tutorial")
 
 func _ready() -> void:
+	
+	if OS.has_feature("mobile"):
+		$CameraPath/CameraFollow/CameraPivot/Camera3D.current = true
+	
 	play_button.is_enabled = false
 	pop_up_3d.visible = true
 	if pop_up_3d.has_signal("popup_finished"):
