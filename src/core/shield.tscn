@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://eul5gjh2l8cd"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_n7fy3"]
-size = Vector3(0.5, 0.5, 0.25)
+[ext_resource type="PackedScene" uid="uid://cfsinj6tqu0bu" path="res://assets/shield.glb" id="1_o66iq"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_75kqj"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_n7fy3"]
 size = Vector3(0.5, 0.5, 0.25)
 
 [node name="Shield1" type="Node3D" unique_id=139325361]
@@ -15,5 +14,5 @@ collision_mask = 8
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1002939624]
 shape = SubResource("BoxShape3D_n7fy3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=679055025]
-mesh = SubResource("BoxMesh_75kqj")
+[node name="shield" parent="." unique_id=646380086 instance=ExtResource("1_o66iq")]
+transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.075, 0, 0, 0)
