@@ -113,7 +113,7 @@ transform = Transform3D(1, 0, 0, 0, 0.07423357, 0.9972409, 0, -0.9972409, 0.0742
 spot_angle = 25.943008
 
 [node name="Spawn" type="Node3D" parent="." index="14" unique_id=478347165]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.926, 5.956)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 5.956)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." index="15" unique_id=589746203]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2811193, 0)

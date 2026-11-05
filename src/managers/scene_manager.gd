@@ -22,6 +22,7 @@ func apply_remote_tracking(source_node: Node3D, target_node: Node3D) -> void:
 	remote_transform.update_rotation = true
 	remote_transform.update_scale = false
 	
+	
 	source_node.add_child(remote_transform)
 	
 	remote_transform.remote_path = target_node.get_path()
@@ -59,8 +60,8 @@ func to_menu() -> void:
 	scene_container.add_child(menu)
 	
 	var pivot_node: Node3D = null
-	if menu.has_node("camera_pivot"):
-		pivot_node = menu.get_node("camera_pivot") as Node3D
+	if menu.get_node("CameraPath/CameraFollow/CameraPivot") != null:
+		pivot_node = menu.get_node("CameraPath/CameraFollow/CameraPivot") as Node3D
 	elif "camera_pivot" in menu and is_instance_valid(menu.camera_pivot):
 		pivot_node = menu.camera_pivot
 		
@@ -72,7 +73,10 @@ func to_menu() -> void:
 	
 	if player_vr.has_method("fade_to"):
 		await player_vr.fade_to(1.0, 0.4)
-			
+	
+	player_vr.global_position.y -= 1
+	player_vr.global_rotation.y = deg_to_rad(180)
+	
 	current_scene = menu
 	
 func to_level(level_id: String) -> void:
@@ -109,8 +113,10 @@ func to_level(level_id: String) -> void:
 	
 	if level.spawn != null:
 		player_vr.global_position = level.spawn.global_position
+		player_vr.global_position.y -= 1
 		player_vr.rotation = level.spawn.rotation
 		apply_remote_tracking(level.spawn, player_vr)
+		
 	
 	var sword_res: Resource = load(LEVELS_PATH + "data/" + level_id + "/models/sword.glb")
 	if sword_res != null:

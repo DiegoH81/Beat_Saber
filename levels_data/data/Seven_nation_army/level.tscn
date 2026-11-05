@@ -41,11 +41,15 @@ gravity = Vector3(0, -0.3, 0)
 [sub_resource type="QuadMesh" id="QuadMesh_vonxh"]
 size = Vector2(0.1, 0.1)
 
-[node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient") instance=ExtResource("1_odwny")]
+[node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient", "spawn") instance=ExtResource("1_odwny")]
 ambient = NodePath("Ambient")
 own_id = "Seven_nation_army"
+spawn = NodePath("Spawn")
 
-[node name="Sun" parent="." index="0" unique_id=1999535529]
+[node name="Spawn" type="Node3D" parent="." index="0" unique_id=1337766404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.164, 0.7, 1.407)
+
+[node name="Sun" parent="." index="1" unique_id=1999535529]
 transform = Transform3D(1, 0, 0, 0, 0.9241243, 0.38209203, 0, -0.38209203, 0.9241243, 0, 12.631232, 19.603634)
 light_color = Color(0.31894612, 0.14888886, 0.11791409, 1)
 light_energy = 15.963
@@ -54,29 +58,29 @@ shadow_enabled = true
 shadow_bias = 0.7
 shadow_blur = 1.83
 
-[node name="Generator" parent="." index="1" unique_id=1789100008]
+[node name="Generator" parent="." index="2" unique_id=1789100008]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.33289146, 1.4412725, -57.45)
 skin_enemy = ExtResource("3_db73d")
 
-[node name="Destructor" parent="." index="2" unique_id=1128432705]
-transform = Transform3D(263.015, 0, 0, 0, 263.015, 0, 0, 0, 263.015, -0.16351968, 1.170938, 9.557748)
+[node name="Destructor" parent="." index="3" unique_id=1128432705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16351968, 1.170938, 9.557748)
 
-[node name="ScoreScene" parent="." index="3" unique_id=120538248]
+[node name="ScoreScene" parent="." index="4" unique_id=120538248]
 transform = Transform3D(0.8552113, 0, 0.5182795, 0, 1, 0, -0.5182795, 0, 0.8552113, -2.328691, 1.1407318, -4.105111)
 
-[node name="LevelResumeMenu" parent="." index="5" unique_id=1054654497]
+[node name="LevelResumeMenu" parent="." index="6" unique_id=1054654497]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.71468914, 0.55849034)
 
-[node name="HealthBarUi" parent="." index="6" unique_id=631553282]
+[node name="HealthBarUi" parent="." index="7" unique_id=631553282]
 transform = Transform3D(1.4327351, 0, -0.8676952, 0, 1.675, 0, 0.8676952, 0, 1.4327351, 3.0509274, 1.141, -4.105)
 
-[node name="lelvel3_remaster_FINAL" parent="." index="7" unique_id=530916776 instance=ExtResource("2_sg6mr")]
+[node name="lelvel3_remaster_FINAL" parent="." index="8" unique_id=530916776 instance=ExtResource("2_sg6mr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2802808, -8.249468, -7.784692)
 
-[node name="Ambient" type="WorldEnvironment" parent="." index="8" unique_id=269982581]
+[node name="Ambient" type="WorldEnvironment" parent="." index="9" unique_id=269982581]
 environment = SubResource("Environment_ty0te")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="9" unique_id=1796951815]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="10" unique_id=1796951815]
 transform = Transform3D(1.66, 0, 0, 0, 1.66, 0, 0, 0, 1.66, 0, 3.2811193, 0)
 material_override = SubResource("StandardMaterial3D_sg6mr")
 amount = 90
