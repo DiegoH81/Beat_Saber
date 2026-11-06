@@ -1,6 +1,8 @@
 extends Node
 class_name TurrentController
 
+@export var generator: Generator
+
 @export var turrets: Array[Camera3D]
 @export var shields: Array[Node3D]
 
@@ -110,10 +112,25 @@ func raycast_from_camera() -> void:
 
 	if not result.is_empty():
 		end = result["position"]
+		var enemy := _find_enemy(result["collider"])
+		if enemy and enemy.is_in_group(Generator.SPECIAL_GROUP):
+			destroy_special.rpc(enemy.get_meta("note_index", -1))
 
 	var visual_origin := origin + current_turret.global_transform.basis * Vector3(0, -0.25, 0)
 	
 	draw_ray.rpc(visual_origin, end)
+
+func _find_enemy(node: Node) -> Enemy:
+	while node:
+		if node is Enemy:
+			return node
+		node = node.get_parent()
+	return null
+
+@rpc("call_local", "any_peer", "reliable")
+func destroy_special(note_index: int) -> void:
+	if generator:
+		generator.destroy_note(note_index)
 
 func changed_to_turret(index: int, value: bool = true) -> void:
 	if index < 0 or index >= turrets.size():

@@ -125,7 +125,7 @@ func _try_reconnect() -> void:
 
 	if Time.get_ticks_msec() >= _reconnect_deadline_ms:
 		print("No se pudo reconectar en 30 segundos.")
-		cancel_reconnect()
+		_reconnecting = false
 		reconnect_failed.emit()
 		return
 
@@ -156,13 +156,7 @@ func _on_connected_to_server() -> void:
 	if peer:
 		var server_peer := peer.get_peer(1)
 		if server_peer:
-			# limit, mínimo ms, máximo ms
-			server_peer.set_timeout(32, 2000, 4000)
-
-
-func cancel_reconnect() -> void:
-	_reconnecting = false
-
+			server_peer.set_timeout(64, 5000, 10000)
 
 func _connect_to_server() -> void:
 	var peer := ENetMultiplayerPeer.new()

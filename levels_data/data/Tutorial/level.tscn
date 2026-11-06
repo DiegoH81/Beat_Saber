@@ -142,3 +142,6 @@ transform = Transform3D(0.99939084, 0, 0.034899496, 0, 1, 0, -0.034899496, 0, 0.
 
 [node name="HealthBarUi" parent="." index="12" unique_id=631553282]
 transform = Transform3D(1.4327351, 0, -0.8676952, 0, 1.675, 0, 0.8676952, 0, 1.4327351, 3.432, 1.141, -6.913)
+
+[node name="TurretController" parent="." index="13" unique_id=173134273 node_paths=PackedStringArray("generator")]
+generator = NodePath("../Generator")
