@@ -63,6 +63,22 @@ emission_enabled = true
 emission = Color(1, 0, 0.49803922, 1)
 emission_energy_multiplier = 2.5
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cclpn"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.26020932, 0.28298697, 0.28844103, 1)
+emission_energy_multiplier = 4.23
+
+[sub_resource type="TextMesh" id="TextMesh_b0jho"]
+material = SubResource("StandardMaterial3D_cclpn")
+text = "BEAT SABER"
+font_size = 12
+uppercase = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b0jho"]
+emission = Color(1, 0, 0.49803922, 1)
+emission_energy_multiplier = 2.5
+
 [sub_resource type="TextMesh" id="TextMesh_ty0te"]
 material = SubResource("StandardMaterial3D_4u3og")
 text = "LEVELS"
@@ -139,8 +155,9 @@ emission_enabled = true
 emission = Color(0.28281513, 0.15470442, 0.21746486, 1)
 emission_energy_multiplier = 1.85
 
-[node name="MainMenu3d" type="Node3D" unique_id=1344789317]
+[node name="MainMenu3d" type="Node3D" unique_id=1344789317 node_paths=PackedStringArray("ip")]
 script = ExtResource("1_mmd50")
+ip = NodePath("IP")
 
 [node name="CameraTargets" type="Node3D" parent="." unique_id=879519356]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5758348, 0.69954574, 3.2227178)
@@ -182,6 +199,11 @@ current = true
 transform = Transform3D(-0.8802697, -0.030591832, -0.47348642, -0.0018855383, 0.998137, -0.060983907, 0.4744699, -0.052789506, -0.8786874, -0.9785441, 1.0653158, -2.4267251)
 mesh = SubResource("TextMesh_w4mfu")
 surface_material_override/0 = SubResource("StandardMaterial3D_4u3og")
+
+[node name="IP" type="MeshInstance3D" parent="." unique_id=935852296]
+transform = Transform3D(-0.8802697, -0.030591832, -0.47348642, -0.0018855383, 0.998137, -0.060983907, 0.4744699, -0.052789506, -0.8786874, -0.9785441, 1.4007883, -2.0815558)
+mesh = SubResource("TextMesh_b0jho")
+surface_material_override/0 = SubResource("StandardMaterial3D_b0jho")
 
 [node name="TitleLevels" type="MeshInstance3D" parent="." unique_id=1252363944]
 transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, -7.61, 2.500217, 3.214)

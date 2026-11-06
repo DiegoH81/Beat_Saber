@@ -6,19 +6,68 @@ extends Node
 @export var server_ip: String = "172.20.10.4"
 @export var port: int = 8910
 
+const RECONNECT_TIMEOUT_MS : int = 30000
+const RECONNECT_RETRY_DELAY : float = 1.0
+
+var _reconnecting : bool = false
+var _reconnect_deadline_ms : float = 0
+
+
 func _ready() -> void:
 	if not OS.has_feature("mobile"):
 		_init_vr_server()
 		_start_server()
+		multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	else:
 		scene_container.child_entered_tree.connect(_on_client_child_entered_tree)
-		_connect_to_server()
+		multiplayer.server_disconnected.connect(_on_server_disconnected)
+		multiplayer.connection_failed.connect(_on_connection_failed)
+		multiplayer.connected_to_server.connect(_on_connected_to_server)
+		SceneManager.register_base(self)
+		SceneManager.register_scene_container(scene_container)
+		SceneManager.to_menu_s2()
 
 func _init_vr_server() -> void:
 	var xr_interface = XRServer.find_interface("OpenXR")
 	if xr_interface and xr_interface.is_initialized():
 		get_viewport().use_xr = true
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+
+func _on_peer_disconnected(id: int) -> void:
+	print("Cliente desconectado: ", id)
+	SceneManager.to_menu()
+
+func _on_server_disconnected() -> void:
+	if _reconnecting:
+		return
+	print("Conexión perdida, intentando reconectar...")
+	_reconnecting = true
+	_reconnect_deadline_ms = Time.get_ticks_msec() + RECONNECT_TIMEOUT_MS
+
+	# Para que se vuelva a registrar el jugador cuando reaparezca
+	if not scene_container.child_entered_tree.is_connected(_on_client_child_entered_tree):
+		scene_container.child_entered_tree.connect(_on_client_child_entered_tree)
+
+	_try_reconnect()
+
+func _try_reconnect() -> void:
+	if Time.get_ticks_msec() >= _reconnect_deadline_ms:
+		print("No se pudo reconectar en 30 segundos.")
+		_reconnecting = false
+		multiplayer.multiplayer_peer = null
+		SceneManager.to_menu_s2()
+	return
+
+func _on_connection_failed() -> void:
+	if not _reconnecting:
+		return
+	await get_tree().create_timer(RECONNECT_RETRY_DELAY).timeout
+	if _reconnecting:
+		_try_reconnect()
+
+func _on_connected_to_server() -> void:
+	print("Reconectado al servidor")
+	_reconnecting = false
 
 func _start_server() -> void:
 	var peer = ENetMultiplayerPeer.new()

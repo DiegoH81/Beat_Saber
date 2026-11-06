@@ -6,6 +6,12 @@ var player_vr: XROrigin3D = null
 var base: Node = null
 
 
+const MENU_S2_SCENE: PackedScene = preload("res://src/ui/main_menu/main_menu_s2.tscn")
+
+var menu_s2: Node = null
+var last_server_ip: String = ""  # la usa el menú y la reconexión
+
+
 @onready var first_scene: PackedScene = preload("res://src/ui/main_menu/main_menu_3D.tscn")
 const MENU_SCENE: PackedScene = preload("res://src/ui/main_menu/main_menu_3D.tscn")
 const LEVELS_PATH: String = "res://levels_data/"
@@ -40,9 +46,36 @@ func register_base(node: Node) -> void:
 
 func register_player(player: XROrigin3D) -> void:
 	player_vr = player
-	
-	if scene_container != null and current_scene == null:
+
+	var sin_escena := current_scene == null or not is_instance_valid(current_scene)
+	if scene_container != null and (sin_escena or current_scene == menu_s2):
 		to_menu()
+
+func to_menu_s2() -> void:
+	if not scene_container:
+		push_warning("SceneManager: to_menu_s2 sin scene_container.")
+		return
+
+	if is_instance_valid(player_vr) and player_vr.has_method("fade_to"):
+		await player_vr.fade_to(0.0, 0.4)
+
+	# Puede haberse liberado durante el fade o al desconectar
+	if not is_instance_valid(player_vr):
+		player_vr = null
+
+	for child in scene_container.get_children():
+		if child != player_vr:
+			child.queue_free()
+
+	var menu := MENU_S2_SCENE.instantiate()
+	scene_container.add_child(menu)
+
+	menu_s2 = menu
+	current_scene = menu
+
+	if player_vr and player_vr.has_method("fade_to"):
+		player_vr.fade_to(1.0, 0.4)
+
 
 func to_menu() -> void:
 	if not scene_container or not is_instance_valid(player_vr):
@@ -60,8 +93,8 @@ func to_menu() -> void:
 	scene_container.add_child(menu)
 	
 	var pivot_node: Node3D = null
-	if menu.get_node("CameraPath/CameraFollow/CameraPivot") != null:
-		pivot_node = menu.get_node("CameraPath/CameraFollow/CameraPivot") as Node3D
+	if menu.get_node_or_null("CameraPath/CameraFollow/CameraPivot") != null:
+		pivot_node = menu.get_node_or_null("CameraPath/CameraFollow/CameraPivot") as Node3D
 	elif "camera_pivot" in menu and is_instance_valid(menu.camera_pivot):
 		pivot_node = menu.camera_pivot
 		

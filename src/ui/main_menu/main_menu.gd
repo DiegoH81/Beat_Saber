@@ -13,6 +13,8 @@ extends Node3D
 @onready var pop_up_3d: Node3D = $PopUp3d
 @onready var play_button: Area3D = $PlayButton
 
+@export var ip: MeshInstance3D
+
 @onready var level_buttons: Dictionary = {
 	"Tutorial": $TutorialButton,
 	"Vivaldi_four_seasons": $VivaldiButton,
@@ -62,6 +64,18 @@ func _ready() -> void:
 	
 	if OS.has_feature("mobile"):
 		$CameraPath/CameraFollow/CameraPivot/Camera3D.current = true
+	elif multiplayer.is_server():
+		var _finding_ip: String = ""
+		for ip in IP.get_local_addresses():
+			# Solo IPv4 de red local (192.168.x.x, 172.16-31.x.x, 10.x.x.x)
+			if ip.begins_with("192.168.") or ip.begins_with("10."):
+				_finding_ip = ip
+			if ip.begins_with("172."):
+				var second := int(ip.split(".")[1])
+				if second >= 16 and second <= 31:
+					_finding_ip = ip
+		
+		(ip.mesh as TextMesh).text = "Pasa esta IP a tu amigo para jugar juntos: " + _finding_ip
 	
 	play_button.is_enabled = false
 	pop_up_3d.visible = true
