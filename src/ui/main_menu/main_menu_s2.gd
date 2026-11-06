@@ -7,22 +7,30 @@ extends Control
 
 const PORT := 8910
 
-# Orden de los 12 botones en el GridContainer
 const KEYS := ["1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "0", "DEL"]
+
 
 func _ready() -> void:
 	label_3.text = ""
-	# Desactivamos el teclado del sistema, porque ya usas el tuyo
 	line_edit.virtual_keyboard_enabled = false
+	line_edit.text = SceneManager.last_server_ip  # muestra la última IP usada
+
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.connection_failed.connect(_on_connection_failed)
 
-	# Conectar los 12 botones automáticamente
 	var children := numerical.get_children()
 	for i in mini(children.size(), KEYS.size()):
 		var b := children[i] as Button
 		if b:
 			b.pressed.connect(_on_key_pressed.bind(KEYS[i]))
+
+	if _is_auto_reconnecting():
+		label_3.text = "Reconectando a %s..." % SceneManager.last_server_ip
+
+
+func _is_auto_reconnecting() -> bool:
+	return is_instance_valid(SceneManager.base) and SceneManager.base.get("_reconnecting") == true
+
 
 func _on_key_pressed(key: String) -> void:
 	if key == "DEL":
@@ -34,6 +42,7 @@ func _on_key_pressed(key: String) -> void:
 		line_edit.insert_text_at_caret(key)
 	line_edit.grab_focus()
 
+
 func _on_button_pressed() -> void:
 	var ip := line_edit.text.strip_edges()
 
@@ -43,6 +52,15 @@ func _on_button_pressed() -> void:
 	if not ip.is_valid_ip_address():
 		_show_error("La IP no es válida.")
 		return
+
+	if is_instance_valid(SceneManager.base) and SceneManager.base.has_method("cancel_reconnect"):
+		SceneManager.base.cancel_reconnect()
+	SceneManager.last_server_ip = ip
+
+	# Cierra cualquier intento anterior
+	if multiplayer.multiplayer_peer != null:
+		multiplayer.multiplayer_peer.close()
+		multiplayer.multiplayer_peer = null
 
 	button.disabled = true
 	label_3.text = "Conectando..."
@@ -55,13 +73,21 @@ func _on_button_pressed() -> void:
 
 	multiplayer.multiplayer_peer = peer
 
+
 func _on_connected_to_server() -> void:
 	label_3.text = "Conectado"
-	SceneManager.to_menu()
+	# No llames a to_menu() aquí: el XROrigin3D todavía no ha aparecido.
+	# Cuando el servidor lo spawnee, la base llama a register_player(),
+	# y ahí se hace el cambio al menú normal.
+
 
 func _on_connection_failed() -> void:
 	multiplayer.multiplayer_peer = null
+	if _is_auto_reconnecting():
+		label_3.text = "Reconectando a %s..." % SceneManager.last_server_ip
+		return
 	_show_error("No se pudo conectar a esa IP. Revisa que el servidor esté activo.")
+
 
 func _show_error(message: String) -> void:
 	label_3.text = message

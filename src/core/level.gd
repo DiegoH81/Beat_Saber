@@ -17,7 +17,14 @@ var number: int = 0
 func _ready() -> void:
 	ScoreManager.reset_score()
 	ScoreManager.misses_updated.connect(_on_misses_updated)
-	
+	_setup_turrets.call_deferred()
+
+func _setup_turrets() -> void:
+	print("turret_controller: ", turret_controller)
+	print("is_server: ", multiplayer.is_server())
+	if not is_instance_valid(turret_controller):
+		push_warning("Level %s: turret_controller no asignado" % own_id)
+		return
 	turret_controller.changed_to_turret(0, not multiplayer.is_server())
 	
 func _enter_tree() -> void:

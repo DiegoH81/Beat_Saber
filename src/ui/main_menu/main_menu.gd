@@ -9,7 +9,6 @@ extends Node3D
 @onready var seven_nation_army_button: Area3D = $SevenNationArmyButton
 @onready var tutorial_button: Area3D = $TutorialButton
 
-
 @onready var pop_up_3d: Node3D = $PopUp3d
 @onready var play_button: Area3D = $PlayButton
 
@@ -22,7 +21,17 @@ extends Node3D
 	"Seven_nation_army": $SevenNationArmyButton,
 }
 
-# Transitions
+# Teclas -> nivel (para el toggle de debug)
+const KEY_LEVELS := {
+	KEY_1: "Vivaldi_four_seasons",
+	KEY_2: "Sing_Sing_Sing",
+	KEY_3: "Seven_nation_army",
+	KEY_4: "Tutorial",
+}
+
+
+# ───────────── Transiciones ─────────────
+
 func go_to_level_selector() -> void:
 	var tween = create_tween().set_parallel(true)
 
@@ -38,16 +47,20 @@ func go_to_level_selector() -> void:
 
 	await tween.finished
 
+
 func _refresh_level_buttons() -> void:
 	for level_id in level_buttons:
 		level_buttons[level_id].is_locked = not ProgressManager.is_unlocked(level_id)
 
 
-# Main menu
+# ───────────── Menú principal ─────────────
+
 func _on_play_button_pressed() -> void:
 	go_to_level_selector()
 
-# Level selector
+
+# ───────────── Selector de niveles ─────────────
+
 func _on_vivaldi_button_pressed() -> void:
 	SceneManager.to_level("Vivaldi_four_seasons")
 
@@ -60,48 +73,85 @@ func _on_seven_nation_army_button_pressed() -> void:
 func _on_tutorial_button_pressed() -> void:
 	SceneManager.to_level("Tutorial")
 
+
+# ───────────── Ready / Process ─────────────
+
 func _ready() -> void:
-	
 	if OS.has_feature("mobile"):
 		$CameraPath/CameraFollow/CameraPivot/Camera3D.current = true
 	elif multiplayer.is_server():
 		var _finding_ip: String = ""
-		for ip in IP.get_local_addresses():
+		for addr in IP.get_local_addresses():
 			# Solo IPv4 de red local (192.168.x.x, 172.16-31.x.x, 10.x.x.x)
-			if ip.begins_with("192.168.") or ip.begins_with("10."):
-				_finding_ip = ip
-			if ip.begins_with("172."):
-				var second := int(ip.split(".")[1])
+			if addr.begins_with("192.168.") or addr.begins_with("10."):
+				_finding_ip = addr
+			if addr.begins_with("172."):
+				var second := int(addr.split(".")[1])
 				if second >= 16 and second <= 31:
-					_finding_ip = ip
-		
+					_finding_ip = addr
+
 		(ip.mesh as TextMesh).text = "Pasa esta IP a tu amigo para jugar juntos: " + _finding_ip
-	
+
 	play_button.is_enabled = false
 	pop_up_3d.visible = true
 	if pop_up_3d.has_signal("popup_finished"):
 		pop_up_3d.popup_finished.connect(_on_popup_finished)
-		
+
 	ProgressManager.progress_changed.connect(_refresh_level_buttons)
 	_refresh_level_buttons()
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
-		match event.keycode:
-			KEY_1: ProgressManager.debug_toggle_level("Vivaldi_four_seasons")
-			KEY_2: ProgressManager.debug_toggle_level("Sing_Sing_Sing")
-			KEY_3: ProgressManager.debug_toggle_level("Seven_nation_army")
 
-func _process(delta: float) -> void:	
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("TEMPORAL_TEST"):
-		#SceneManager.to_level("Vivaldi_four_seasons")
 		SceneManager.to_level("Tutorial")
-	pass
 
 
 func _on_popup_finished() -> void:
 	play_button.is_enabled = true
 
 
-func _on_exit_button_area_entered(area: Area3D) -> void:
+func _on_exit_button_area_entered(_area: Area3D) -> void:
 	get_tree().quit()
+
+
+# ───────────── Teclas 1-4 sincronizadas por red ─────────────
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if KEY_LEVELS.has(event.keycode):
+			_request_toggle_level(KEY_LEVELS[event.keycode])
+
+
+func _has_remote_peers() -> bool:
+	return multiplayer.multiplayer_peer != null and not multiplayer.get_peers().is_empty()
+
+
+# Quien presiona la tecla llama aquí
+func _request_toggle_level(level_id: String) -> void:
+	if multiplayer.is_server():
+		# Servidor (o sin red): aplica y difunde a los clientes
+		_apply_toggle_level(level_id)
+		if _has_remote_peers():
+			_toggle_level_on_clients.rpc(level_id)
+	else:
+		# Cliente: pide al servidor que lo aplique y lo difunda
+		_toggle_level_on_server.rpc_id(1, level_id)
+
+
+# Cliente -> Servidor
+@rpc("any_peer", "call_remote", "reliable")
+func _toggle_level_on_server(level_id: String) -> void:
+	if not multiplayer.is_server():
+		return
+	_apply_toggle_level(level_id)
+	_toggle_level_on_clients.rpc(level_id)
+
+
+# Servidor -> Clientes
+@rpc("authority", "call_remote", "reliable")
+func _toggle_level_on_clients(level_id: String) -> void:
+	_apply_toggle_level(level_id)
+
+
+func _apply_toggle_level(level_id: String) -> void:
+	ProgressManager.debug_toggle_level(level_id)
