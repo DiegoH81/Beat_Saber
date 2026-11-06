@@ -13,10 +13,13 @@ const KEYS := ["1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "0", "DEL"]
 func _ready() -> void:
 	label_3.text = ""
 	line_edit.virtual_keyboard_enabled = false
-	line_edit.text = SceneManager.last_server_ip  # muestra la última IP usada
+	line_edit.text = SceneManager.last_server_ip
 
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.connection_failed.connect(_on_connection_failed)
+
+	if is_instance_valid(SceneManager.base) and SceneManager.base.has_signal("reconnect_failed"):
+		SceneManager.base.reconnect_failed.connect(_on_reconnect_failed)
 
 	var children := numerical.get_children()
 	for i in mini(children.size(), KEYS.size()):
@@ -57,7 +60,6 @@ func _on_button_pressed() -> void:
 		SceneManager.base.cancel_reconnect()
 	SceneManager.last_server_ip = ip
 
-	# Cierra cualquier intento anterior
 	if multiplayer.multiplayer_peer != null:
 		multiplayer.multiplayer_peer.close()
 		multiplayer.multiplayer_peer = null
@@ -76,9 +78,6 @@ func _on_button_pressed() -> void:
 
 func _on_connected_to_server() -> void:
 	label_3.text = "Conectado"
-	# No llames a to_menu() aquí: el XROrigin3D todavía no ha aparecido.
-	# Cuando el servidor lo spawnee, la base llama a register_player(),
-	# y ahí se hace el cambio al menú normal.
 
 
 func _on_connection_failed() -> void:
@@ -87,6 +86,11 @@ func _on_connection_failed() -> void:
 		label_3.text = "Reconectando a %s..." % SceneManager.last_server_ip
 		return
 	_show_error("No se pudo conectar a esa IP. Revisa que el servidor esté activo.")
+
+
+func _on_reconnect_failed() -> void:
+	multiplayer.multiplayer_peer = null
+	_show_error("No se pudo reconectar a %s. Revisa que el servidor esté activo." % SceneManager.last_server_ip)
 
 
 func _show_error(message: String) -> void:

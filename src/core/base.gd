@@ -6,15 +6,16 @@ extends Node
 @export var server_ip: String = "172.20.10.4"
 @export var port: int = 8910
 
-const RECONNECT_TIMEOUT_MS: int = 30000
+const RECONNECT_TIMEOUT_MS: int = 15000
 const RECONNECT_RETRY_DELAY: float = 1.0
 
 var _reconnecting: bool = false
 var _reconnect_deadline_ms: int = 0
 
 
+signal reconnect_failed
+
 func _ready() -> void:
-	# SceneManager es autoload y sobrevive al reload de escena: limpiar referencias viejas
 	SceneManager.reset()
 
 	if not OS.has_feature("mobile"):
@@ -32,7 +33,6 @@ func _ready() -> void:
 		SceneManager.to_menu_s2()
 
 
-# ───────────── SERVIDOR (VR) ─────────────
 
 func _init_vr_server() -> void:
 	var xr_interface = XRServer.find_interface("OpenXR")
@@ -42,7 +42,6 @@ func _init_vr_server() -> void:
 
 
 func _on_peer_connected(id: int) -> void:
-	# Mismo timeout que el cliente, para detectar rápido una caída
 	var peer := multiplayer.multiplayer_peer as ENetMultiplayerPeer
 	if peer:
 		var p := peer.get_peer(id)
@@ -52,12 +51,10 @@ func _on_peer_connected(id: int) -> void:
 
 func _on_peer_disconnected(id: int) -> void:
 	print("Cliente desconectado: ", id)
-	# Diferido: no conviene recargar la escena dentro de la señal de red
 	_reset_server.call_deferred()
 
 
 func _reset_server() -> void:
-	# Cierra el servidor para liberar el puerto antes de que _ready() lo vuelva a abrir
 	var peer := multiplayer.multiplayer_peer
 	if peer:
 		peer.close()
@@ -95,7 +92,6 @@ func _spawn_and_register_server_player() -> void:
 		SceneManager.register_scene_container(scene_container)
 
 
-# ───────────── CLIENTE (MÓVIL) ─────────────
 
 func _on_server_disconnected() -> void:
 	if _reconnecting:
@@ -103,18 +99,15 @@ func _on_server_disconnected() -> void:
 	print("Conexión perdida, volviendo al menú e intentando reconectar...")
 	multiplayer.multiplayer_peer = null
 
-	# Elimina restos del jugador replicado y suelta la referencia
 	for c in scene_container.get_children():
 		if c is XROrigin3D:
 			c.queue_free()
 	SceneManager.player_vr = null
 	SceneManager.current_scene = null
 
-	# Para que el jugador se registre de nuevo cuando reaparezca
 	if not scene_container.child_entered_tree.is_connected(_on_client_child_entered_tree):
 		scene_container.child_entered_tree.connect(_on_client_child_entered_tree)
 
-	# _reconnecting va ANTES del menú, para que el menú S2 muestre "Reconectando..."
 	var should_reconnect := not SceneManager.last_server_ip.is_empty()
 	if should_reconnect:
 		_reconnecting = true
@@ -133,6 +126,7 @@ func _try_reconnect() -> void:
 	if Time.get_ticks_msec() >= _reconnect_deadline_ms:
 		print("No se pudo reconectar en 30 segundos.")
 		cancel_reconnect()
+		reconnect_failed.emit()
 		return
 
 	var peer := ENetMultiplayerPeer.new()
@@ -166,7 +160,6 @@ func _on_connected_to_server() -> void:
 			server_peer.set_timeout(32, 2000, 4000)
 
 
-# La llama el menú S2 si el usuario conecta manualmente
 func cancel_reconnect() -> void:
 	_reconnecting = false
 
