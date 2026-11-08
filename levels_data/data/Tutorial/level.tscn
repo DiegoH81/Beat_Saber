@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://daa44nekfuap2" path="res://levels_data/data/Tutorial/text_nodes.gd" id="5_u0wma"]
 [ext_resource type="PackedScene" uid="uid://3c0a18cfunlu" path="res://src/ui/pop_ups/PopUp3D.tscn" id="6_hv737"]
 [ext_resource type="Texture2D" uid="uid://bk7wdwy1ln2iq" path="res://assets/img/TUT_2.png" id="7_tvfrh"]
+[ext_resource type="Script" uid="uid://bqk5krt03u502" path="res://levels_data/data/Tutorial/network.gd" id="8_t3j66"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3ahog"]
 sky_top_color = Color(0.47843137, 0.18039216, 0.28627452, 1)
@@ -145,3 +146,7 @@ transform = Transform3D(1.4327351, 0, -0.8676952, 0, 1.675, 0, 0.8676952, 0, 1.4
 
 [node name="TurretController" parent="." index="13" unique_id=173134273 node_paths=PackedStringArray("generator")]
 generator = NodePath("../Generator")
+
+[node name="Network" type="Node" parent="." index="15" unique_id=1512024474 node_paths=PackedStringArray("turret_controller")]
+script = ExtResource("8_t3j66")
+turret_controller = NodePath("../TurretController")
