@@ -192,7 +192,7 @@ rotation_mode = 0
 transform = Transform3D(-0.89497095, -1.8627506e-09, 0.44613546, -0.029441267, 0.9978581, -0.059060715, -0.44516695, -0.0659905, -0.893028, 0.00752759, -0.0077883005, -0.0034508705)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPath/CameraFollow/CameraPivot" unique_id=1036689133]
-transform = Transform3D(0.5980837, 0.03553027, 0.80065703, -0.059164405, 0.9982555, -0.00010346621, -0.7992549, -0.047308102, 0.59913725, 0, 0, 0)
+transform = Transform3D(0.5980836, 0.035530064, 0.80065364, -0.059164394, 0.9982555, -0.000103313476, -0.7992548, -0.04730783, 0.5991416, -0.01939106, 0.65722287, -0.038899183)
 current = true
 
 [node name="TitleMainMenu" type="MeshInstance3D" parent="." unique_id=999181946]
@@ -202,6 +202,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_4u3og")
 
 [node name="IP" type="MeshInstance3D" parent="." unique_id=935852296]
 transform = Transform3D(-0.8802697, -0.030591832, -0.47348642, -0.0018855383, 0.998137, -0.060983907, 0.4744699, -0.052789506, -0.8786874, -0.9785441, 1.4007883, -2.0815558)
+visible = false
 mesh = SubResource("TextMesh_b0jho")
 surface_material_override/0 = SubResource("StandardMaterial3D_b0jho")
 
