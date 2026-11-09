@@ -33,7 +33,6 @@ func _ready() -> void:
 		SceneManager.to_menu_s2()
 
 
-
 func _init_vr_server() -> void:
 	var xr_interface = XRServer.find_interface("OpenXR")
 	if xr_interface and xr_interface.is_initialized():
@@ -47,6 +46,10 @@ func _on_peer_connected(id: int) -> void:
 		var p := peer.get_peer(id)
 		if p:
 			p.set_timeout(32, 2000, 4000)
+
+	# Late join: si el host ya está en un nivel, el cliente que acaba de
+	# conectarse debe ir al mismo nivel.
+	SceneManager.sync_state_to(id)
 
 
 func _on_peer_disconnected(id: int) -> void:
@@ -87,10 +90,11 @@ func _spawn_and_register_server_player() -> void:
 	scene_container.add_child(player_instance, true)
 
 	if player_instance is XROrigin3D:
-		SceneManager.register_player(player_instance)
+		# El jugador va el ÚLTIMO: register_player dispara el arranque (to_menu)
+		# una sola vez, con todo ya registrado.
 		SceneManager.register_base(self)
 		SceneManager.register_scene_container(scene_container)
-
+		SceneManager.register_player(player_instance)
 
 
 func _on_server_disconnected() -> void:
@@ -102,8 +106,7 @@ func _on_server_disconnected() -> void:
 	for c in scene_container.get_children():
 		if c is XROrigin3D:
 			c.queue_free()
-	SceneManager.player_vr = null
-	SceneManager.current_scene = null
+	SceneManager.on_connection_lost()
 
 	if not scene_container.child_entered_tree.is_connected(_on_client_child_entered_tree):
 		scene_container.child_entered_tree.connect(_on_client_child_entered_tree)
@@ -124,7 +127,7 @@ func _try_reconnect() -> void:
 		return
 
 	if Time.get_ticks_msec() >= _reconnect_deadline_ms:
-		print("No se pudo reconectar en 30 segundos.")
+		print("No se pudo reconectar en %d segundos." % (RECONNECT_TIMEOUT_MS / 1000))
 		_reconnecting = false
 		reconnect_failed.emit()
 		return
@@ -158,6 +161,7 @@ func _on_connected_to_server() -> void:
 		if server_peer:
 			server_peer.set_timeout(64, 5000, 10000)
 
+
 func _connect_to_server() -> void:
 	var peer := ENetMultiplayerPeer.new()
 	var error := peer.create_client(server_ip, port)
@@ -169,13 +173,17 @@ func _connect_to_server() -> void:
 	print("Cliente conectándose a ", server_ip, ":", port)
 
 
+# OJO: el único XROrigin3D que existe en el cliente es el jugador "1" replicado
+# por el MultiplayerSpawner, y ese es el que usa el cliente. No filtrar por
+# multiplayer.get_unique_id().
 func _on_client_child_entered_tree(node: Node) -> void:
 	if node is XROrigin3D:
 		_setup_client_spectator_camera(node)
 
-		SceneManager.register_player(node)
+		# El jugador va el ÚLTIMO para que el arranque ocurra una sola vez.
 		SceneManager.register_base(self)
 		SceneManager.register_scene_container(scene_container)
+		SceneManager.register_player(node)
 
 		if scene_container.child_entered_tree.is_connected(_on_client_child_entered_tree):
 			scene_container.child_entered_tree.disconnect(_on_client_child_entered_tree)

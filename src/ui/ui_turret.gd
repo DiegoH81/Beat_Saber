@@ -3,6 +3,7 @@ extends CanvasLayer
 @export var turret_controller: TurrentController
 @export var shield_buttons_container: GridContainer
 @export var turret_buttons_container: HBoxContainer
+@export var shot_button: Button
 
 func _ready() -> void:
 	_connect_shield_buttons()
@@ -33,3 +34,7 @@ func _on_shield_button_pressed(index: int) -> void:
 
 func _on_turret_button_pressed(index: int) -> void:
 	turret_controller.changed_to_turret(index)
+
+
+func _on_shot_pressed() -> void:
+	turret_controller.raycast_from_camera()

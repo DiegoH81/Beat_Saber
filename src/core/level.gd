@@ -26,7 +26,7 @@ func _setup_turrets() -> void:
 		push_warning("Level %s: turret_controller no asignado" % own_id)
 		return
 	turret_controller.changed_to_turret(0, not multiplayer.is_server())
-	
+
 func _enter_tree() -> void:
 	AudioManager.play_music(song_name)
 	VisualManager.register_world_env(ambient)
@@ -45,7 +45,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif number == 3:
 			VisualManager.change_shader("new_dec")
 			number=0
-	
+
 	if event.is_action_pressed("f_button"):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -57,13 +57,15 @@ func _on_misses_updated(value: int) -> void:
 		ScoreManager.misses_updated.disconnect(_on_misses_updated)
 		_restart_level()
 
+# request_*: lo pide cualquier peer, pero lo decide el host y lo ejecutan todos.
+# Si host y cliente lo detectan a la vez, el servidor ignora la petición repetida.
 func _to_next_level() -> void:
 	ProgressManager.complete_level(own_id)
 	if not next_level_id.is_empty():
-		SceneManager.to_level(next_level_id)
+		SceneManager.request_level(next_level_id)
 		return
-	SceneManager.to_menu()
-	
+	SceneManager.request_menu()
+
 
 func _restart_level() -> void:
-	SceneManager.to_level.call_deferred(own_id)
+	SceneManager.request_level.call_deferred(own_id)

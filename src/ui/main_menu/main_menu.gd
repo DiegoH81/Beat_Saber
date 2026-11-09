@@ -60,18 +60,19 @@ func _on_play_button_pressed() -> void:
 
 
 # ───────────── Selector de niveles ─────────────
+# request_level: el host decide y TODOS los peers cargan el nivel.
 
 func _on_vivaldi_button_pressed() -> void:
-	SceneManager.to_level("Vivaldi_four_seasons")
+	SceneManager.request_level("Vivaldi_four_seasons")
 
 func _on_sing_sing_sing_pressed() -> void:
-	SceneManager.to_level("Sing_Sing_Sing")
+	SceneManager.request_level("Sing_Sing_Sing")
 
 func _on_seven_nation_army_button_pressed() -> void:
-	SceneManager.to_level("Seven_nation_army")
+	SceneManager.request_level("Seven_nation_army")
 
 func _on_tutorial_button_pressed() -> void:
-	SceneManager.to_level("Tutorial")
+	SceneManager.request_level("Tutorial")
 
 
 # ───────────── Ready / Process ─────────────
@@ -103,7 +104,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("TEMPORAL_TEST"):
-		SceneManager.to_level("Tutorial")
+		SceneManager.request_level("Tutorial")
 
 
 func _on_popup_finished() -> void:

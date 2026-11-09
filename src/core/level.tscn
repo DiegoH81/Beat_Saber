@@ -115,12 +115,13 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 2.3, -8)
 visible = false
 
-[node name="UITurret" type="CanvasLayer" parent="." unique_id=1195384379 node_paths=PackedStringArray("turret_controller", "shield_buttons_container", "turret_buttons_container")]
+[node name="UITurret" type="CanvasLayer" parent="." unique_id=1195384379 node_paths=PackedStringArray("turret_controller", "shield_buttons_container", "turret_buttons_container", "shot_button")]
 follow_viewport_enabled = true
 script = ExtResource("12_4502m")
 turret_controller = NodePath("../TurretController")
 shield_buttons_container = NodePath("PanelContainer/VBoxContainer/GridContainer")
 turret_buttons_container = NodePath("PanelContainer/HBoxContainer")
+shot_button = NodePath("PanelContainer/Shot")
 
 [node name="PanelContainer" type="Control" parent="UITurret" unique_id=1407579917]
 layout_mode = 3
@@ -246,9 +247,19 @@ custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 text = "5"
 
+[node name="Shot" type="Button" parent="UITurret/PanelContainer" unique_id=1595118629]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 0
+offset_left = 107.0
+offset_top = 715.0
+offset_right = 407.0
+offset_bottom = 1015.0
+text = "SHOT"
+
 [connection signal="song_ended" from="Generator" to="LevelResumeMenu" method="show_all"]
 [connection signal="pressed" from="UITurret/PanelContainer/HBoxContainer/Button1" to="UITurret" method="_on_button_1_pressed"]
 [connection signal="pressed" from="UITurret/PanelContainer/HBoxContainer/Button2" to="UITurret" method="_on_button_2_pressed"]
 [connection signal="pressed" from="UITurret/PanelContainer/HBoxContainer/Button3" to="UITurret" method="_on_button_3_pressed"]
 [connection signal="pressed" from="UITurret/PanelContainer/HBoxContainer/Button4" to="UITurret" method="_on_button_4_pressed"]
 [connection signal="pressed" from="UITurret/PanelContainer/HBoxContainer/Button5" to="UITurret" method="_on_button_5_pressed"]
+[connection signal="pressed" from="UITurret/PanelContainer/Shot" to="UITurret" method="_on_shot_pressed"]
