@@ -8,6 +8,12 @@ const TURRET_CAMERA_OFFSET := Vector3(-0.14, 0.68, 1.62)
 const TURRET_CAMERA_MIN_HEIGHT := 0.30
 const RAIL_MUZZLE_POINT := Vector3(0.0, 1.9134, 3.1176)
 const CADENCE_BOOST_MS := 5000
+const SHIELD_DURATION := 3.0
+const STATION_ATTACK_INTERVAL := 18.0
+const STATION_WARNING_TIME := 2.2
+const STATION_RECOVERY_TIME := 5.0
+
+enum StationState { READY, WARNING, OFFLINE }
 
 @export var generator: Generator
 
@@ -22,6 +28,7 @@ signal ammo_changed(current: int, max: int)
 signal buff_collected(kind: String, ammo_gained: int)
 signal turret_changed(index: int)
 signal shield_changed(button_index: int, active: bool)
+signal station_attack_changed(index: int, state: StationState)
 
 @export var max_ammo: int = 35
 @export var fire_cooldown: float = 0.22
@@ -57,6 +64,10 @@ var _muzzle_glow: MeshInstance3D
 var _muzzle_glow_tween: Tween
 var _shield_shake_tween: Tween
 var _glow_texture: GradientTexture2D
+var _station_song: Generator
+var _station_state := StationState.READY
+var _station_target := -1
+var _station_timer := STATION_ATTACK_INTERVAL
 
 @export var ui_turret: CanvasLayer
 
@@ -185,12 +196,73 @@ func _setup_turret_visual() -> void:
 	lift_motion.tween_property(lift, "position:y", 0.0, 1.6)
 
 func _process(_delta: float) -> void:
+	_update_station_attack(_delta)
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		_mouse_shooting = false
 		_set_mouse_zooming(false)
 		return
 	if _mouse_shooting:
 		raycast_from_camera()
+
+func start_station_attacks(song: Generator) -> void:
+	if not multiplayer.is_server() and turrets.size() > 1:
+		_station_song = song
+		song.song_ended.connect(_stop_station_attacks, CONNECT_ONE_SHOT)
+
+func _stop_station_attacks() -> void:
+	_station_song = null
+	if _station_target >= 0:
+		_set_station_state(StationState.READY)
+	_station_target = -1
+
+func _update_station_attack(delta: float) -> void:
+	if not is_instance_valid(_station_song) or not _station_song.can_process():
+		return
+	_station_timer -= delta
+	if _station_timer > 0.0:
+		return
+
+	match _station_state:
+		StationState.READY:
+			_station_target = current_index
+			_station_timer = STATION_WARNING_TIME
+			_set_station_state(StationState.WARNING)
+		StationState.WARNING:
+			_station_timer = STATION_RECOVERY_TIME
+			_set_station_state(StationState.OFFLINE)
+			_show_station_blast(_turret_mounts[_station_target].origin)
+			if current_index == _station_target:
+				changed_to_turret(_next_available_station(1))
+				_shake_camera(Vector2(0.085, 0.05), 0.32)
+		StationState.OFFLINE:
+			_set_station_state(StationState.READY)
+			_station_target = -1
+			_station_timer = STATION_ATTACK_INTERVAL
+
+func _set_station_state(state: StationState) -> void:
+	_station_state = state
+	station_attack_changed.emit(_station_target, state)
+
+func _station_is_offline(index: int) -> bool:
+	return _station_state == StationState.OFFLINE and index == _station_target
+
+func _next_available_station(direction: int) -> int:
+	var index := posmod(current_index + direction, turrets.size())
+	if _station_is_offline(index):
+		index = posmod(index + direction, turrets.size())
+	return index
+
+func _show_station_blast(origin: Vector3) -> void:
+	var blast := MeshInstance3D.new()
+	blast.mesh = _make_halo(Vector2(3.0, 3.0), Color(1.0, 0.36, 0.08, 0.9))
+	blast.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	blast.scale = Vector3.ONE * 0.25
+	add_child(blast)
+	blast.global_position = origin + Vector3.UP * 0.55
+	var motion := blast.create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	motion.tween_property(blast, "scale", Vector3.ONE * 1.35, 0.33)
+	motion.parallel().tween_property(blast.mesh.material, "albedo_color:a", 0.0, 0.33)
+	motion.tween_callback(blast.queue_free)
 
 func _set_mouse_zooming(zooming: bool) -> void:
 	if _mouse_zooming == zooming:
@@ -311,6 +383,9 @@ func _flash_muzzle() -> void:
 	_muzzle_glow_tween.tween_property(_muzzle_glow, "scale", Vector3.ONE * 0.38, 0.12)
 
 func play_shield_impact() -> void:
+	_shake_camera(Vector2(0.045, 0.028), 0.22)
+
+func _shake_camera(strength: Vector2, duration: float) -> void:
 	if not is_instance_valid(current_turret) or not current_turret.is_current():
 		return
 	if _shield_shake_tween and _shield_shake_tween.is_running():
@@ -321,9 +396,9 @@ func play_shield_impact() -> void:
 	_shield_shake_tween = camera.create_tween()
 	_shield_shake_tween.tween_method(func(progress: float) -> void:
 		var falloff := pow(1.0 - progress, 2.0)
-		camera.h_offset = resting_offset.x + cos(progress * TAU * 3.0) * 0.035 * falloff
-		camera.v_offset = resting_offset.y + sin(progress * TAU * 2.0) * 0.020 * falloff,
-		0.0, 1.0, 0.20)
+		camera.h_offset = resting_offset.x + cos(progress * TAU * 3.0) * strength.x * falloff
+		camera.v_offset = resting_offset.y + sin(progress * TAU * 2.0) * strength.y * falloff,
+		0.0, 1.0, duration)
 
 func _reload() -> void:
 	if _reloading or ammo >= max_ammo:
@@ -389,7 +464,7 @@ func destroy_special(note_index: int) -> void:
 		generator.destroy_note(note_index)
 
 func changed_to_turret(index: int, value: bool = true) -> void:
-	if index < 0 or index >= turrets.size():
+	if index < 0 or index >= turrets.size() or _station_is_offline(index):
 		return
 
 	if current_turret:
@@ -422,6 +497,19 @@ func set_shield_visible(index: int, value: bool) -> void:
 	shields[index].visible = value
 	shield_changed.emit(_shield_index(index), value)
 
+func place_shields_on_lanes(lane_points: Array[Node3D], beam_direction: Vector3) -> void:
+	for lane in range(mini(lane_points.size(), shields.size())):
+		var shield := shields[_shield_index(lane)]
+		var start := lane_points[lane].global_position
+		var distance := beam_direction.dot(shield.global_position - start)
+		shield.global_position = start + beam_direction * distance
+
+func shield_distance(lane: int, start: Vector3, direction: Vector3) -> float:
+	var index := _shield_index(lane)
+	if index < 0 or index >= shields.size():
+		return 0.0
+	return direction.dot(shields[index].global_position - start)
+
 var shield_pending: Dictionary = {}
 
 func active_shield(index: int) -> void:
@@ -434,7 +522,7 @@ func active_shield(index: int) -> void:
 
 	shield_pending[index] = true
 	set_shield_visible.rpc(index, true)
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(SHIELD_DURATION).timeout
 	shield_pending[index] = false
 	set_shield_visible.rpc(index, false)
 
@@ -491,12 +579,10 @@ func _input(event: InputEvent) -> void:
 		_set_recoil_pitch(_recoil_pitch)
 
 	elif event.is_action_pressed("left_arrow"):
-		changed_to_turret((current_index + 1) % turrets.size())
+		changed_to_turret(_next_available_station(1))
 
 	elif event.is_action_pressed("right_arrow"):
-		changed_to_turret(
-			(current_index - 1 + turrets.size()) % turrets.size()
-		)
+		changed_to_turret(_next_available_station(-1))
 		
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

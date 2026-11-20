@@ -24,6 +24,7 @@ var _time: float = 0.0
 var _next_id: int = 0
 var _spawn_center: Vector3
 var _spawn_right: Vector3
+var _halo_texture: GradientTexture2D
 
 
 func _ready() -> void:
@@ -70,23 +71,78 @@ func _style_powerup(obj: Node3D, kind: String) -> void:
 	material.albedo_color = tint
 	material.emission_enabled = true
 	material.emission = tint
-	material.emission_energy_multiplier = 0.8
-	material.roughness = 0.75
+	material.emission_energy_multiplier = 0.65
+	material.roughness = 0.5
 	for child in obj.get_children():
 		if child is MeshInstance3D:
-			child.material_override = material
-			match kind:
-				RATE:
-					var diamond := BoxMesh.new()
-					diamond.size = Vector3(0.7, 0.7, 0.6)
-					child.mesh = diamond
-					child.rotation.z = PI / 4.0
-				SCORE:
-					var ring := TorusMesh.new()
-					ring.inner_radius = 0.29
-					ring.outer_radius = 0.52
-					child.mesh = ring
-					child.rotation.x = PI / 2.0
+			child.free()
+
+	match kind:
+		AMMO:
+			var cell := CylinderMesh.new()
+			cell.top_radius = 0.19
+			cell.bottom_radius = 0.19
+			cell.height = 0.68
+			cell.radial_segments = 8
+			_add_piece(obj, cell, material, Vector3.ZERO)
+			var cap := CylinderMesh.new()
+			cap.top_radius = 0.27
+			cap.bottom_radius = 0.27
+			cap.height = 0.11
+			cap.radial_segments = 8
+			var casing := StandardMaterial3D.new()
+			casing.albedo_color = Color(0.19, 0.30, 0.24)
+			casing.emission_enabled = true
+			casing.emission = tint * 0.16
+			for y in [-0.38, 0.38]:
+				_add_piece(obj, cap, casing, Vector3(0, y, 0))
+		RATE:
+			var rail := BoxMesh.new()
+			rail.size = Vector3(0.43, 0.13, 0.23)
+			for y in [-0.25, 0.15]:
+				_add_piece(obj, rail, material, Vector3(-0.16, y, 0), Vector3(0, 0, 0.62))
+				_add_piece(obj, rail, material, Vector3(0.16, y, 0), Vector3(0, 0, -0.62))
+		SCORE:
+			var ring := TorusMesh.new()
+			ring.inner_radius = 0.17
+			ring.outer_radius = 0.30
+			ring.rings = 24
+			ring.ring_segments = 8
+			_add_piece(obj, ring, material, Vector3(-0.18, -0.10, 0), Vector3(PI / 2.0, -0.2, 0))
+			_add_piece(obj, ring, material, Vector3(0.18, 0.10, 0.03), Vector3(PI / 2.0, 0.2, 0))
+
+	_add_powerup_halo(obj, tint)
+
+func _add_piece(parent: Node3D, mesh: Mesh, material: Material, offset: Vector3, angles: Vector3 = Vector3.ZERO) -> void:
+	var piece := MeshInstance3D.new()
+	piece.mesh = mesh
+	piece.material_override = material
+	piece.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	piece.position = offset
+	piece.rotation = angles
+	parent.add_child(piece)
+
+func _add_powerup_halo(obj: Node3D, tint: Color) -> void:
+	if _halo_texture == null:
+		var fade := Gradient.new()
+		fade.offsets = PackedFloat32Array([0.0, 0.4, 1.0])
+		fade.colors = PackedColorArray([Color(1, 1, 1, 0.62), Color(1, 1, 1, 0.22), Color(1, 1, 1, 0)])
+		_halo_texture = GradientTexture2D.new()
+		_halo_texture.gradient = fade
+		_halo_texture.fill = GradientTexture2D.FILL_RADIAL
+		_halo_texture.fill_from = Vector2(0.5, 0.5)
+		_halo_texture.fill_to = Vector2(1.0, 0.5)
+
+	var halo_material := StandardMaterial3D.new()
+	halo_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	halo_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	halo_material.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+	halo_material.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
+	halo_material.albedo_texture = _halo_texture
+	halo_material.albedo_color = Color(tint, 0.42)
+	var halo := QuadMesh.new()
+	halo.size = Vector2(1.55, 1.55)
+	_add_piece(obj, halo, halo_material, Vector3.ZERO)
 
 
 func _on_object_removed(obj: Node3D) -> void:

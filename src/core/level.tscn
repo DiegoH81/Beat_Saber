@@ -22,7 +22,7 @@ streams_count = 1
 stream_0/stream = ExtResource("14_gun")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ShieldActive"]
-bg_color = Color(0.87, 0.84, 0.76, 1)
+bg_color = Color(0.24, 0.34, 0.32, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -236,71 +236,64 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -322.0
-offset_top = -213.0
+offset_left = -394.0
+offset_top = -188.0
 offset_right = -34.0
 offset_bottom = -34.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = SubResource("Theme_Shields")
 
-[node name="Label" type="Label" parent="UITurret/PanelContainer/VBoxContainer" unique_id=1100810982]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.81, 0.78, 0.71, 1)
-theme_override_font_sizes/font_size = 18
-text = "Escudos"
-vertical_alignment = 1
-
 [node name="GridContainer" type="GridContainer" parent="UITurret/PanelContainer/VBoxContainer" unique_id=1977215252]
 layout_mode = 2
 columns = 4
 
 [node name="Button1" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=2086058721]
-custom_minimum_size = Vector2(66, 44)
+custom_minimum_size = Vector2(84, 46)
 layout_mode = 2
 
 [node name="Button2" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=831861905]
-custom_minimum_size = Vector2(66, 44)
+custom_minimum_size = Vector2(84, 46)
 layout_mode = 2
 
 [node name="Button3" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=799410901]
-custom_minimum_size = Vector2(66, 44)
+custom_minimum_size = Vector2(84, 46)
 layout_mode = 2
 
 [node name="Button4" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=1356661988]
-custom_minimum_size = Vector2(66, 44)
+custom_minimum_size = Vector2(84, 46)
 layout_mode = 2
 
 [node name="Button5" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=111651759]
-custom_minimum_size = Vector2(66, 44)
+custom_minimum_size = Vector2(84, 46)
 layout_mode = 2
 
 [node name="Button6" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=1448020801]
-custom_minimum_size = Vector2(66, 44)
+custom_minimum_size = Vector2(84, 46)
 layout_mode = 2
 
 [node name="Button7" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=221120975]
-custom_minimum_size = Vector2(66, 44)
+custom_minimum_size = Vector2(84, 46)
 layout_mode = 2
 
 [node name="Button8" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=349280577]
-custom_minimum_size = Vector2(66, 44)
+custom_minimum_size = Vector2(84, 46)
 layout_mode = 2
 
 [node name="Button9" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=1811809901]
-custom_minimum_size = Vector2(66, 44)
+custom_minimum_size = Vector2(84, 46)
 layout_mode = 2
 
 [node name="Button10" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=155160686]
-custom_minimum_size = Vector2(66, 44)
+custom_minimum_size = Vector2(84, 46)
 layout_mode = 2
 
 [node name="Button11" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=1649125903]
-custom_minimum_size = Vector2(66, 44)
+custom_minimum_size = Vector2(84, 46)
 layout_mode = 2
 
 [node name="Button12" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=401402610]
-custom_minimum_size = Vector2(66, 44)
+custom_minimum_size = Vector2(84, 46)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UITurret/PanelContainer" unique_id=1577165955]
@@ -394,5 +387,6 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 46
 text = "35/35"
 vertical_alignment = 1
+
 
 [connection signal="song_ended" from="Generator" to="LevelResumeMenu" method="show_all"]

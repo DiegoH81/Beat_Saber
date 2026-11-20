@@ -12,12 +12,17 @@ signal shield_blocked()
 @export var beam_speed: float = 40.0
 @export var beam_radius: float = 0.105
 @export var beam_hold: float = 0.4
-@export_flags_3d_physics var shield_mask: int = 8
 
 var _beam_timer: float = 0.0
 var _beam_busy: bool = false
 var _beam_charge: MeshInstance3D
 var _beam_charge_tween: Tween
+var turret_controller: TurrentController
+var _beam_pivot: Node3D
+var _beam_meshes: Array[MeshInstance3D] = []
+var _beam_reach: float
+var _beam_checkpoint: float
+var _beam_travel: Tween
 
 const SPECIAL_GROUP := "special_enemy"
 const BEAM_AUDIO_ATTACK_TIME := 0.9
@@ -154,31 +159,8 @@ func _apply_special_color(node: Node) -> void:
 func _is_authority() -> bool:
 	return not multiplayer.has_multiplayer_peer() or multiplayer.is_server()
 
-func _shield_hit_dist(lane: int) -> float:
-	var start := points[lane].global_position
-	var dir := -global_transform.basis.z
-	var end := start + dir * maxf(dir.dot(player_vr.global_position - start), 0.1)
-
-	var q := PhysicsRayQueryParameters3D.create(start, end)
-	q.collide_with_areas = true
-	q.collide_with_bodies = true
-	q.collision_mask = shield_mask
-
-	var space := get_world_3d().direct_space_state
-	var excluded: Array[RID] = []
-	for _i in 32:
-		var r := space.intersect_ray(q)
-		if r.is_empty():
-			return -1.0
-		var area := r["collider"] as Node3D
-		if area and area.is_visible_in_tree():
-			return start.distance_to(r["position"])
-		excluded.append(r["rid"])
-		q.exclude = excluded
-	return -1.0
-
 func _run_beam() -> void:
-	if points.is_empty():
+	if points.is_empty() or not is_instance_valid(player_vr):
 		return
 	_beam_busy = true
 	var lane := randi() % points.size()
@@ -189,7 +171,14 @@ func _run_beam() -> void:
 	await get_tree().create_timer(warn_red_time).timeout
 	_warn.rpc(lane, 2)
 
-	_fire_beam.rpc(lane, _shield_hit_dist(lane))
+	if not is_instance_valid(player_vr):
+		_beam_busy = false
+		return
+	var start := points[lane].global_position
+	var direction := -global_basis.z.normalized()
+	var reach := maxf(direction.dot(player_vr.global_position - start), 0.1)
+	var shield_at := turret_controller.shield_distance(lane, start, direction) if turret_controller else 0.0
+	_fire_beam.rpc(lane, reach, shield_at)
 
 	await get_tree().create_timer(2.0).timeout
 	_beam_busy = false
@@ -255,41 +244,64 @@ func _beam_cylinder(pivot: Node3D, radius: float, color: Color) -> MeshInstance3
 	return mesh
 
 @rpc("authority", "call_local", "reliable")
-func _fire_beam(lane: int, hit_dist: float) -> void:
+func _fire_beam(lane: int, reach: float, shield_at: float) -> void:
 	if lane < 0 or lane >= points.size() or not is_instance_valid(player_vr):
 		return
-
 	if not _beam_audio.playing:
 		_beam_audio.play(BEAM_AUDIO_ATTACK_TIME)
 
 	var start := points[lane].global_position
-	var dir := -global_transform.basis.z
+	var direction := -global_basis.z.normalized()
+	_beam_pivot = Node3D.new()
+	_beam_pivot.name = "BossBeam"
+	add_child(_beam_pivot, true)
+	_beam_pivot.global_position = start
+	_beam_pivot.look_at(start + direction)
 
-	var dist := maxf(dir.dot(player_vr.global_position - start), 0.1)
-	if hit_dist > 0.0:
-		dist = hit_dist
+	_beam_meshes = [
+		_beam_cylinder(_beam_pivot, beam_radius * 0.58, Color(1.0, 0.8, 0.53)),
+		_beam_cylinder(_beam_pivot, beam_radius * 1.7, Color(1.0, 0.1, 0.04, 0.43)),
+	]
+	_beam_reach = reach
+	_beam_checkpoint = shield_at if shield_at > 0.0 and shield_at < reach else reach
+	_beam_travel = _beam_pivot.create_tween()
+	_beam_travel.tween_method(_resize_beam, 0.0, _beam_checkpoint, _beam_checkpoint / beam_speed)
 
-	var pivot := Node3D.new()
-	pivot.name = "BossBeam"
-	add_child(pivot, true)
-	pivot.global_position = start
-	pivot.look_at(start + dir)
+	if _beam_checkpoint == reach:
+		_beam_travel.tween_callback(_finish_beam.bind(false))
+	elif multiplayer.is_server():
+		await _beam_travel.finished
+		var blocked := is_instance_valid(turret_controller) and turret_controller.is_shield_active(lane)
+		_resolve_beam.rpc(blocked)
 
-	var core := _beam_cylinder(pivot, beam_radius * 0.58, Color(1.0, 0.8, 0.53))
-	var shell := _beam_cylinder(pivot, beam_radius * 1.7, Color(1.0, 0.1, 0.04, 0.43))
+@rpc("authority", "call_local", "reliable")
+func _resolve_beam(blocked: bool) -> void:
+	if not is_instance_valid(_beam_pivot):
+		return
+	_beam_travel.kill()
+	_resize_beam(_beam_checkpoint)
+	if blocked:
+		_finish_beam(true)
+		return
+	_beam_travel = _beam_pivot.create_tween()
+	_beam_travel.tween_method(_resize_beam, _beam_checkpoint, _beam_reach, (_beam_reach - _beam_checkpoint) / beam_speed)
+	_beam_travel.tween_callback(_finish_beam.bind(false))
 
-	var tw := pivot.create_tween()
-	tw.tween_method(func(length: float) -> void:
-		for mesh in [core, shell]:
-			var cylinder := mesh.mesh as CylinderMesh
-			cylinder.height = maxf(length, 0.01)
-			mesh.position.z = -length * 0.5,
-		0.0, dist, dist / beam_speed)
-	if hit_dist > 0.0:
-		tw.tween_callback(_play_shield_impact)
-	tw.tween_interval(beam_hold)
-	tw.tween_property(pivot, "scale", Vector3(0.03, 0.03, 1.0), 0.16)
-	tw.tween_callback(pivot.queue_free)
+func _resize_beam(length: float) -> void:
+	for mesh in _beam_meshes:
+		var cylinder := mesh.mesh as CylinderMesh
+		cylinder.height = maxf(length, 0.01)
+		mesh.position.z = -length * 0.5
+
+func _finish_beam(blocked: bool) -> void:
+	if blocked:
+		_play_shield_impact()
+	elif multiplayer.is_server():
+		ScoreManager.register_beam_hit()
+	var fade := _beam_pivot.create_tween()
+	fade.tween_interval(beam_hold)
+	fade.tween_property(_beam_pivot, "scale", Vector3(0.03, 0.03, 1.0), 0.16)
+	fade.tween_callback(_beam_pivot.queue_free)
 
 func _play_shield_impact() -> void:
 	_shield_hit_audio.play()

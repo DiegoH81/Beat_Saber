@@ -13,6 +13,7 @@ extends CanvasLayer
 var _shooting: bool = false
 	
 var _blink_tween: Tween
+var _station_blink_tween: Tween
 var _buff_tween: Tween
 @onready var _buff_rest_y: float = buff.position.y
 
@@ -21,6 +22,7 @@ func _ready() -> void:
 	turret_controller.shield_changed.connect(_on_shield_changed)
 	_connect_turrets_buttons()
 	turret_controller.turret_changed.connect(_on_turret_changed)
+	turret_controller.station_attack_changed.connect(_on_station_attack_changed)
 	_on_turret_changed(turret_controller.current_index)
 	turret_controller.ammo_changed.connect(_on_ammo_changed)
 	turret_controller.buff_collected.connect(_on_buff_collected)
@@ -38,6 +40,23 @@ func _on_turret_changed(index: int) -> void:
 		var button := turret_buttons_container.get_child(i) as Button
 		if button:
 			button.set_pressed_no_signal(i == index)
+
+func _on_station_attack_changed(index: int, state: TurrentController.StationState) -> void:
+	if _station_blink_tween:
+		_station_blink_tween.kill()
+	var button := turret_buttons_container.get_child(index) as Button
+	if button == null:
+		return
+	button.disabled = state == TurrentController.StationState.OFFLINE
+	match state:
+		TurrentController.StationState.WARNING:
+			_station_blink_tween = create_tween().set_loops()
+			_station_blink_tween.tween_property(button, "modulate", Color(1.0, 0.42, 0.18), 0.18)
+			_station_blink_tween.tween_property(button, "modulate", Color.WHITE, 0.18)
+		TurrentController.StationState.OFFLINE:
+			button.modulate = Color(0.85, 0.35, 0.30)
+		TurrentController.StationState.READY:
+			button.modulate = Color.WHITE
 
 func _on_buff_collected(kind: String, ammo_gained: int) -> void:
 	var accent := Color(0.96, 0.77, 0.53)
@@ -80,7 +99,18 @@ func _connect_shield_buttons() -> void:
 			continue
 
 		button.pressed.connect(_on_shield_button_pressed.bind(i))
-		button.disabled = turret_controller.is_shield_active(i)
+		var fill := ProgressBar.new()
+		fill.name = "ShieldFill"
+		fill.show_percentage = false
+		fill.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		fill.max_value = TurrentController.SHIELD_DURATION
+		fill.add_theme_stylebox_override("background", StyleBoxEmpty.new())
+		var fill_style := StyleBoxFlat.new()
+		fill_style.bg_color = Color(0.85, 0.94, 0.87)
+		fill.add_theme_stylebox_override("fill", fill_style)
+		button.add_child(fill)
+		fill.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		_on_shield_changed(i, turret_controller.is_shield_active(i))
 
 func _connect_turrets_buttons() -> void:
 	for i in range(turret_buttons_container.get_child_count()):
@@ -100,6 +130,11 @@ func _on_shield_changed(index: int, active: bool) -> void:
 		var button := shield_buttons_container.get_child(index) as Button
 		if button:
 			button.disabled = active
+			var fill := button.get_node("ShieldFill") as ProgressBar
+			fill.visible = active
+			if active:
+				fill.value = TurrentController.SHIELD_DURATION
+				fill.create_tween().tween_property(fill, "value", 0.0, TurrentController.SHIELD_DURATION)
 
 func _on_turret_button_pressed(index: int) -> void:
 	turret_controller.changed_to_turret(index)
@@ -111,7 +146,7 @@ func _on_beam_warning(lane: int, phase: int) -> void:
 	for c in shield_buttons_container.get_children():
 		var btn := c as Button
 		if btn:
-			btn.modulate = Color.WHITE
+			btn.self_modulate = Color.WHITE
 	if phase == 2 or lane < 0 or lane >= shield_buttons_container.get_child_count():
 			return
 
@@ -122,5 +157,5 @@ func _on_beam_warning(lane: int, phase: int) -> void:
 	var color := Color(3, 3, 0) if phase == 0 else Color(4, 0, 0)
 	var t := 0.25 if phase == 0 else 0.08
 	_blink_tween = create_tween().set_loops()
-	_blink_tween.tween_property(b, "modulate", color, t)
-	_blink_tween.tween_property(b, "modulate", Color.WHITE, t)
+	_blink_tween.tween_property(b, "self_modulate", color, t)
+	_blink_tween.tween_property(b, "self_modulate", Color.WHITE, t)
