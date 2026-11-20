@@ -17,6 +17,10 @@ func enable_text_only(active_id : int) -> void:
 		tutorial_texts[i].visible = (i == active_id)
 
 func _ready() -> void:
+	if not multiplayer.is_server():
+		hide()
+		return
+
 	tutorial_texts = [text_1_tutorial, text_2_tutorial, text_3_tutorial]
 	
 	
@@ -29,7 +33,7 @@ func _ready() -> void:
 	enable_text_only(2)
 	await get_tree().create_timer(2.0).timeout
 
-	enable_text_only(-1)
+	hide()
 	
 func _run_tutorial() -> void:
 	pass

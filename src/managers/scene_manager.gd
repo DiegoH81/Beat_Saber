@@ -9,7 +9,6 @@ var base: Node = null
 const MENU_S2_SCENE: PackedScene = preload("res://src/ui/main_menu/main_menu_s2.tscn")
 
 var menu_s2: Node = null
-var last_server_ip: String = ""
 
 
 @onready var first_scene: PackedScene = preload("res://src/ui/main_menu/main_menu_3D.tscn")

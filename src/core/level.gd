@@ -9,6 +9,7 @@ class_name Level
 @export var spawn: Node3D
 @export var pause_menu: Node3D
 @export var turret_controller: TurrentController
+var song_start_sequence: Callable
 var number: int = 0
 
 @export var song_name: String
@@ -45,13 +46,20 @@ func start_song(special_indices: PackedInt32Array) -> void:
 			player_vr.pause.connect(pause_menu.pause)
 	AudioManager.resume_music()
 	AudioManager.play_prepared_music()
+	if song_start_sequence.is_valid():
+		song_start_sequence.call(special_indices)
+	else:
+		start_gameplay(special_indices)
+
+func start_gameplay(special_indices: PackedInt32Array, first_beam_delay: float = -1.0,
+		practice_duration: float = 0.0, practice_delay: float = 0.0) -> void:
 	if generator:
-		generator.start_song(special_indices)
+		generator.start_song(special_indices, first_beam_delay)
 		if turret_controller:
 			turret_controller.start_station_attacks(generator)
 	var powerups := get_node_or_null("GeneratorBuff") as PowerupGenerator
 	if powerups and turret_controller and not turret_controller.turrets.is_empty():
-		powerups.start_spawning(turret_controller.turrets[0])
+		powerups.start_spawning(turret_controller.turrets[0], practice_duration, practice_delay)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("p_button"):

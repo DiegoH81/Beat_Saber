@@ -53,14 +53,11 @@ func _refresh_level_buttons() -> void:
 		level_buttons[level_id].is_locked = not ProgressManager.is_unlocked(level_id)
 
 
-# ───────────── Menú principal ─────────────
 
 func _on_play_button_pressed() -> void:
 	go_to_level_selector()
 
 
-# ───────────── Selector de niveles ─────────────
-# request_level: el host decide y TODOS los peers cargan el nivel.
 
 func _on_vivaldi_button_pressed() -> void:
 	SceneManager.request_level("Vivaldi_four_seasons")
@@ -75,15 +72,12 @@ func _on_tutorial_button_pressed() -> void:
 	SceneManager.request_level("Tutorial")
 
 
-# ───────────── Ready / Process ─────────────
-
 func _ready() -> void:
 	if not multiplayer.is_server():
 		$CameraPath/CameraFollow/CameraPivot/Camera3D.current = true
 	else:
 		var _finding_ip: String = ""
 		for addr in IP.get_local_addresses():
-			# Solo IPv4 de red local (192.168.x.x, 172.16-31.x.x, 10.x.x.x)
 			if addr.begins_with("192.168.") or addr.begins_with("10."):
 				_finding_ip = addr
 			if addr.begins_with("172."):
@@ -91,7 +85,7 @@ func _ready() -> void:
 				if second >= 16 and second <= 31:
 					_finding_ip = addr
 
-		(ip.mesh as TextMesh).text = "Pasa esta IP a tu amigo para jugar juntos: " + _finding_ip
+		(ip.mesh as TextMesh).text = "IP: " + _finding_ip
 
 	play_button.is_enabled = false
 	pop_up_3d.visible = true
@@ -115,8 +109,6 @@ func _on_exit_button_area_entered(_area: Area3D) -> void:
 	get_tree().quit()
 
 
-# ───────────── Teclas 1-4 sincronizadas por red ─────────────
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if KEY_LEVELS.has(event.keycode):
@@ -127,15 +119,12 @@ func _has_remote_peers() -> bool:
 	return multiplayer.multiplayer_peer != null and not multiplayer.get_peers().is_empty()
 
 
-# Quien presiona la tecla llama aquí
 func _request_toggle_level(level_id: String) -> void:
 	if multiplayer.is_server():
-		# Servidor (o sin red): aplica y difunde a los clientes
 		_apply_toggle_level(level_id)
 		if _has_remote_peers():
 			_toggle_level_on_clients.rpc(level_id)
 	else:
-		# Cliente: pide al servidor que lo aplique y lo difunda
 		_toggle_level_on_server.rpc_id(1, level_id)
 
 

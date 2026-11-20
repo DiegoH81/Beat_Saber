@@ -9,6 +9,8 @@ const TURRET_CAMERA_MIN_HEIGHT := 0.30
 const RAIL_MUZZLE_POINT := Vector3(0.0, 1.9134, 3.1176)
 const CADENCE_BOOST_MS := 5000
 const SHIELD_DURATION := 3.0
+const SHIELD_COLUMNS := 4
+const SHIELD_ROW_KEYS := [KEY_Q, KEY_W, KEY_E]
 const STATION_ATTACK_INTERVAL := 18.0
 const STATION_WARNING_TIME := 2.2
 const STATION_RECOVERY_TIME := 5.0
@@ -27,7 +29,7 @@ enum StationState { READY, WARNING, OFFLINE }
 signal ammo_changed(current: int, max: int)
 signal buff_collected(kind: String, ammo_gained: int)
 signal turret_changed(index: int)
-signal shield_changed(button_index: int, active: bool)
+signal shield_changed(row: int, active: bool)
 signal station_attack_changed(index: int, state: StationState)
 
 @export var max_ammo: int = 35
@@ -233,7 +235,7 @@ func _update_station_attack(delta: float) -> void:
 			_show_station_blast(_turret_mounts[_station_target].origin)
 			if current_index == _station_target:
 				changed_to_turret(_next_available_station(1))
-				_shake_camera(Vector2(0.085, 0.05), 0.32)
+				_shake_camera(Vector2(0.3, 0.05), 0.32)
 		StationState.OFFLINE:
 			_set_station_state(StationState.READY)
 			_station_target = -1
@@ -383,7 +385,7 @@ func _flash_muzzle() -> void:
 	_muzzle_glow_tween.tween_property(_muzzle_glow, "scale", Vector3.ONE * 0.38, 0.12)
 
 func play_shield_impact() -> void:
-	_shake_camera(Vector2(0.045, 0.028), 0.22)
+	_shake_camera(Vector2(1.0, 1.0), 0.5)
 
 func _shake_camera(strength: Vector2, duration: float) -> void:
 	if not is_instance_valid(current_turret) or not current_turret.is_current():
@@ -491,11 +493,13 @@ func changed_to_turret(index: int, value: bool = true) -> void:
 	turret_changed.emit(current_index)
 
 @rpc("call_local", "any_peer", "reliable")
-func set_shield_visible(index: int, value: bool) -> void:
-	if index < 0 or index >= shields.size():
+func set_shield_row_visible(row: int, value: bool) -> void:
+	if row < 0 or row >= SHIELD_ROW_KEYS.size() or row * SHIELD_COLUMNS >= shields.size():
 		return
-	shields[index].visible = value
-	shield_changed.emit(_shield_index(index), value)
+	var first := row * SHIELD_COLUMNS
+	for index in range(first, mini(first + SHIELD_COLUMNS, shields.size())):
+		shields[index].visible = value
+	shield_changed.emit(row, value)
 
 func place_shields_on_lanes(lane_points: Array[Node3D], beam_direction: Vector3) -> void:
 	for lane in range(mini(lane_points.size(), shields.size())):
@@ -510,36 +514,26 @@ func shield_distance(lane: int, start: Vector3, direction: Vector3) -> float:
 		return 0.0
 	return direction.dot(shields[index].global_position - start)
 
-var shield_pending: Dictionary = {}
-
-func active_shield(index: int) -> void:
-	index = _shield_index(index)
-	if index < 0 or index >= shields.size():
+func activate_shield_row(row: int) -> void:
+	if multiplayer.is_server() or row < 0 or row >= SHIELD_ROW_KEYS.size():
 		return
-
-	if shields[index].visible or shield_pending.get(index, false):
+	var first := row * SHIELD_COLUMNS
+	if first >= shields.size() or shields[first].visible:
 		return
-
-	shield_pending[index] = true
-	set_shield_visible.rpc(index, true)
+	set_shield_row_visible.rpc(row, true)
 	await get_tree().create_timer(SHIELD_DURATION).timeout
-	shield_pending[index] = false
-	set_shield_visible.rpc(index, false)
-
+	set_shield_row_visible.rpc(row, false)
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.keycode == KEY_ALT and not event.echo:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if event.pressed else Input.MOUSE_MODE_CAPTURED
-		if event.pressed:
-			_mouse_shooting = false
-			_set_mouse_zooming(false)
-		return
-
 	if current_turret == null:
 		return
 
 	if event is InputEventKey and event.pressed and not event.echo:
+		var shield_row := SHIELD_ROW_KEYS.find(event.keycode)
+		if shield_row >= 0:
+			activate_shield_row(shield_row)
+			return
 		if event.keycode == KEY_R:
 			_reload()
 			return
@@ -589,9 +583,12 @@ func _input(event: InputEvent) -> void:
 		_mouse_shooting = false
 		_set_mouse_zooming(false)
 		
+static func shield_row_for_lane(lane: int) -> int:
+	@warning_ignore("integer_division")
+	return lane / SHIELD_COLUMNS
+
 func _shield_index(i: int) -> int:
-	var cols := 4
-	return (i / cols) * cols + (cols - 1 - i % cols)
+	return shield_row_for_lane(i) * SHIELD_COLUMNS + (SHIELD_COLUMNS - 1 - i % SHIELD_COLUMNS)
 	
 func is_shield_active(n: int) -> bool:
 	n = _shield_index(n)
