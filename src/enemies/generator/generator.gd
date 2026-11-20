@@ -29,7 +29,7 @@ const SPECIAL_GROUP := "special_enemy"
 @export var points: Array[Node3D]
 
 @export_category("Special Enemy")
-@export_range(0.0, 1.0) var special_chance: float = 0.1
+@export_range(0.0, 1.0) var second_special_chance: float = 0.35
 @export var special_color: Color = Color(1.0, 0.8, 0.0)
 
 var notes: Array[Enemy]
@@ -95,9 +95,32 @@ func _setup_special() -> void:
 
 func _roll_special() -> void:
 	special_indices.clear()
+	var next_special_time := randf_range(6.0, 10.0)
 	for i in notes.size():
-		if randf() < special_chance:
-			special_indices.append(i)
+		var first := notes[i]
+		if first.exect_time < next_special_time:
+			continue
+		if first.exect_time >= duration_max:
+			break
+
+		special_indices.append(i)
+		var last_special_time := first.exect_time
+		if randf() < second_special_chance:
+			var candidates: Array[int] = []
+			var window_start := first.exect_time + 0.8
+			var window_end := first.exect_time + 1.5
+			for j in range(i + 1, notes.size()):
+				var candidate := notes[j]
+				if candidate.exect_time > window_end or candidate.exect_time >= duration_max:
+					break
+				if candidate.exect_time >= window_start and candidate.lane != first.lane:
+					candidates.append(j)
+			if not candidates.is_empty():
+				var second_index: int = candidates.pick_random()
+				special_indices.append(second_index)
+				last_special_time = notes[second_index].exect_time
+
+		next_special_time = last_special_time + randf_range(6.0, 10.0)
 	_mark_special(special_indices)
 
 @rpc("authority", "call_remote", "reliable")
@@ -162,7 +185,6 @@ func _apply_special_color(node: Node) -> void:
 func _is_authority() -> bool:
 	return not multiplayer.has_multiplayer_peer() or multiplayer.is_server()
 
-# Distancia desde el lane hasta el primer escudo visible, o -1.0 si no hay ninguno
 func _shield_hit_dist(lane: int) -> float:
 	var start := points[lane].global_position
 	var dir := -global_transform.basis.z
@@ -182,7 +204,7 @@ func _shield_hit_dist(lane: int) -> float:
 		var area := r["collider"] as Node3D
 		if area and area.is_visible_in_tree():
 			return start.distance_to(r["position"])
-		excluded.append(r["rid"]) # escudo oculto: ignorarlo y seguir
+		excluded.append(r["rid"])
 		q.exclude = excluded
 	return -1.0
 

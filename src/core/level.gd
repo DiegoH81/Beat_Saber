@@ -57,8 +57,6 @@ func _on_misses_updated(value: int) -> void:
 		ScoreManager.misses_updated.disconnect(_on_misses_updated)
 		_restart_level()
 
-# request_*: lo pide cualquier peer, pero lo decide el host y lo ejecutan todos.
-# Si host y cliente lo detectan a la vez, el servidor ignora la petición repetida.
 func _to_next_level() -> void:
 	ProgressManager.complete_level(own_id)
 	if not next_level_id.is_empty():
