@@ -233,7 +233,7 @@ func _update_station_attack(delta: float) -> void:
 			_show_station_blast(_turret_mounts[_station_target].origin)
 			if current_index == _station_target:
 				changed_to_turret(_next_available_station(1))
-				_shake_camera(Vector2(0.085, 0.05), 0.32)
+				_shake_camera(Vector2(0.3, 0.05), 0.32)
 		StationState.OFFLINE:
 			_set_station_state(StationState.READY)
 			_station_target = -1
@@ -383,7 +383,7 @@ func _flash_muzzle() -> void:
 	_muzzle_glow_tween.tween_property(_muzzle_glow, "scale", Vector3.ONE * 0.38, 0.12)
 
 func play_shield_impact() -> void:
-	_shake_camera(Vector2(0.045, 0.028), 0.22)
+	_shake_camera(Vector2(1.0, 1.0), 0.5)
 
 func _shake_camera(strength: Vector2, duration: float) -> void:
 	if not is_instance_valid(current_turret) or not current_turret.is_current():

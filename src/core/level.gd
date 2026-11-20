@@ -1,9 +1,6 @@
 extends Node3D
 class_name Level
 
-const P2_POPUP_DURATION := 4.5
-const P2_INTRO_DURATION := P2_POPUP_DURATION * 2.0
-
 @export var player_vr: XROrigin3D
 @export var generator: Generator
 @export var ambient: WorldEnvironment
@@ -12,7 +9,7 @@ const P2_INTRO_DURATION := P2_POPUP_DURATION * 2.0
 @export var spawn: Node3D
 @export var pause_menu: Node3D
 @export var turret_controller: TurrentController
-@export var p2_tutorial_popup: PopUp2D
+var song_start_sequence: Callable
 var number: int = 0
 
 @export var song_name: String
@@ -43,42 +40,26 @@ func _enter_tree() -> void:
 	VisualManager.register_world_env(ambient)
 
 func start_song(special_indices: PackedInt32Array) -> void:
-	var p2_tutorial := is_instance_valid(p2_tutorial_popup) and not multiplayer.get_peers().is_empty()
 	if is_instance_valid(player_vr):
 		player_vr.is_paused = false
 		if pause_menu:
 			player_vr.pause.connect(pause_menu.pause)
 	AudioManager.resume_music()
 	AudioManager.play_prepared_music()
+	if song_start_sequence.is_valid():
+		song_start_sequence.call(special_indices)
+	else:
+		start_gameplay(special_indices)
+
+func start_gameplay(special_indices: PackedInt32Array, first_beam_delay: float = -1.0,
+		practice_duration: float = 0.0, practice_delay: float = 0.0) -> void:
 	if generator:
-		generator.start_song(special_indices, P2_INTRO_DURATION + 0.3 if p2_tutorial else -1.0)
+		generator.start_song(special_indices, first_beam_delay)
 		if turret_controller:
 			turret_controller.start_station_attacks(generator)
 	var powerups := get_node_or_null("GeneratorBuff") as PowerupGenerator
 	if powerups and turret_controller and not turret_controller.turrets.is_empty():
-		powerups.start_spawning(
-			turret_controller.turrets[0],
-			P2_POPUP_DURATION if p2_tutorial else 0.0,
-			P2_INTRO_DURATION if p2_tutorial else 0.0)
-	if p2_tutorial and not multiplayer.is_server():
-		_show_p2_tutorial(powerups)
-
-func _show_p2_tutorial(powerups: PowerupGenerator) -> void:
-	var examples: HBoxContainer
-	if powerups:
-		var models: Array[Node3D] = []
-		for kind in PowerupGenerator.POWERUPS:
-			models.append(powerups.preview_model(kind))
-		examples = p2_tutorial_popup.model_row(models, PackedStringArray(["Balas", "Cadencia", "Puntos dobles para P1"]))
-	await p2_tutorial_popup.show_message(
-		"Dorados y potenciadores", "Usa clic izquierdo para disparar.",
-		P2_POPUP_DURATION, examples)
-	await p2_tutorial_popup.show_message(
-		"Escudos y camaras", "Sigue la casilla o el numero que parpadea.",
-		P2_POPUP_DURATION, p2_tutorial_popup.control_rows({
-			"Alt y clic": "Cubre el carril del rayo",
-			"Teclas 1 2 3": "Cambia de torreta",
-		}))
+		powerups.start_spawning(turret_controller.turrets[0], practice_duration, practice_delay)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("p_button"):

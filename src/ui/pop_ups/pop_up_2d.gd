@@ -1,10 +1,13 @@
 extends CanvasLayer
 class_name PopUp2D
 
-@onready var _panel: PanelContainer = $Panel
-@onready var _title: Label = $Panel/Margin/Content/Title
-@onready var _label: Label = $Panel/Margin/Content/Message
-@onready var _details: VBoxContainer = $Panel/Margin/Content/Details
+@onready var _popup: Control = $Popup
+@onready var _title: Label = $Popup/Panel/Margin/Content/Title
+@onready var _label: Label = $Popup/Panel/Margin/Content/Message
+@onready var _details: VBoxContainer = $Popup/Panel/Margin/Content/Details
+
+func _ready() -> void:
+	_popup.hide()
 
 func show_message(title: String, message: String, duration: float, detail: Control = null) -> void:
 	for child in _details.get_children():
@@ -13,17 +16,18 @@ func show_message(title: String, message: String, duration: float, detail: Contr
 	if detail:
 		_details.add_child(detail)
 	_title.text = title
+	_title.visible = not title.strip_edges().is_empty()
 	_label.text = message
-	_panel.modulate.a = 0.0
-	_panel.show()
+	_popup.modulate.a = 0.0
+	_popup.show()
 
 	var transition := minf(0.18, duration * 0.5)
 	var motion := create_tween()
-	motion.tween_property(_panel, "modulate:a", 1.0, transition)
+	motion.tween_property(_popup, "modulate:a", 1.0, transition)
 	motion.tween_interval(duration - transition * 2.0)
-	motion.tween_property(_panel, "modulate:a", 0.0, transition)
+	motion.tween_property(_popup, "modulate:a", 0.0, transition)
 	await motion.finished
-	_panel.hide()
+	_popup.hide()
 
 func model_row(models: Array[Node3D], labels: PackedStringArray) -> HBoxContainer:
 	var row := HBoxContainer.new()
@@ -40,6 +44,7 @@ func model_row(models: Array[Node3D], labels: PackedStringArray) -> HBoxContaine
 		display.custom_minimum_size = Vector2(0, 108)
 		display.stretch = true
 		tile.add_child(display)
+		
 		var viewport := SubViewport.new()
 		viewport.own_world_3d = true
 		viewport.transparent_bg = true

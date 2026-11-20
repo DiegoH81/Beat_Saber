@@ -123,6 +123,14 @@ emission_enabled = true
 emission = Color(0.28281513, 0.15470442, 0.21746486, 1)
 emission_energy_multiplier = 1.85
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_27pfe"]
+albedo_color = Color(0.25, 0.25, 0.25, 1)
+metallic = 0.8
+roughness = 0.2
+emission_enabled = true
+emission = Color(0.28281513, 0.15470442, 0.21746486, 1)
+emission_energy_multiplier = 1.85
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jc5pe"]
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.8156863, 0.8980392, 1, 1)
@@ -146,14 +154,6 @@ scale_max = 0.049999997
 
 [sub_resource type="QuadMesh" id="QuadMesh_mmd50"]
 size = Vector2(0.1, 0.1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_27pfe"]
-albedo_color = Color(0.25, 0.25, 0.25, 1)
-metallic = 0.8
-roughness = 0.2
-emission_enabled = true
-emission = Color(0.28281513, 0.15470442, 0.21746486, 1)
-emission_energy_multiplier = 1.85
 
 [node name="MainMenu3d" type="Node3D" unique_id=1344789317 node_paths=PackedStringArray("ip")]
 script = ExtResource("1_mmd50")
@@ -250,6 +250,17 @@ lock_scene = ExtResource("4_4u3og")
 lock_anchor = Vector2(1, -1)
 lock_scale = 0.245
 
+[node name="SingSingSingButton" parent="." unique_id=403924102 instance=ExtResource("3_mmd50")]
+transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.511, 1.345, 4.0577965)
+text = "Sing, Sing, Sing"
+button_size = Vector3(7, 2.5, 0.5)
+button_material = SubResource("StandardMaterial3D_27pfe")
+locked_material = SubResource("StandardMaterial3D_6t60n")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
+lock_scene = ExtResource("4_4u3og")
+lock_anchor = Vector2(1, -1)
+lock_scale = 0.245
+
 [node name="AmbientParticles" type="GPUParticles3D" parent="." unique_id=2009157757]
 transform = Transform3D(1, 0, 0, 0, 0.5923183, 0, 0, 0, 1, 0.72034097, 2.0965786, 0.21540022)
 material_override = SubResource("StandardMaterial3D_jc5pe")
@@ -264,17 +275,6 @@ transform = Transform3D(-0.87997895, 0, -0.47501257, 0, 1, 0, 0.47501257, 0, -0.
 texto = "Usa los botones con tus espadas"
 imagen_textura = ExtResource("5_gbacl")
 escala_imagen = Vector3(0.05, 0.05, 1)
-
-[node name="SingSingSingButton" parent="." unique_id=403924102 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.511, 1.345, 4.0577965)
-text = "Sing, Sing, Sing"
-button_size = Vector3(7, 2.5, 0.5)
-button_material = SubResource("StandardMaterial3D_27pfe")
-locked_material = SubResource("StandardMaterial3D_6t60n")
-locked_text_color = Color(0.6, 0.6, 0.6, 1)
-lock_scene = ExtResource("4_4u3og")
-lock_anchor = Vector2(1, -1)
-lock_scale = 0.245
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="TutorialButton" to="." method="_on_tutorial_button_pressed"]

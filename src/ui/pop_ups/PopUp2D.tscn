@@ -1,20 +1,47 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://byxxb0ukhfhoc"]
 
-[ext_resource type="Script" path="res://src/ui/pop_ups/pop_up_2d.gd" id="1_popup"]
+[ext_resource type="Script" uid="uid://dncqqnn23hebi" path="res://src/ui/pop_ups/pop_up_2d.gd" id="1_popup"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Popup"]
-bg_color = Color(0.11, 0.115, 0.11, 0.98)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
+bg_color = Color(0.08374383, 0.042879276, 0.12054727, 0.98039216)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.84313726, 0.5921569, 0.94509804, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+shadow_color = Color(0.9797705, 0.4700482, 0.7937742, 0.6)
+shadow_size = 29
 
-[node name="PopUp2D" type="CanvasLayer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TutorialBadge"]
+bg_color = Color(0.15, 0.065, 0.22, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.84313726, 0.5921569, 0.94509804, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+shadow_color = Color(0.73, 0.35, 1, 0.5)
+shadow_size = 10
+
+[node name="PopUp2D" type="CanvasLayer" unique_id=1465751411]
 layer = 3
 script = ExtResource("1_popup")
 
-[node name="Panel" type="PanelContainer" parent="."]
-visible = false
+[node name="Popup" type="Control" parent="." unique_id=984826728]
+layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -26,34 +53,67 @@ offset_bottom = 141.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Popup" unique_id=328848775]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_Popup")
 
-[node name="Margin" type="MarginContainer" parent="Panel"]
+[node name="Margin" type="MarginContainer" parent="Popup/Panel" unique_id=92332106]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 35
-theme_override_constants/margin_top = 28
+theme_override_constants/margin_top = 34
 theme_override_constants/margin_right = 35
 theme_override_constants/margin_bottom = 28
 
-[node name="Content" type="VBoxContainer" parent="Panel/Margin"]
+[node name="Content" type="VBoxContainer" parent="Popup/Panel/Margin" unique_id=1834266076]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Title" type="Label" parent="Panel/Margin/Content"]
+[node name="Title" type="Label" parent="Popup/Panel/Margin/Content" unique_id=285913000]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.94, 0.91, 0.86, 1)
-theme_override_font_sizes/font_size = 37
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 59
+text = "TITULO"
+horizontal_alignment = 1
 
-[node name="Message" type="Label" parent="Panel/Margin/Content"]
+[node name="Message" type="Label" parent="Popup/Panel/Margin/Content" unique_id=616800435]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.75, 0.76, 0.71, 1)
-theme_override_font_sizes/font_size = 23
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 43
+text = "HOLA"
 autowrap_mode = 3
 
-[node name="Details" type="VBoxContainer" parent="Panel/Margin/Content"]
+[node name="Details" type="VBoxContainer" parent="Popup/Panel/Margin/Content" unique_id=568125036]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
+
+[node name="TutorialBadge" type="PanelContainer" parent="Popup" unique_id=893553200]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_top = -60.0
+offset_right = 110.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_TutorialBadge")
+
+[node name="Label" type="Label" parent="Popup/TutorialBadge" unique_id=519242999]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 59
+text = "Tutorial"
+horizontal_alignment = 1
+vertical_alignment = 1
