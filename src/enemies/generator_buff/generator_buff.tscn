@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dq0vk505vq8q6"]
+
+[ext_resource type="Script" uid="uid://bnqvohs2bcb2x" path="res://src/enemies/generator_buff/generator_buff.gd" id="1_jf2dy"]
+[ext_resource type="PackedScene" uid="uid://c8r8frk3aor57" path="res://levels_data/test/skin_enemy_test.tscn" id="2_o1va2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_75kqj"]
+size = Vector3(30, 30, 30)
+
+[node name="GeneratorBuff" type="Node3D" unique_id=352087212 node_paths=PackedStringArray("_shape")]
+script = ExtResource("1_jf2dy")
+scene = ExtResource("2_o1va2")
+max_objects = 100
+speed = 20.0
+spawn_interval = 7.5
+_shape = NodePath("StaticBody3D/CollisionShape3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1455380706]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=68989370]
+shape = SubResource("BoxShape3D_75kqj")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=748114979]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9165317, 7.404521)

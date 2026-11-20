@@ -11,6 +11,7 @@ class_name TurrentController
 @export var max_pitch: float = 80.0
 
 signal ammo_changed(current: int, max: int)
+signal buff_collected(kind: String)
 
 @export var max_ammo: int = 30
 @export var fire_cooldown: float = 0.3
@@ -24,6 +25,8 @@ var next_shot_time: float = 0.0
 var current_index: int = 0
 var current_turret: Camera3D
 var pitch: float = 0.0
+
+var _mouse_shooting: bool = false
 
 var ray_mesh_instance: MeshInstance3D
 var ray_mesh: ImmediateMesh
@@ -85,6 +88,14 @@ func _ready() -> void:
 	if not turrets.is_empty():
 		changed_to_turret(0)
 
+func _process(_delta: float) -> void:
+	if not _mouse_shooting:
+		return
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+		_mouse_shooting = false
+		return
+	raycast_from_camera()
+
 @rpc("call_local", "any_peer", "reliable")
 func draw_ray(origin: Vector3, end: Vector3) -> void:
 	var direction := end - origin
@@ -145,8 +156,10 @@ func raycast_from_camera() -> void:
 				if powerup.is_in_group("powerup_ammo"):
 					ammo = mini(ammo + ammo_per_powerup, max_ammo)
 					ammo_changed.emit(ammo, max_ammo)
+					buff_collected.emit("ammo")
 				else:
 					fire_cooldown = maxf(fire_cooldown - fire_rate_bonus, min_fire_cooldown)
+					buff_collected.emit("rate")
 				destroy_powerup.rpc(powerup.get_path())
 
 	var visual_origin := origin + current_turret.global_transform.basis * Vector3(0, -0.25, 0)
@@ -214,6 +227,12 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if current_turret == null:
+		return
+
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		_mouse_shooting = event.pressed and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
+		if _mouse_shooting:
+			raycast_from_camera()
 		return
 
 	if event is InputEventMouseMotion:

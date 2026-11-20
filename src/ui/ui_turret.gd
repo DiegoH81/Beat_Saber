@@ -6,21 +6,53 @@ extends CanvasLayer
 @export var shot_button: Button
 @export var generator: Generator
 @export var ammo: Label
+@export var buff: Label
+@export var buff_display_time: float = 1.5
+@export var buff_fade_time: float = 0.5
+
 var _shooting: bool = false
 	
 var _blink_tween: Tween
+var _buff_tween: Tween
 
 func _ready() -> void:
 	_connect_shield_buttons()
 	_connect_turrets_buttons()
 	turret_controller.ammo_changed.connect(_on_ammo_changed)
+	turret_controller.buff_collected.connect(_on_buff_collected)
 	_on_ammo_changed.call_deferred(turret_controller.ammo, turret_controller.max_ammo)
+	if buff:
+		buff.text = ""
+		buff.modulate.a = 0.0
 	if generator:
 		generator.beam_warning.connect(_on_beam_warning)
 	shot_button.button_down.connect(func(): _shooting = true)
 	shot_button.button_up.connect(func(): _shooting = false)
+
 func _on_ammo_changed(current: int, max_ammo: int) -> void:
 	ammo.text = "%d/%d" % [current, max_ammo]
+
+func _on_buff_collected(kind: String) -> void:
+	if buff == null:
+		return
+
+	match kind:
+		"ammo":
+			buff.text = "+%d munición" % turret_controller.ammo_per_powerup
+		"rate":
+			if is_equal_approx(turret_controller.fire_cooldown, turret_controller.min_fire_cooldown):
+				buff.text = "Cadencia al máximo"
+			else:
+				buff.text = "Cadencia de disparo aumentada"
+		_:
+			buff.text = kind
+
+	if _buff_tween:
+		_buff_tween.kill()
+	buff.modulate.a = 1.0
+	_buff_tween = create_tween()
+	_buff_tween.tween_interval(buff_display_time)
+	_buff_tween.tween_property(buff, "modulate:a", 0.0, buff_fade_time)
 
 func _process(_delta: float) -> void:
 	if _shooting:
