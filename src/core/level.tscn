@@ -15,14 +15,20 @@
 [ext_resource type="PackedScene" uid="uid://dq0vk505vq8q6" path="res://src/enemies/generator_buff/generator_buff.tscn" id="13_tm85t"]
 [ext_resource type="AudioStream" uid="uid://c8kegxd15s2ji" path="res://assets/sfx/gun.mp3" id="14_gun"]
 [ext_resource type="AudioStream" uid="uid://7apiihtl7cqh" path="res://assets/sfx/reload.mp3" id="15_reload"]
+[ext_resource type="PackedScene" uid="uid://bgql7blmdw0du" path="res://src/ui/network_status/network_status.tscn" id="16_mn4vy"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_Shot"]
 random_pitch = 1.08
 streams_count = 1
 stream_0/stream = ExtResource("14_gun")
 
+[sub_resource type="SystemFont" id="SystemFont_ShieldKeys"]
+font_names = PackedStringArray("Bahnschrift", "Segoe UI", "DejaVu Sans")
+font_weight = 700
+subpixel_positioning = 0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ShieldActive"]
-bg_color = Color(0.24, 0.075, 0.40, 0.98)
+bg_color = Color(0.24, 0.075, 0.4, 0.98)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -56,17 +62,13 @@ corner_radius_bottom_left = 5
 shadow_color = Color(0.62, 0.23, 1, 0.38)
 shadow_size = 10
 
-[sub_resource type="SystemFont" id="SystemFont_ShieldKeys"]
-font_names = PackedStringArray("Bahnschrift", "Segoe UI", "DejaVu Sans")
-font_weight = 700
-
 [sub_resource type="Theme" id="Theme_Shields"]
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_disabled_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(1, 1, 1, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
-Button/fonts/font = SubResource("SystemFont_ShieldKeys")
 Button/font_sizes/font_size = 27
+Button/fonts/font = SubResource("SystemFont_ShieldKeys")
 Button/styles/disabled = SubResource("StyleBoxFlat_ShieldActive")
 Button/styles/focus = SubResource("StyleBoxFlat_TurretFocus")
 Button/styles/hover = SubResource("StyleBoxFlat_ShieldHover")
@@ -74,8 +76,8 @@ Button/styles/normal = SubResource("StyleBoxFlat_ShieldCell")
 Button/styles/pressed = SubResource("StyleBoxFlat_ShieldHover")
 GridContainer/constants/h_separation = 8
 GridContainer/constants/v_separation = 12
-Label/fonts/font = SubResource("SystemFont_ShieldKeys")
 Label/font_sizes/font_size = 27
+Label/fonts/font = SubResource("SystemFont_ShieldKeys")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TurretHover"]
 bg_color = Color(0.24, 0.23, 0.2, 1)
@@ -375,5 +377,7 @@ theme_override_font_sizes/font_size = 46
 text = "35/35"
 vertical_alignment = 1
 
+[node name="NetworkStatus" parent="." unique_id=2014900907 instance=ExtResource("16_mn4vy")]
+transform = Transform3D(0.6067536, 0, 0.33893225, 0, 0.695, 0, -0.33893225, 0, 0.6067536, -2.7656553, 4.559394, -3.4135094)
 
 [connection signal="song_ended" from="Generator" to="LevelResumeMenu" method="show_all"]

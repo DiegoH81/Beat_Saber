@@ -238,3 +238,6 @@ turret_controller = NodePath("../TurretController")
 
 [node name="UITurret" parent="." index="17" unique_id=1195384379 node_paths=PackedStringArray("generator")]
 generator = NodePath("../Generator")
+
+[node name="NetworkStatus" parent="." index="18" unique_id=2014900907]
+transform = Transform3D(0.6067536, 0, 0.33893225, 0, 0.695, 0, -0.33893225, 0, 0.6067536, -4.2584143, 4.559394, -6.7484264)
