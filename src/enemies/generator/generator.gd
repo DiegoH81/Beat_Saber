@@ -174,14 +174,16 @@ func _shield_hit_dist(lane: int) -> float:
 	q.collision_mask = shield_mask
 
 	var space := get_world_3d().direct_space_state
-	while true:
+	var excluded: Array[RID] = []
+	for _i in 32:
 		var r := space.intersect_ray(q)
 		if r.is_empty():
 			return -1.0
 		var area := r["collider"] as Node3D
 		if area and area.is_visible_in_tree():
 			return start.distance_to(r["position"])
-		q.exclude.append(r["rid"]) # escudo oculto: ignorarlo y seguir
+		excluded.append(r["rid"]) # escudo oculto: ignorarlo y seguir
+		q.exclude = excluded
 	return -1.0
 
 func _run_beam() -> void:
