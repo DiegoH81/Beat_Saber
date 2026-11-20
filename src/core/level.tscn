@@ -13,6 +13,80 @@
 [ext_resource type="PackedScene" uid="uid://eul5gjh2l8cd" path="res://src/core/shield.tscn" id="11_yrtgi"]
 [ext_resource type="Script" uid="uid://c8egb0ix1ycxy" path="res://src/ui/ui_turret.gd" id="12_4502m"]
 [ext_resource type="PackedScene" uid="uid://dq0vk505vq8q6" path="res://src/enemies/generator_buff/generator_buff.tscn" id="13_tm85t"]
+[ext_resource type="AudioStream" uid="uid://c8kegxd15s2ji" path="res://assets/sfx/gun.mp3" id="14_gun"]
+[ext_resource type="AudioStream" uid="uid://7apiihtl7cqh" path="res://assets/sfx/reload.mp3" id="15_reload"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_Shot"]
+random_pitch = 1.08
+streams_count = 1
+stream_0/stream = ExtResource("14_gun")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TurretFocus"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.74, 0.49, 0.25, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TurretHover"]
+bg_color = Color(0.24, 0.23, 0.2, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.83, 0.8, 0.72, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TurretActive"]
+bg_color = Color(0.88, 0.85, 0.77, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 4
+border_color = Color(0.74, 0.49, 0.25, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TurretIdle"]
+bg_color = Color(0.105, 0.105, 0.099, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.51, 0.49, 0.44, 1)
+
+[sub_resource type="Theme" id="Theme_Turret"]
+Button/colors/font_color = Color(0.88, 0.85, 0.77, 1)
+Button/colors/font_hover_color = Color(0.99, 0.96, 0.88, 1)
+Button/colors/font_hover_pressed_color = Color(0.12, 0.11, 0.09, 1)
+Button/colors/font_pressed_color = Color(0.12, 0.11, 0.09, 1)
+Button/font_sizes/font_size = 27
+Button/styles/focus = SubResource("StyleBoxFlat_TurretFocus")
+Button/styles/hover = SubResource("StyleBoxFlat_TurretHover")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_TurretActive")
+Button/styles/normal = SubResource("StyleBoxFlat_TurretIdle")
+Button/styles/pressed = SubResource("StyleBoxFlat_TurretActive")
+HBoxContainer/constants/separation = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Crosshair"]
+bg_color = Color(0.94, 0.9, 0.82, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.1, 0.1, 0.09, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_AmmoCard"]
+bg_color = Color(0.105, 0.105, 0.099, 1)
+border_width_left = 3
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.51, 0.49, 0.44, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_AmmoTrack"]
+bg_color = Color(0.28, 0.27, 0.24, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_AmmoFill"]
+bg_color = Color(0.83, 0.67, 0.48, 1)
 
 [node name="Level" type="Node3D" unique_id=814822109 node_paths=PackedStringArray("generator", "pause_menu", "turret_controller")]
 script = ExtResource("1_5kcgd")
@@ -44,30 +118,35 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 transform = Transform3D(1.675, 0, 0, 0, 1.675, 0, 0, 0, 1.675, 2.7241406, 1.6579578, -5.3736553)
 
 [node name="GeneratorBuff" parent="." unique_id=352087212 instance=ExtResource("13_tm85t")]
-speed = 10.0
 
 [node name="TurretController" type="Node" parent="." unique_id=173134273 node_paths=PackedStringArray("turrets", "shields", "ui_turret")]
 script = ExtResource("10_n7fy3")
-turrets = [NodePath("Turrets/Turret1"), NodePath("Turrets/Turret2"), NodePath("Turrets/Turret3"), NodePath("Turrets/Turret4"), NodePath("Turrets/Turret5")]
+turrets = [NodePath("Turrets/Turret1"), NodePath("Turrets/Turret2"), NodePath("Turrets/Turret3")]
 shields = [NodePath("Shields/Shield1"), NodePath("Shields/Shield2"), NodePath("Shields/Shield3"), NodePath("Shields/Shield4"), NodePath("Shields/Shield5"), NodePath("Shields/Shield6"), NodePath("Shields/Shield7"), NodePath("Shields/Shield8"), NodePath("Shields/Shield9"), NodePath("Shields/Shield10"), NodePath("Shields/Shield11"), NodePath("Shields/Shield12")]
 ui_turret = NodePath("../UITurret")
 
+[node name="ShotAudio" type="AudioStreamPlayer" parent="TurretController" unique_id=1057313233]
+stream = SubResource("AudioStreamRandomizer_Shot")
+volume_db = -9.0
+max_polyphony = 4
+bus = &"SFX"
+
+[node name="ReloadAudio" type="AudioStreamPlayer" parent="TurretController" unique_id=1238986550]
+stream = ExtResource("15_reload")
+volume_db = -9.0
+bus = &"SFX"
+
 [node name="Turrets" type="Node3D" parent="TurretController" unique_id=1003223217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.238393)
 
 [node name="Turret1" type="Camera3D" parent="TurretController/Turrets" unique_id=1987414570]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.3875802, -4.573973)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6650286, -4.573973)
 
 [node name="Turret2" type="Camera3D" parent="TurretController/Turrets" unique_id=1939579556]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.2715473, 1.3875802, -4.573973)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2715473, 1.3875802, -4.573973)
 
 [node name="Turret3" type="Camera3D" parent="TurretController/Turrets" unique_id=770100617]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.9202322, 1.3875802, -4.573973)
-
-[node name="Turret4" type="Camera3D" parent="TurretController/Turrets" unique_id=1121996116]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 2.6829805, -4.573973)
-
-[node name="Turret5" type="Camera3D" parent="TurretController/Turrets" unique_id=248208429]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.22641993, -4.573973)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9202322, 1.3875802, -4.573973)
 
 [node name="Shields" type="Node3D" parent="TurretController" unique_id=476083240]
 
@@ -119,7 +198,7 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 2.3, -8)
 visible = false
 
-[node name="UITurret" type="CanvasLayer" parent="." unique_id=1195384379 node_paths=PackedStringArray("turret_controller", "shield_buttons_container", "turret_buttons_container", "shot_button", "ammo", "buff")]
+[node name="UITurret" type="CanvasLayer" parent="." unique_id=1195384379 node_paths=PackedStringArray("turret_controller", "shield_buttons_container", "turret_buttons_container", "shot_button", "ammo", "ammo_bar", "buff", "buff_card", "buff_icon")]
 follow_viewport_enabled = true
 script = ExtResource("12_4502m")
 turret_controller = NodePath("../TurretController")
@@ -127,7 +206,10 @@ shield_buttons_container = NodePath("PanelContainer/VBoxContainer/GridContainer"
 turret_buttons_container = NodePath("PanelContainer/HBoxContainer")
 shot_button = NodePath("PanelContainer/Shot")
 ammo = NodePath("PanelContainer/Ammo")
-buff = NodePath("PanelContainer/Buff")
+ammo_bar = NodePath("PanelContainer/AmmoBar")
+buff = NodePath("PanelContainer/BuffCard/Buff")
+buff_card = NodePath("PanelContainer/BuffCard")
+buff_icon = NodePath("PanelContainer/BuffCard/Icon")
 
 [node name="PanelContainer" type="Control" parent="UITurret" unique_id=1407579917]
 layout_mode = 3
@@ -217,41 +299,38 @@ theme_override_constants/h_separation = 100
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UITurret/PanelContainer" unique_id=1577165955]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 791.0
-offset_top = 938.0
-offset_right = -713.0
-offset_bottom = -62.0
+offset_left = -116.0
+offset_top = -86.0
+offset_right = 116.0
+offset_bottom = -32.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+theme = SubResource("Theme_Turret")
 alignment = 1
 
 [node name="Button1" type="Button" parent="UITurret/PanelContainer/HBoxContainer" unique_id=1301875169]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(72, 54)
 layout_mode = 2
+toggle_mode = true
+button_pressed = true
 text = "1"
 
 [node name="Button2" type="Button" parent="UITurret/PanelContainer/HBoxContainer" unique_id=755473761]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(72, 54)
 layout_mode = 2
+toggle_mode = true
 text = "2"
 
 [node name="Button3" type="Button" parent="UITurret/PanelContainer/HBoxContainer" unique_id=164964588]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(72, 54)
 layout_mode = 2
+toggle_mode = true
 text = "3"
-
-[node name="Button4" type="Button" parent="UITurret/PanelContainer/HBoxContainer" unique_id=272251392]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-text = "4"
-
-[node name="Button5" type="Button" parent="UITurret/PanelContainer/HBoxContainer" unique_id=524354081]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-text = "5"
 
 [node name="Shot" type="Button" parent="UITurret/PanelContainer" unique_id=1595118629]
 visible = false
@@ -263,37 +342,130 @@ offset_right = 407.0
 offset_bottom = 1015.0
 text = "SHOT"
 
-[node name="Ammo" type="Label" parent="UITurret/PanelContainer" unique_id=686020588]
+[node name="Crosshair" type="Control" parent="UITurret/PanelContainer" unique_id=2038945853]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -861.0
-offset_top = -474.0
-offset_right = -674.0
-offset_bottom = -395.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 50
+mouse_filter = 2
+
+[node name="Top" type="Panel" parent="UITurret/PanelContainer/Crosshair" unique_id=223802323]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -17.0
+offset_right = 2.0
+offset_bottom = -7.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Crosshair")
+
+[node name="Bottom" type="Panel" parent="UITurret/PanelContainer/Crosshair" unique_id=675337054]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 7.0
+offset_right = 2.0
+offset_bottom = 17.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Crosshair")
+
+[node name="Left" type="Panel" parent="UITurret/PanelContainer/Crosshair" unique_id=1287927036]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -2.0
+offset_right = -7.0
+offset_bottom = 2.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Crosshair")
+
+[node name="Right" type="Panel" parent="UITurret/PanelContainer/Crosshair" unique_id=1591559155]
+layout_mode = 0
+offset_left = 7.0
+offset_top = -2.0
+offset_right = 17.0
+offset_bottom = 2.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Crosshair")
+
+[node name="Dot" type="Panel" parent="UITurret/PanelContainer/Crosshair" unique_id=1320614250]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Crosshair")
+
+[node name="AmmoCard" type="Panel" parent="UITurret/PanelContainer" unique_id=279208259]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 236.0
+offset_bottom = 152.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_AmmoCard")
+
+[node name="AmmoTitle" type="Label" parent="UITurret/PanelContainer" unique_id=2042021453]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 42.0
+offset_right = 219.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.77, 0.73, 0.65, 1)
+theme_override_font_sizes/font_size = 17
+text = "MUNICIÓN"
+
+[node name="Ammo" type="Label" parent="UITurret/PanelContainer" unique_id=686020588]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 63.0
+offset_right = 219.0
+offset_bottom = 125.0
+theme_override_colors/font_color = Color(0.93, 0.9, 0.83, 1)
+theme_override_font_sizes/font_size = 46
 text = "10/10"
-horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Buff" type="Label" parent="UITurret/PanelContainer" unique_id=1234593368]
+[node name="AmmoBar" type="ProgressBar" parent="UITurret/PanelContainer" unique_id=995194326]
 layout_mode = 0
-offset_left = 172.0
-offset_top = 132.0
-offset_right = 212.0
-offset_bottom = 155.0
-text = "Buff"
-horizontal_alignment = 1
+offset_left = 49.0
+offset_top = 131.0
+offset_right = 219.0
+offset_bottom = 139.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_AmmoTrack")
+theme_override_styles/fill = SubResource("StyleBoxFlat_AmmoFill")
+value = 100.0
+show_percentage = false
+
+[node name="BuffCard" type="Panel" parent="UITurret/PanelContainer" unique_id=1832383478]
+visible = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 160.0
+offset_right = 316.0
+offset_bottom = 218.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_AmmoCard")
+
+[node name="Icon" type="Control" parent="UITurret/PanelContainer/BuffCard" unique_id=612336534]
+anchors_preset = 0
+offset_left = 19.0
+offset_top = 17.0
+offset_right = 43.0
+offset_bottom = 41.0
+mouse_filter = 2
+
+[node name="Buff" type="Label" parent="UITurret/PanelContainer/BuffCard" unique_id=1234593368]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 9.0
+offset_right = 272.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0.93, 0.9, 0.83, 1)
+theme_override_font_sizes/font_size = 22
+vertical_alignment = 1
 
 [connection signal="song_ended" from="Generator" to="LevelResumeMenu" method="show_all"]
-[connection signal="pressed" from="UITurret/PanelContainer/HBoxContainer/Button1" to="UITurret" method="_on_button_1_pressed"]
-[connection signal="pressed" from="UITurret/PanelContainer/HBoxContainer/Button2" to="UITurret" method="_on_button_2_pressed"]
-[connection signal="pressed" from="UITurret/PanelContainer/HBoxContainer/Button3" to="UITurret" method="_on_button_3_pressed"]
-[connection signal="pressed" from="UITurret/PanelContainer/HBoxContainer/Button4" to="UITurret" method="_on_button_4_pressed"]
-[connection signal="pressed" from="UITurret/PanelContainer/HBoxContainer/Button5" to="UITurret" method="_on_button_5_pressed"]
-[connection signal="pressed" from="UITurret/PanelContainer/Shot" to="UITurret" method="_on_shot_pressed"]

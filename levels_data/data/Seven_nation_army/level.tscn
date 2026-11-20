@@ -90,3 +90,18 @@ draw_pass_1 = SubResource("QuadMesh_vonxh")
 
 [node name="GeneratorBuff" parent="." index="11" unique_id=352087212]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.114729, -8.68824)
+
+[node name="HBoxContainer" parent="UITurret/PanelContainer" parent_id_path=PackedInt32Array(1407579917) index="1" unique_id=1577165955]
+anchors_preset = 7
+
+[node name="AmmoCard" parent="UITurret/PanelContainer" parent_id_path=PackedInt32Array(1407579917) index="3"]
+layout_mode = 0
+
+[node name="AmmoTitle" parent="UITurret/PanelContainer" parent_id_path=PackedInt32Array(1407579917) index="4"]
+layout_mode = 0
+
+[node name="Ammo" parent="UITurret/PanelContainer" parent_id_path=PackedInt32Array(1407579917) index="5" unique_id=686020588]
+layout_mode = 0
+
+[node name="AmmoBar" parent="UITurret/PanelContainer" parent_id_path=PackedInt32Array(1407579917) index="6"]
+layout_mode = 0

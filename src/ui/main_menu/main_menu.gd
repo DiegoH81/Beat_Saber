@@ -78,9 +78,9 @@ func _on_tutorial_button_pressed() -> void:
 # ───────────── Ready / Process ─────────────
 
 func _ready() -> void:
-	if OS.has_feature("mobile"):
+	if not multiplayer.is_server():
 		$CameraPath/CameraFollow/CameraPivot/Camera3D.current = true
-	elif multiplayer.is_server():
+	else:
 		var _finding_ip: String = ""
 		for addr in IP.get_local_addresses():
 			# Solo IPv4 de red local (192.168.x.x, 172.16-31.x.x, 10.x.x.x)
