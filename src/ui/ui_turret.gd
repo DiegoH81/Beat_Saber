@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+const ShieldCutEffect := preload("res://src/ui/shield_cut_effect.gd")
+
 @export var turret_controller: TurrentController
 @export var shield_buttons_container: GridContainer
 @export var turret_buttons_container: HBoxContainer
@@ -106,11 +108,24 @@ func _connect_shield_buttons() -> void:
 		fill.max_value = TurrentController.SHIELD_DURATION
 		fill.add_theme_stylebox_override("background", StyleBoxEmpty.new())
 		var fill_style := StyleBoxFlat.new()
-		fill_style.bg_color = Color(0.85, 0.94, 0.87)
+		fill_style.bg_color = Color(0.64, 0.24, 1.0, 0.32)
 		fill.add_theme_stylebox_override("fill", fill_style)
 		button.add_child(fill)
 		fill.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-		_on_shield_changed(i, turret_controller.is_shield_active(i))
+		var cut := ShieldCutEffect.new()
+		cut.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		fill.add_child(cut)
+		cut.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		var key_label := Label.new()
+		key_label.text = button.text
+		button.text = ""
+		key_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		key_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		key_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		key_label.add_theme_color_override("font_color", Color.WHITE)
+		button.add_child(key_label)
+		key_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		_on_shield_changed(i, turret_controller.is_shield_active(i * TurrentController.SHIELD_COLUMNS))
 
 func _connect_turrets_buttons() -> void:
 	for i in range(turret_buttons_container.get_child_count()):
@@ -123,7 +138,7 @@ func _connect_turrets_buttons() -> void:
 		button.pressed.connect(_on_turret_button_pressed.bind(i))
 
 func _on_shield_button_pressed(index: int) -> void:
-	turret_controller.active_shield(index)
+	turret_controller.activate_shield_row(index)
 
 func _on_shield_changed(index: int, active: bool) -> void:
 	if index >= 0 and index < shield_buttons_container.get_child_count():
@@ -147,10 +162,12 @@ func _on_beam_warning(lane: int, phase: int) -> void:
 		var btn := c as Button
 		if btn:
 			btn.self_modulate = Color.WHITE
-	if phase == 2 or lane < 0 or lane >= shield_buttons_container.get_child_count():
+	if phase == 2 or lane < 0:
 			return
-
-	var b := shield_buttons_container.get_child(lane) as Button
+	var row := TurrentController.shield_row_for_lane(lane)
+	if row >= shield_buttons_container.get_child_count():
+		return
+	var b := shield_buttons_container.get_child(row) as Button
 
 	if b == null:
 		return

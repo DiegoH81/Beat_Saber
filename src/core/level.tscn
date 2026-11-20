@@ -22,11 +22,13 @@ streams_count = 1
 stream_0/stream = ExtResource("14_gun")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ShieldActive"]
-bg_color = Color(0.24, 0.34, 0.32, 1)
+bg_color = Color(0.24, 0.075, 0.40, 0.98)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+shadow_color = Color(0.72, 0.26, 1, 0.52)
+shadow_size = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TurretFocus"]
 bg_color = Color(0, 0, 0, 0)
@@ -37,27 +39,43 @@ border_width_bottom = 2
 border_color = Color(0.74, 0.49, 0.25, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ShieldHover"]
-bg_color = Color(0.45, 0.46, 0.42, 1)
+bg_color = Color(0.29, 0.13, 0.43, 0.96)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+shadow_color = Color(0.72, 0.26, 1, 0.46)
+shadow_size = 11
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ShieldCell"]
-bg_color = Color(0.32, 0.33, 0.31, 1)
+bg_color = Color(0.26, 0.105, 0.43, 0.96)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+shadow_color = Color(0.62, 0.23, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="SystemFont" id="SystemFont_ShieldKeys"]
+font_names = PackedStringArray("Bahnschrift", "Segoe UI", "DejaVu Sans")
+font_weight = 700
 
 [sub_resource type="Theme" id="Theme_Shields"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/fonts/font = SubResource("SystemFont_ShieldKeys")
+Button/font_sizes/font_size = 27
 Button/styles/disabled = SubResource("StyleBoxFlat_ShieldActive")
 Button/styles/focus = SubResource("StyleBoxFlat_TurretFocus")
 Button/styles/hover = SubResource("StyleBoxFlat_ShieldHover")
 Button/styles/normal = SubResource("StyleBoxFlat_ShieldCell")
 Button/styles/pressed = SubResource("StyleBoxFlat_ShieldHover")
 GridContainer/constants/h_separation = 8
-GridContainer/constants/v_separation = 8
+GridContainer/constants/v_separation = 12
+Label/fonts/font = SubResource("SystemFont_ShieldKeys")
+Label/font_sizes/font_size = 27
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TurretHover"]
 bg_color = Color(0.24, 0.23, 0.2, 1)
@@ -236,8 +254,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -394.0
-offset_top = -188.0
+offset_left = -434.0
+offset_top = -220.0
 offset_right = -34.0
 offset_bottom = -34.0
 grow_horizontal = 0
@@ -246,55 +264,24 @@ theme = SubResource("Theme_Shields")
 
 [node name="GridContainer" type="GridContainer" parent="UITurret/PanelContainer/VBoxContainer" unique_id=1977215252]
 layout_mode = 2
-columns = 4
 
 [node name="Button1" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=2086058721]
-custom_minimum_size = Vector2(84, 46)
+custom_minimum_size = Vector2(400, 54)
 layout_mode = 2
+focus_mode = 0
+text = "Q"
 
 [node name="Button2" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=831861905]
-custom_minimum_size = Vector2(84, 46)
+custom_minimum_size = Vector2(400, 54)
 layout_mode = 2
+focus_mode = 0
+text = "W"
 
 [node name="Button3" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=799410901]
-custom_minimum_size = Vector2(84, 46)
+custom_minimum_size = Vector2(400, 54)
 layout_mode = 2
-
-[node name="Button4" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=1356661988]
-custom_minimum_size = Vector2(84, 46)
-layout_mode = 2
-
-[node name="Button5" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=111651759]
-custom_minimum_size = Vector2(84, 46)
-layout_mode = 2
-
-[node name="Button6" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=1448020801]
-custom_minimum_size = Vector2(84, 46)
-layout_mode = 2
-
-[node name="Button7" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=221120975]
-custom_minimum_size = Vector2(84, 46)
-layout_mode = 2
-
-[node name="Button8" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=349280577]
-custom_minimum_size = Vector2(84, 46)
-layout_mode = 2
-
-[node name="Button9" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=1811809901]
-custom_minimum_size = Vector2(84, 46)
-layout_mode = 2
-
-[node name="Button10" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=155160686]
-custom_minimum_size = Vector2(84, 46)
-layout_mode = 2
-
-[node name="Button11" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=1649125903]
-custom_minimum_size = Vector2(84, 46)
-layout_mode = 2
-
-[node name="Button12" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=401402610]
-custom_minimum_size = Vector2(84, 46)
-layout_mode = 2
+focus_mode = 0
+text = "E"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UITurret/PanelContainer" unique_id=1577165955]
 layout_mode = 1

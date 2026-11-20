@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://3c0a18cfunlu" path="res://src/ui/pop_ups/PopUp3D.tscn" id="6_hv737"]
 [ext_resource type="Texture2D" uid="uid://bk7wdwy1ln2iq" path="res://assets/img/TUT_2.png" id="7_tvfrh"]
 [ext_resource type="Script" uid="uid://bqk5krt03u502" path="res://levels_data/data/Tutorial/network.gd" id="8_t3j66"]
-[ext_resource type="PackedScene" uid="uid://byxxb0ukhfhoc" path="res://src/ui/pop_ups/PopUp2D.tscn" id="9_p2_popup"]
 [ext_resource type="Script" uid="uid://b4wt14w0nk2kd" path="res://levels_data/data/Tutorial/p2_tutorial.gd" id="10_p2_tutorial"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3ahog"]
@@ -61,6 +60,38 @@ text = "Usa tus manos
 [sub_resource type="TextMesh" id="TextMesh_w4mfu"]
 text = "¿Listo?"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_TutorialBackdrop"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.55)
+
+[sub_resource type="QuadMesh" id="QuadMesh_P1TutorialBackdrop"]
+material = SubResource("StandardMaterial3D_TutorialBackdrop")
+size = Vector2(7.5, 1.9)
+
+[sub_resource type="TextMesh" id="TextMesh_P2Shoot"]
+text = "Dorados y potenciadores
+Usa clic izquierdo para disparar."
+
+[sub_resource type="TextMesh" id="TextMesh_P2Ammo"]
+text = "Balas"
+
+[sub_resource type="TextMesh" id="TextMesh_P2Rate"]
+text = "Cadencia"
+
+[sub_resource type="TextMesh" id="TextMesh_P2Score"]
+text = "Puntos dobles
+para P1"
+
+[sub_resource type="TextMesh" id="TextMesh_P2Controls"]
+text = "Protege la fila que parpadea.
+Q / W / E: superior, central o inferior
+Teclas 1 2 3: cambia de torreta"
+
+[sub_resource type="QuadMesh" id="QuadMesh_P2TutorialBackdrop"]
+material = SubResource("StandardMaterial3D_TutorialBackdrop")
+size = Vector2(9.2, 3.9)
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u0wma"]
 emission_shape_offset = Vector3(0, 0, -8.295)
 emission_shape_scale = Vector3(3.625, 1.84, 14.97)
@@ -106,6 +137,7 @@ sensibilidad = 1.32
 intensidad = 0.365
 
 [node name="TextNodes" type="Node3D" parent="." index="7" unique_id=1809066718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.91689134)
 script = ExtResource("5_u0wma")
 
 [node name="Text1_TUTORIAL" type="MeshInstance3D" parent="TextNodes" index="0" unique_id=120232580]
@@ -123,17 +155,61 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 2.652, -6.357)
 mesh = SubResource("TextMesh_w4mfu")
 surface_material_override/0 = SubResource("StandardMaterial3D_24ph5")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="8" unique_id=2111852031]
+[node name="Backdrop" type="MeshInstance3D" parent="TextNodes" index="3" unique_id=53346039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.652, -6.55)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_P1TutorialBackdrop")
+
+[node name="P2TextNodes" type="Node3D" parent="." index="8" unique_id=663799950 node_paths=PackedStringArray("powerups")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.997644, -5.6042037)
+script = ExtResource("10_p2_tutorial")
+powerups = NodePath("../GeneratorBuff")
+
+[node name="PowerupText" type="Node3D" parent="P2TextNodes" index="0" unique_id=1970470506]
+
+[node name="Shoot" type="MeshInstance3D" parent="P2TextNodes/PowerupText" index="0" unique_id=145902335]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.25, 0)
+mesh = SubResource("TextMesh_P2Shoot")
+surface_material_override/0 = SubResource("StandardMaterial3D_24ph5")
+
+[node name="Examples" type="Node3D" parent="P2TextNodes/PowerupText" index="1" unique_id=1075020915]
+
+[node name="Ammo" type="MeshInstance3D" parent="P2TextNodes/PowerupText/Examples" index="0" unique_id=1327191759]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.7, -0.65, 0)
+mesh = SubResource("TextMesh_P2Ammo")
+surface_material_override/0 = SubResource("StandardMaterial3D_24ph5")
+
+[node name="Rate" type="MeshInstance3D" parent="P2TextNodes/PowerupText/Examples" index="1" unique_id=906459461]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.65, 0)
+mesh = SubResource("TextMesh_P2Rate")
+surface_material_override/0 = SubResource("StandardMaterial3D_24ph5")
+
+[node name="Score" type="MeshInstance3D" parent="P2TextNodes/PowerupText/Examples" index="2" unique_id=1089407473]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 2.7, -0.65, 0)
+mesh = SubResource("TextMesh_P2Score")
+surface_material_override/0 = SubResource("StandardMaterial3D_24ph5")
+
+[node name="Controls" type="MeshInstance3D" parent="P2TextNodes" index="1" unique_id=137153083]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.9, 0)
+mesh = SubResource("TextMesh_P2Controls")
+surface_material_override/0 = SubResource("StandardMaterial3D_24ph5")
+
+[node name="Backdrop" type="MeshInstance3D" parent="P2TextNodes" index="2" unique_id=1260800713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33, -0.43)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_P2TutorialBackdrop")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="9" unique_id=2111852031]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8317559, 0)
 amount = 80
 lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_u0wma")
 draw_pass_1 = SubResource("QuadMesh_ty0te")
 
-[node name="LevelResumeMenu" parent="." index="9" unique_id=1054654497]
+[node name="LevelResumeMenu" parent="." index="10" unique_id=1054654497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8239484, 0)
 
-[node name="PopUp3d" parent="." index="10" unique_id=451488544 instance=ExtResource("6_hv737")]
+[node name="PopUp3d" parent="." index="11" unique_id=451488544 instance=ExtResource("6_hv737")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4151286, -1.273696)
 visible = false
 texto = "Abre el menu cruzando
@@ -141,31 +217,24 @@ los brazos"
 imagen_textura = ExtResource("7_tvfrh")
 escala_imagen = Vector3(0.045, 0.045, 1)
 
-[node name="Spawn" type="Node3D" parent="." index="11" unique_id=761678666]
+[node name="Spawn" type="Node3D" parent="." index="12" unique_id=761678666]
 transform = Transform3D(0.99939084, 0, 0.034899496, 0, 1, 0, -0.034899496, 0, 0.99939084, 0, 0, -0.10103381)
 
-[node name="HealthBarUi" parent="." index="12" unique_id=631553282]
+[node name="HealthBarUi" parent="." index="13" unique_id=631553282]
 transform = Transform3D(1.4327351, 0, -0.8676952, 0, 1.675, 0, 0.8676952, 0, 1.4327351, 3.432, 1.141, -6.913)
 
-[node name="GeneratorBuff" parent="." index="13" unique_id=352087212]
+[node name="GeneratorBuff" parent="." index="14" unique_id=352087212]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.402113, -7.6480756)
 
-[node name="TurretController" parent="." index="14" unique_id=173134273 node_paths=PackedStringArray("generator")]
+[node name="TurretController" parent="." index="15" unique_id=173134273 node_paths=PackedStringArray("generator")]
 generator = NodePath("../Generator")
 
 [node name="Shields" parent="TurretController" index="3" unique_id=476083240]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1452422, -10.417515)
 
-[node name="Network" type="Node" parent="." index="15" unique_id=1512024474 node_paths=PackedStringArray("turret_controller")]
+[node name="Network" type="Node" parent="." index="16" unique_id=1512024474 node_paths=PackedStringArray("turret_controller")]
 script = ExtResource("8_t3j66")
 turret_controller = NodePath("../TurretController")
 
-[node name="UITurret" parent="." index="16" unique_id=1195384379 node_paths=PackedStringArray("generator")]
+[node name="UITurret" parent="." index="17" unique_id=1195384379 node_paths=PackedStringArray("generator")]
 generator = NodePath("../Generator")
-
-[node name="P2TutorialPopup" parent="." index="17" unique_id=884256148 instance=ExtResource("9_p2_popup")]
-
-[node name="P2Tutorial" type="Node" parent="." index="18" unique_id=945137818 node_paths=PackedStringArray("popup", "powerups")]
-script = ExtResource("10_p2_tutorial")
-popup = NodePath("../P2TutorialPopup")
-powerups = NodePath("../GeneratorBuff")
