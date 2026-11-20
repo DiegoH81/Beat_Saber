@@ -23,7 +23,8 @@ var _shooting: bool = false
 	
 var _blink_tween: Tween
 var _warning_button: Button
-var _station_blink_tween: Tween
+var _station_flash: ColorRect
+var _station_flash_tween: Tween
 var _buff_tween: Tween
 var _buff_rest_y: float
 
@@ -38,6 +39,11 @@ func _ready() -> void:
 	_apply_shield_color()
 	turret_controller.shield_changed.connect(_on_shield_changed)
 	_connect_turrets_buttons()
+	_station_flash = ColorRect.new()
+	_station_flash.color = Color(1.0, 0.04, 0.08, 0.0)
+	_station_flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(_station_flash)
+	_station_flash.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	turret_controller.turret_changed.connect(_on_turret_changed)
 	turret_controller.station_attack_changed.connect(_on_station_attack_changed)
 	_on_turret_changed(turret_controller.current_index)
@@ -59,21 +65,19 @@ func _on_turret_changed(index: int) -> void:
 			button.set_pressed_no_signal(i == index)
 
 func _on_station_attack_changed(index: int, state: TurrentController.StationState) -> void:
-	if _station_blink_tween:
-		_station_blink_tween.kill()
+	if index < 0 or index >= turret_buttons_container.get_child_count():
+		return
 	var button := turret_buttons_container.get_child(index) as Button
 	if button == null:
 		return
 	button.disabled = state == TurrentController.StationState.OFFLINE
-	match state:
-		TurrentController.StationState.WARNING:
-			_station_blink_tween = create_tween().set_loops()
-			_station_blink_tween.tween_property(button, "modulate", Color(1.0, 0.42, 0.18), 0.18)
-			_station_blink_tween.tween_property(button, "modulate", Color.WHITE, 0.18)
-		TurrentController.StationState.OFFLINE:
-			button.modulate = Color(0.85, 0.35, 0.30)
-		TurrentController.StationState.READY:
-			button.modulate = Color.WHITE
+	if not button.disabled:
+		return
+	if _station_flash_tween:
+		_station_flash_tween.kill()
+	_station_flash.color.a = 0.36
+	_station_flash_tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	_station_flash_tween.tween_property(_station_flash, "color:a", 0.0, 0.32)
 
 func _on_buff_collected(kind: String, ammo_gained: int) -> void:
 	var accent := Color(0.96, 0.77, 0.53)
@@ -82,10 +86,10 @@ func _on_buff_collected(kind: String, ammo_gained: int) -> void:
 			accent = Color(0.73, 0.90, 0.59)
 			buff.text = "+%d balas" % ammo_gained if ammo_gained > 0 else "Munición llena"
 		"rate":
-			buff.text = "Cadencia + · 5 s"
+			buff.text = "Cadencia +"
 		"score":
 			accent = Color(0.65, 0.80, 1.0)
-			buff.text = "×2 puntos"
+			buff.text = "x2 puntos"
 		_:
 			buff.text = kind
 

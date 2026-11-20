@@ -26,6 +26,8 @@ var _beam_travel: Tween
 
 const SPECIAL_GROUP := "special_enemy"
 const BEAM_AUDIO_ATTACK_TIME := 0.9
+const SPECIAL_GAP_MIN := 4.0
+const SPECIAL_GAP_MAX := 7.0
 const BeamEffects := preload("res://src/enemies/generator/beam_effects.gd")
 const BEAM_AURA := preload("res://src/enemies/generator/beam_aura.gdshader")
 
@@ -85,7 +87,7 @@ func destroy_note(i: int) -> void:
 
 func roll_specials() -> PackedInt32Array:
 	var special_indices := PackedInt32Array()
-	var next_special_time := randf_range(6.0, 10.0)
+	var next_special_time := randf_range(SPECIAL_GAP_MIN, SPECIAL_GAP_MAX)
 	for i in notes.size():
 		var first := notes[i]
 		if first.exect_time < next_special_time:
@@ -103,14 +105,14 @@ func roll_specials() -> PackedInt32Array:
 				var candidate := notes[j]
 				if candidate.exect_time > window_end or candidate.exect_time >= duration_max:
 					break
-				if candidate.exect_time >= window_start and candidate.lane != first.lane:
+				if candidate.exect_time >= window_start:
 					candidates.append(j)
 			if not candidates.is_empty():
 				var second_index: int = candidates.pick_random()
 				special_indices.append(second_index)
 				last_special_time = notes[second_index].exect_time
 
-		next_special_time = last_special_time + randf_range(6.0, 10.0)
+		next_special_time = last_special_time + randf_range(SPECIAL_GAP_MIN, SPECIAL_GAP_MAX)
 	return special_indices
 
 func start_song(indices: PackedInt32Array, first_beam_delay: float = -1.0) -> void:

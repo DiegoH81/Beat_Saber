@@ -79,6 +79,114 @@ GridContainer/constants/v_separation = 12
 Label/font_sizes/font_size = 27
 Label/fonts/font = SubResource("SystemFont_ShieldKeys")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mn4vy"]
+bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uo26"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wpxr5"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lsv0a"]
+bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.52)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8unrm"]
+bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3e24s"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_loaod"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lm73"]
+bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.52)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvbhs"]
+bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ldk8"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a0jlf"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sutpl"]
+bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.52)
+shadow_size = 12
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TurretHover"]
 bg_color = Color(0.24, 0.23, 0.2, 1)
 corner_radius_top_left = 5
@@ -87,11 +195,13 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TurretActive"]
-bg_color = Color(0.88, 0.85, 0.77, 1)
+bg_color = Color(0.9192848, 0.8066504, 0.32315123, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+shadow_color = Color(0.8117682, 0.786363, 0.6174076, 0.6)
+shadow_size = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TurretIdle"]
 bg_color = Color(0.105, 0.105, 0.099, 1)
@@ -101,9 +211,9 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="Theme" id="Theme_Turret"]
-Button/colors/font_color = Color(0.88, 0.85, 0.77, 1)
-Button/colors/font_hover_color = Color(0.99, 0.96, 0.88, 1)
-Button/colors/font_hover_pressed_color = Color(0.12, 0.11, 0.09, 1)
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.9416275, 0.948927, 0.95024604, 1)
+Button/colors/font_hover_pressed_color = Color(0.2635858, 0.23366416, 0.23091295, 1)
 Button/colors/font_pressed_color = Color(0.12, 0.11, 0.09, 1)
 Button/font_sizes/font_size = 27
 Button/styles/focus = SubResource("StyleBoxFlat_TurretFocus")
@@ -271,18 +381,30 @@ layout_mode = 2
 custom_minimum_size = Vector2(400, 54)
 layout_mode = 2
 focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_mn4vy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7uo26")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wpxr5")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_lsv0a")
 text = "Q"
 
 [node name="Button2" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=831861905]
 custom_minimum_size = Vector2(400, 54)
 layout_mode = 2
 focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_8unrm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3e24s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_loaod")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_6lm73")
 text = "W"
 
 [node name="Button3" type="Button" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" unique_id=799410901]
 custom_minimum_size = Vector2(400, 54)
 layout_mode = 2
 focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_cvbhs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4ldk8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a0jlf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_sutpl")
 text = "E"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UITurret/PanelContainer" unique_id=1577165955]

@@ -105,6 +105,114 @@ gravity = Vector3(0, -0.1, 0)
 [sub_resource type="QuadMesh" id="QuadMesh_ty0te"]
 size = Vector2(0.1, 0.1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h00ih"]
+bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_833tn"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0eeo"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2fgj"]
+bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.52)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wpjun"]
+bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgh5v"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_skukp"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4s53b"]
+bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.52)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gc1ni"]
+bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_206tb"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkaqk"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8irb"]
+bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.52)
+shadow_size = 12
+
 [node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient", "spawn") instance=ExtResource("1_q7ebg")]
 ambient = NodePath("Ambient")
 next_level_id = "Vivaldi_four_seasons"
@@ -238,6 +346,24 @@ turret_controller = NodePath("../TurretController")
 
 [node name="UITurret" parent="." index="17" unique_id=1195384379 node_paths=PackedStringArray("generator")]
 generator = NodePath("../Generator")
+
+[node name="Button1" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" parent_id_path=PackedInt32Array(1977215252) index="0" unique_id=2086058721]
+theme_override_styles/normal = SubResource("StyleBoxFlat_h00ih")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_833tn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m0eeo")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_p2fgj")
+
+[node name="Button2" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" parent_id_path=PackedInt32Array(1977215252) index="1" unique_id=831861905]
+theme_override_styles/normal = SubResource("StyleBoxFlat_wpjun")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mgh5v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_skukp")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_4s53b")
+
+[node name="Button3" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" parent_id_path=PackedInt32Array(1977215252) index="2" unique_id=799410901]
+theme_override_styles/normal = SubResource("StyleBoxFlat_gc1ni")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_206tb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fkaqk")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x8irb")
 
 [node name="NetworkStatus" parent="." index="18" unique_id=2014900907]
 transform = Transform3D(0.6067536, 0, 0.33893225, 0, 0.695, 0, -0.33893225, 0, 0.6067536, -4.2584143, 4.559394, -6.7484264)
