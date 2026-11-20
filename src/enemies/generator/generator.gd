@@ -29,7 +29,7 @@ const SPECIAL_GROUP := "special_enemy"
 @export var points: Array[Node3D]
 
 @export_category("Special Enemy")
-@export_range(0.0, 1.0) var special_chance: float = 0.1
+@export_range(0.0, 1.0) var second_special_chance: float = 0.35
 @export var special_color: Color = Color(1.0, 0.8, 0.0)
 
 var notes: Array[Enemy]
@@ -41,24 +41,10 @@ var duration: float = 0
 
 var is_song_ended: bool = false
 
-var special_indices := PackedInt32Array()
-var _pending_special := PackedInt32Array()
-var _map_loaded: bool = false
-var _special_ready: bool = false
-
-func _ready() -> void:
-	if multiplayer.has_multiplayer_peer():
-		multiplayer.peer_connected.connect(_on_peer_connected)
-	if _map_loaded:
-		_setup_special()
-
 func setup(duration_data: float, bpm_data: float, notes_data: Array) -> void:
 	duration_max = duration_data
 	bpm = bpm_data
 	load_map(notes_data)
-	_map_loaded = true
-	if is_inside_tree():
-		_setup_special()
 
 func load_map(notes_data: Array) -> void:
 	for note_data in notes_data:
@@ -79,42 +65,41 @@ func destroy_note(i: int) -> void:
 	else:
 		e.queue_free()
 
-func _setup_special() -> void:
-	if _special_ready:
-		return
-	_special_ready = true
-
-	if not multiplayer.has_multiplayer_peer():
-		_roll_special()
-	elif multiplayer.is_server():
-		_roll_special()
-		_sync_special.rpc(special_indices)
-	elif not _pending_special.is_empty():
-		_mark_special(_pending_special)
-		_pending_special.clear()
-
-func _roll_special() -> void:
-	special_indices.clear()
+func roll_specials() -> PackedInt32Array:
+	var special_indices := PackedInt32Array()
+	var next_special_time := randf_range(6.0, 10.0)
 	for i in notes.size():
-		if randf() < special_chance:
-			special_indices.append(i)
-	_mark_special(special_indices)
+		var first := notes[i]
+		if first.exect_time < next_special_time:
+			continue
+		if first.exect_time >= duration_max:
+			break
 
-@rpc("authority", "call_remote", "reliable")
-func _sync_special(indices: PackedInt32Array) -> void:
-	if notes.is_empty():
-		_pending_special = indices
-	else:
-		_mark_special(indices)
+		special_indices.append(i)
+		var last_special_time := first.exect_time
+		if randf() < second_special_chance:
+			var candidates: Array[int] = []
+			var window_start := first.exect_time + 0.8
+			var window_end := first.exect_time + 1.5
+			for j in range(i + 1, notes.size()):
+				var candidate := notes[j]
+				if candidate.exect_time > window_end or candidate.exect_time >= duration_max:
+					break
+				if candidate.exect_time >= window_start and candidate.lane != first.lane:
+					candidates.append(j)
+			if not candidates.is_empty():
+				var second_index: int = candidates.pick_random()
+				special_indices.append(second_index)
+				last_special_time = notes[second_index].exect_time
 
-func _on_peer_connected(id: int) -> void:
-	if multiplayer.is_server() and not special_indices.is_empty():
-		_sync_special.rpc_id(id, special_indices)
+		next_special_time = last_special_time + randf_range(6.0, 10.0)
+	return special_indices
 
-func _mark_special(indices: PackedInt32Array) -> void:
+func start_song(indices: PackedInt32Array) -> void:
 	for i in indices:
 		if i >= 0 and i < notes.size():
 			notes[i].add_to_group(SPECIAL_GROUP)
+	set_physics_process(true)
 
 func set_active(active: bool) -> void:
 	var mode := Node.PROCESS_MODE_INHERIT if active else Node.PROCESS_MODE_DISABLED
@@ -162,7 +147,6 @@ func _apply_special_color(node: Node) -> void:
 func _is_authority() -> bool:
 	return not multiplayer.has_multiplayer_peer() or multiplayer.is_server()
 
-# Distancia desde el lane hasta el primer escudo visible, o -1.0 si no hay ninguno
 func _shield_hit_dist(lane: int) -> float:
 	var start := points[lane].global_position
 	var dir := -global_transform.basis.z
@@ -182,7 +166,7 @@ func _shield_hit_dist(lane: int) -> float:
 		var area := r["collider"] as Node3D
 		if area and area.is_visible_in_tree():
 			return start.distance_to(r["position"])
-		excluded.append(r["rid"]) # escudo oculto: ignorarlo y seguir
+		excluded.append(r["rid"])
 		q.exclude = excluded
 	return -1.0
 
