@@ -93,5 +93,8 @@ environment = SubResource("Environment_nlyaf")
 [node name="Spawn" type="Node3D" parent="." index="10" unique_id=1891746780]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 
-[node name="TurretController" parent="." index="11" unique_id=173134273 node_paths=PackedStringArray("generator")]
+[node name="GeneratorBuff" parent="." index="11" unique_id=352087212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8594179, -16.076561)
+
+[node name="TurretController" parent="." index="12" unique_id=173134273 node_paths=PackedStringArray("generator")]
 generator = NodePath("../Generator")
