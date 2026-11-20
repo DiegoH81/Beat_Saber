@@ -3,14 +3,15 @@ extends Node
 signal hit_registered(new_score: int)
 signal combo_updated(new_combo: int)
 signal multiplier_updated(progress: float, multiplier_level: int, just_leveled_up: bool)
-signal misses_updated(new_misses: int)
+signal misses_updated(new_misses: float)
 
 const MAX_MISSES: int = 20
 const DOUBLE_SCORE_DURATION_MS: int = 5000
+const BEAM_MISS_COST: float = 0.25
 
 var current_score: int = 0
 var current_combo: int = 0
-var misses: int = 0
+var misses: float = 0.0
 
 
 var current_multiplier: float = 1.0
@@ -70,6 +71,10 @@ func register_miss() -> void:
 	misses_updated.emit(misses)
 	combo_updated.emit(current_combo)
 	multiplier_updated.emit(0.0, multiplier_level, false)
+
+func register_beam_hit() -> void:
+	misses += BEAM_MISS_COST
+	misses_updated.emit(misses)
 
 func reset_score() -> void:
 	_double_score_until = 0

@@ -86,7 +86,6 @@ light_energy = 2.5
 
 [node name="Generator" parent="." index="1" unique_id=1789100008]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.5551233, 1.7724366, -31.334612)
-shield_mask = 8
 skin_enemy = ExtResource("3_24ph5")
 
 [node name="Destructor" parent="." index="2" unique_id=1128432705]

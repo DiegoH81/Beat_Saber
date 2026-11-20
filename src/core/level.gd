@@ -17,6 +17,11 @@ var number: int = 0
 func _ready() -> void:
 	if generator:
 		generator.set_physics_process(false)
+		if turret_controller:
+			generator.turret_controller = turret_controller
+			turret_controller.place_shields_on_lanes(generator.points, -generator.global_basis.z.normalized())
+			if not multiplayer.is_server():
+				generator.shield_blocked.connect(turret_controller.play_shield_impact)
 	ScoreManager.reset_score()
 	ScoreManager.misses_updated.connect(_on_misses_updated)
 	_setup_turrets.call_deferred()
@@ -42,6 +47,8 @@ func start_song(special_indices: PackedInt32Array) -> void:
 	AudioManager.play_prepared_music()
 	if generator:
 		generator.start_song(special_indices)
+		if turret_controller:
+			turret_controller.start_station_attacks(generator)
 	var powerups := get_node_or_null("GeneratorBuff") as PowerupGenerator
 	if powerups and turret_controller and not turret_controller.turrets.is_empty():
 		powerups.start_spawning(turret_controller.turrets[0])
@@ -67,7 +74,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func _on_misses_updated(value: int) -> void:
+func _on_misses_updated(value: float) -> void:
 	if value >= ScoreManager.MAX_MISSES:
 		ScoreManager.misses_updated.disconnect(_on_misses_updated)
 		_restart_level()
