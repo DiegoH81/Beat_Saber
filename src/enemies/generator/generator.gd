@@ -107,10 +107,12 @@ func roll_specials() -> PackedInt32Array:
 		next_special_time = last_special_time + randf_range(6.0, 10.0)
 	return special_indices
 
-func start_song(indices: PackedInt32Array) -> void:
+func start_song(indices: PackedInt32Array, first_beam_delay: float = -1.0) -> void:
 	for i in indices:
 		if i >= 0 and i < notes.size():
 			notes[i].add_to_group(SPECIAL_GROUP)
+	if first_beam_delay >= 0.0:
+		_beam_timer = beam_interval - first_beam_delay
 	set_physics_process(true)
 
 func set_active(active: bool) -> void:

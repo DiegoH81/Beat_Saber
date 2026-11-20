@@ -30,7 +30,7 @@ var _halo_texture: GradientTexture2D
 func _ready() -> void:
 	set_process(false)
 
-func start_spawning(reference_camera: Camera3D) -> void:
+func start_spawning(reference_camera: Camera3D, practice_duration: float = 0.0, practice_delay: float = 0.0) -> void:
 	if scene == null or reference_camera == null or not multiplayer.is_server():
 		return
 	if multiplayer.get_peers().is_empty():
@@ -40,7 +40,22 @@ func start_spawning(reference_camera: Camera3D) -> void:
 	_spawn_right = forward.cross(Vector3.UP)
 	_spawn_center = reference_camera.global_position + forward * spawn_distance
 	_spawn_center.y += fall_distance * 0.5
+	if practice_duration > 0.0:
+		await get_tree().create_timer(practice_delay, false).timeout
+		_spawn_tutorial_powerups(practice_duration)
 	set_process(true)
+
+func preview_model(kind: String) -> Node3D:
+	var model := Node3D.new()
+	_style_powerup(model, kind)
+	return model
+
+func _spawn_tutorial_powerups(practice_duration: float) -> void:
+	for i in POWERUPS.size():
+		var offset := (i - 1) * 1.65
+		var spawn_position := to_local(_spawn_center + _spawn_right * offset)
+		_spawn_powerup.rpc(_next_id, POWERUPS[i], spawn_position, practice_duration)
+		_next_id += 1
 
 func _process(delta: float) -> void:
 	_time += delta
@@ -53,7 +68,7 @@ func _process(delta: float) -> void:
 	_next_id += 1
 
 @rpc("authority", "call_local", "reliable")
-func _spawn_powerup(id: int, kind: String, spawn_position: Vector3) -> void:
+func _spawn_powerup(id: int, kind: String, spawn_position: Vector3, practice_duration: float = 0.0) -> void:
 	var obj: Node3D = scene.instantiate()
 	obj.name = "Powerup%d" % id
 	obj.add_to_group(kind)
@@ -61,6 +76,8 @@ func _spawn_powerup(id: int, kind: String, spawn_position: Vector3) -> void:
 	_style_powerup(obj, kind)
 	add_child(obj)
 	obj.set_meta("fall_limit", obj.global_position.y - fall_distance)
+	if practice_duration > 0.0:
+		obj.set_meta("fall_speed", fall_distance / practice_duration)
 	_objects.append(obj)
 	
 	obj.tree_exited.connect(_on_object_removed.bind(obj))
@@ -155,6 +172,6 @@ func _physics_process(delta: float) -> void:
 		if not is_instance_valid(obj):
 			_objects.remove_at(i)
 			continue
-		obj.global_position.y -= speed * delta
+		obj.global_position.y -= float(obj.get_meta("fall_speed", speed)) * delta
 		if obj.global_position.y < float(obj.get_meta("fall_limit")):
 			obj.queue_free()

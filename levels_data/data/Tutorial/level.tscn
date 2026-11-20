@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://3c0a18cfunlu" path="res://src/ui/pop_ups/PopUp3D.tscn" id="6_hv737"]
 [ext_resource type="Texture2D" uid="uid://bk7wdwy1ln2iq" path="res://assets/img/TUT_2.png" id="7_tvfrh"]
 [ext_resource type="Script" uid="uid://bqk5krt03u502" path="res://levels_data/data/Tutorial/network.gd" id="8_t3j66"]
+[ext_resource type="PackedScene" path="res://src/ui/pop_ups/PopUp2D.tscn" id="9_p2_popup"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3ahog"]
 sky_top_color = Color(0.47843137, 0.18039216, 0.28627452, 1)
@@ -72,12 +73,13 @@ gravity = Vector3(0, -0.1, 0)
 [sub_resource type="QuadMesh" id="QuadMesh_ty0te"]
 size = Vector2(0.1, 0.1)
 
-[node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient", "spawn") instance=ExtResource("1_q7ebg")]
+[node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient", "spawn", "p2_tutorial_popup") instance=ExtResource("1_q7ebg")]
 ambient = NodePath("Ambient")
 next_level_id = "Vivaldi_four_seasons"
 own_id = "Tutorial"
 spawn = NodePath("Spawn")
 song_name = "Tutorial"
+p2_tutorial_popup = NodePath("P2TutorialPopup")
 
 [node name="Sun" parent="." index="0" unique_id=1999535529]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2.923747, 7.8188257)
@@ -160,3 +162,5 @@ turret_controller = NodePath("../TurretController")
 
 [node name="UITurret" parent="." index="16" unique_id=1195384379 node_paths=PackedStringArray("generator")]
 generator = NodePath("../Generator")
+
+[node name="P2TutorialPopup" parent="." index="17" instance=ExtResource("9_p2_popup")]
