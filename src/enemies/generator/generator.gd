@@ -26,7 +26,10 @@ var _beam_travel: Tween
 
 const SPECIAL_GROUP := "special_enemy"
 const BEAM_AUDIO_ATTACK_TIME := 0.9
+const BeamEffects := preload("res://src/enemies/generator/beam_effects.gd")
+const BEAM_AURA := preload("res://src/enemies/generator/beam_aura.gdshader")
 
+var _beam_effects := BeamEffects.new()
 @onready var _beam_audio: AudioStreamPlayer = $BeamAudio
 @onready var _shield_hit_audio: AudioStreamPlayer = $ShieldHitAudio
 
@@ -52,6 +55,9 @@ var duration_max: float = 0
 var duration: float = 0
 
 var is_song_ended: bool = false
+
+func _ready() -> void:
+	add_child(_beam_effects)
 
 func setup(duration_data: float, bpm_data: float, notes_data: Array) -> void:
 	duration_max = duration_data
@@ -191,6 +197,7 @@ func _warn(lane: int, phase: int) -> void:
 	if _beam_charge_tween:
 		_beam_charge_tween.kill()
 	if phase == 2:
+		_beam_effects.restore_light()
 		if is_instance_valid(_beam_charge):
 			_beam_charge.queue_free()
 			_beam_charge = null
@@ -199,6 +206,7 @@ func _warn(lane: int, phase: int) -> void:
 		return
 
 	if phase == 1:
+		_beam_effects.dim_light(minf(warn_red_time, 0.24))
 		_beam_audio.play(maxf(0.0, BEAM_AUDIO_ATTACK_TIME - warn_red_time))
 
 	if not is_instance_valid(_beam_charge):
@@ -223,20 +231,23 @@ func _beam_material(color: Color) -> StandardMaterial3D:
 	var material := StandardMaterial3D.new()
 	material.albedo_color = color
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.disable_fog = true
 	material.emission_enabled = true
 	material.emission = color
+	material.emission_energy_multiplier = 4.0
 	if color.a < 1.0:
 		material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		material.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
 	return material
 
-func _beam_cylinder(pivot: Node3D, radius: float, color: Color) -> MeshInstance3D:
+func _beam_cylinder(pivot: Node3D, radius: float, material: Material) -> MeshInstance3D:
 	var cylinder := CylinderMesh.new()
 	cylinder.top_radius = radius
 	cylinder.bottom_radius = radius
 	cylinder.height = 0.01
 	cylinder.radial_segments = 16
 	cylinder.rings = 0
-	cylinder.material = _beam_material(color)
+	cylinder.material = material
 
 	var mesh := MeshInstance3D.new()
 	mesh.mesh = cylinder
@@ -260,9 +271,14 @@ func _fire_beam(lane: int, reach: float, shield_at: float) -> void:
 	_beam_pivot.global_position = start
 	_beam_pivot.look_at(start + direction)
 
+	_beam_effects.dim_light(0.12)
+	_beam_effects.flash(_beam_pivot, 0.0, false)
+	var aura := ShaderMaterial.new()
+	aura.shader = BEAM_AURA
 	_beam_meshes = [
-		_beam_cylinder(_beam_pivot, beam_radius * 0.58, Color(1.0, 0.8, 0.53)),
-		_beam_cylinder(_beam_pivot, beam_radius * 1.7, Color(1.0, 0.1, 0.04, 0.43)),
+		_beam_cylinder(_beam_pivot, beam_radius * 0.95, _beam_material(Color(1.0, 0.97, 0.94))),
+		_beam_cylinder(_beam_pivot, beam_radius * 2.1, _beam_material(Color(1.0, 0.25, 0.46, 0.34))),
+		_beam_cylinder(_beam_pivot, beam_radius * 4.6, aura),
 	]
 	_beam_reach = reach
 	_beam_checkpoint = shield_at if shield_at > 0.0 and shield_at < reach else reach
@@ -297,10 +313,12 @@ func _resize_beam(length: float) -> void:
 
 func _finish_beam(blocked: bool) -> void:
 	if blocked:
+		_beam_effects.flash(_beam_pivot, _beam_checkpoint, true)
 		_play_shield_impact()
 	elif multiplayer.is_server():
 		ScoreManager.register_beam_hit()
 	var fade := _beam_pivot.create_tween()
+	_beam_effects.restore_light(beam_hold + 0.16)
 	fade.tween_interval(beam_hold)
 	fade.tween_property(_beam_pivot, "scale", Vector3(0.03, 0.03, 1.0), 0.16)
 	fade.tween_callback(_beam_pivot.queue_free)
