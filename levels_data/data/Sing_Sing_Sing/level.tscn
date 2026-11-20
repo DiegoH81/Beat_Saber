@@ -52,6 +52,7 @@ ambient = NodePath("Ambient")
 next_level_id = "Seven_nation_army"
 own_id = "Sing_Sing_Sing"
 spawn = NodePath("Spawn")
+song_name = "Sing_Sing_Sing"
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." index="0" unique_id=1562677771]
 transform = Transform3D(1.66, 0, 0, 0, 1.66, 0, 0, 0, 1.66, 0, 3.2811193, 0)
@@ -68,6 +69,7 @@ light_indirect_energy = 2.375
 
 [node name="Generator" parent="." index="2" unique_id=1789100008]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.5551233, 1.8270774, -31.334612)
+shield_mask = 8
 skin_enemy = ExtResource("3_t3cjk")
 
 [node name="Destructor" parent="." index="3" unique_id=1128432705]
@@ -90,3 +92,6 @@ environment = SubResource("Environment_nlyaf")
 
 [node name="Spawn" type="Node3D" parent="." index="10" unique_id=1891746780]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+
+[node name="TurretController" parent="." index="11" unique_id=173134273 node_paths=PackedStringArray("generator")]
+generator = NodePath("../Generator")

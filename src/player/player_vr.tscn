@@ -136,6 +136,7 @@ hand = NodePath("LeftHand")
 elbow = NodePath("LeftElbow")
 
 [node name="LeftHand" type="Node3D" parent="Body/Left" unique_id=1788189683]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Left/LeftHand" unique_id=402067880]
 mesh = SubResource("SphereMesh_75kqj")
@@ -169,6 +170,7 @@ hand = NodePath("RightHand")
 elbow = NodePath("RightElbow")
 
 [node name="RightHand" type="Node3D" parent="Body/Right" unique_id=436506547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Right/RightHand" unique_id=1612093311]
 mesh = SubResource("SphereMesh_75kqj")

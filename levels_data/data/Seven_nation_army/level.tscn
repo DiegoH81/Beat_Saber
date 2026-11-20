@@ -45,6 +45,7 @@ size = Vector2(0.1, 0.1)
 ambient = NodePath("Ambient")
 own_id = "Seven_nation_army"
 spawn = NodePath("Spawn")
+song_name = "Seven_nation_army"
 
 [node name="Spawn" type="Node3D" parent="." index="0" unique_id=1337766404]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.164, 0.7, 1.407)
@@ -58,8 +59,9 @@ shadow_enabled = true
 shadow_bias = 0.7
 shadow_blur = 1.83
 
-[node name="Generator" parent="." index="2" unique_id=1789100008]
+[node name="Generator" parent="." index="2" unique_id=1789100008 node_paths=PackedStringArray("turret_controller")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.33289146, 1.4412725, -57.45)
+turret_controller = NodePath("../TurretController")
 skin_enemy = ExtResource("3_db73d")
 
 [node name="Destructor" parent="." index="3" unique_id=1128432705]

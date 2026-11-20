@@ -82,7 +82,7 @@ button_material = SubResource("StandardMaterial3D_kx2cx")
 locked_text_color = Color(0.6, 0.6, 0.6, 1)
 
 [node name="Music" type="Node3D" parent="." unique_id=27714371]
-transform = Transform3D(2.1048894, 0, -1.3488665, 0, 2.5, 0, 1.3488665, 0, 2.1048894, 5.3255143, 1.1766323, 0.8306178)
+transform = Transform3D(2.0907803, 0, -1.3706342, 0, 2.5, 0, 1.3706342, 0, 2.0907803, 4.867588, 1.1766323, 0.6521752)
 
 [node name="music_TEXT" type="MeshInstance3D" parent="Music" unique_id=1724806972]
 transform = Transform3D(0.9999999, 0, 5.9604645e-08, 0, 0.99999994, 0, -5.9604645e-08, 0, 0.9999999, 0, 0, 0)
@@ -108,7 +108,7 @@ locked_text_color = Color(0.6, 0.6, 0.6, 1)
 transform = Transform3D(0.97249997, 0, 0, 0, 0.97249997, 0, 0, 0, 0.97249997, 0.03475213, -0.19997087, -0.014263272)
 
 [node name="Effects" type="Node3D" parent="." unique_id=688564360]
-transform = Transform3D(2.353712, 0, -0.8426381, 0, 2.5, 0, 0.8426381, 0, 2.353712, 2.4204967, 1.2258433, -0.46846902)
+transform = Transform3D(2.353712, 0, -0.8426381, 0, 2.5, 0, 0.8426381, 0, 2.353712, 2.0653446, 1.2258433, -0.56750464)
 
 [node name="music_TEXT2" type="MeshInstance3D" parent="Effects" unique_id=1133567752]
 mesh = SubResource("TextMesh_ucjxt")

@@ -10,6 +10,17 @@ class_name TurrentController
 @export var min_pitch: float = -80.0
 @export var max_pitch: float = 80.0
 
+signal ammo_changed(current: int, max: int)
+
+@export var max_ammo: int = 30
+@export var fire_cooldown: float = 0.3
+@export var min_fire_cooldown: float = 0.05
+@export var ammo_per_powerup: int = 10
+@export var fire_rate_bonus: float = 0.05
+
+var ammo: int
+var next_shot_time: float = 0.0
+
 var current_index: int = 0
 var current_turret: Camera3D
 var pitch: float = 0.0
@@ -24,6 +35,8 @@ var ray_timer: Timer
 @export var ray_duration: float = 0.2
 @export var ray_thickness: float = 0.015
 @export var ray_length: float = 100.0
+
+
 
 func setup_ray() -> void:
 	var cylinder := CylinderMesh.new()
@@ -55,6 +68,7 @@ func setup_ray() -> void:
 	add_child(ray_timer)
 
 func _ready() -> void:
+	ammo = max_ammo
 	setup_ray()
 
 	if multiplayer.is_server():
@@ -95,10 +109,20 @@ func draw_ray(origin: Vector3, end: Vector3) -> void:
 
 	ray_instance.visible = true
 	ray_timer.start(ray_duration)
+	
+@rpc("call_local", "any_peer", "reliable")
+func destroy_powerup(path: NodePath) -> void:
+	var node := get_node_or_null(path)
+	if node:
+		node.queue_free()
 
 func raycast_from_camera() -> void:
-	if current_turret == null:
+	var now := Time.get_ticks_msec() / 1000.0
+	if current_turret == null or ammo <= 0 or now < next_shot_time:
 		return
+	next_shot_time = now + fire_cooldown
+	ammo -= 1
+	ammo_changed.emit(ammo, max_ammo)
 
 	var origin := current_turret.global_position
 	var direction := -current_turret.global_transform.basis.z
@@ -115,10 +139,25 @@ func raycast_from_camera() -> void:
 		var enemy := _find_enemy(result["collider"])
 		if enemy and enemy.is_in_group(Generator.SPECIAL_GROUP):
 			destroy_special.rpc(enemy.get_meta("note_index", -1))
+		else:
+			var powerup := _find_powerup(result["collider"])
+			if powerup:
+				if powerup.is_in_group("powerup_ammo"):
+					ammo = mini(ammo + ammo_per_powerup, max_ammo)
+					ammo_changed.emit(ammo, max_ammo)
+				else:
+					fire_cooldown = maxf(fire_cooldown - fire_rate_bonus, min_fire_cooldown)
+				destroy_powerup.rpc(powerup.get_path())
 
 	var visual_origin := origin + current_turret.global_transform.basis * Vector3(0, -0.25, 0)
-	
 	draw_ray.rpc(visual_origin, end)
+
+func _find_powerup(node: Node) -> Node:
+	while node:
+		if node.is_in_group("powerup_ammo") or node.is_in_group("powerup_rate"):
+			return node
+		node = node.get_parent()
+	return null
 
 func _find_enemy(node: Node) -> Enemy:
 	while node:
@@ -154,6 +193,7 @@ func set_shield_visible(index: int, value: bool) -> void:
 var shield_pending: Dictionary = {}
 
 func active_shield(index: int) -> void:
+	index = _shield_index(index)
 	if index < 0 or index >= shields.size():
 		return
 
@@ -169,10 +209,16 @@ func active_shield(index: int) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.keycode == KEY_ALT and not event.echo:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if event.pressed else Input.MOUSE_MODE_CAPTURED
+		return
+
 	if current_turret == null:
 		return
 
 	if event is InputEventMouseMotion:
+		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+			return
 		var mouse_motion := event as InputEventMouseMotion
 
 		current_turret.rotate_y(
@@ -199,4 +245,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
+func _shield_index(i: int) -> int:
+	var cols := 4
+	return (i / cols) * cols + (cols - 1 - i % cols)
 	
+func is_shield_active(n: int) -> bool:
+	n = _shield_index(n)
+	return n >= 0 and n < shields.size() and shields[n].visible

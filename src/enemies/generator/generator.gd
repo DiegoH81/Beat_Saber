@@ -2,6 +2,19 @@ extends Node3D
 class_name Generator
 
 signal song_ended()
+signal beam_warning(lane: int, phase: int)
+
+@export_category("Beam")
+@export var beam_interval: float = 8.0
+@export var warn_yellow_time: float = 1.3
+@export var warn_red_time: float = 0.6
+@export var beam_speed: float = 40.0
+@export var beam_radius: float = 0.08
+@export var beam_hold: float = 0.4
+@export_flags_3d_physics var shield_mask: int = 1
+
+var _beam_timer: float = 0.0
+var _beam_busy: bool = false
 
 const SPECIAL_GROUP := "special_enemy"
 
@@ -65,6 +78,7 @@ func destroy_note(i: int) -> void:
 		e.die()
 	else:
 		e.queue_free()
+
 func _setup_special() -> void:
 	if _special_ready:
 		return
@@ -113,6 +127,11 @@ func _physics_process(delta: float) -> void:
 	if is_song_ended:
 		return
 
+	_beam_timer += delta
+	if not _beam_busy and _beam_timer >= beam_interval and _is_authority():
+		_beam_timer = 0.0
+		_run_beam()
+
 	if notes.size() <= index or duration >= duration_max:
 		song_ended.emit()
 		is_song_ended = true
@@ -139,3 +158,87 @@ func _apply_special_color(node: Node) -> void:
 		node.material_override = mat
 	for child in node.get_children():
 		_apply_special_color(child)
+
+func _is_authority() -> bool:
+	return not multiplayer.has_multiplayer_peer() or multiplayer.is_server()
+
+# Distancia desde el lane hasta el primer escudo visible, o -1.0 si no hay ninguno
+func _shield_hit_dist(lane: int) -> float:
+	var start := points[lane].global_position
+	var dir := -global_transform.basis.z
+	var end := start + dir * maxf(dir.dot(player_vr.global_position - start), 0.1)
+
+	var q := PhysicsRayQueryParameters3D.create(start, end)
+	q.collide_with_areas = true
+	q.collide_with_bodies = true
+	q.collision_mask = shield_mask
+
+	var space := get_world_3d().direct_space_state
+	while true:
+		var r := space.intersect_ray(q)
+		if r.is_empty():
+			return -1.0
+		var area := r["collider"] as Node3D
+		if area and area.is_visible_in_tree():
+			return start.distance_to(r["position"])
+		q.exclude.append(r["rid"]) # escudo oculto: ignorarlo y seguir
+	return -1.0
+
+func _run_beam() -> void:
+	if points.is_empty():
+		return
+	_beam_busy = true
+	var lane := randi() % points.size()
+
+	_warn.rpc(lane, 0)
+	await get_tree().create_timer(warn_yellow_time).timeout
+	_warn.rpc(lane, 1)
+	await get_tree().create_timer(warn_red_time).timeout
+	_warn.rpc(lane, 2)
+
+	_fire_beam.rpc(lane, _shield_hit_dist(lane))
+
+	await get_tree().create_timer(2.0).timeout
+	_beam_busy = false
+
+@rpc("authority", "call_local", "reliable")
+func _warn(lane: int, phase: int) -> void:
+	beam_warning.emit(lane, phase)
+
+@rpc("authority", "call_local", "reliable")
+func _fire_beam(lane: int, hit_dist: float) -> void:
+	if lane < 0 or lane >= points.size() or not is_instance_valid(player_vr):
+		return
+
+	var start := points[lane].global_position
+	var dir := -global_transform.basis.z
+
+	var dist := maxf(dir.dot(player_vr.global_position - start), 0.1)
+	if hit_dist > 0.0:
+		dist = hit_dist
+
+	var pivot := Node3D.new()
+	get_tree().current_scene.add_child(pivot)
+	pivot.global_position = start
+	pivot.look_at(start + dir)
+
+	var cyl := CylinderMesh.new()
+	cyl.top_radius = beam_radius
+	cyl.bottom_radius = beam_radius
+	cyl.height = 0.01
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color.RED
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	cyl.material = mat
+
+	var mesh := MeshInstance3D.new()
+	mesh.mesh = cyl
+	mesh.rotation_degrees.x = -90
+	pivot.add_child(mesh)
+
+	var tw := pivot.create_tween()
+	tw.tween_method(func(l: float) -> void:
+		cyl.height = maxf(l, 0.01)
+		mesh.position.z = -l * 0.5, 0.0, dist, dist / beam_speed)
+	tw.tween_interval(beam_hold)
+	tw.tween_callback(pivot.queue_free)

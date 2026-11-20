@@ -86,6 +86,7 @@ light_energy = 2.5
 
 [node name="Generator" parent="." index="1" unique_id=1789100008]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.5551233, 1.7724366, -31.334612)
+shield_mask = 8
 skin_enemy = ExtResource("3_24ph5")
 
 [node name="Destructor" parent="." index="2" unique_id=1128432705]
@@ -133,6 +134,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8239484, 0)
 
 [node name="PopUp3d" parent="." index="10" unique_id=451488544 instance=ExtResource("6_hv737")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4151286, -1.273696)
+visible = false
 texto = "Abre el menu cruzando
 los brazos"
 imagen_textura = ExtResource("7_tvfrh")
@@ -146,6 +148,20 @@ transform = Transform3D(1.4327351, 0, -0.8676952, 0, 1.675, 0, 0.8676952, 0, 1.4
 
 [node name="TurretController" parent="." index="13" unique_id=173134273 node_paths=PackedStringArray("generator")]
 generator = NodePath("../Generator")
+
+[node name="Shields" parent="TurretController" index="1" unique_id=476083240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1452422, -10.417515)
+
+[node name="UITurret" parent="." index="14" unique_id=1195384379 node_paths=PackedStringArray("generator", "ammo")]
+generator = NodePath("../Generator")
+ammo = NodePath("PanelContainer/Ammo")
+
+[node name="Ammo" type="Label" parent="UITurret/PanelContainer" parent_id_path=PackedInt32Array(1407579917) index="4" unique_id=82679478]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 54.0
+offset_right = 240.0
+offset_bottom = 140.0
 
 [node name="Network" type="Node" parent="." index="15" unique_id=1512024474 node_paths=PackedStringArray("turret_controller")]
 script = ExtResource("8_t3j66")

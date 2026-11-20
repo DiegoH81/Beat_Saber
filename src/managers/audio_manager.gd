@@ -7,7 +7,7 @@ const SFX_POOL_SIZE: int = 12
 
 var _music_paused: bool = false
 
-var music_level: int = 5
+var music_level: int = 7
 var sfx_level: int = 3
 var music_bus: int
 var sfx_bus: int
