@@ -1,0 +1,58 @@
+[gd_scene format=3]
+
+[sub_resource type="StandardMaterial3D" id="Material_Pedestal"]
+shading_mode = 0
+albedo_color = Color(0.15, 0.17, 0.19, 1)
+
+[sub_resource type="StandardMaterial3D" id="Material_Deck"]
+shading_mode = 0
+albedo_color = Color(0.24, 0.27, 0.29, 1)
+
+[sub_resource type="StandardMaterial3D" id="Material_Trim"]
+shading_mode = 0
+albedo_color = Color(0.29, 0.66, 0.69, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_Pedestal"]
+material = SubResource("Material_Pedestal")
+size = Vector3(1.16, 0.13, 1.12)
+
+[sub_resource type="BoxMesh" id="Mesh_Shaft"]
+material = SubResource("Material_Pedestal")
+size = Vector3(0.54, 0.25, 0.55)
+
+[sub_resource type="BoxMesh" id="Mesh_Deck"]
+material = SubResource("Material_Deck")
+size = Vector3(1.08, 0.09, 1.04)
+
+[sub_resource type="BoxMesh" id="Mesh_Trim"]
+material = SubResource("Material_Trim")
+size = Vector3(0.20, 0.016, 0.012)
+
+[node name="RailTurretVisual" type="Node3D"]
+
+[node name="Pedestal" type="MeshInstance3D" parent="."]
+position = Vector3(0, -0.40, 0)
+cast_shadow = 0
+mesh = SubResource("Mesh_Pedestal")
+
+[node name="Shaft" type="MeshInstance3D" parent="."]
+position = Vector3(0, -0.23, 0)
+cast_shadow = 0
+mesh = SubResource("Mesh_Shaft")
+
+[node name="Lift" type="Node3D" parent="."]
+
+[node name="Deck" type="MeshInstance3D" parent="Lift"]
+position = Vector3(0, -0.15, 0)
+cast_shadow = 0
+mesh = SubResource("Mesh_Deck")
+
+[node name="LeftTrim" type="MeshInstance3D" parent="Lift"]
+position = Vector3(-0.35, -0.15, 0.523)
+cast_shadow = 0
+mesh = SubResource("Mesh_Trim")
+
+[node name="RightTrim" type="MeshInstance3D" parent="Lift"]
+position = Vector3(0.35, -0.15, 0.523)
+cast_shadow = 0
+mesh = SubResource("Mesh_Trim")

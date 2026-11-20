@@ -1,6 +1,13 @@
 extends Node
 class_name TurrentController
 
+const RAIL_TURRET_MODEL := preload("res://assets/p2_rail_turret/p2_rail_turret.fbx")
+const TURRET_PLATFORM := preload("res://src/core/turret_platform.tscn")
+const TURRET_MOUNT_OFFSET := Vector3(0.38, -0.92, -1.56)
+const TURRET_CAMERA_OFFSET := Vector3(-0.14, 0.68, 1.62)
+const TURRET_CAMERA_MIN_HEIGHT := 0.30
+const RAIL_MUZZLE_POINT := Vector3(0.0, 1.9134, 3.1176)
+
 @export var generator: Generator
 
 @export var turrets: Array[Camera3D]
@@ -35,6 +42,12 @@ var _mouse_zooming: bool = false
 var _base_fov: float = 75.0
 var _zoom_tween: Tween
 var _reloading: bool = false
+var _turret_visual: Node3D
+var _turret_head: Node3D
+var _muzzle: Marker3D
+var _turret_mounts: Array[Transform3D] = []
+var _power_cell: Node3D
+var _power_cell_rest: Vector3
 
 var ray_mesh_instance: MeshInstance3D
 var ray_mesh: ImmediateMesh
@@ -101,7 +114,53 @@ func _ready() -> void:
 		ui_turret.visible = true
 
 	if not turrets.is_empty():
+		_setup_turret_visual()
 		changed_to_turret(0)
+
+func _setup_turret_visual() -> void:
+	_turret_visual = TURRET_PLATFORM.instantiate() as Node3D
+	add_child(_turret_visual)
+	var lift := _turret_visual.get_node("Lift") as Node3D
+	for camera in turrets:
+		var camera_basis := camera.global_basis.orthonormalized()
+		var forward := -camera_basis.z
+		forward.y = 0.0
+		var mount_basis := Basis.looking_at(forward, Vector3.UP)
+		_turret_mounts.append(Transform3D(mount_basis, camera.global_position + mount_basis * TURRET_MOUNT_OFFSET))
+
+	var model := RAIL_TURRET_MODEL.instantiate() as Node3D
+	model.rotation.y = PI
+	model.scale = Vector3.ONE * 0.32
+	lift.add_child(model)
+	_power_cell = model.get_node_or_null("StorageGunTurret1") as Node3D
+
+	for part in model.find_children("*", "MeshInstance3D", true, false):
+		var mesh_part := part as MeshInstance3D
+		mesh_part.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		for surface in range(mesh_part.mesh.get_surface_count()):
+			var source := mesh_part.get_active_material(surface) as BaseMaterial3D
+			if source:
+				var material := source.duplicate() as BaseMaterial3D
+				material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+				mesh_part.set_surface_override_material(surface, material)
+	_turret_head = Node3D.new()
+	_turret_head.name = "RailHead"
+	_turret_head.position = model.transform * Vector3(0.0, 1.9, 0.0)
+	lift.add_child(_turret_head)
+	var barrel := model.get_node("GunRailGunTurret1") as Node3D
+	barrel.reparent(_turret_head, true)
+	if _power_cell:
+		_power_cell.reparent(_turret_head, true)
+		_power_cell_rest = _power_cell.position
+
+	_muzzle = Marker3D.new()
+	_muzzle.name = "Muzzle"
+	_muzzle.position = model.transform * RAIL_MUZZLE_POINT - _turret_head.position
+	_turret_head.add_child(_muzzle)
+
+	var lift_motion := create_tween().set_loops().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	lift_motion.tween_property(lift, "position:y", 0.085, 1.6)
+	lift_motion.tween_property(lift, "position:y", 0.0, 1.6)
 
 func _process(_delta: float) -> void:
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
@@ -202,7 +261,10 @@ func raycast_from_camera() -> void:
 				destroy_powerup.rpc(powerup.get_path())
 
 	var visual_origin := origin + current_turret.global_transform.basis * Vector3(0, -0.25, 0)
-	draw_ray.rpc(visual_origin, end)
+	if is_instance_valid(_muzzle):
+		visual_origin = _muzzle.global_position
+	if direction.dot(end - visual_origin) > 0.0:
+		draw_ray.rpc(visual_origin, end)
 	if current_turret.is_current():
 		_play_recoil()
 
@@ -212,10 +274,20 @@ func _reload() -> void:
 
 	_reloading = true
 	reload_audio.play()
-	await get_tree().create_timer(reload_audio.stream.get_length(), false).timeout
+	var duration := reload_audio.stream.get_length()
+	_animate_turret_reload(duration)
+	await get_tree().create_timer(duration, false).timeout
 	ammo = max_ammo
 	_reloading = false
 	ammo_changed.emit(ammo, max_ammo)
+
+func _animate_turret_reload(duration: float) -> void:
+	if not is_instance_valid(_power_cell):
+		return
+	var motion := create_tween().set_trans(Tween.TRANS_SINE)
+	motion.tween_property(_power_cell, "position", _power_cell_rest + Vector3(0, 0.15, 0.06), duration * 0.35)
+	motion.tween_interval(duration * 0.20)
+	motion.tween_property(_power_cell, "position", _power_cell_rest, duration * 0.40)
 
 func _play_recoil() -> void:
 	if _recoil_tween:
@@ -227,6 +299,15 @@ func _play_recoil() -> void:
 func _set_recoil_pitch(value: float) -> void:
 	_recoil_pitch = value
 	current_turret.rotation.x = pitch + _recoil_pitch
+	if is_instance_valid(_turret_head):
+		var aim_basis := current_turret.global_basis.orthonormalized()
+		_turret_head.global_basis = aim_basis
+
+		var orbit_basis := aim_basis * Basis(Vector3.RIGHT, -_recoil_pitch)
+		var pivot := _turret_visual.to_global(_turret_head.position)
+		var eye := pivot + orbit_basis * TURRET_CAMERA_OFFSET
+		eye.y = maxf(eye.y, _turret_visual.global_position.y + TURRET_CAMERA_MIN_HEIGHT)
+		current_turret.global_position = eye
 
 func _find_powerup(node: Node) -> Node:
 	while node:
@@ -266,8 +347,12 @@ func changed_to_turret(index: int, value: bool = true) -> void:
 	current_index = index
 	current_turret = turrets[current_index]
 	current_turret.current = value
+	if is_instance_valid(_turret_visual):
+		_turret_visual.global_transform = _turret_mounts[index]
+		_turret_visual.visible = value
 
 	pitch = current_turret.rotation.x
+	_set_recoil_pitch(0.0)
 	_base_fov = current_turret.fov
 	if _mouse_zooming and value:
 		_update_zoom()
@@ -346,7 +431,7 @@ func _input(event: InputEvent) -> void:
 			deg_to_rad(max_pitch)
 		)
 
-		current_turret.rotation.x = pitch + _recoil_pitch
+		_set_recoil_pitch(_recoil_pitch)
 
 	elif event.is_action_pressed("left_arrow"):
 		changed_to_turret((current_index + 1) % turrets.size())
