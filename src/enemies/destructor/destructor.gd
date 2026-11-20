@@ -6,7 +6,7 @@ class_name Destructor
 signal hit_registered(amount: int)
 	
 func _on_area_entered(area: Area3D) -> void:
-	if area is Enemy:
+	if area is Enemy and (name != "SwordDestructor" or not area.is_in_group("special_enemy")):
 		var impact_position: Vector3 = area.global_position
 		area.queue_free()
 		

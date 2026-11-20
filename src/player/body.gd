@@ -24,6 +24,11 @@ var landmark_nodes := {}
 var body_nodes := []
 
 func _ready() -> void:
+	
+	if not is_multiplayer_authority():
+		set_process(false)
+		return
+		
 	process_priority = -1
 
 	landmark_nodes = {

@@ -7,7 +7,7 @@ const SFX_POOL_SIZE: int = 12
 
 var _music_paused: bool = false
 
-var music_level: int = 5
+var music_level: int = 7
 var sfx_level: int = 3
 var music_bus: int
 var sfx_bus: int
@@ -34,9 +34,10 @@ func _ready() -> void:
 		add_child(p)
 		sfx_players.append(p)
 	
-func play_music(id_song: String) -> void:
+func prepare_music(id_song: String) -> void:
 	music_player.stream = load(path + id_song + "/song.ogg")
-	print(path + id_song + "/song.ogg")
+
+func play_prepared_music() -> void:
 	music_player.play()
 	music_player.stream_paused = _music_paused
 

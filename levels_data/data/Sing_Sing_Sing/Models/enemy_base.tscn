@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://0h5lgnscl5y"]
+
+[ext_resource type="PackedScene" uid="uid://btt4hf2uubx2b" path="res://levels_data/data/Sing_Sing_Sing/Models/enemy_base.glb" id="1_5j8jy"]
+
+[node name="enemy_base" unique_id=188811744 instance=ExtResource("1_5j8jy")]
+
+[node name="Cube" parent="." index="0" unique_id=592897836]
+transform = Transform3D(1.5080431e-08, -1.5080428e-08, -0.345, 5.209355e-08, -0.345, 1.508043e-08, -0.345, -5.209355e-08, -1.508043e-08, 0, 0, 0)

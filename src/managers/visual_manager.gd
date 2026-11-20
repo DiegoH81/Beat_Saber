@@ -1,5 +1,4 @@
 extends Node
-#WORK IN PROGRESS
 
 var player: Node = null
 var generator: Node = null

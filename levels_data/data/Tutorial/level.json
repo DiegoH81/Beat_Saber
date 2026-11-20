@@ -1,644 +1,644 @@
 {
-    "NAME": "Disco Lady",
-    "ARTIST": "Nanidato",
-    "DURATION": 115.81,
-    "BPM": 120.0,
-    "NOTES": [
-        {
-            "time": 14.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.652
-        },
-        {
-            "time": 16.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.62
-        },
-        {
-            "time": 18.5,
-            "lane": 4,
-            "direccion_corte": "Derecha",
-            "intensity": 0.648
-        },
-        {
-            "time": 20.5,
-            "lane": 7,
-            "direccion_corte": "Izquierda",
-            "intensity": 0.624
-        },
-        {
-            "time": 22.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.654
-        },
-        {
-            "time": 24.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.658
-        },
-        {
-            "time": 26.0,
-            "lane": 1,
-            "direccion_corte": "Cualquiera",
-            "intensity": 0.927
-        },
-        {
-            "time": 26.5,
-            "lane": 2,
-            "direccion_corte": "Cualquiera",
-            "intensity": 0.931
-        },
-        {
-            "time": 27.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.954
-        },
-        {
-            "time": 28.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.944
-        },
-        {
-            "time": 29.5,
-            "lane": 4,
-            "direccion_corte": "Derecha",
-            "intensity": 0.974
-        },
-        {
-            "time": 30.5,
-            "lane": 7,
-            "direccion_corte": "Izquierda",
-            "intensity": 0.975
-        },
-        {
-            "time": 32.0,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.976
-        },
-        {
-            "time": 32.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.966
-        },
-        {
-            "time": 33.5,
-            "lane": 4,
-            "direccion_corte": "Diagonal_Arriba_Derecha",
-            "intensity": 0.919
-        },
-        {
-            "time": 34.5,
-            "lane": 7,
-            "direccion_corte": "Diagonal_Arriba_Izquierda",
-            "intensity": 0.963
-        },
-        {
-            "time": 35.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.914
-        },
-        {
-            "time": 36.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.974
-        },
-        {
-            "time": 37.5,
-            "lane": 8,
-            "direccion_corte": "Derecha",
-            "intensity": 0.954
-        },
-        {
-            "time": 38.5,
-            "lane": 11,
-            "direccion_corte": "Izquierda",
-            "intensity": 0.945
-        },
-        {
-            "time": 40.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.972
-        },
-        {
-            "time": 41.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.959
-        },
-        {
-            "time": 42.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.971
-        },
-        {
-            "time": 42.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.971
-        },
-        {
-            "time": 44.5,
-            "lane": 8,
-            "direccion_corte": "Diagonal_Abajo_Derecha",
-            "intensity": 1.0
-        },
-        {
-            "time": 45.5,
-            "lane": 11,
-            "direccion_corte": "Diagonal_Abajo_Izquierda",
-            "intensity": 0.993
-        },
-        {
-            "time": 46.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 1.0
-        },
-        {
-            "time": 46.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 1.0
-        },
-        {
-            "time": 48.5,
-            "lane": 4,
-            "direccion_corte": "Derecha",
-            "intensity": 0.955
-        },
-        {
-            "time": 49.0,
-            "lane": 7,
-            "direccion_corte": "Izquierda",
-            "intensity": 1.0
-        },
-        {
-            "time": 49.5,
-            "lane": 4,
-            "direccion_corte": "Derecha",
-            "intensity": 0.988
-        },
-        {
-            "time": 50.0,
-            "lane": 7,
-            "direccion_corte": "Izquierda",
-            "intensity": 1.0
-        },
-        {
-            "time": 51.0,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 1.0
-        },
-        {
-            "time": 52.0,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 1.0
-        },
-        {
-            "time": 53.0,
-            "lane": 4,
-            "direccion_corte": "Diagonal_Arriba_Derecha",
-            "intensity": 1.0
-        },
-        {
-            "time": 54.0,
-            "lane": 7,
-            "direccion_corte": "Diagonal_Arriba_Izquierda",
-            "intensity": 1.0
-        },
-        {
-            "time": 55.0,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.996
-        },
-        {
-            "time": 56.0,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 1.0
-        },
-        {
-            "time": 56.5,
-            "lane": 4,
-            "direccion_corte": "Arriba",
-            "intensity": 1.0
-        },
-        {
-            "time": 57.5,
-            "lane": 7,
-            "direccion_corte": "Arriba",
-            "intensity": 1.0
-        },
-        {
-            "time": 58.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.921
-        },
-        {
-            "time": 58.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.921
-        },
-        {
-            "time": 60.5,
-            "lane": 4,
-            "direccion_corte": "Derecha",
-            "intensity": 0.955
-        },
-        {
-            "time": 61.5,
-            "lane": 7,
-            "direccion_corte": "Izquierda",
-            "intensity": 1.0
-        },
-        {
-            "time": 62.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.997
-        },
-        {
-            "time": 62.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.997
-        },
-        {
-            "time": 64.5,
-            "lane": 8,
-            "direccion_corte": "Diagonal_Abajo_Derecha",
-            "intensity": 0.988
-        },
-        {
-            "time": 65.0,
-            "lane": 11,
-            "direccion_corte": "Diagonal_Abajo_Izquierda",
-            "intensity": 0.983
-        },
-        {
-            "time": 65.5,
-            "lane": 4,
-            "direccion_corte": "Derecha",
-            "intensity": 0.956
-        },
-        {
-            "time": 66.0,
-            "lane": 7,
-            "direccion_corte": "Izquierda",
-            "intensity": 1.0
-        },
-        {
-            "time": 67.0,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 1.0
-        },
-        {
-            "time": 68.0,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.992
-        },
-        {
-            "time": 69.0,
-            "lane": 4,
-            "direccion_corte": "Diagonal_Arriba_Derecha",
-            "intensity": 1.0
-        },
-        {
-            "time": 70.0,
-            "lane": 7,
-            "direccion_corte": "Diagonal_Arriba_Izquierda",
-            "intensity": 1.0
-        },
-        {
-            "time": 70.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.983
-        },
-        {
-            "time": 71.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.955
-        },
-        {
-            "time": 72.5,
-            "lane": 4,
-            "direccion_corte": "Arriba",
-            "intensity": 0.978
-        },
-        {
-            "time": 73.5,
-            "lane": 7,
-            "direccion_corte": "Arriba",
-            "intensity": 1.0
-        },
-        {
-            "time": 75.0,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.958
-        },
-        {
-            "time": 75.0,
-            "lane": 8,
-            "direccion_corte": "Abajo",
-            "intensity": 0.958
-        },
-        {
-            "time": 76.5,
-            "lane": 4,
-            "direccion_corte": "Arriba",
-            "intensity": 0.95
-        },
-        {
-            "time": 77.5,
-            "lane": 7,
-            "direccion_corte": "Arriba",
-            "intensity": 0.913
-        },
-        {
-            "time": 78.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.971
-        },
-        {
-            "time": 79.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.918
-        },
-        {
-            "time": 80.5,
-            "lane": 1,
-            "direccion_corte": "Arriba",
-            "intensity": 0.898
-        },
-        {
-            "time": 81.5,
-            "lane": 2,
-            "direccion_corte": "Arriba",
-            "intensity": 1.0
-        },
-        {
-            "time": 83.0,
-            "lane": 11,
-            "direccion_corte": "Abajo",
-            "intensity": 0.92
-        },
-        {
-            "time": 83.0,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.92
-        },
-        {
-            "time": 84.5,
-            "lane": 7,
-            "direccion_corte": "Arriba",
-            "intensity": 0.943
-        },
-        {
-            "time": 85.5,
-            "lane": 4,
-            "direccion_corte": "Arriba",
-            "intensity": 0.862
-        },
-        {
-            "time": 86.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.89
-        },
-        {
-            "time": 87.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.953
-        },
-        {
-            "time": 88.5,
-            "lane": 2,
-            "direccion_corte": "Arriba",
-            "intensity": 0.984
-        },
-        {
-            "time": 89.5,
-            "lane": 1,
-            "direccion_corte": "Arriba",
-            "intensity": 0.908
-        },
-        {
-            "time": 90.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.947
-        },
-        {
-            "time": 91.5,
-            "lane": 7,
-            "direccion_corte": "Arriba",
-            "intensity": 0.921
-        },
-        {
-            "time": 92.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.964
-        },
-        {
-            "time": 92.5,
-            "lane": 8,
-            "direccion_corte": "Abajo",
-            "intensity": 0.964
-        },
-        {
-            "time": 93.5,
-            "lane": 9,
-            "direccion_corte": "Arriba",
-            "intensity": 0.994
-        },
-        {
-            "time": 94.5,
-            "lane": 11,
-            "direccion_corte": "Arriba",
-            "intensity": 0.991
-        },
-        {
-            "time": 95.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 1.0
-        },
-        {
-            "time": 96.5,
-            "lane": 11,
-            "direccion_corte": "Abajo",
-            "intensity": 1.0
-        },
-        {
-            "time": 98.0,
-            "lane": 7,
-            "direccion_corte": "Diagonal_Arriba_Izquierda",
-            "intensity": 1.0
-        },
-        {
-            "time": 98.0,
-            "lane": 4,
-            "direccion_corte": "Diagonal_Arriba_Derecha",
-            "intensity": 1.0
-        },
-        {
-            "time": 98.75,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.946
-        },
-        {
-            "time": 99.125,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.816
-        },
-        {
-            "time": 99.5,
-            "lane": 4,
-            "direccion_corte": "Diagonal_Arriba_Derecha",
-            "intensity": 0.988
-        },
-        {
-            "time": 100.0,
-            "lane": 7,
-            "direccion_corte": "Diagonal_Arriba_Izquierda",
-            "intensity": 0.98
-        },
-        {
-            "time": 100.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 0.965
-        },
-        {
-            "time": 100.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.965
-        },
-        {
-            "time": 102.5,
-            "lane": 8,
-            "direccion_corte": "Diagonal_Abajo_Derecha",
-            "intensity": 0.984
-        },
-        {
-            "time": 103.5,
-            "lane": 11,
-            "direccion_corte": "Diagonal_Abajo_Izquierda",
-            "intensity": 1.0
-        },
-        {
-            "time": 104.5,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 1.0
-        },
-        {
-            "time": 104.5,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 1.0
-        },
-        {
-            "time": 106.5,
-            "lane": 4,
-            "direccion_corte": "Derecha",
-            "intensity": 1.0
-        },
-        {
-            "time": 107.0,
-            "lane": 7,
-            "direccion_corte": "Izquierda",
-            "intensity": 1.0
-        },
-        {
-            "time": 107.5,
-            "lane": 4,
-            "direccion_corte": "Derecha",
-            "intensity": 0.985
-        },
-        {
-            "time": 108.0,
-            "lane": 7,
-            "direccion_corte": "Izquierda",
-            "intensity": 0.996
-        },
-        {
-            "time": 109.0,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 1.0
-        },
-        {
-            "time": 110.0,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 1.0
-        },
-        {
-            "time": 111.0,
-            "lane": 4,
-            "direccion_corte": "Diagonal_Arriba_Derecha",
-            "intensity": 1.0
-        },
-        {
-            "time": 112.0,
-            "lane": 7,
-            "direccion_corte": "Diagonal_Arriba_Izquierda",
-            "intensity": 1.0
-        },
-        {
-            "time": 113.0,
-            "lane": 9,
-            "direccion_corte": "Abajo",
-            "intensity": 0.989
-        },
-        {
-            "time": 114.0,
-            "lane": 10,
-            "direccion_corte": "Abajo",
-            "intensity": 1.0
-        },
-        {
-            "time": 114.5,
-            "lane": 4,
-            "direccion_corte": "Arriba",
-            "intensity": 1.0
-        },
-        {
-            "time": 115.5,
-            "lane": 7,
-            "direccion_corte": "Arriba",
-            "intensity": 0.878
-        }
-    ]
+	"NAME": "Disco Lady",
+	"ARTIST": "Nanidato",
+	"DURATION": 115.81,
+	"BPM": 120.0,
+	"NOTES": [
+		{
+			"time": 14.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.652
+		},
+		{
+			"time": 16.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.62
+		},
+		{
+			"time": 18.5,
+			"lane": 4,
+			"direccion_corte": "Derecha",
+			"intensity": 0.648
+		},
+		{
+			"time": 20.5,
+			"lane": 7,
+			"direccion_corte": "Izquierda",
+			"intensity": 0.624
+		},
+		{
+			"time": 22.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.654
+		},
+		{
+			"time": 24.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.658
+		},
+		{
+			"time": 26.0,
+			"lane": 1,
+			"direccion_corte": "Cualquiera",
+			"intensity": 0.927
+		},
+		{
+			"time": 26.5,
+			"lane": 2,
+			"direccion_corte": "Cualquiera",
+			"intensity": 0.931
+		},
+		{
+			"time": 27.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.954
+		},
+		{
+			"time": 28.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.944
+		},
+		{
+			"time": 29.5,
+			"lane": 4,
+			"direccion_corte": "Derecha",
+			"intensity": 0.974
+		},
+		{
+			"time": 30.5,
+			"lane": 7,
+			"direccion_corte": "Izquierda",
+			"intensity": 0.975
+		},
+		{
+			"time": 32.0,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.976
+		},
+		{
+			"time": 32.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.966
+		},
+		{
+			"time": 33.5,
+			"lane": 4,
+			"direccion_corte": "Diagonal_Arriba_Derecha",
+			"intensity": 0.919
+		},
+		{
+			"time": 34.5,
+			"lane": 7,
+			"direccion_corte": "Diagonal_Arriba_Izquierda",
+			"intensity": 0.963
+		},
+		{
+			"time": 35.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.914
+		},
+		{
+			"time": 36.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.974
+		},
+		{
+			"time": 37.5,
+			"lane": 8,
+			"direccion_corte": "Derecha",
+			"intensity": 0.954
+		},
+		{
+			"time": 38.5,
+			"lane": 11,
+			"direccion_corte": "Izquierda",
+			"intensity": 0.945
+		},
+		{
+			"time": 40.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.972
+		},
+		{
+			"time": 41.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.959
+		},
+		{
+			"time": 42.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.971
+		},
+		{
+			"time": 42.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.971
+		},
+		{
+			"time": 44.5,
+			"lane": 8,
+			"direccion_corte": "Diagonal_Abajo_Derecha",
+			"intensity": 1.0
+		},
+		{
+			"time": 45.5,
+			"lane": 11,
+			"direccion_corte": "Diagonal_Abajo_Izquierda",
+			"intensity": 0.993
+		},
+		{
+			"time": 46.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 1.0
+		},
+		{
+			"time": 46.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 1.0
+		},
+		{
+			"time": 48.5,
+			"lane": 4,
+			"direccion_corte": "Derecha",
+			"intensity": 0.955
+		},
+		{
+			"time": 49.0,
+			"lane": 7,
+			"direccion_corte": "Izquierda",
+			"intensity": 1.0
+		},
+		{
+			"time": 49.5,
+			"lane": 4,
+			"direccion_corte": "Derecha",
+			"intensity": 0.988
+		},
+		{
+			"time": 50.0,
+			"lane": 7,
+			"direccion_corte": "Izquierda",
+			"intensity": 1.0
+		},
+		{
+			"time": 51.0,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 1.0
+		},
+		{
+			"time": 52.0,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 1.0
+		},
+		{
+			"time": 53.0,
+			"lane": 4,
+			"direccion_corte": "Diagonal_Arriba_Derecha",
+			"intensity": 1.0
+		},
+		{
+			"time": 54.0,
+			"lane": 7,
+			"direccion_corte": "Diagonal_Arriba_Izquierda",
+			"intensity": 1.0
+		},
+		{
+			"time": 55.0,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.996
+		},
+		{
+			"time": 56.0,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 1.0
+		},
+		{
+			"time": 56.5,
+			"lane": 4,
+			"direccion_corte": "Arriba",
+			"intensity": 1.0
+		},
+		{
+			"time": 57.5,
+			"lane": 7,
+			"direccion_corte": "Arriba",
+			"intensity": 1.0
+		},
+		{
+			"time": 58.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.921
+		},
+		{
+			"time": 58.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.921
+		},
+		{
+			"time": 60.5,
+			"lane": 4,
+			"direccion_corte": "Derecha",
+			"intensity": 0.955
+		},
+		{
+			"time": 61.5,
+			"lane": 7,
+			"direccion_corte": "Izquierda",
+			"intensity": 1.0
+		},
+		{
+			"time": 62.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.997
+		},
+		{
+			"time": 62.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.997
+		},
+		{
+			"time": 64.5,
+			"lane": 8,
+			"direccion_corte": "Diagonal_Abajo_Derecha",
+			"intensity": 0.988
+		},
+		{
+			"time": 65.0,
+			"lane": 11,
+			"direccion_corte": "Diagonal_Abajo_Izquierda",
+			"intensity": 0.983
+		},
+		{
+			"time": 65.5,
+			"lane": 4,
+			"direccion_corte": "Derecha",
+			"intensity": 0.956
+		},
+		{
+			"time": 66.0,
+			"lane": 7,
+			"direccion_corte": "Izquierda",
+			"intensity": 1.0
+		},
+		{
+			"time": 67.0,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 1.0
+		},
+		{
+			"time": 68.0,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.992
+		},
+		{
+			"time": 69.0,
+			"lane": 4,
+			"direccion_corte": "Diagonal_Arriba_Derecha",
+			"intensity": 1.0
+		},
+		{
+			"time": 70.0,
+			"lane": 7,
+			"direccion_corte": "Diagonal_Arriba_Izquierda",
+			"intensity": 1.0
+		},
+		{
+			"time": 70.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.983
+		},
+		{
+			"time": 71.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.955
+		},
+		{
+			"time": 72.5,
+			"lane": 4,
+			"direccion_corte": "Arriba",
+			"intensity": 0.978
+		},
+		{
+			"time": 73.5,
+			"lane": 7,
+			"direccion_corte": "Arriba",
+			"intensity": 1.0
+		},
+		{
+			"time": 75.0,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.958
+		},
+		{
+			"time": 75.0,
+			"lane": 8,
+			"direccion_corte": "Abajo",
+			"intensity": 0.958
+		},
+		{
+			"time": 76.5,
+			"lane": 4,
+			"direccion_corte": "Arriba",
+			"intensity": 0.95
+		},
+		{
+			"time": 77.5,
+			"lane": 7,
+			"direccion_corte": "Arriba",
+			"intensity": 0.913
+		},
+		{
+			"time": 78.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.971
+		},
+		{
+			"time": 79.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.918
+		},
+		{
+			"time": 80.5,
+			"lane": 1,
+			"direccion_corte": "Arriba",
+			"intensity": 0.898
+		},
+		{
+			"time": 81.5,
+			"lane": 2,
+			"direccion_corte": "Arriba",
+			"intensity": 1.0
+		},
+		{
+			"time": 83.0,
+			"lane": 11,
+			"direccion_corte": "Abajo",
+			"intensity": 0.92
+		},
+		{
+			"time": 83.0,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.92
+		},
+		{
+			"time": 84.5,
+			"lane": 7,
+			"direccion_corte": "Arriba",
+			"intensity": 0.943
+		},
+		{
+			"time": 85.5,
+			"lane": 4,
+			"direccion_corte": "Arriba",
+			"intensity": 0.862
+		},
+		{
+			"time": 86.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.89
+		},
+		{
+			"time": 87.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.953
+		},
+		{
+			"time": 88.5,
+			"lane": 2,
+			"direccion_corte": "Arriba",
+			"intensity": 0.984
+		},
+		{
+			"time": 89.5,
+			"lane": 1,
+			"direccion_corte": "Arriba",
+			"intensity": 0.908
+		},
+		{
+			"time": 90.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.947
+		},
+		{
+			"time": 91.5,
+			"lane": 7,
+			"direccion_corte": "Arriba",
+			"intensity": 0.921
+		},
+		{
+			"time": 92.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.964
+		},
+		{
+			"time": 92.5,
+			"lane": 8,
+			"direccion_corte": "Abajo",
+			"intensity": 0.964
+		},
+		{
+			"time": 93.5,
+			"lane": 9,
+			"direccion_corte": "Arriba",
+			"intensity": 0.994
+		},
+		{
+			"time": 94.5,
+			"lane": 11,
+			"direccion_corte": "Arriba",
+			"intensity": 0.991
+		},
+		{
+			"time": 95.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 1.0
+		},
+		{
+			"time": 96.5,
+			"lane": 11,
+			"direccion_corte": "Abajo",
+			"intensity": 1.0
+		},
+		{
+			"time": 98.0,
+			"lane": 7,
+			"direccion_corte": "Diagonal_Arriba_Izquierda",
+			"intensity": 1.0
+		},
+		{
+			"time": 98.0,
+			"lane": 4,
+			"direccion_corte": "Diagonal_Arriba_Derecha",
+			"intensity": 1.0
+		},
+		{
+			"time": 98.75,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.946
+		},
+		{
+			"time": 99.125,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.816
+		},
+		{
+			"time": 99.5,
+			"lane": 4,
+			"direccion_corte": "Diagonal_Arriba_Derecha",
+			"intensity": 0.988
+		},
+		{
+			"time": 100.0,
+			"lane": 7,
+			"direccion_corte": "Diagonal_Arriba_Izquierda",
+			"intensity": 0.98
+		},
+		{
+			"time": 100.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 0.965
+		},
+		{
+			"time": 100.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.965
+		},
+		{
+			"time": 102.5,
+			"lane": 8,
+			"direccion_corte": "Diagonal_Abajo_Derecha",
+			"intensity": 0.984
+		},
+		{
+			"time": 103.5,
+			"lane": 11,
+			"direccion_corte": "Diagonal_Abajo_Izquierda",
+			"intensity": 1.0
+		},
+		{
+			"time": 104.5,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 1.0
+		},
+		{
+			"time": 104.5,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 1.0
+		},
+		{
+			"time": 106.5,
+			"lane": 4,
+			"direccion_corte": "Derecha",
+			"intensity": 1.0
+		},
+		{
+			"time": 107.0,
+			"lane": 7,
+			"direccion_corte": "Izquierda",
+			"intensity": 1.0
+		},
+		{
+			"time": 107.5,
+			"lane": 4,
+			"direccion_corte": "Derecha",
+			"intensity": 0.985
+		},
+		{
+			"time": 108.0,
+			"lane": 7,
+			"direccion_corte": "Izquierda",
+			"intensity": 0.996
+		},
+		{
+			"time": 109.0,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 1.0
+		},
+		{
+			"time": 110.0,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 1.0
+		},
+		{
+			"time": 111.0,
+			"lane": 4,
+			"direccion_corte": "Diagonal_Arriba_Derecha",
+			"intensity": 1.0
+		},
+		{
+			"time": 112.0,
+			"lane": 7,
+			"direccion_corte": "Diagonal_Arriba_Izquierda",
+			"intensity": 1.0
+		},
+		{
+			"time": 113.0,
+			"lane": 9,
+			"direccion_corte": "Abajo",
+			"intensity": 0.989
+		},
+		{
+			"time": 114.0,
+			"lane": 10,
+			"direccion_corte": "Abajo",
+			"intensity": 1.0
+		},
+		{
+			"time": 114.5,
+			"lane": 4,
+			"direccion_corte": "Arriba",
+			"intensity": 1.0
+		},
+		{
+			"time": 115.5,
+			"lane": 7,
+			"direccion_corte": "Arriba",
+			"intensity": 0.878
+		}
+	]
 }

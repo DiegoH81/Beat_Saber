@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://digy3cefci8s1"]
 
 [ext_resource type="Script" uid="uid://bwxnjecgg00nb" path="res://src/enemies/generator/generator.gd" id="1_8vokg"]
+[ext_resource type="AudioStream" path="res://assets/sfx/beam.mp3" id="2_beam"]
+[ext_resource type="AudioStream" path="res://assets/sfx/shield_hit.mp3" id="3_shield_hit"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_xqa4i"]
 inner_radius = 0.32
@@ -162,3 +164,13 @@ mesh = SubResource("TorusMesh_xqa4i")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Point11" unique_id=920959237]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -50)
 mesh = SubResource("CylinderMesh_nxf0w")
+
+[node name="BeamAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_beam")
+volume_db = -8.0
+bus = &"SFX"
+
+[node name="ShieldHitAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_shield_hit")
+volume_db = -5.0
+bus = &"SFX"

@@ -90,7 +90,7 @@ var button_progress: float = 0
 		lock_anchor = value
 		_update_button()
 
-@export var lock_offset: Vector3 = Vector3.ZERO: # ajuste fino
+@export var lock_offset: Vector3 = Vector3.ZERO:
 	set(value):
 		lock_offset = value
 		_update_button()

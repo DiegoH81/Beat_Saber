@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://c7ly8sq1wljsm"]
+
+[ext_resource type="Script" uid="uid://i4tt88gb6onq" path="res://src/ui/main_menu/main_menu_s2.gd" id="1_nwugy"]
+
+[node name="MainMenuS2" type="Control" unique_id=715318262 node_paths=PackedStringArray("button", "line_edit", "label_3", "numerical")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_nwugy")
+button = NodePath("Panel/VBoxContainer/HBoxContainer/Button")
+line_edit = NodePath("Panel/VBoxContainer/HBoxContainer/LineEdit")
+label_3 = NodePath("Panel/VBoxContainer/Label3")
+numerical = NodePath("Panel/VBoxContainer/Numerical")
+
+[node name="Panel" type="Panel" parent="." unique_id=1098745533]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=853714294]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer" unique_id=1805790393]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_font_sizes/font_size = 100
+text = "NIBS"
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer" unique_id=380527269]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_font_sizes/font_size = 100
+text = "Ingresa la IP del HOST:"
+
+[node name="Label3" type="Label" parent="Panel/VBoxContainer" unique_id=381296827]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=255653224]
+layout_mode = 2
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Panel/VBoxContainer/HBoxContainer" unique_id=653118811]
+custom_minimum_size = Vector2(900, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 75
+placeholder_text = "0.0.0.0"
+alignment = 1
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/HBoxContainer" unique_id=1052393162]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = ">"
+
+[node name="Numerical" type="GridContainer" parent="Panel/VBoxContainer" unique_id=1519593570]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 3
+
+[node name="Button2" type="Button" parent="Panel/VBoxContainer/Numerical" unique_id=1632989455]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "1"
+
+[node name="Button3" type="Button" parent="Panel/VBoxContainer/Numerical" unique_id=1287738632]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "2"
+
+[node name="Button4" type="Button" parent="Panel/VBoxContainer/Numerical" unique_id=1672214368]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "3"
+
+[node name="Button5" type="Button" parent="Panel/VBoxContainer/Numerical" unique_id=1222993964]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "4"
+
+[node name="Button6" type="Button" parent="Panel/VBoxContainer/Numerical" unique_id=1399650513]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "5"
+
+[node name="Button7" type="Button" parent="Panel/VBoxContainer/Numerical" unique_id=901286268]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "6"
+
+[node name="Button8" type="Button" parent="Panel/VBoxContainer/Numerical" unique_id=2041362735]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "7"
+
+[node name="Button9" type="Button" parent="Panel/VBoxContainer/Numerical" unique_id=794602260]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "8"
+
+[node name="Button10" type="Button" parent="Panel/VBoxContainer/Numerical" unique_id=1437985421]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "9"
+
+[node name="Button11" type="Button" parent="Panel/VBoxContainer/Numerical" unique_id=1039420480]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "."
+
+[node name="Button12" type="Button" parent="Panel/VBoxContainer/Numerical" unique_id=355879361]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="Button13" type="Button" parent="Panel/VBoxContainer/Numerical" unique_id=894329922]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Del"
+
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

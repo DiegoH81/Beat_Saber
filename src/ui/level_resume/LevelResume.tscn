@@ -59,7 +59,7 @@ transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, -0.024944305, 0)
 text = "Continuar"
 button_size = Vector3(3.17, 0.645, 0.2)
 button_material = SubResource("StandardMaterial3D_kcbdx")
-is_enabled = null
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
 
 [node name="Tablero" type="MeshInstance3D" parent="." unique_id=107297005]
 transform = Transform3D(0.915, 0, 0, 0, 0.417, 0, 0, 0, 0.051, 0, 0.109075755, -0.039)

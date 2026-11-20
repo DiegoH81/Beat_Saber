@@ -1,0 +1,45 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dmvxr1lymjve5"
+path.s3tc="res://.godot/imported/lelvel3_remaster_FINAL_Image_3_9.png-6b0b948991feab03c67da2ce736c2bb5.s3tc.ctex"
+path.etc2="res://.godot/imported/lelvel3_remaster_FINAL_Image_3_9.png-6b0b948991feab03c67da2ce736c2bb5.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "0ee912a59d18239615446aaf605722cc"
+}
+
+[deps]
+
+source_file="res://levels_data/data/Seven_nation_army/Models/lelvel3_remaster_FINAL_Image_3_9.png"
+dest_files=["res://.godot/imported/lelvel3_remaster_FINAL_Image_3_9.png-6b0b948991feab03c67da2ce736c2bb5.s3tc.ctex", "res://.godot/imported/lelvel3_remaster_FINAL_Image_3_9.png-6b0b948991feab03c67da2ce736c2bb5.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://levels_data/data/Seven_nation_army/Models/lelvel3_remaster_FINAL_Image_3_9.png"
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

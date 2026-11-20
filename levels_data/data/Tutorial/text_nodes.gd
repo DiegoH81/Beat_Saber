@@ -17,22 +17,13 @@ func enable_text_only(active_id : int) -> void:
 		tutorial_texts[i].visible = (i == active_id)
 
 func _ready() -> void:
+	if not multiplayer.is_server():
+		hide()
+		return
+
 	tutorial_texts = [text_1_tutorial, text_2_tutorial, text_3_tutorial]
 	
 	
-	enable_text_only(-1)
-	
-	print("popup: ", pop_up_3d)
-	if is_instance_valid(pop_up_3d) and pop_up_3d.has_signal("popup_finished"):
-		AudioManager.pause_music()
-		generator.set_active(false)
-		await pop_up_3d.popup_finished
-		generator.set_active(true)
-		AudioManager.resume_music()
-	
-	await _run_tutorial()
-	
-func _run_tutorial() -> void:
 	enable_text_only(0)
 	await get_tree().create_timer(3.0).timeout
 
@@ -42,4 +33,7 @@ func _run_tutorial() -> void:
 	enable_text_only(2)
 	await get_tree().create_timer(2.0).timeout
 
-	enable_text_only(-1)
+	hide()
+	
+func _run_tutorial() -> void:
+	pass

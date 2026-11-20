@@ -3,20 +3,25 @@ extends Node
 signal hit_registered(new_score: int)
 signal combo_updated(new_combo: int)
 signal multiplier_updated(progress: float, multiplier_level: int, just_leveled_up: bool)
-signal misses_updated(new_misses: int)
+signal misses_updated(new_misses: float)
 
 const MAX_MISSES: int = 20
+const DOUBLE_SCORE_DURATION_MS: int = 5000
+const BEAM_MISS_COST: float = 0.25
 
 var current_score: int = 0
 var current_combo: int = 0
-var misses: int = 0
+var misses: float = 0.0
 
 
 var current_multiplier: float = 1.0
 var current_multiplier_hits: int = 0
 var multiplier_level: int = 1
+var _double_score_until: int = 0
 
 
+func activate_double_score() -> void:
+	_double_score_until = Time.get_ticks_msec() + DOUBLE_SCORE_DURATION_MS
 
 func add_hit(amount: int = 1) -> void:
 	current_combo += 1
@@ -43,7 +48,10 @@ func add_hit(amount: int = 1) -> void:
 	else:
 		current_multiplier += 1.0 / float(required_hits)
 	
-	current_score += int(amount * current_multiplier)
+	var points := int(amount * current_multiplier)
+	if Time.get_ticks_msec() < _double_score_until:
+		points *= 2
+	current_score += points
 	
 	hit_registered.emit(current_score)
 	combo_updated.emit(current_combo)
@@ -64,7 +72,12 @@ func register_miss() -> void:
 	combo_updated.emit(current_combo)
 	multiplier_updated.emit(0.0, multiplier_level, false)
 
+func register_beam_hit() -> void:
+	misses += BEAM_MISS_COST
+	misses_updated.emit(misses)
+
 func reset_score() -> void:
+	_double_score_until = 0
 	current_score = 0
 	current_combo = 0
 	misses = 0

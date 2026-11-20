@@ -26,10 +26,10 @@ func _ready() -> void:
 	ScoreManager.misses_updated.connect(_on_misses_updated)
 	_set_ratio(_ratio_from(ScoreManager.misses))
 
-func _ratio_from(misses: int) -> float:
-	return clampf(float(misses) / float(ScoreManager.MAX_MISSES), 0.0, 1.0)
+func _ratio_from(misses: float) -> float:
+	return clampf(misses / ScoreManager.MAX_MISSES, 0.0, 1.0)
 
-func _on_misses_updated(misses: int) -> void:
+func _on_misses_updated(misses: float) -> void:
 	if _tween:
 		_tween.kill()
 	_tween = create_tween()

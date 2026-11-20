@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dq0vk505vq8q6"]
+
+[ext_resource type="Script" uid="uid://bnqvohs2bcb2x" path="res://src/enemies/generator_buff/generator_buff.gd" id="1_jf2dy"]
+[ext_resource type="PackedScene" uid="uid://c8r8frk3aor57" path="res://levels_data/test/skin_enemy_test.tscn" id="2_o1va2"]
+
+[node name="GeneratorBuff" type="Node3D" unique_id=352087212]
+script = ExtResource("1_jf2dy")
+scene = ExtResource("2_o1va2")
+max_objects = 100
+speed = 1.6
+spawn_interval = 7.5

@@ -14,6 +14,7 @@ sky_curve = 0.063067295
 sky_cover_modulate = Color(0.3254902, 0.2901961, 0.36078432, 1)
 ground_bottom_color = Color(0.3254902, 0.2901961, 0.36078432, 1)
 ground_horizon_color = Color(0.3254902, 0.2901961, 0.36078432, 1)
+sun_angle_max = 0.0
 
 [sub_resource type="Sky" id="Sky_q5te7"]
 sky_material = SubResource("ProceduralSkyMaterial_ets3f")
@@ -41,7 +42,7 @@ volumetric_fog_emission = Color(0.2365565, 0.040205266, 0.27409443, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_q5te7"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.4760284, 0.9055433, -3.1298997, 0.15329927, -0.12513709, -0.61122626, -0.15329927, 0.12513709, 0.61122626, -0.6164201, 1.1808314, -0.48672843, 0.75449324, -0.06275785, -0.6096089, -0.75449324, 0.06275785, 0.6096089, -2.6631956, 1.5232215, 2.640739, 0, 0, 0, 0, 0, 0, -6.502648, 1.6548432, 3.4779003),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.4760284, 0.9055433, -3.1298997, 0.15329927, -0.12513709, -0.61122626, -0.15329927, 0.12513709, 0.61122626, -0.6164201, 1.1808314, -0.48672843, 0.75449324, -0.06275785, -0.6096089, -0.75449324, 0.06275785, 0.6096089, -2.6631956, 1.0767238, 2.640739, 0, 0, 0, 0, 0, 0, -6.403536, 1.205839, 3.351345),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
@@ -59,6 +60,22 @@ uppercase = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u3og"]
 emission_enabled = true
+emission = Color(1, 0, 0.49803922, 1)
+emission_energy_multiplier = 2.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cclpn"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.26020932, 0.28298697, 0.28844103, 1)
+emission_energy_multiplier = 4.23
+
+[sub_resource type="TextMesh" id="TextMesh_b0jho"]
+material = SubResource("StandardMaterial3D_cclpn")
+text = "BEAT SABER"
+font_size = 12
+uppercase = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b0jho"]
 emission = Color(1, 0, 0.49803922, 1)
 emission_energy_multiplier = 2.5
 
@@ -106,6 +123,14 @@ emission_enabled = true
 emission = Color(0.28281513, 0.15470442, 0.21746486, 1)
 emission_energy_multiplier = 1.85
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_27pfe"]
+albedo_color = Color(0.25, 0.25, 0.25, 1)
+metallic = 0.8
+roughness = 0.2
+emission_enabled = true
+emission = Color(0.28281513, 0.15470442, 0.21746486, 1)
+emission_energy_multiplier = 1.85
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jc5pe"]
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.8156863, 0.8980392, 1, 1)
@@ -130,11 +155,12 @@ scale_max = 0.049999997
 [sub_resource type="QuadMesh" id="QuadMesh_mmd50"]
 size = Vector2(0.1, 0.1)
 
-[node name="MainMenu3d" type="Node3D" unique_id=1344789317]
+[node name="MainMenu3d" type="Node3D" unique_id=1344789317 node_paths=PackedStringArray("ip")]
 script = ExtResource("1_mmd50")
+ip = NodePath("IP")
 
 [node name="CameraTargets" type="Node3D" parent="." unique_id=879519356]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5758348, 1.6086475, 3.2227178)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5758348, 0.69954574, 3.2227178)
 
 [node name="MainMenuPos" type="Marker3D" parent="CameraTargets" unique_id=115392522]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.111297, -0.73075217, -6.3528533)
@@ -155,7 +181,7 @@ light_indirect_energy = 1.15
 directional_shadow_mode = 1
 
 [node name="CameraPath" type="Path3D" parent="." unique_id=10213563]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01821661, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4445904, 0)
 curve = SubResource("Curve3D_q5te7")
 
 [node name="CameraFollow" type="PathFollow3D" parent="CameraPath" unique_id=2001753231]
@@ -163,16 +189,22 @@ transform = Transform3D(0.9999895, 0, 0, 0, 0.9999549, 0, 0, 0, 0.9999772, -1.47
 rotation_mode = 0
 
 [node name="CameraPivot" type="Node3D" parent="CameraPath/CameraFollow" unique_id=1952080119]
-transform = Transform3D(-0.89497095, -1.8627506e-09, 0.44613546, -0.02944127, 0.99785817, -0.05906072, -0.44516698, -0.0659905, -0.8930281, 0.00752759, -0.0077883005, -0.0034508705)
+transform = Transform3D(-0.89497095, -1.8627506e-09, 0.44613546, -0.029441267, 0.9978581, -0.059060715, -0.44516695, -0.0659905, -0.893028, 0.00752759, -0.0077883005, -0.0034508705)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPath/CameraFollow/CameraPivot" unique_id=1036689133]
-transform = Transform3D(0.5980837, 0.03553027, 0.80065703, -0.059164405, 0.9982555, -0.00010346621, -0.7992549, -0.047308102, 0.59913725, 0, 0, 0)
+transform = Transform3D(0.5980836, 0.035530064, 0.80065364, -0.059164394, 0.9982555, -0.000103313476, -0.7992548, -0.04730783, 0.5991416, -0.01939106, 0.65722287, -0.038899183)
 current = true
 
 [node name="TitleMainMenu" type="MeshInstance3D" parent="." unique_id=999181946]
 transform = Transform3D(-0.8802697, -0.030591832, -0.47348642, -0.0018855383, 0.998137, -0.060983907, 0.4744699, -0.052789506, -0.8786874, -0.9785441, 1.0653158, -2.4267251)
 mesh = SubResource("TextMesh_w4mfu")
 surface_material_override/0 = SubResource("StandardMaterial3D_4u3og")
+
+[node name="IP" type="MeshInstance3D" parent="." unique_id=935852296]
+transform = Transform3D(-0.8802697, -0.030591832, -0.47348642, -0.0018855383, 0.998137, -0.060983907, 0.4744699, -0.052789506, -0.8786874, -0.9785441, 1.4007883, -2.0815558)
+visible = false
+mesh = SubResource("TextMesh_b0jho")
+surface_material_override/0 = SubResource("StandardMaterial3D_b0jho")
 
 [node name="TitleLevels" type="MeshInstance3D" parent="." unique_id=1252363944]
 transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, -7.61, 2.500217, 3.214)
@@ -208,10 +240,21 @@ lock_anchor = Vector2(1, -1)
 lock_scale = 0.245
 
 [node name="SevenNationArmyButton" parent="." unique_id=1903435745 instance=ExtResource("3_mmd50")]
-transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.511, 1.3452778, 3.175)
+transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.511, 1.345, 2.301)
 text = "Seven Nation Army"
 button_size = Vector3(7, 2.5, 0.5)
 button_material = SubResource("StandardMaterial3D_dup0m")
+locked_material = SubResource("StandardMaterial3D_6t60n")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
+lock_scene = ExtResource("4_4u3og")
+lock_anchor = Vector2(1, -1)
+lock_scale = 0.245
+
+[node name="SingSingSingButton" parent="." unique_id=403924102 instance=ExtResource("3_mmd50")]
+transform = Transform3D(-5.2453664e-09, 0, 0.12, 0, 0.12, 0, -0.12, 0, -5.2453664e-09, -7.511, 1.345, 4.0577965)
+text = "Sing, Sing, Sing"
+button_size = Vector3(7, 2.5, 0.5)
+button_material = SubResource("StandardMaterial3D_27pfe")
 locked_material = SubResource("StandardMaterial3D_6t60n")
 locked_text_color = Color(0.6, 0.6, 0.6, 1)
 lock_scene = ExtResource("4_4u3og")
@@ -237,3 +280,4 @@ escala_imagen = Vector3(0.05, 0.05, 1)
 [connection signal="pressed" from="TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="VivaldiButton" to="." method="_on_vivaldi_button_pressed"]
 [connection signal="pressed" from="SevenNationArmyButton" to="." method="_on_seven_nation_army_button_pressed"]
+[connection signal="pressed" from="SingSingSingButton" to="." method="_on_sing_sing_sing_pressed"]
