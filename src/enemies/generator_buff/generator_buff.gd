@@ -18,7 +18,6 @@ const COLORS := {
 	RATE: Color(1.0, 0.64, 0.26),
 	SCORE: Color(0.53, 0.71, 1.0),
 }
-const MARKERS := {AMMO: "MUN", RATE: "CAD", SCORE: "×2"}
 
 var _objects: Array[Node3D] = []
 var _time: float = 0.0
@@ -62,7 +61,7 @@ func _spawn_powerup(id: int, kind: String, spawn_position: Vector3) -> void:
 	add_child(obj)
 	obj.set_meta("fall_limit", obj.global_position.y - fall_distance)
 	_objects.append(obj)
-	# Si el buff se libera desde afuera (por ejemplo, al dispararle), lo saca de la lista.
+	
 	obj.tree_exited.connect(_on_object_removed.bind(obj))
 
 func _style_powerup(obj: Node3D, kind: String) -> void:
@@ -76,17 +75,18 @@ func _style_powerup(obj: Node3D, kind: String) -> void:
 	for child in obj.get_children():
 		if child is MeshInstance3D:
 			child.material_override = material
-
-	var marker := Label3D.new()
-	marker.text = MARKERS[kind]
-	marker.position.y = 0.9
-	marker.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	marker.font_size = 48
-	marker.pixel_size = 0.017
-	marker.modulate = Color(0.98, 0.95, 0.88)
-	marker.outline_modulate = Color(0.08, 0.08, 0.07)
-	marker.outline_size = 10
-	obj.add_child(marker)
+			match kind:
+				RATE:
+					var diamond := BoxMesh.new()
+					diamond.size = Vector3(0.7, 0.7, 0.6)
+					child.mesh = diamond
+					child.rotation.z = PI / 4.0
+				SCORE:
+					var ring := TorusMesh.new()
+					ring.inner_radius = 0.29
+					ring.outer_radius = 0.52
+					child.mesh = ring
+					child.rotation.x = PI / 2.0
 
 
 func _on_object_removed(obj: Node3D) -> void:

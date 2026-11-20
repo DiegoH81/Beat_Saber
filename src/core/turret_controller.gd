@@ -13,6 +13,7 @@ class_name TurrentController
 signal ammo_changed(current: int, max: int)
 signal buff_collected(kind: String, ammo_gained: int)
 signal turret_changed(index: int)
+signal shield_changed(button_index: int, active: bool)
 
 @export var max_ammo: int = 30
 @export var fire_cooldown: float = 0.3
@@ -277,6 +278,7 @@ func set_shield_visible(index: int, value: bool) -> void:
 	if index < 0 or index >= shields.size():
 		return
 	shields[index].visible = value
+	shield_changed.emit(_shield_index(index), value)
 
 var shield_pending: Dictionary = {}
 
