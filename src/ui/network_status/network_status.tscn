@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bgql7blmdw0du"]
+
+[ext_resource type="Script" uid="uid://j3rns2xyapja" path="res://src/ui/network_status/network_status.gd" id="1_status"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72cre"]
+shading_mode = 0
+albedo_color = Color(0.23, 0.95, 0.43, 1)
+
+[sub_resource type="StandardMaterial3D" id="Material_Inactive"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.42)
+
+[sub_resource type="BoxMesh" id="Mesh_Short"]
+material = SubResource("Material_Inactive")
+size = Vector3(0.19, 0.24, 0.07)
+
+[sub_resource type="BoxMesh" id="Mesh_Medium"]
+material = SubResource("Material_Inactive")
+size = Vector3(0.19, 0.43, 0.07)
+
+[sub_resource type="BoxMesh" id="Mesh_Tall"]
+material = SubResource("Material_Inactive")
+size = Vector3(0.19, 0.62, 0.07)
+
+[sub_resource type="StandardMaterial3D" id="Material_Cross"]
+shading_mode = 0
+albedo_color = Color(1, 0.23, 0.28, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_CrossStroke"]
+material = SubResource("Material_Cross")
+size = Vector3(0.54, 0.085, 0.065)
+
+[node name="NetworkStatus" type="Node3D" unique_id=2014900907]
+script = ExtResource("1_status")
+
+[node name="Bars" type="Node3D" parent="." unique_id=2010062327]
+
+[node name="Short" type="MeshInstance3D" parent="Bars" unique_id=1490538484]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_72cre")
+cast_shadow = 0
+mesh = SubResource("Mesh_Short")
+
+[node name="Medium" type="MeshInstance3D" parent="Bars" unique_id=996976875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.215, 0)
+material_override = SubResource("StandardMaterial3D_72cre")
+cast_shadow = 0
+mesh = SubResource("Mesh_Medium")
+
+[node name="Tall" type="MeshInstance3D" parent="Bars" unique_id=1948032254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27, 0.31, 0)
+material_override = SubResource("StandardMaterial3D_72cre")
+cast_shadow = 0
+mesh = SubResource("Mesh_Tall")
+
+[node name="Cross" type="Node3D" parent="." unique_id=1848332459]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.11)
+visible = false
+
+[node name="Stroke1" type="MeshInstance3D" parent="Cross" unique_id=1345443140]
+transform = Transform3D(0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0, 1, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("Mesh_CrossStroke")
+
+[node name="Stroke2" type="MeshInstance3D" parent="Cross" unique_id=446951505]
+transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("Mesh_CrossStroke")
