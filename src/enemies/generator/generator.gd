@@ -41,24 +41,10 @@ var duration: float = 0
 
 var is_song_ended: bool = false
 
-var special_indices := PackedInt32Array()
-var _pending_special := PackedInt32Array()
-var _map_loaded: bool = false
-var _special_ready: bool = false
-
-func _ready() -> void:
-	if multiplayer.has_multiplayer_peer():
-		multiplayer.peer_connected.connect(_on_peer_connected)
-	if _map_loaded:
-		_setup_special()
-
 func setup(duration_data: float, bpm_data: float, notes_data: Array) -> void:
 	duration_max = duration_data
 	bpm = bpm_data
 	load_map(notes_data)
-	_map_loaded = true
-	if is_inside_tree():
-		_setup_special()
 
 func load_map(notes_data: Array) -> void:
 	for note_data in notes_data:
@@ -79,22 +65,8 @@ func destroy_note(i: int) -> void:
 	else:
 		e.queue_free()
 
-func _setup_special() -> void:
-	if _special_ready:
-		return
-	_special_ready = true
-
-	if not multiplayer.has_multiplayer_peer():
-		_roll_special()
-	elif multiplayer.is_server():
-		_roll_special()
-		_sync_special.rpc(special_indices)
-	elif not _pending_special.is_empty():
-		_mark_special(_pending_special)
-		_pending_special.clear()
-
-func _roll_special() -> void:
-	special_indices.clear()
+func roll_specials() -> PackedInt32Array:
+	var special_indices := PackedInt32Array()
 	var next_special_time := randf_range(6.0, 10.0)
 	for i in notes.size():
 		var first := notes[i]
@@ -121,23 +93,13 @@ func _roll_special() -> void:
 				last_special_time = notes[second_index].exect_time
 
 		next_special_time = last_special_time + randf_range(6.0, 10.0)
-	_mark_special(special_indices)
+	return special_indices
 
-@rpc("authority", "call_remote", "reliable")
-func _sync_special(indices: PackedInt32Array) -> void:
-	if notes.is_empty():
-		_pending_special = indices
-	else:
-		_mark_special(indices)
-
-func _on_peer_connected(id: int) -> void:
-	if multiplayer.is_server() and not special_indices.is_empty():
-		_sync_special.rpc_id(id, special_indices)
-
-func _mark_special(indices: PackedInt32Array) -> void:
+func start_song(indices: PackedInt32Array) -> void:
 	for i in indices:
 		if i >= 0 and i < notes.size():
 			notes[i].add_to_group(SPECIAL_GROUP)
+	set_physics_process(true)
 
 func set_active(active: bool) -> void:
 	var mode := Node.PROCESS_MODE_INHERIT if active else Node.PROCESS_MODE_DISABLED

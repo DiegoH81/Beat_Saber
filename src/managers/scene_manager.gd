@@ -9,37 +9,31 @@ var base: Node = null
 const MENU_S2_SCENE: PackedScene = preload("res://src/ui/main_menu/main_menu_s2.tscn")
 
 var menu_s2: Node = null
-var last_server_ip: String = ""  # la usa el menú y la reconexión
+var last_server_ip: String = ""
 
 
 @onready var first_scene: PackedScene = preload("res://src/ui/main_menu/main_menu_3D.tscn")
 const MENU_SCENE: PackedScene = preload("res://src/ui/main_menu/main_menu_3D.tscn")
 const LEVELS_PATH: String = "res://levels_data/"
-
-# Ventana en la que el servidor ignora peticiones idénticas (evita doble recarga
-# si host y cliente detectan lo mismo a la vez, p. ej. al perder el nivel).
 const REQUEST_COOLDOWN_MS: int = 1500
 
-# Nivel en el que está el host (se usa para el late join). "" = menú.
+
 var current_level_id: String = ""
+var _round_id: int = 0
+var _level_loaded: bool = false
+var _song_started: bool = false
+var _ready_peers: Dictionary[int, bool] = {}
 
-# Cada transición toma un id nuevo; si tras un await el id ya no coincide,
-# otra transición la sustituyó y esta debe abandonar.
 var _transition_id: int = 0
-
-# Nivel pedido antes de que scene_container / player_vr estuvieran registrados.
 var _pending_level: String = ""
 
 var _last_dispatch_key: String = ""
 var _last_dispatch_ms: int = 0
 
 
-# ───────────── Reset / registro ─────────────
-
-# Limpia las referencias a nodos (el autoload sobrevive a reload_current_scene).
-# NO toca last_server_ip: se necesita para reconectar.
 func reset() -> void:
-	_transition_id += 1  # cancela transiciones en curso
+	AudioManager.stop_music()
+	_transition_id += 1
 	scene_container = null
 	current_scene = null
 	player_vr = null
@@ -47,16 +41,22 @@ func reset() -> void:
 	menu_s2 = null
 	_pending_level = ""
 	current_level_id = ""
+	_level_loaded = false
+	_song_started = false
+	_ready_peers.clear()
 	_last_dispatch_key = ""
 
 
-# Lo llama base.gd cuando el cliente pierde la conexión con el servidor.
 func on_connection_lost() -> void:
+	AudioManager.stop_music()
 	_transition_id += 1
 	player_vr = null
 	current_scene = null
 	_pending_level = ""
 	current_level_id = ""
+	_level_loaded = false
+	_song_started = false
+	_ready_peers.clear()
 
 
 func apply_remote_tracking(source_node: Node3D, target_node: Node3D) -> void:
@@ -92,9 +92,6 @@ func register_player(player: XROrigin3D) -> void:
 	_try_start()
 
 
-# Se ejecuta cada vez que se registra algo. Cuando ya están scene_container y
-# player_vr: va al nivel pendiente si lo hay; si no, al menú, pero SOLO si no hay
-# ninguna escena (o si estamos en menu_s2). Nunca pisa un nivel ya cargado.
 func _try_start() -> void:
 	if not is_instance_valid(scene_container) or not is_instance_valid(player_vr):
 		return
@@ -109,8 +106,6 @@ func _try_start() -> void:
 		to_menu()
 
 
-# Borra escenas (menús / niveles) pero NUNCA a los jugadores: son nodos
-# replicados por el MultiplayerSpawner.
 func _clear_scenes() -> void:
 	if not is_instance_valid(scene_container):
 		return
@@ -120,9 +115,6 @@ func _clear_scenes() -> void:
 		child.queue_free()
 
 
-# ───────────── API de red (usar esto desde menús / niveles) ─────────────
-# Solo el host decide. Todos los peers ejecutan to_level / to_menu localmente
-# cuando llega la orden.
 
 func request_level(level_id: String) -> void:
 	if multiplayer.is_server():
@@ -138,14 +130,16 @@ func request_menu() -> void:
 		_request_menu_on_server.rpc_id(1)
 
 
-# Late join: el host le dice al cliente recién conectado en qué nivel está.
 func sync_state_to(peer_id: int) -> void:
 	if not multiplayer.is_server() or current_level_id.is_empty():
 		return
-	_start_level.rpc_id(peer_id, current_level_id)
+	if _song_started:
+		_load_new_round(current_level_id)
+	else:
+		_start_level.rpc_id(peer_id, current_level_id, _round_id)
 
 
-# Cliente -> Servidor
+# Client -> Sv
 @rpc("any_peer", "call_remote", "reliable")
 func _request_level_on_server(level_id: String) -> void:
 	if multiplayer.is_server():
@@ -158,16 +152,50 @@ func _request_menu_on_server() -> void:
 		_dispatch_menu()
 
 
-# Servidor -> todos (incluido el servidor)
+# Sever -> All
 @rpc("authority", "call_local", "reliable")
-func _start_level(level_id: String) -> void:
+func _start_level(level_id: String, round_id: int) -> void:
 	current_level_id = level_id
+	_round_id = round_id
+	_level_loaded = false
+	_song_started = false
+	_ready_peers.clear()
 	to_level(level_id)
+
+@rpc("any_peer", "call_remote", "reliable")
+func _report_level_ready(round_id: int) -> void:
+	if not multiplayer.is_server() or round_id != _round_id or current_level_id.is_empty():
+		return
+	_ready_peers[multiplayer.get_remote_sender_id()] = true
+	_try_start_song()
+
+func _try_start_song() -> void:
+	if not _level_loaded or _song_started:
+		return
+	for peer_id in multiplayer.get_peers():
+		if not _ready_peers.has(peer_id):
+			return
+
+	if _has_remote_peers():
+		var level := current_scene as Level
+		var special_indices := PackedInt32Array()
+		if level.generator:
+			special_indices = level.generator.roll_specials()
+		_start_song.rpc(_round_id, special_indices)
+	else:
+		_start_song(_round_id, PackedInt32Array())
+
+@rpc("authority", "call_local", "reliable")
+func _start_song(round_id: int, special_indices: PackedInt32Array) -> void:
+	if round_id != _round_id or not _level_loaded or _song_started:
+		return
+	var level := current_scene as Level
+	_song_started = true
+	level.start_song(special_indices)
 
 
 @rpc("authority", "call_local", "reliable")
 func _start_menu() -> void:
-	current_level_id = ""
 	to_menu()
 
 
@@ -177,10 +205,15 @@ func _dispatch_level(level_id: String) -> void:
 		return
 	if _is_duplicate_dispatch("level:" + level_id):
 		return
+	_load_new_round(level_id)
+
+
+func _load_new_round(level_id: String) -> void:
+	var next_round := _round_id + 1
 	if _has_remote_peers():
-		_start_level.rpc(level_id)
+		_start_level.rpc(level_id, next_round)
 	else:
-		_start_level(level_id)  # modo solo
+		_start_level(level_id, next_round)
 
 
 func _dispatch_menu() -> void:
@@ -210,8 +243,7 @@ func _is_valid_level_id(level_id: String) -> bool:
 		and FileAccess.file_exists(LEVELS_PATH + "data/" + level_id + "/level.json")
 
 
-# ───────────── Transiciones (locales) ─────────────
-
+# Transitions
 func to_menu_s2() -> void:
 	if not is_instance_valid(scene_container):
 		push_warning("SceneManager: to_menu_s2 sin scene_container.")
@@ -225,7 +257,6 @@ func to_menu_s2() -> void:
 		if my_id != _transition_id:
 			return
 
-	# Puede haberse liberado durante el fade o al desconectar
 	if not is_instance_valid(scene_container):
 		return
 	if not is_instance_valid(player_vr):
@@ -248,13 +279,17 @@ func to_menu() -> void:
 		push_warning("SceneManager: Esperando a scene_container y player_vr...")
 		return
 
+	current_level_id = ""
+	_level_loaded = false
+	_song_started = false
+	_ready_peers.clear()
+	AudioManager.stop_music()
 	_transition_id += 1
 	var my_id := _transition_id
 
 	if player_vr.has_method("fade_to"):
 		await player_vr.fade_to(0.0, 0.4)
 
-	# El jugador pudo liberarse durante el fade (desconexión) o llegó otra transición
 	if my_id != _transition_id \
 			or not is_instance_valid(player_vr) \
 			or not is_instance_valid(scene_container):
@@ -290,7 +325,6 @@ func to_menu() -> void:
 
 
 func to_level(level_id: String) -> void:
-	# Si aún no están registrados, no perder la orden: se ejecuta en _try_start().
 	if not is_instance_valid(scene_container) or not is_instance_valid(player_vr):
 		_pending_level = level_id
 		return
@@ -308,7 +342,7 @@ func to_level(level_id: String) -> void:
 		return
 
 	if "is_paused" in player_vr:
-		player_vr.is_paused = false
+		player_vr.is_paused = true
 
 	if "pause" in player_vr and player_vr.pause:
 		for connection in player_vr.pause.get_connections():
@@ -316,9 +350,8 @@ func to_level(level_id: String) -> void:
 
 	_clear_scenes()
 	menu_s2 = null
+	AudioManager.stop_music()
 
-	# Esperar un frame para que el nivel anterior salga del árbol de verdad
-	# (evita que el nuevo se renombre si es el mismo nivel al reiniciar).
 	await get_tree().process_frame
 	if my_id != _transition_id \
 			or not is_instance_valid(player_vr) \
@@ -347,13 +380,18 @@ func to_level(level_id: String) -> void:
 	if sword_res != null:
 		_setup_swords(sword_res)
 
-	if "pause" in player_vr and player_vr.pause and level.pause_menu:
-		player_vr.pause.connect(level.pause_menu.pause)
-
 	current_scene = level
 
 	if player_vr.has_method("fade_to"):
 		await player_vr.fade_to(1.0, 0.5)
+	if my_id != _transition_id or not is_instance_valid(level):
+		return
+
+	_level_loaded = true
+	if multiplayer.is_server():
+		_try_start_song()
+	else:
+		_report_level_ready.rpc_id(1, _round_id)
 
 
 func _setup_swords(sword_res: Resource) -> void:

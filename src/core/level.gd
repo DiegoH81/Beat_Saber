@@ -15,6 +15,8 @@ var number: int = 0
 
 
 func _ready() -> void:
+	if generator:
+		generator.set_physics_process(false)
 	ScoreManager.reset_score()
 	ScoreManager.misses_updated.connect(_on_misses_updated)
 	_setup_turrets.call_deferred()
@@ -28,8 +30,18 @@ func _setup_turrets() -> void:
 	turret_controller.changed_to_turret(0, not multiplayer.is_server())
 
 func _enter_tree() -> void:
-	AudioManager.play_music(song_name)
+	AudioManager.prepare_music(song_name)
 	VisualManager.register_world_env(ambient)
+
+func start_song(special_indices: PackedInt32Array) -> void:
+	if is_instance_valid(player_vr):
+		player_vr.is_paused = false
+		if pause_menu:
+			player_vr.pause.connect(pause_menu.pause)
+	AudioManager.resume_music()
+	AudioManager.play_prepared_music()
+	if generator:
+		generator.start_song(special_indices)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("p_button"):
