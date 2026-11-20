@@ -59,9 +59,8 @@ shadow_enabled = true
 shadow_bias = 0.7
 shadow_blur = 1.83
 
-[node name="Generator" parent="." index="2" unique_id=1789100008 node_paths=PackedStringArray("turret_controller")]
+[node name="Generator" parent="." index="2" unique_id=1789100008]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.33289146, 1.4412725, -57.45)
-turret_controller = NodePath("../TurretController")
 skin_enemy = ExtResource("3_db73d")
 
 [node name="Destructor" parent="." index="3" unique_id=1128432705]
@@ -88,3 +87,6 @@ material_override = SubResource("StandardMaterial3D_sg6mr")
 amount = 90
 process_material = SubResource("ParticleProcessMaterial_db73d")
 draw_pass_1 = SubResource("QuadMesh_vonxh")
+
+[node name="GeneratorBuff" parent="." index="11" unique_id=352087212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.114729, -8.68824)

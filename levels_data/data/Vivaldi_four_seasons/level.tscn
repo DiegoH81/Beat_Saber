@@ -127,3 +127,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.081465304, 1.7001193, 4.51
 
 [node name="HealthBarUi" parent="." index="17" unique_id=631553282]
 transform = Transform3D(1.3770912, -0.2914937, -0.9078965, 0, 1.5948167, -0.51203966, 0.95354325, 0.42097032, 1.311169, 3.236, 3.672, 1.014)
+
+[node name="GeneratorBuff" parent="." index="18" unique_id=352087212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7697263, 0)
