@@ -18,19 +18,28 @@ signal reconnect_failed
 func _ready() -> void:
 	SceneManager.reset()
 
-	if not OS.has_feature("mobile"):
+	var desktop := not OS.has_feature("mobile")
+	var client_requested := OS.get_cmdline_user_args().has("--p2")
+	if desktop and not client_requested and _start_server():
 		_init_vr_server()
-		_start_server()
 		multiplayer.peer_connected.connect(_on_peer_connected)
 		multiplayer.peer_disconnected.connect(_on_peer_disconnected)
-	else:
-		scene_container.child_entered_tree.connect(_on_client_child_entered_tree)
-		multiplayer.server_disconnected.connect(_on_server_disconnected)
-		multiplayer.connection_failed.connect(_on_connection_failed)
-		multiplayer.connected_to_server.connect(_on_connected_to_server)
-		SceneManager.register_base(self)
-		SceneManager.register_scene_container(scene_container)
-		SceneManager.to_menu_s2()
+		return
+
+	get_viewport().use_xr = false
+	scene_container.child_entered_tree.connect(_on_client_child_entered_tree)
+	multiplayer.server_disconnected.connect(_on_server_disconnected)
+	multiplayer.connection_failed.connect(_on_connection_failed)
+	multiplayer.connected_to_server.connect(_on_connected_to_server)
+	SceneManager.register_base(self)
+	SceneManager.register_scene_container(scene_container)
+	if desktop and SceneManager.last_server_ip.is_empty():
+		SceneManager.last_server_ip = "127.0.0.1"
+	SceneManager.to_menu_s2()
+	if desktop and not client_requested:
+		server_ip = "127.0.0.1"
+		SceneManager.last_server_ip = server_ip
+		_connect_to_server()
 
 
 func _init_vr_server() -> void:
@@ -66,17 +75,18 @@ func _reset_server() -> void:
 	get_tree().reload_current_scene()
 
 
-func _start_server() -> void:
+func _start_server() -> bool:
 	var peer := ENetMultiplayerPeer.new()
 	var error := peer.create_server(port)
 	if error != OK:
 		print("Error al iniciar el servidor: ", error)
-		return
+		return false
 
 	multiplayer.multiplayer_peer = peer
 	print("Servidor iniciado en el puerto: ", port)
 
 	_spawn_and_register_server_player()
+	return true
 
 
 func _spawn_and_register_server_player() -> void:

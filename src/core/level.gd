@@ -42,6 +42,9 @@ func start_song(special_indices: PackedInt32Array) -> void:
 	AudioManager.play_prepared_music()
 	if generator:
 		generator.start_song(special_indices)
+	var powerups := get_node_or_null("GeneratorBuff") as PowerupGenerator
+	if powerups and turret_controller and not turret_controller.turrets.is_empty():
+		powerups.start_spawning(turret_controller.turrets[0])
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("p_button"):
