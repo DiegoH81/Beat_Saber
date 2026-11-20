@@ -2,6 +2,8 @@ extends Control
 
 const SPARK_INTERVAL := 0.0055
 
+var tint := Color(0.64, 0.24, 1.0)
+
 class Spark:
 	var position: Vector2
 	var velocity: Vector2
@@ -50,17 +52,17 @@ func _draw() -> void:
 	var x := _cut_x()
 	var top := Vector2(x, 2.0)
 	var bottom := Vector2(x, size.y - 2.0)
-	draw_line(top, bottom, Color(0.48, 0.11, 0.95, 0.13), 20.0, true)
-	draw_line(top, bottom, Color(0.65, 0.23, 1.0, 0.36), 10.0, true)
-	draw_line(top, bottom, Color(0.8, 0.45, 1.0, 0.9), 4.0, true)
-	draw_line(top, bottom, Color(0.97, 0.86, 1.0), 1.5, true)
+	draw_line(top, bottom, Color(tint, 0.13), 20.0, true)
+	draw_line(top, bottom, Color(tint, 0.36), 10.0, true)
+	draw_line(top, bottom, Color(tint.lightened(0.28), 0.9), 4.0, true)
+	draw_line(top, bottom, tint.lightened(0.82), 1.5, true)
 
 	for spark in _sparks:
 		var alpha := spark.life / spark.duration
 		var tail := spark.position - spark.velocity * 0.037
-		draw_line(tail, spark.position, Color(0.48, 0.09, 1.0, alpha * 0.14), 14.0, true)
-		draw_line(tail, spark.position, Color(0.69, 0.25, 1.0, alpha * 0.34), 7.0, true)
-		draw_line(tail, spark.position, Color(0.92, 0.67, 1.0, alpha), 2.5, true)
+		draw_line(tail, spark.position, Color(tint, alpha * 0.14), 14.0, true)
+		draw_line(tail, spark.position, Color(tint, alpha * 0.34), 7.0, true)
+		draw_line(tail, spark.position, Color(tint.lightened(0.55), alpha), 2.5, true)
 
 func _cut_x() -> float:
 	return roundf(_bar.ratio * size.x)
