@@ -392,7 +392,7 @@ theme_override_colors/font_color = Color(0.93, 0.9, 0.83, 1)
 theme_override_colors/font_outline_color = Color(0.09, 0.1, 0.1, 0.94)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 46
-text = "24/30"
+text = "35/35"
 vertical_alignment = 1
 
 [connection signal="song_ended" from="Generator" to="LevelResumeMenu" method="show_all"]

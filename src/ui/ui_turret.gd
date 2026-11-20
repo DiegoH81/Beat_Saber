@@ -46,10 +46,7 @@ func _on_buff_collected(kind: String, ammo_gained: int) -> void:
 			accent = Color(0.73, 0.90, 0.59)
 			buff.text = "+%d balas" % ammo_gained if ammo_gained > 0 else "Munición llena"
 		"rate":
-			if is_equal_approx(turret_controller.fire_cooldown, turret_controller.min_fire_cooldown):
-				buff.text = "Cadencia al máximo"
-			else:
-				buff.text = "Cadencia +"
+			buff.text = "Cadencia + · 5 s"
 		"score":
 			accent = Color(0.65, 0.80, 1.0)
 			buff.text = "×2 puntos"

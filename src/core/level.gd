@@ -17,6 +17,8 @@ var number: int = 0
 func _ready() -> void:
 	if generator:
 		generator.set_physics_process(false)
+		if turret_controller and not multiplayer.is_server():
+			generator.shield_blocked.connect(turret_controller.play_shield_impact)
 	ScoreManager.reset_score()
 	ScoreManager.misses_updated.connect(_on_misses_updated)
 	_setup_turrets.call_deferred()

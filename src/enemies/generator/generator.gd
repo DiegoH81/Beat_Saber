@@ -3,20 +3,27 @@ class_name Generator
 
 signal song_ended()
 signal beam_warning(lane: int, phase: int)
+signal shield_blocked()
 
 @export_category("Beam")
 @export var beam_interval: float = 8.0
 @export var warn_yellow_time: float = 1.3
 @export var warn_red_time: float = 0.6
 @export var beam_speed: float = 40.0
-@export var beam_radius: float = 0.08
+@export var beam_radius: float = 0.105
 @export var beam_hold: float = 0.4
-@export_flags_3d_physics var shield_mask: int = 1
+@export_flags_3d_physics var shield_mask: int = 8
 
 var _beam_timer: float = 0.0
 var _beam_busy: bool = false
+var _beam_charge: MeshInstance3D
+var _beam_charge_tween: Tween
 
 const SPECIAL_GROUP := "special_enemy"
+const BEAM_AUDIO_ATTACK_TIME := 0.9
+
+@onready var _beam_audio: AudioStreamPlayer = $BeamAudio
+@onready var _shield_hit_audio: AudioStreamPlayer = $ShieldHitAudio
 
 @export_category("Dependencies")
 @export var player_vr: XROrigin3D
@@ -190,11 +197,70 @@ func _run_beam() -> void:
 @rpc("authority", "call_local", "reliable")
 func _warn(lane: int, phase: int) -> void:
 	beam_warning.emit(lane, phase)
+	if _beam_charge_tween:
+		_beam_charge_tween.kill()
+	if phase == 2:
+		if is_instance_valid(_beam_charge):
+			_beam_charge.queue_free()
+			_beam_charge = null
+		return
+	if lane < 0 or lane >= points.size():
+		return
+
+	if phase == 1:
+		_beam_audio.play(maxf(0.0, BEAM_AUDIO_ATTACK_TIME - warn_red_time))
+
+	if not is_instance_valid(_beam_charge):
+		var orb := SphereMesh.new()
+		orb.radius = beam_radius * 2.0
+		orb.height = orb.radius * 2.0
+		_beam_charge = MeshInstance3D.new()
+		_beam_charge.mesh = orb
+		_beam_charge.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		add_child(_beam_charge)
+		_beam_charge.global_position = points[lane].global_position
+		_beam_charge.scale = Vector3.ONE * 0.25
+
+	var charge_color := Color(1.0, 0.55, 0.12) if phase == 0 else Color(1.0, 0.14, 0.05)
+	_beam_charge.material_override = _beam_material(charge_color)
+	var charge_size := 0.85 if phase == 0 else 1.45
+	var charge_time := warn_yellow_time if phase == 0 else warn_red_time
+	_beam_charge_tween = _beam_charge.create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	_beam_charge_tween.tween_property(_beam_charge, "scale", Vector3.ONE * charge_size, charge_time)
+
+func _beam_material(color: Color) -> StandardMaterial3D:
+	var material := StandardMaterial3D.new()
+	material.albedo_color = color
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.emission_enabled = true
+	material.emission = color
+	if color.a < 1.0:
+		material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	return material
+
+func _beam_cylinder(pivot: Node3D, radius: float, color: Color) -> MeshInstance3D:
+	var cylinder := CylinderMesh.new()
+	cylinder.top_radius = radius
+	cylinder.bottom_radius = radius
+	cylinder.height = 0.01
+	cylinder.radial_segments = 16
+	cylinder.rings = 0
+	cylinder.material = _beam_material(color)
+
+	var mesh := MeshInstance3D.new()
+	mesh.mesh = cylinder
+	mesh.rotation_degrees.x = -90
+	mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	pivot.add_child(mesh)
+	return mesh
 
 @rpc("authority", "call_local", "reliable")
 func _fire_beam(lane: int, hit_dist: float) -> void:
 	if lane < 0 or lane >= points.size() or not is_instance_valid(player_vr):
 		return
+
+	if not _beam_audio.playing:
+		_beam_audio.play(BEAM_AUDIO_ATTACK_TIME)
 
 	var start := points[lane].global_position
 	var dir := -global_transform.basis.z
@@ -204,27 +270,27 @@ func _fire_beam(lane: int, hit_dist: float) -> void:
 		dist = hit_dist
 
 	var pivot := Node3D.new()
-	get_tree().current_scene.add_child(pivot)
+	pivot.name = "BossBeam"
+	add_child(pivot, true)
 	pivot.global_position = start
 	pivot.look_at(start + dir)
 
-	var cyl := CylinderMesh.new()
-	cyl.top_radius = beam_radius
-	cyl.bottom_radius = beam_radius
-	cyl.height = 0.01
-	var mat := StandardMaterial3D.new()
-	mat.albedo_color = Color.RED
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	cyl.material = mat
-
-	var mesh := MeshInstance3D.new()
-	mesh.mesh = cyl
-	mesh.rotation_degrees.x = -90
-	pivot.add_child(mesh)
+	var core := _beam_cylinder(pivot, beam_radius * 0.58, Color(1.0, 0.8, 0.53))
+	var shell := _beam_cylinder(pivot, beam_radius * 1.7, Color(1.0, 0.1, 0.04, 0.43))
 
 	var tw := pivot.create_tween()
-	tw.tween_method(func(l: float) -> void:
-		cyl.height = maxf(l, 0.01)
-		mesh.position.z = -l * 0.5, 0.0, dist, dist / beam_speed)
+	tw.tween_method(func(length: float) -> void:
+		for mesh in [core, shell]:
+			var cylinder := mesh.mesh as CylinderMesh
+			cylinder.height = maxf(length, 0.01)
+			mesh.position.z = -length * 0.5,
+		0.0, dist, dist / beam_speed)
+	if hit_dist > 0.0:
+		tw.tween_callback(_play_shield_impact)
 	tw.tween_interval(beam_hold)
+	tw.tween_property(pivot, "scale", Vector3(0.03, 0.03, 1.0), 0.16)
 	tw.tween_callback(pivot.queue_free)
+
+func _play_shield_impact() -> void:
+	_shield_hit_audio.play()
+	shield_blocked.emit()
