@@ -3,10 +3,11 @@ extends Node
 signal progress_changed
 
 const LEVEL_ORDER: Array[String] = [
+	"Seven_nation_army",
 	"Tutorial",
 	"Vivaldi_four_seasons",
-	"Sing_Sing_Sing",
-	"Seven_nation_army"
+	"Sing_Sing_Sing"
+	
 ]
 
 var completed: Array[String] = []
