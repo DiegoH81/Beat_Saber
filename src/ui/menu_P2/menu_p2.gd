@@ -3,9 +3,11 @@ extends Node3D
 @onready var keyboard := $Camera3D/Keyboard
 
 var _connecting := false
+var _opened_ms := 0
 
 
 func _ready() -> void:
+	_opened_ms = Time.get_ticks_msec()
 	keyboard.set_value(NetworkManager.last_server_ip)
 	NetworkManager.connected.connect(_on_connected)
 	NetworkManager.connection_failed.connect(_on_connection_failed)
@@ -21,6 +23,7 @@ func _on_address_submitted(ip: String) -> void:
 		keyboard.set_status("Escribe una IP válida.")
 		return
 	_connecting = true
+	MatchMetrics.remember_ip_submission((Time.get_ticks_msec() - _opened_ms) / 1000.0)
 	keyboard.set_status("Conectando…")
 	var error := NetworkManager.connect_to_server(ip)
 	if error != OK:

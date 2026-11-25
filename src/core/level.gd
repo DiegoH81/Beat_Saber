@@ -18,6 +18,8 @@ var number: int = 0
 func _ready() -> void:
 	if generator:
 		generator.set_physics_process(false)
+		if multiplayer.is_server():
+			generator.song_ended.connect(MatchMetrics.mark_song_ended)
 		if turret_controller:
 			generator.turret_controller = turret_controller
 			turret_controller.place_shields_on_lanes(generator.points, -generator.global_basis.z.normalized())
@@ -84,6 +86,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_misses_updated(value: float) -> void:
 	if value >= ScoreManager.MAX_MISSES:
+		if multiplayer.is_server():
+			MatchMetrics.finish_round("limite_de_fallos")
 		ScoreManager.misses_updated.disconnect(_on_misses_updated)
 		_restart_level()
 

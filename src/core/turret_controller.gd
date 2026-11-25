@@ -197,8 +197,8 @@ func _setup_turret_visual() -> void:
 	lift_motion.tween_property(lift, "position:y", 0.085, 1.6)
 	lift_motion.tween_property(lift, "position:y", 0.0, 1.6)
 
-func _process(_delta: float) -> void:
-	_update_station_attack(_delta)
+func _process(delta: float) -> void:
+	_update_station_attack(delta)
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		_mouse_shooting = false
 		_set_mouse_zooming(false)
@@ -312,8 +312,14 @@ func destroy_powerup(path: NodePath) -> void:
 	var node := get_node_or_null(path)
 	if node == null or node.is_queued_for_deletion() or not node.get_parent() is PowerupGenerator:
 		return
-	if multiplayer.is_server() and node.is_in_group(PowerupGenerator.SCORE):
-		ScoreManager.activate_double_score()
+	if multiplayer.is_server():
+		if node.is_in_group(PowerupGenerator.SCORE):
+			ScoreManager.activate_double_score()
+			MatchMetrics.first_action("p2_puntos_dobles_s")
+		elif node.is_in_group(PowerupGenerator.RATE):
+			MatchMetrics.first_action("p2_cadencia_s")
+		elif node.is_in_group(PowerupGenerator.AMMO):
+			MatchMetrics.first_action("p2_balas_s")
 	node.queue_free()
 
 func raycast_from_camera() -> void:
@@ -462,8 +468,8 @@ func _find_enemy(node: Node) -> Enemy:
 
 @rpc("call_local", "any_peer", "reliable")
 func destroy_special(note_index: int) -> void:
-	if generator:
-		generator.destroy_note(note_index)
+	if generator and generator.destroy_note(note_index) and multiplayer.is_server():
+		MatchMetrics.first_action("p2_primer_amarillo_s")
 
 func changed_to_turret(index: int, value: bool = true) -> void:
 	if index < 0 or index >= turrets.size() or _station_is_offline(index):

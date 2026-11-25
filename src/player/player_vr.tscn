@@ -82,6 +82,12 @@ properties/12/replication_mode = 1
 properties/13/path = NodePath(".:position")
 properties/13/spawn = true
 properties/13/replication_mode = 1
+properties/14/path = NodePath(".:rotation")
+properties/14/spawn = true
+properties/14/replication_mode = 1
+properties/15/path = NodePath("Body/Head:position")
+properties/15/spawn = true
+properties/15/replication_mode = 1
 
 [node name="PlayerVR" type="XROrigin3D" unique_id=1613388773 node_paths=PackedStringArray("camera", "head", "left_sword", "right_sword", "left_hand", "right_hand", "ring", "fade")]
 script = ExtResource("1_rihe0")

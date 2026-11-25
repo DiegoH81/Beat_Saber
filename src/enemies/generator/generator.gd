@@ -74,16 +74,17 @@ func load_map(notes_data: Array) -> void:
 		enemy.set_meta("note_index", notes.size())
 		notes.push_back(enemy)
 
-func destroy_note(i: int) -> void:
+func destroy_note(i: int) -> bool:
 	if i < 0 or i >= notes.size():
-		return
+		return false
 	var e: Enemy = notes[i]
-	if not is_instance_valid(e) or not e.is_in_group(SPECIAL_GROUP):
-		return
+	if not is_instance_valid(e) or not e.is_inside_tree() or e.is_queued_for_deletion() or not e.is_in_group(SPECIAL_GROUP):
+		return false
 	if e.has_method("die"):
 		e.die()
 	else:
 		e.queue_free()
+	return true
 
 func roll_specials() -> PackedInt32Array:
 	var special_indices := PackedInt32Array()

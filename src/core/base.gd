@@ -45,6 +45,7 @@ func _on_peer_connected(id: int) -> void:
 
 
 func _on_peer_disconnected(id: int) -> void:
+	MatchMetrics.finish_round("p2_desconectado")
 	print("Cliente desconectado: ", id)
 	_reset_server.call_deferred()
 

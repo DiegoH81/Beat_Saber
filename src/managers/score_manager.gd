@@ -25,6 +25,9 @@ func activate_double_score() -> void:
 
 func add_hit(amount: int = 1) -> void:
 	current_combo += 1
+	if multiplayer.is_server():
+		MatchMetrics.first_action("p1_primer_bloque_s")
+		MatchMetrics.record_combo(current_combo)
 	current_multiplier_hits += 1
 	
 	if misses > 0:
@@ -57,9 +60,14 @@ func add_hit(amount: int = 1) -> void:
 	combo_updated.emit(current_combo)
 	multiplier_updated.emit(progress, multiplier_level, just_leveled_up)
 
-func register_miss() -> void:
+func register_miss(special: bool = false) -> void:
 
 	misses += 1
+	if multiplayer.is_server():
+		if special:
+			MatchMetrics.record_failure("P2", "amarillo", misses)
+		else:
+			MatchMetrics.record_failure("P1", "bloque", misses)
 	current_combo = 0
 	current_multiplier_hits = 0
 	
@@ -74,6 +82,9 @@ func register_miss() -> void:
 
 func register_beam_hit() -> void:
 	misses += BEAM_MISS_COST
+	if multiplayer.is_server():
+		var player := "P2" if not multiplayer.get_peers().is_empty() else "sin_p2"
+		MatchMetrics.record_failure(player, "laser", misses)
 	misses_updated.emit(misses)
 
 func reset_score() -> void:

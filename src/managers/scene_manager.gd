@@ -31,6 +31,7 @@ var _last_dispatch_ms: int = 0
 
 
 func reset() -> void:
+	MatchMetrics.reset_session()
 	AudioManager.stop_music()
 	_transition_id += 1
 	scene_container = null
@@ -154,6 +155,8 @@ func _request_menu_on_server() -> void:
 # Sever -> All
 @rpc("authority", "call_local", "reliable")
 func _start_level(level_id: String, round_id: int) -> void:
+	if multiplayer.is_server():
+		MatchMetrics.begin_round(level_id)
 	current_level_id = level_id
 	_round_id = round_id
 	_level_loaded = false
@@ -190,6 +193,8 @@ func _start_song(round_id: int, special_indices: PackedInt32Array) -> void:
 		return
 	var level := current_scene as Level
 	_song_started = true
+	if multiplayer.is_server():
+		MatchMetrics.start_song()
 	level.start_song(special_indices)
 
 
@@ -204,6 +209,7 @@ func _dispatch_level(level_id: String) -> void:
 		return
 	if _is_duplicate_dispatch("level:" + level_id):
 		return
+	MatchMetrics.select_level()
 	_load_new_round(level_id)
 
 
@@ -277,6 +283,8 @@ func to_menu() -> void:
 	if not is_instance_valid(scene_container) or not is_instance_valid(player_vr):
 		push_warning("SceneManager: Esperando a scene_container y player_vr...")
 		return
+	if multiplayer.is_server():
+		MatchMetrics.finish_round("regreso_al_menu")
 
 	current_level_id = ""
 	_level_loaded = false
@@ -307,7 +315,7 @@ func to_menu() -> void:
 	elif "camera_pivot" in menu and is_instance_valid(menu.camera_pivot):
 		pivot_node = menu.camera_pivot
 
-	if pivot_node:
+	if pivot_node and player_vr.is_multiplayer_authority():
 		apply_remote_tracking(pivot_node, player_vr)
 
 	if "is_paused" in player_vr:
@@ -319,8 +327,9 @@ func to_menu() -> void:
 	if my_id != _transition_id or not is_instance_valid(player_vr):
 		return
 
-	player_vr.global_position.y -= 1
-	player_vr.global_rotation.y = deg_to_rad(180)
+	if player_vr.is_multiplayer_authority():
+		player_vr.global_position.y -= 1
+		player_vr.global_rotation.y = deg_to_rad(180)
 
 
 func to_level(level_id: String) -> void:
@@ -369,7 +378,7 @@ func to_level(level_id: String) -> void:
 
 	scene_container.add_child(level)
 
-	if level.spawn != null:
+	if level.spawn != null and player_vr.is_multiplayer_authority():
 		player_vr.global_position = level.spawn.global_position
 		player_vr.global_position.y -= 1
 		player_vr.rotation = level.spawn.rotation

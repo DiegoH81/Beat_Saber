@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://bcggq8umhxmfu"
 [autoload]
 
 NetworkManager="*res://src/managers/network_manager.gd"
+MatchMetrics="*res://src/managers/match_metrics.gd"
 SceneManager="*uid://3ywmx2kbainl"
 AudioManager="*uid://7opp5ojt6tr4"
 VisualManager="*uid://ciqhvsi6vkrm7"

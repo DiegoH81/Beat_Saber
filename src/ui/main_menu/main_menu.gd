@@ -55,6 +55,7 @@ func _refresh_level_buttons() -> void:
 
 
 func _on_play_button_pressed() -> void:
+	MatchMetrics.press_play()
 	go_to_level_selector()
 
 
@@ -73,6 +74,7 @@ func _on_tutorial_button_pressed() -> void:
 
 
 func _ready() -> void:
+	MatchMetrics.open_host_menu()
 	if not multiplayer.is_server():
 		$CameraPath/CameraFollow/CameraPivot/Camera3D.current = true
 	else:

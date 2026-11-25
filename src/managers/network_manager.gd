@@ -129,6 +129,7 @@ func _on_connected_to_server() -> void:
 		if remote:
 			remote.set_timeout(64, 5000, 10000)
 	_sample_status()
+	MatchMetrics.send_ip_timing()
 	connected.emit()
 
 func _on_server_disconnected() -> void:

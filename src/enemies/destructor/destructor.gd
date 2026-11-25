@@ -6,7 +6,7 @@ class_name Destructor
 signal hit_registered(amount: int)
 	
 func _on_area_entered(area: Area3D) -> void:
-	if area is Enemy and (name != "SwordDestructor" or not area.is_in_group("special_enemy")):
+	if area is Enemy and not area.is_queued_for_deletion() and (name != "SwordDestructor" or not area.is_in_group("special_enemy")):
 		var impact_position: Vector3 = area.global_position
 		area.queue_free()
 		
@@ -19,7 +19,7 @@ func _on_area_entered(area: Area3D) -> void:
 			
 			AudioManager.play_sfx(audio_path, global_position)
 		else:
-			ScoreManager.register_miss()
+			ScoreManager.register_miss(area.is_in_group("special_enemy"))
 
 func _spawn_hit_particles(pos: Vector3) -> void:
 	if hit_particles_scene == null:
