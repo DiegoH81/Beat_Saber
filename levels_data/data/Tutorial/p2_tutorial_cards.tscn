@@ -1,0 +1,705 @@
+[gd_scene format=3 uid="uid://b5jawfd8e2dyy"]
+
+[ext_resource type="Script" uid="uid://c1nax522e8jt8" path="res://levels_data/data/Tutorial/p2_tutorial_cards.gd" id="1_ol6dc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gqsa"]
+shading_mode = 0
+disable_fog = true
+albedo_color = Color(0.1254902, 0.08235294, 0.1254902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5vbwd"]
+material = SubResource("StandardMaterial3D_8gqsa")
+size = Vector3(12, 6.75, 0.008)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhjon"]
+shading_mode = 0
+disable_fog = true
+albedo_color = Color(0.91764706, 0.69803923, 0.92156863, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qom5j"]
+material = SubResource("StandardMaterial3D_xhjon")
+size = Vector3(0.115, 0.115, 0.008)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nfnbc"]
+shading_mode = 0
+disable_fog = true
+albedo_color = Color(0.39607844, 0.24313726, 0.38039216, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_prlod"]
+material = SubResource("StandardMaterial3D_nfnbc")
+size = Vector3(0.115, 0.115, 0.008)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7w8um"]
+shading_mode = 0
+disable_fog = true
+albedo_color = Color(0.20392157, 0.14901961, 0.21568628, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_groit"]
+material = SubResource("StandardMaterial3D_7w8um")
+size = Vector3(0.66, 0.81, 0.008)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_prmsr"]
+shading_mode = 0
+disable_fog = true
+albedo_color = Color(0.9529412, 0.92941177, 0.95686275, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_egfot"]
+material = SubResource("StandardMaterial3D_prmsr")
+size = Vector3(0.34, 0.53, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wb2mx"]
+material = SubResource("StandardMaterial3D_7w8um")
+size = Vector3(0.28, 0.47, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gsb4k"]
+material = SubResource("StandardMaterial3D_xhjon")
+size = Vector3(0.13, 0.18, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fyg5m"]
+material = SubResource("StandardMaterial3D_nfnbc")
+size = Vector3(11.45, 0.015, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iat7q"]
+material = SubResource("StandardMaterial3D_7w8um")
+size = Vector3(3.69, 2.22, 0.008)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afnbf"]
+albedo_color = Color(0.4, 0.85, 0.58, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(0.4, 0.85, 0.58, 1)
+emission_energy_multiplier = 0.65
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cbbwm"]
+top_radius = 0.19
+bottom_radius = 0.19
+height = 0.68
+radial_segments = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yupc6"]
+albedo_color = Color(0.19, 0.3, 0.24, 1)
+emission_enabled = true
+emission = Color(0.064, 0.136, 0.0928, 0.16)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_00320"]
+top_radius = 0.27
+bottom_radius = 0.27
+height = 0.11
+radial_segments = 8
+
+[sub_resource type="BoxMesh" id="BoxMesh_68qxn"]
+material = SubResource("StandardMaterial3D_7w8um")
+size = Vector3(3.69, 2.22, 0.008)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0rpie"]
+albedo_color = Color(1, 0.64, 0.26, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 0.64, 0.26, 1)
+emission_energy_multiplier = 0.65
+
+[sub_resource type="BoxMesh" id="BoxMesh_tvhq3"]
+size = Vector3(0.43, 0.13, 0.23)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7sl5c"]
+material = SubResource("StandardMaterial3D_7w8um")
+size = Vector3(3.69, 2.22, 0.008)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omtkd"]
+albedo_color = Color(0.53, 0.71, 1, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(0.53, 0.71, 1, 1)
+emission_energy_multiplier = 0.65
+
+[sub_resource type="TorusMesh" id="TorusMesh_rt3km"]
+inner_radius = 0.17
+outer_radius = 0.3
+rings = 24
+ring_segments = 8
+
+[sub_resource type="BoxMesh" id="BoxMesh_liu14"]
+material = SubResource("StandardMaterial3D_8gqsa")
+size = Vector3(12, 6.75, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i476j"]
+material = SubResource("StandardMaterial3D_nfnbc")
+size = Vector3(0.115, 0.115, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lh348"]
+material = SubResource("StandardMaterial3D_xhjon")
+size = Vector3(0.115, 0.115, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s7dvj"]
+material = SubResource("StandardMaterial3D_7w8um")
+size = Vector3(5.68, 4.28, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1wpk7"]
+material = SubResource("StandardMaterial3D_7w8um")
+size = Vector3(5.68, 4.28, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hex0y"]
+material = SubResource("StandardMaterial3D_nfnbc")
+size = Vector3(0.53, 0.52, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8fw0s"]
+material = SubResource("StandardMaterial3D_8gqsa")
+size = Vector3(4.3, 0.56, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_um6bs"]
+material = SubResource("StandardMaterial3D_nfnbc")
+size = Vector3(0.53, 0.52, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8m0kq"]
+material = SubResource("StandardMaterial3D_nfnbc")
+size = Vector3(4.3, 0.56, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_abxs8"]
+material = SubResource("StandardMaterial3D_nfnbc")
+size = Vector3(0.53, 0.52, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ybwmr"]
+material = SubResource("StandardMaterial3D_8gqsa")
+size = Vector3(4.3, 0.56, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g8dcs"]
+material = SubResource("StandardMaterial3D_nfnbc")
+size = Vector3(1.44, 1.94, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c4a08"]
+material = SubResource("StandardMaterial3D_8gqsa")
+size = Vector3(1.39, 1.89, 0.008)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23pgj"]
+shading_mode = 0
+disable_fog = true
+albedo_color = Color(0.6509804, 0.56078434, 0.654902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8xp6g"]
+material = SubResource("StandardMaterial3D_23pgj")
+size = Vector3(0.62, 0.42, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_50vvt"]
+material = SubResource("StandardMaterial3D_23pgj")
+size = Vector3(0.25, 0.39, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2376w"]
+material = SubResource("StandardMaterial3D_nfnbc")
+size = Vector3(0.53, 0.52, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ab171"]
+material = SubResource("StandardMaterial3D_xhjon")
+size = Vector3(1.44, 1.94, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hh4b1"]
+material = SubResource("StandardMaterial3D_nfnbc")
+size = Vector3(1.39, 1.89, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ajs7p"]
+material = SubResource("StandardMaterial3D_xhjon")
+size = Vector3(0.62, 0.42, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_prjrx"]
+material = SubResource("StandardMaterial3D_xhjon")
+size = Vector3(0.25, 0.39, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7m52m"]
+material = SubResource("StandardMaterial3D_nfnbc")
+size = Vector3(0.53, 0.52, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8uxhm"]
+material = SubResource("StandardMaterial3D_nfnbc")
+size = Vector3(1.44, 1.94, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yqf4v"]
+material = SubResource("StandardMaterial3D_8gqsa")
+size = Vector3(1.39, 1.89, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_35kwl"]
+material = SubResource("StandardMaterial3D_23pgj")
+size = Vector3(0.62, 0.42, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ranym"]
+material = SubResource("StandardMaterial3D_23pgj")
+size = Vector3(0.25, 0.39, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xo7ic"]
+material = SubResource("StandardMaterial3D_nfnbc")
+size = Vector3(0.53, 0.52, 0.008)
+
+[node name="P2TutorialCards" type="Node3D" unique_id=1286408428]
+script = ExtResource("1_ol6dc")
+
+[node name="DisparoYPotenciadores" type="Node3D" parent="." unique_id=1414099732]
+
+[node name="Fondo" type="MeshInstance3D" parent="DisparoYPotenciadores" unique_id=1012840025]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_5vbwd")
+
+[node name="JUGADOR 2  ·  TUTORIAL  01_02" type="Label3D" parent="DisparoYPotenciadores" unique_id=1796483857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.12, 2.99, 0.055)
+pixel_size = 0.009
+modulate = Color(0.91764706, 0.69803923, 0.92156863, 1)
+text = "JUGADOR 2  -  TUTORIAL  01/02"
+font_size = 22
+outline_size = 0
+
+[node name="Disparo y potenciadores" type="Label3D" parent="DisparoYPotenciadores" unique_id=196831932]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38, 0.055)
+pixel_size = 0.009
+modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
+text = "Disparo y potenciadores"
+font_size = 40
+outline_size = 0
+
+[node name="Elimina enemigos y recoge potenciadores disparándoles_" type="Label3D" parent="DisparoYPotenciadores" unique_id=385104027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79, 0.055)
+pixel_size = 0.009
+modulate = Color(0.827451, 0.7647059, 0.8235294, 1)
+text = "Elimina enemigos y recoge potenciadores disparándoles."
+font_size = 24
+outline_size = 0
+
+[node name="Placa02" type="MeshInstance3D" parent="DisparoYPotenciadores" unique_id=957687756]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, -3.17, 0.018)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_qom5j")
+
+[node name="Placa03" type="MeshInstance3D" parent="DisparoYPotenciadores" unique_id=677782233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, -3.17, 0.018)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_prlod")
+
+[node name="Placa04" type="MeshInstance3D" parent="DisparoYPotenciadores" unique_id=1626529417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1.02, 0.018)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_groit")
+
+[node name="Placa05" type="MeshInstance3D" parent="DisparoYPotenciadores" unique_id=674189314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1.02, 0.024)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_egfot")
+
+[node name="Placa06" type="MeshInstance3D" parent="DisparoYPotenciadores" unique_id=249133780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1.02, 0.028)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_wb2mx")
+
+[node name="Placa07" type="MeshInstance3D" parent="DisparoYPotenciadores" unique_id=8787115]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82, 1.15, 0.032)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_gsb4k")
+
+[node name="Clic izquierdo" type="Label3D" parent="DisparoYPotenciadores" unique_id=424662800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42, 1.18, 0.055)
+pixel_size = 0.009
+modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
+text = "Clic izquierdo"
+font_size = 27
+outline_size = 0
+
+[node name="Mantén presionado para disparar" type="Label3D" parent="DisparoYPotenciadores" unique_id=2033473541]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42, 0.85, 0.055)
+pixel_size = 0.009
+modulate = Color(0.827451, 0.7647059, 0.8235294, 1)
+text = "Mantén presionado para disparar"
+font_size = 22
+outline_size = 0
+
+[node name="Placa08" type="MeshInstance3D" parent="DisparoYPotenciadores" unique_id=125084796]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.018)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_fyg5m")
+
+[node name="POTENCIADORES" type="Label3D" parent="DisparoYPotenciadores" unique_id=1877659924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18, 0.055)
+pixel_size = 0.009
+modulate = Color(0.827451, 0.7647059, 0.8235294, 1)
+text = "POTENCIADORES"
+font_size = 23
+outline_size = 0
+
+[node name="Placa09" type="MeshInstance3D" parent="DisparoYPotenciadores" unique_id=335659534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.88, -1.76, 0.018)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_iat7q")
+
+[node name="Balas" type="Label3D" parent="DisparoYPotenciadores" unique_id=791675112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.88, -2.2, 0.055)
+pixel_size = 0.009
+modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
+text = "Balas"
+font_size = 27
+outline_size = 0
+
+[node name="Obtén munición" type="Label3D" parent="DisparoYPotenciadores" unique_id=57971215]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.88, -2.59, 0.055)
+pixel_size = 0.009
+modulate = Color(0.827451, 0.7647059, 0.8235294, 1)
+text = "Obtén munición"
+font_size = 20
+outline_size = 0
+
+[node name="BalasModelo" type="Node3D" parent="DisparoYPotenciadores" unique_id=136696047]
+transform = Transform3D(0.67, 0, 0, 0, 0.67, 0, 0, 0, 0.67, -3.88, -1.34, 0.24)
+
+[node name="Pieza1" type="MeshInstance3D" parent="DisparoYPotenciadores/BalasModelo" unique_id=130471566]
+material_override = SubResource("StandardMaterial3D_afnbf")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_cbbwm")
+
+[node name="Pieza2" type="MeshInstance3D" parent="DisparoYPotenciadores/BalasModelo" unique_id=1217122908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.38, 0)
+material_override = SubResource("StandardMaterial3D_yupc6")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_00320")
+
+[node name="Pieza3" type="MeshInstance3D" parent="DisparoYPotenciadores/BalasModelo" unique_id=125950305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, 0)
+material_override = SubResource("StandardMaterial3D_yupc6")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_00320")
+
+[node name="Placa10" type="MeshInstance3D" parent="DisparoYPotenciadores" unique_id=1866300389]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.76, 0.018)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_68qxn")
+
+[node name="Cadencia" type="Label3D" parent="DisparoYPotenciadores" unique_id=671313052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.2, 0.055)
+pixel_size = 0.009
+modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
+text = "Cadencia"
+font_size = 27
+outline_size = 0
+
+[node name="Dispara más rápido" type="Label3D" parent="DisparoYPotenciadores" unique_id=5102578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.59, 0.055)
+pixel_size = 0.009
+modulate = Color(0.827451, 0.7647059, 0.8235294, 1)
+text = "Dispara más rápido"
+font_size = 20
+outline_size = 0
+
+[node name="CadenciaModelo" type="Node3D" parent="DisparoYPotenciadores" unique_id=1066625656]
+transform = Transform3D(0.67, 0, 0, 0, 0.67, 0, 0, 0, 0.67, 0, -1.34, 0.24)
+
+[node name="Pieza1" type="MeshInstance3D" parent="DisparoYPotenciadores/CadenciaModelo" unique_id=38236713]
+transform = Transform3D(0.8138785, -0.58103514, 0, 0.58103514, 0.8138785, 0, 0, 0, 1, -0.16, -0.25, 0)
+material_override = SubResource("StandardMaterial3D_0rpie")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_tvhq3")
+
+[node name="Pieza2" type="MeshInstance3D" parent="DisparoYPotenciadores/CadenciaModelo" unique_id=1275258490]
+transform = Transform3D(0.8138785, 0.58103514, 0, -0.58103514, 0.8138785, 0, 0, 0, 1, 0.16, -0.25, 0)
+material_override = SubResource("StandardMaterial3D_0rpie")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_tvhq3")
+
+[node name="Pieza3" type="MeshInstance3D" parent="DisparoYPotenciadores/CadenciaModelo" unique_id=482564395]
+transform = Transform3D(0.8138785, -0.58103514, 0, 0.58103514, 0.8138785, 0, 0, 0, 1, -0.16, 0.15, 0)
+material_override = SubResource("StandardMaterial3D_0rpie")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_tvhq3")
+
+[node name="Pieza4" type="MeshInstance3D" parent="DisparoYPotenciadores/CadenciaModelo" unique_id=1541629604]
+transform = Transform3D(0.8138785, 0.58103514, 0, -0.58103514, 0.8138785, 0, 0, 0, 1, 0.16, 0.15, 0)
+material_override = SubResource("StandardMaterial3D_0rpie")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_tvhq3")
+
+[node name="Placa11" type="MeshInstance3D" parent="DisparoYPotenciadores" unique_id=47006689]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88, -1.76, 0.018)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_7sl5c")
+
+[node name="Puntos dobles" type="Label3D" parent="DisparoYPotenciadores" unique_id=1901874801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88, -2.2, 0.055)
+pixel_size = 0.009
+modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
+text = "Puntos dobles"
+font_size = 27
+outline_size = 0
+
+[node name="Beneficia al jugador 1" type="Label3D" parent="DisparoYPotenciadores" unique_id=1524767695]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88, -2.59, 0.055)
+pixel_size = 0.009
+modulate = Color(0.827451, 0.7647059, 0.8235294, 1)
+text = "Beneficia al jugador 1"
+font_size = 20
+outline_size = 0
+
+[node name="PuntosDoblesModelo" type="Node3D" parent="DisparoYPotenciadores" unique_id=364011399]
+transform = Transform3D(0.67, 0, 0, 0, 0.67, 0, 0, 0, 0.67, 3.88, -1.34, 0.24)
+
+[node name="Pieza1" type="MeshInstance3D" parent="DisparoYPotenciadores/PuntosDoblesModelo" unique_id=2068485347]
+transform = Transform3D(0.9800666, -0.19866933, 8.684112e-09, 0, -4.371139e-08, -1, 0.19866933, 0.9800666, -4.284007e-08, -0.18, -0.1, 0)
+material_override = SubResource("StandardMaterial3D_omtkd")
+cast_shadow = 0
+mesh = SubResource("TorusMesh_rt3km")
+
+[node name="Pieza2" type="MeshInstance3D" parent="DisparoYPotenciadores/PuntosDoblesModelo" unique_id=922404081]
+transform = Transform3D(0.9800666, 0.19866933, -8.684112e-09, 0, -4.371139e-08, -1, -0.19866933, 0.9800666, -4.284007e-08, 0.18, 0.1, 0.03)
+material_override = SubResource("StandardMaterial3D_omtkd")
+cast_shadow = 0
+mesh = SubResource("TorusMesh_rt3km")
+
+[node name="DefensaYTorretas" type="Node3D" parent="." unique_id=569488583]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 0)
+
+[node name="Fondo" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=990192663]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_liu14")
+
+[node name="JUGADOR 2  ·  TUTORIAL  02_02" type="Label3D" parent="DefensaYTorretas" unique_id=615237893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.12, 2.99, 0.055)
+pixel_size = 0.009
+modulate = Color(0.91764706, 0.69803923, 0.92156863, 1)
+text = "JUGADOR 2  -  TUTORIAL  02/02"
+font_size = 22
+outline_size = 0
+
+[node name="Defensa y torretas" type="Label3D" parent="DefensaYTorretas" unique_id=1632472621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38, 0.055)
+pixel_size = 0.009
+modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
+text = "Defensa y torretas"
+font_size = 40
+outline_size = 0
+
+[node name="Protege la fila que parpadea_" type="Label3D" parent="DefensaYTorretas" unique_id=1993435707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79, 0.055)
+pixel_size = 0.009
+modulate = Color(0.827451, 0.7647059, 0.8235294, 1)
+text = "Protege la fila que parpadea."
+font_size = 24
+outline_size = 0
+
+[node name="Placa02" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1154868697]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, -3.17, 0.018)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_i476j")
+
+[node name="Placa03" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1117418645]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, -3.17, 0.018)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_lh348")
+
+[node name="Placa04" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1448271062]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.93, -0.72, 0.018)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_s7dvj")
+
+[node name="Placa05" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1344164511]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93, -0.72, 0.018)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_1wpk7")
+
+[node name="Selecciona una fila" type="Label3D" parent="DefensaYTorretas" unique_id=352352172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.93, 1.01, 0.055)
+pixel_size = 0.009
+modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
+text = "Selecciona una fila"
+font_size = 27
+outline_size = 0
+
+[node name="Cambia de torreta" type="Label3D" parent="DefensaYTorretas" unique_id=1122395015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93, 1.01, 0.055)
+pixel_size = 0.009
+modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
+text = "Cambia de torreta"
+font_size = 27
+outline_size = 0
+
+[node name="Placa06" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1693693509]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13, 0.3, 0.038)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_hex0y")
+
+[node name="Q" type="Label3D" parent="DefensaYTorretas" unique_id=1254319532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13, 0.3, 0.055)
+pixel_size = 0.009
+modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
+text = "Q"
+font_size = 29
+outline_size = 0
+
+[node name="Placa07" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=35395640]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56, 0.3, 0.027)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_8fw0s")
+
+[node name="Superior" type="Label3D" parent="DefensaYTorretas" unique_id=233340130]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56, 0.3, 0.055)
+pixel_size = 0.009
+modulate = Color(0.827451, 0.7647059, 0.8235294, 1)
+text = "Superior"
+font_size = 24
+outline_size = 0
+
+[node name="Placa08" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=935708921]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13, -0.41, 0.038)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_um6bs")
+
+[node name="W" type="Label3D" parent="DefensaYTorretas" unique_id=1120041162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13, -0.41, 0.055)
+pixel_size = 0.009
+modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
+text = "W"
+font_size = 29
+outline_size = 0
+
+[node name="Placa09" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=324356996]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56, -0.41, 0.027)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_8m0kq")
+
+[node name="Central" type="Label3D" parent="DefensaYTorretas" unique_id=714673236]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56, -0.41, 0.055)
+pixel_size = 0.009
+modulate = Color(0.91764706, 0.69803923, 0.92156863, 1)
+text = "Central"
+font_size = 24
+outline_size = 0
+
+[node name="Placa10" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=482293239]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13, -1.12, 0.038)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_abxs8")
+
+[node name="E" type="Label3D" parent="DefensaYTorretas" unique_id=2016469036]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13, -1.12, 0.055)
+pixel_size = 0.009
+modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
+text = "E"
+font_size = 29
+outline_size = 0
+
+[node name="Placa11" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1702287606]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56, -1.12, 0.027)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_ybwmr")
+
+[node name="Inferior" type="Label3D" parent="DefensaYTorretas" unique_id=57099853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56, -1.12, 0.055)
+pixel_size = 0.009
+modulate = Color(0.827451, 0.7647059, 0.8235294, 1)
+text = "Inferior"
+font_size = 24
+outline_size = 0
+
+[node name="Placa12" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=259601545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32, -0.52, 0.025)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_g8dcs")
+
+[node name="Placa13" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=924136270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32, -0.52, 0.029)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_c4a08")
+
+[node name="Placa14" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1578491573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32, -0.46, 0.033)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_8xp6g")
+
+[node name="Placa15" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=665736836]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32, -0.14, 0.033)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_50vvt")
+
+[node name="Placa16" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1424886868]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32, -1.47, 0.038)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2376w")
+
+[node name="1" type="Label3D" parent="DefensaYTorretas" unique_id=781798340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32, -1.47, 0.055)
+pixel_size = 0.009
+modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
+text = "1"
+font_size = 29
+outline_size = 0
+
+[node name="Placa17" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1171804424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93, -0.52, 0.025)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_ab171")
+
+[node name="Placa18" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=180000677]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93, -0.52, 0.029)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_hh4b1")
+
+[node name="Placa19" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1924501244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93, -0.46, 0.033)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_ajs7p")
+
+[node name="Placa20" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1774878516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93, -0.14, 0.033)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_prjrx")
+
+[node name="Placa21" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1038824085]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93, -1.47, 0.038)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_7m52m")
+
+[node name="2" type="Label3D" parent="DefensaYTorretas" unique_id=1698675794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93, -1.47, 0.055)
+pixel_size = 0.009
+modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
+text = "2"
+font_size = 29
+outline_size = 0
+
+[node name="Placa22" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1477125511]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.54, -0.52, 0.025)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_8uxhm")
+
+[node name="Placa23" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1285880849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.54, -0.52, 0.029)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_yqf4v")
+
+[node name="Placa24" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=43110697]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.54, -0.46, 0.033)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_35kwl")
+
+[node name="Placa25" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1598466031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.54, -0.14, 0.033)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_ranym")
+
+[node name="Placa26" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=158514105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.54, -1.47, 0.038)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_xo7ic")
+
+[node name="3" type="Label3D" parent="DefensaYTorretas" unique_id=784172506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.54, -1.47, 0.055)
+pixel_size = 0.009
+modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
+text = "3"
+font_size = 29
+outline_size = 0
+
+[node name="Pulsa la tecla de la fila iluminada_" type="Label3D" parent="DefensaYTorretas" unique_id=1294899908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.93, -2.39, 0.055)
+pixel_size = 0.009
+modulate = Color(0.827451, 0.7647059, 0.8235294, 1)
+text = "Pulsa la tecla de la fila iluminada."
+font_size = 21
+outline_size = 0
+
+[node name="Pulsa 1, 2 o 3 para cambiar de torreta_" type="Label3D" parent="DefensaYTorretas" unique_id=1407607293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93, -2.39, 0.055)
+pixel_size = 0.009
+modulate = Color(0.827451, 0.7647059, 0.8235294, 1)
+text = "Pulsa 1, 2 o 3 para cambiar de torreta."
+font_size = 21
+outline_size = 0

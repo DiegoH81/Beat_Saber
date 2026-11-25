@@ -86,7 +86,7 @@ process_material = SubResource("ParticleProcessMaterial_3ufad")
 draw_pass_1 = SubResource("QuadMesh_8565f")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=817971904]
-transform = Transform3D(-0.5914234, 0.0632664, -0.80387557, 2.990041e-09, 0.9969173, 0.07845911, 0.8063614, 0.046402548, -0.5896002, -4.2827153, 1.11, -4.1984363)
+transform = Transform3D(-0.59142333, 0.063266404, -0.80387545, 2.9900407e-09, 0.99691737, 0.07845912, 0.80636126, 0.04640255, -0.58960015, -4.2827153, 1.5089141, -4.1984363)
 current = true
 
 [node name="Keyboard" parent="Camera3D" unique_id=1925374349 instance=ExtResource("3_keyboard")]

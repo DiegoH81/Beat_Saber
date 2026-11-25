@@ -98,7 +98,7 @@ font_size = 36
 outline_size = 0
 
 [node name="Status" type="Label3D" parent="Screen" unique_id=1033325324]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115, 0.018)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20972985, 0.018)
 pixel_size = 0.0022
 modulate = Color(0.8, 0.71, 1, 1)
 font_size = 22
@@ -232,5 +232,5 @@ locked_text_color = Color(0.6, 0.6, 0.6, 1)
 [connection signal="pressed" from="Key9" to="." method="_on_key_pressed" binds= ["9"]]
 [connection signal="pressed" from="Key10" to="." method="_on_key_pressed" binds= ["."]]
 [connection signal="pressed" from="Key11" to="." method="_on_key_pressed" binds= ["0"]]
-[connection signal="pressed" from="Key12" to="." method="_on_key_pressed" binds= ["Borrar"]]
+[connection signal="pressed" from="Key12" to="." method="_erase_last_character"]
 [connection signal="pressed" from="Key13" to="." method="_on_key_pressed" binds= ["Enter"]]

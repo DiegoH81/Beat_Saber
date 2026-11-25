@@ -33,7 +33,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			if not event.echo:
 				_on_key_pressed("Enter")
 		KEY_BACKSPACE, KEY_DELETE:
-			_on_key_pressed("Borrar")
+			_erase_last_character()
 		_:
 			if event.unicode == 0:
 				return
@@ -48,8 +48,10 @@ func _on_key_pressed(key: String) -> void:
 	match key:
 		"Enter":
 			submitted.emit(value)
-		"DEL":
-			if not value.is_empty():
-				set_value(value.left(-1))
 		_:
 			set_value(value + key)
+
+
+func _erase_last_character() -> void:
+	if not value.is_empty():
+		set_value(value.left(-1))
