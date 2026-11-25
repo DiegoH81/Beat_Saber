@@ -47,6 +47,114 @@ adjustment_enabled = true
 adjustment_contrast = 0.9
 adjustment_saturation = 1.2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3cjk"]
+bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1onw8"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qw0wa"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0mhv"]
+bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.52)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y741v"]
+bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2pry"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vh3fw"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdmkf"]
+bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.52)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q08bb"]
+bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_417lb"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0b887"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kce1p"]
+bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.52)
+shadow_size = 12
+
 [node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient", "spawn") instance=ExtResource("1_7robt")]
 ambient = NodePath("Ambient")
 next_level_id = "Seven_nation_army"
@@ -97,3 +205,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8594179, -16.076561)
 
 [node name="TurretController" parent="." index="12" unique_id=173134273 node_paths=PackedStringArray("generator")]
 generator = NodePath("../Generator")
+
+[node name="Button1" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" parent_id_path=PackedInt32Array(1977215252) index="0" unique_id=2086058721]
+theme_override_styles/normal = SubResource("StyleBoxFlat_t3cjk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1onw8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qw0wa")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_v0mhv")
+
+[node name="Button2" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" parent_id_path=PackedInt32Array(1977215252) index="1" unique_id=831861905]
+theme_override_styles/normal = SubResource("StyleBoxFlat_y741v")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v2pry")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vh3fw")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_vdmkf")
+
+[node name="Button3" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" parent_id_path=PackedInt32Array(1977215252) index="2" unique_id=799410901]
+theme_override_styles/normal = SubResource("StyleBoxFlat_q08bb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_417lb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0b887")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_kce1p")

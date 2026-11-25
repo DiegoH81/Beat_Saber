@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://4a4rda1fm7hp" path="res://levels_data/data/Vivaldi_four_seasons/models/enemy_base.glb" id="2_uaawb"]
 [ext_resource type="Script" uid="uid://bm83qrbo4eemh" path="res://levels_data/data/Vivaldi_four_seasons/ambient.gd" id="3_1fb18"]
 [ext_resource type="PackedScene" uid="uid://bowqf08dwagvw" path="res://levels_data/data/Vivaldi_four_seasons/models/Beethoven.glb" id="4_8ji72"]
-[ext_resource type="PackedScene" uid="uid://bxl8avnyue10o" path="res://levels_data/data/Vivaldi_four_seasons/models/level1.glb" id="5_1fb18"]
+[ext_resource type="PackedScene" uid="uid://dcgl6aqc03wfp" path="res://levels_data/data/Vivaldi_four_seasons/models/lelvel1 remaster.glb" id="5_1fb18"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1fb18"]
 sky_top_color = Color(0.44313726, 0.19607843, 0.37254903, 1)
@@ -42,6 +42,114 @@ gravity = Vector3(0, -0.3, 0)
 [sub_resource type="QuadMesh" id="QuadMesh_1fb18"]
 size = Vector2(0.1, 0.1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fb18"]
+bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_guabt"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s451c"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ow1hg"]
+bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.52)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2xre"]
+bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcmky"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vubr5"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7d1j"]
+bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.52)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04mdl"]
+bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ex8c3"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_val30"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1r1qs"]
+bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.52)
+shadow_size = 12
+
 [node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient", "spawn") instance=ExtResource("1_ju4l8")]
 ambient = NodePath("Ambient")
 next_level_id = "Sing_Sing_Sing"
@@ -71,10 +179,10 @@ sensibilidad = 1.5
 intensidad = 0.265
 
 [node name="Beethoven" parent="." index="6" unique_id=1966967762 instance=ExtResource("4_8ji72")]
-transform = Transform3D(10, 0, 0, 0, 8.487923, -5.287264, 0, 5.287264, 8.487923, 0, 20.333279, -22.996096)
+transform = Transform3D(7.145, 0, 0, 0, 6.064621, -3.77775, 0, 3.77775, 6.064621, 0.057523966, 8.753507, -10.554326)
 
-[node name="level1" parent="." index="7" unique_id=1705648738 instance=ExtResource("5_1fb18")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+[node name="lelvel1 remaster" parent="." index="7" unique_id=159780532 instance=ExtResource("5_1fb18")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.44190967, 0, 0.22896147)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." index="8" unique_id=610231602]
 transform = Transform3D(1, 0, 0, 0, 0.128848, -0.99166435, 0, 0.99166435, 0.128848, 0, 14.058057, -16.843103)
@@ -130,3 +238,21 @@ transform = Transform3D(1.3770912, -0.2914937, -0.9078965, 0, 1.5948167, -0.5120
 
 [node name="GeneratorBuff" parent="." index="18" unique_id=352087212]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7697263, 0)
+
+[node name="Button1" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" parent_id_path=PackedInt32Array(1977215252) index="0" unique_id=2086058721]
+theme_override_styles/normal = SubResource("StyleBoxFlat_1fb18")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_guabt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s451c")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ow1hg")
+
+[node name="Button2" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" parent_id_path=PackedInt32Array(1977215252) index="1" unique_id=831861905]
+theme_override_styles/normal = SubResource("StyleBoxFlat_v2xre")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xcmky")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vubr5")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_k7d1j")
+
+[node name="Button3" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" parent_id_path=PackedInt32Array(1977215252) index="2" unique_id=799410901]
+theme_override_styles/normal = SubResource("StyleBoxFlat_04mdl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ex8c3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_val30")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_1r1qs")

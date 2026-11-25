@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://4ri76j3vwvkb"]
 
 [ext_resource type="PackedScene" uid="uid://cye3p6aq1yoar" path="res://src/core/level.tscn" id="1_odwny"]
-[ext_resource type="PackedScene" uid="uid://c5r2dql318q1h" path="res://levels_data/data/Seven_nation_army/Models/lelvel3_remaster_FINAL.glb" id="2_sg6mr"]
 [ext_resource type="PackedScene" uid="uid://xo513p1dcbdp" path="res://levels_data/data/Seven_nation_army/Models/enemy_base.tscn" id="3_db73d"]
+[ext_resource type="PackedScene" uid="uid://bfh1aji4hm7yn" path="res://levels_data/data/Seven_nation_army/Models/lelvel_3_remaster_final.tscn" id="3_vonxh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3ahog"]
 sky_energy_multiplier = 2.55
@@ -41,6 +41,114 @@ gravity = Vector3(0, -0.3, 0)
 [sub_resource type="QuadMesh" id="QuadMesh_vonxh"]
 size = Vector2(0.1, 0.1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_db73d"]
+bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vonxh"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg44i"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h84i0"]
+bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.52)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ws14u"]
+bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ufg06"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1svh"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4ftj"]
+bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.52)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_684i2"]
+bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.38)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_obr2e"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgxqb"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xefh"]
+bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.52)
+shadow_size = 12
+
 [node name="Level" unique_id=814822109 node_paths=PackedStringArray("ambient", "spawn") instance=ExtResource("1_odwny")]
 ambient = NodePath("Ambient")
 own_id = "Seven_nation_army"
@@ -75,22 +183,40 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.71468914, 0.558490
 [node name="HealthBarUi" parent="." index="7" unique_id=631553282]
 transform = Transform3D(1.4327351, 0, -0.8676952, 0, 1.675, 0, 0.8676952, 0, 1.4327351, 3.0509274, 1.141, -4.105)
 
-[node name="lelvel3_remaster_FINAL" parent="." index="8" unique_id=530916776 instance=ExtResource("2_sg6mr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2802808, -8.249468, -7.784692)
-
-[node name="Ambient" type="WorldEnvironment" parent="." index="9" unique_id=269982581]
+[node name="Ambient" type="WorldEnvironment" parent="." index="8" unique_id=269982581]
 environment = SubResource("Environment_ty0te")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="10" unique_id=1796951815]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="9" unique_id=1796951815]
 transform = Transform3D(1.66, 0, 0, 0, 1.66, 0, 0, 0, 1.66, 0, 3.2811193, 0)
 material_override = SubResource("StandardMaterial3D_sg6mr")
 amount = 90
 process_material = SubResource("ParticleProcessMaterial_db73d")
 draw_pass_1 = SubResource("QuadMesh_vonxh")
 
-[node name="GeneratorBuff" parent="." index="11" unique_id=352087212]
+[node name="GeneratorBuff" parent="." index="10" unique_id=352087212]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.114729, -8.68824)
 
-[node name="HBoxContainer" parent="UITurret/PanelContainer" parent_id_path=PackedInt32Array(1407579917) index="1" unique_id=1577165955]
-anchors_preset = 7
+[node name="Button1" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" parent_id_path=PackedInt32Array(1977215252) index="0" unique_id=2086058721]
+theme_override_styles/normal = SubResource("StyleBoxFlat_db73d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vonxh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg44i")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_h84i0")
 
+[node name="Button2" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" parent_id_path=PackedInt32Array(1977215252) index="1" unique_id=831861905]
+theme_override_styles/normal = SubResource("StyleBoxFlat_ws14u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ufg06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o1svh")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_d4ftj")
+
+[node name="Button3" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" parent_id_path=PackedInt32Array(1977215252) index="2" unique_id=799410901]
+theme_override_styles/normal = SubResource("StyleBoxFlat_684i2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_obr2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rgxqb")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_0xefh")
+
+[node name="HBoxContainer" parent="UITurret/PanelContainer" parent_id_path=PackedInt32Array(1407579917) index="1" unique_id=1577165955]
+offset_top = -54.0
+offset_bottom = 0.0
+
+[node name="lelvel3_remaster_FINAL2" parent="." index="14" unique_id=1084570458 instance=ExtResource("3_vonxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2836533, -8.225704, -7.7674932)
