@@ -1,0 +1,236 @@
+[gd_scene format=3 uid="uid://c1oixce3lul64"]
+
+[ext_resource type="Script" uid="uid://dtcn22w5rd5c8" path="res://src/ui/keyboard/keyboard.gd" id="1_keyboard"]
+[ext_resource type="PackedScene" uid="uid://dirnal0co32o0" path="res://src/ui/button/Button.tscn" id="2_button"]
+
+[sub_resource type="StandardMaterial3D" id="HousingMaterial"]
+shading_mode = 0
+albedo_color = Color(0.095, 0.063, 0.16, 1)
+
+[sub_resource type="BoxMesh" id="HousingMesh"]
+material = SubResource("HousingMaterial")
+size = Vector3(1.64, 2.02, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="ScreenMaterial"]
+shading_mode = 0
+albedo_color = Color(0.025, 0.023, 0.055, 1)
+
+[sub_resource type="BoxMesh" id="ScreenMesh"]
+material = SubResource("ScreenMaterial")
+size = Vector3(1.42, 0.45, 0.03)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr7pf"]
+shading_mode = 0
+albedo_color = Color(0.23, 0.16, 0.37, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6334"]
+shading_mode = 0
+albedo_color = Color(0.23, 0.16, 0.37, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gv8il"]
+shading_mode = 0
+albedo_color = Color(0.23, 0.16, 0.37, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56p23"]
+shading_mode = 0
+albedo_color = Color(0.23, 0.16, 0.37, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0trn"]
+shading_mode = 0
+albedo_color = Color(0.23, 0.16, 0.37, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_opbkp"]
+shading_mode = 0
+albedo_color = Color(0.23, 0.16, 0.37, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_go6xi"]
+shading_mode = 0
+albedo_color = Color(0.23, 0.16, 0.37, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hcknx"]
+shading_mode = 0
+albedo_color = Color(0.23, 0.16, 0.37, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yn0aa"]
+shading_mode = 0
+albedo_color = Color(0.23, 0.16, 0.37, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gqwgj"]
+shading_mode = 0
+albedo_color = Color(0.23, 0.16, 0.37, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_okxbd"]
+shading_mode = 0
+albedo_color = Color(0.23, 0.16, 0.37, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c43cm"]
+shading_mode = 0
+albedo_color = Color(0.23, 0.16, 0.37, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ah0ek"]
+shading_mode = 0
+albedo_color = Color(0.45, 0.24, 0.74, 1)
+
+[node name="Keyboard" type="Node3D" unique_id=135286700]
+script = ExtResource("1_keyboard")
+
+[node name="Housing" type="MeshInstance3D" parent="." unique_id=1658537537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.08)
+mesh = SubResource("HousingMesh")
+
+[node name="Screen" type="MeshInstance3D" parent="." unique_id=1466159913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59, 0)
+mesh = SubResource("ScreenMesh")
+
+[node name="Title" type="Label3D" parent="Screen" unique_id=383891652]
+transform = Transform3D(1.835, 0, 0, 0, 1.835, 0, 0, 0, 1.835, 0, 0.12725353, 0.018)
+pixel_size = 0.0023
+modulate = Color(0.77, 0.7, 0.92, 1)
+text = "Jugador 2 - IP del anfitrión"
+font_size = 24
+outline_size = 0
+
+[node name="Address" type="Label3D" parent="Screen" unique_id=352037391]
+transform = Transform3D(1.605, 0, 0, 0, 1.605, 0, 0, 0, 1.605, 0, -0.07113576, 0.018)
+pixel_size = 0.0018
+text = "0.0.0.0"
+font_size = 36
+outline_size = 0
+
+[node name="Status" type="Label3D" parent="Screen" unique_id=1033325324]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115, 0.018)
+pixel_size = 0.0022
+modulate = Color(0.8, 0.71, 1, 1)
+font_size = 22
+outline_size = 0
+
+[node name="Key1" parent="." unique_id=904752410 instance=ExtResource("2_button")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49, 0.215, 0.025)
+monitoring = false
+text = "1"
+font_size = 40
+button_size = Vector3(0.44, 0.18, 0.08)
+button_material = SubResource("StandardMaterial3D_cr7pf")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Key2" parent="." unique_id=324666929 instance=ExtResource("2_button")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.215, 0.025)
+monitoring = false
+text = "2"
+font_size = 40
+button_size = Vector3(0.44, 0.18, 0.08)
+button_material = SubResource("StandardMaterial3D_f6334")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Key3" parent="." unique_id=69015992 instance=ExtResource("2_button")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49, 0.215, 0.025)
+monitoring = false
+text = "3"
+font_size = 40
+button_size = Vector3(0.44, 0.18, 0.08)
+button_material = SubResource("StandardMaterial3D_gv8il")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Key4" parent="." unique_id=1278451609 instance=ExtResource("2_button")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49, -0.005, 0.025)
+monitoring = false
+text = "4"
+font_size = 40
+button_size = Vector3(0.44, 0.18, 0.08)
+button_material = SubResource("StandardMaterial3D_56p23")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Key5" parent="." unique_id=1882199742 instance=ExtResource("2_button")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.005, 0.025)
+monitoring = false
+text = "5"
+font_size = 40
+button_size = Vector3(0.44, 0.18, 0.08)
+button_material = SubResource("StandardMaterial3D_v0trn")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Key6" parent="." unique_id=2101460661 instance=ExtResource("2_button")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49, -0.005, 0.025)
+monitoring = false
+text = "6"
+font_size = 40
+button_size = Vector3(0.44, 0.18, 0.08)
+button_material = SubResource("StandardMaterial3D_opbkp")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Key7" parent="." unique_id=1872895022 instance=ExtResource("2_button")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49, -0.225, 0.025)
+monitoring = false
+text = "7"
+font_size = 40
+button_size = Vector3(0.44, 0.18, 0.08)
+button_material = SubResource("StandardMaterial3D_go6xi")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Key8" parent="." unique_id=2020382670 instance=ExtResource("2_button")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.225, 0.025)
+monitoring = false
+text = "8"
+font_size = 40
+button_size = Vector3(0.44, 0.18, 0.08)
+button_material = SubResource("StandardMaterial3D_hcknx")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Key9" parent="." unique_id=1315305278 instance=ExtResource("2_button")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49, -0.225, 0.025)
+monitoring = false
+text = "9"
+font_size = 40
+button_size = Vector3(0.44, 0.18, 0.08)
+button_material = SubResource("StandardMaterial3D_yn0aa")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Key10" parent="." unique_id=156713354 instance=ExtResource("2_button")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49, -0.445, 0.025)
+monitoring = false
+text = "."
+font_size = 40
+button_size = Vector3(0.44, 0.18, 0.08)
+button_material = SubResource("StandardMaterial3D_gqwgj")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Key11" parent="." unique_id=1777708052 instance=ExtResource("2_button")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.445, 0.025)
+monitoring = false
+text = "0"
+font_size = 40
+button_size = Vector3(0.44, 0.18, 0.08)
+button_material = SubResource("StandardMaterial3D_okxbd")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Key12" parent="." unique_id=19226885 instance=ExtResource("2_button")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49, -0.445, 0.025)
+monitoring = false
+text = "DEL"
+font_size = 32
+button_size = Vector3(0.44, 0.18, 0.08)
+button_material = SubResource("StandardMaterial3D_c43cm")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Key13" parent="." unique_id=1262176179 instance=ExtResource("2_button")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.72, 0.025)
+monitoring = false
+text = "Enter"
+font_size = 40
+button_size = Vector3(1.42, 0.23, 0.08)
+button_material = SubResource("StandardMaterial3D_ah0ek")
+locked_text_color = Color(0.6, 0.6, 0.6, 1)
+
+[connection signal="pressed" from="Key1" to="." method="_on_key_pressed" binds= ["1"]]
+[connection signal="pressed" from="Key2" to="." method="_on_key_pressed" binds= ["2"]]
+[connection signal="pressed" from="Key3" to="." method="_on_key_pressed" binds= ["3"]]
+[connection signal="pressed" from="Key4" to="." method="_on_key_pressed" binds= ["4"]]
+[connection signal="pressed" from="Key5" to="." method="_on_key_pressed" binds= ["5"]]
+[connection signal="pressed" from="Key6" to="." method="_on_key_pressed" binds= ["6"]]
+[connection signal="pressed" from="Key7" to="." method="_on_key_pressed" binds= ["7"]]
+[connection signal="pressed" from="Key8" to="." method="_on_key_pressed" binds= ["8"]]
+[connection signal="pressed" from="Key9" to="." method="_on_key_pressed" binds= ["9"]]
+[connection signal="pressed" from="Key10" to="." method="_on_key_pressed" binds= ["."]]
+[connection signal="pressed" from="Key11" to="." method="_on_key_pressed" binds= ["0"]]
+[connection signal="pressed" from="Key12" to="." method="_on_key_pressed" binds= ["Borrar"]]
+[connection signal="pressed" from="Key13" to="." method="_on_key_pressed" binds= ["Enter"]]

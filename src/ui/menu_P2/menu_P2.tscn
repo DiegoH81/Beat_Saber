@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://d1cgha81xtdah"]
+
+[ext_resource type="PackedScene" uid="uid://b4ciyppq5olco" path="res://src/ui/main_menu/RENDER_scene.tscn" id="1_pbg7d"]
+[ext_resource type="Script" uid="uid://cq36h8db7vcdn" path="res://src/ui/menu_P2/menu_p2.gd" id="2_menu"]
+[ext_resource type="PackedScene" uid="uid://c1oixce3lul64" path="res://src/ui/keyboard/keyboard.tscn" id="3_keyboard"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pbg7d"]
+sky_top_color = Color(0.16470589, 0.16862746, 0.30980393, 1)
+sky_horizon_color = Color(0.3254902, 0.2901961, 0.36078432, 1)
+sky_curve = 0.063067295
+sky_cover_modulate = Color(0.3254902, 0.2901961, 0.36078432, 1)
+ground_bottom_color = Color(0.3254902, 0.2901961, 0.36078432, 1)
+ground_horizon_color = Color(0.3254902, 0.2901961, 0.36078432, 1)
+sun_angle_max = 0.0
+
+[sub_resource type="Sky" id="Sky_q5te7"]
+sky_material = SubResource("ProceduralSkyMaterial_pbg7d")
+
+[sub_resource type="Environment" id="Environment_3ufad"]
+background_mode = 2
+background_energy_multiplier = 2.0
+sky = SubResource("Sky_q5te7")
+ambient_light_color = Color(0.90823805, 0.72411793, 0.80805457, 1)
+ambient_light_energy = 2.05
+sdfgi_enabled = true
+sdfgi_bounce_feedback = 0.72
+sdfgi_energy = 2.15
+glow_enabled = true
+glow_intensity = 0.56
+fog_enabled = true
+fog_light_color = Color(0.93596303, 0.76062036, 0.96417886, 1)
+fog_light_energy = 0.1
+fog_density = 0.1006
+fog_aerial_perspective = 0.07
+fog_sky_affect = 0.566
+volumetric_fog_density = 0.0585
+volumetric_fog_albedo = Color(0.50348216, 0.36586174, 0.4673797, 1)
+volumetric_fog_emission = Color(0.2365565, 0.040205266, 0.27409443, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbg7d"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.8156863, 0.8980392, 1, 1)
+emission_enabled = true
+emission = Color(0.91764706, 0.16862746, 0.91764706, 1)
+emission_energy_multiplier = 1.15
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+grow = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ufad"]
+emission_shape = 3
+emission_box_extents = Vector3(9.135, 3.555, 9.705)
+initial_velocity_min = 0.049999997
+initial_velocity_max = 0.19999999
+gravity = Vector3(0, 0.05, 0)
+scale_min = 0.02
+scale_max = 0.049999997
+
+[sub_resource type="QuadMesh" id="QuadMesh_8565f"]
+size = Vector2(0.1, 0.1)
+
+[node name="MenuP2" type="Node3D" unique_id=1070588038]
+script = ExtResource("2_menu")
+
+[node name="MAIN_MENU_SCENE" parent="." unique_id=917994279 instance=ExtResource("1_pbg7d")]
+
+[node name="Ambient" type="WorldEnvironment" parent="." unique_id=1575184604]
+environment = SubResource("Environment_3ufad")
+
+[node name="DirectSun" type="DirectionalLight3D" parent="." unique_id=1213328887]
+transform = Transform3D(-0.9418519, 3.5086718e-09, -0.33602837, -0.041376464, 0.9923901, 0.11597387, 0.33347118, 0.12313387, -0.9346845, -4.7182827, 9.272917, -19.212547)
+light_color = Color(0.6627451, 0.1764706, 0.5568628, 1)
+light_energy = 4.097
+light_indirect_energy = 1.15
+directional_shadow_mode = 1
+
+[node name="AmbientParticles" type="GPUParticles3D" parent="." unique_id=234843358]
+transform = Transform3D(1, 0, 0, 0, 0.5923183, 0, 0, 0, 1, 0.72034097, 2.0965786, 0.21540022)
+material_override = SubResource("StandardMaterial3D_pbg7d")
+amount = 110
+lifetime = 6.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_3ufad")
+draw_pass_1 = SubResource("QuadMesh_8565f")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=817971904]
+transform = Transform3D(-0.5914234, 0.0632664, -0.80387557, 2.990041e-09, 0.9969173, 0.07845911, 0.8063614, 0.046402548, -0.5896002, -4.2827153, 1.11, -4.1984363)
+current = true
+
+[node name="Keyboard" parent="Camera3D" unique_id=1925374349 instance=ExtResource("3_keyboard")]
+transform = Transform3D(0.9999998, -1.8626451e-09, 0, 4.656613e-09, 0.99999964, 0, -4.4703484e-08, 2.2351742e-08, 1, -0.36274242, -0.08478445, -1.8227079)
+
+[connection signal="submitted" from="Camera3D/Keyboard" to="." method="_on_address_submitted"]

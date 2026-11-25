@@ -32,8 +32,8 @@ signal turret_changed(index: int)
 signal shield_changed(row: int, active: bool)
 signal station_attack_changed(index: int, state: StationState)
 
-@export var max_ammo: int = 35
-@export var fire_cooldown: float = 0.22
+@export var max_ammo: int = 32
+@export var fire_cooldown: float = 0.12
 @export var min_fire_cooldown: float = 0.05
 @export var ammo_per_powerup: int = 10
 @export var fire_rate_bonus: float = 0.05

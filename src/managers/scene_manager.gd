@@ -6,7 +6,7 @@ var player_vr: XROrigin3D = null
 var base: Node = null
 
 
-const MENU_S2_SCENE: PackedScene = preload("res://src/ui/main_menu/main_menu_s2.tscn")
+const MENU_S2_SCENE: PackedScene = preload("res://src/ui/menu_P2/menu_P2.tscn")
 
 var menu_s2: Node = null
 

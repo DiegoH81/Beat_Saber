@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cye3p6aq1yoar" path="res://src/core/level.tscn" id="1_7robt"]
 [ext_resource type="PackedScene" uid="uid://c8slooifkhior" path="res://levels_data/data/Sing_Sing_Sing/Models/level2.glb" id="2_nlyaf"]
-[ext_resource type="PackedScene" uid="uid://0h5lgnscl5y" path="res://levels_data/data/Sing_Sing_Sing/Models/enemy_base.tscn" id="3_t3cjk"]
+[ext_resource type="PackedScene" uid="uid://b7y0tknt6ca02" path="res://levels_data/data/Sing_Sing_Sing/Models/enemy_lv_2.tscn" id="4_1onw8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nlyaf"]
 albedo_color = Color(0.376035, 0.2816943, 0.20079547, 1)
@@ -47,7 +47,7 @@ adjustment_enabled = true
 adjustment_contrast = 0.9
 adjustment_saturation = 1.2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3cjk"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1onw8"]
 bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -55,15 +55,6 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 shadow_color = Color(0.64, 0.24, 1, 0.38)
 shadow_size = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1onw8"]
-bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_color = Color(0.64, 0.24, 1, 0.46)
-shadow_size = 11
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qw0wa"]
 bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
@@ -75,6 +66,15 @@ shadow_color = Color(0.64, 0.24, 1, 0.46)
 shadow_size = 11
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0mhv"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y741v"]
 bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -83,7 +83,7 @@ corner_radius_bottom_left = 5
 shadow_color = Color(0.64, 0.24, 1, 0.52)
 shadow_size = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y741v"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2pry"]
 bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -91,15 +91,6 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 shadow_color = Color(0.64, 0.24, 1, 0.38)
 shadow_size = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2pry"]
-bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_color = Color(0.64, 0.24, 1, 0.46)
-shadow_size = 11
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vh3fw"]
 bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
@@ -111,6 +102,15 @@ shadow_color = Color(0.64, 0.24, 1, 0.46)
 shadow_size = 11
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdmkf"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q08bb"]
 bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -119,7 +119,7 @@ corner_radius_bottom_left = 5
 shadow_color = Color(0.64, 0.24, 1, 0.52)
 shadow_size = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q08bb"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_417lb"]
 bg_color = Color(0.2752, 0.103199996, 0.43, 0.96)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -127,15 +127,6 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 shadow_color = Color(0.64, 0.24, 1, 0.38)
 shadow_size = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_417lb"]
-bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_color = Color(0.64, 0.24, 1, 0.46)
-shadow_size = 11
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0b887"]
 bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
@@ -147,6 +138,15 @@ shadow_color = Color(0.64, 0.24, 1, 0.46)
 shadow_size = 11
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kce1p"]
+bg_color = Color(0.3136, 0.1176, 0.49, 0.96)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.64, 0.24, 1, 0.46)
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlu3l"]
 bg_color = Color(0.25599998, 0.09599999, 0.39999998, 0.98)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -177,7 +177,7 @@ light_indirect_energy = 2.375
 
 [node name="Generator" parent="." index="2" unique_id=1789100008]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.5551233, 1.8270774, -31.334612)
-skin_enemy = ExtResource("3_t3cjk")
+skin_enemy = ExtResource("4_1onw8")
 
 [node name="Destructor" parent="." index="3" unique_id=1128432705]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8431408, 11.748938)
@@ -207,19 +207,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8594179, -16.076561)
 generator = NodePath("../Generator")
 
 [node name="Button1" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" parent_id_path=PackedInt32Array(1977215252) index="0" unique_id=2086058721]
-theme_override_styles/normal = SubResource("StyleBoxFlat_t3cjk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1onw8")
-theme_override_styles/hover = SubResource("StyleBoxFlat_qw0wa")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_v0mhv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1onw8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qw0wa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_v0mhv")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_y741v")
 
 [node name="Button2" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" parent_id_path=PackedInt32Array(1977215252) index="1" unique_id=831861905]
-theme_override_styles/normal = SubResource("StyleBoxFlat_y741v")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_v2pry")
-theme_override_styles/hover = SubResource("StyleBoxFlat_vh3fw")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_vdmkf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_v2pry")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vh3fw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vdmkf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_q08bb")
 
 [node name="Button3" parent="UITurret/PanelContainer/VBoxContainer/GridContainer" parent_id_path=PackedInt32Array(1977215252) index="2" unique_id=799410901]
-theme_override_styles/normal = SubResource("StyleBoxFlat_q08bb")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_417lb")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0b887")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_kce1p")
+theme_override_styles/normal = SubResource("StyleBoxFlat_417lb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0b887")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kce1p")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_vlu3l")

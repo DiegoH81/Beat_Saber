@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 @export var button: Button
 @export var line_edit: LineEdit
@@ -12,6 +12,7 @@ func _ready() -> void:
 	label_3.text = ""
 	line_edit.virtual_keyboard_enabled = false
 	line_edit.text = NetworkManager.last_server_ip
+	line_edit.caret_column = line_edit.text.length()
 
 	NetworkManager.connected.connect(_on_connected_to_server)
 	NetworkManager.connection_failed.connect(_on_connection_failed)
@@ -29,6 +30,11 @@ func _ready() -> void:
 
 
 func _on_key_pressed(key: String) -> void:
+	if line_edit.has_selection():
+		line_edit.delete_text(line_edit.get_selection_from_column(), line_edit.get_selection_to_column())
+		if key == "DEL":
+			line_edit.grab_focus()
+			return
 	if key == "DEL":
 		var col := line_edit.caret_column
 		if col > 0:
@@ -39,7 +45,9 @@ func _on_key_pressed(key: String) -> void:
 	line_edit.grab_focus()
 
 
-func _on_button_pressed() -> void:
+func _on_button_pressed(_submitted_text: String = "") -> void:
+	if button.disabled:
+		return
 	var ip := line_edit.text.strip_edges()
 
 	if ip.is_empty():

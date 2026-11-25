@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b7y0tknt6ca02"]
+
+[ext_resource type="PackedScene" uid="uid://bylpnikgei4i2" path="res://levels_data/data/Sing_Sing_Sing/Models/enemy_lv2.glb" id="1_tbxn7"]
+
+[node name="enemy_lv2" unique_id=1234606757 instance=ExtResource("1_tbxn7")]
+transform = Transform3D(-0.415, 0, -3.628045e-08, 0, 0.415, 0, 3.628045e-08, 0, -0.415, 0, 0, 0)

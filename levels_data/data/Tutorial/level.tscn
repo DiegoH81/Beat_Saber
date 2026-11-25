@@ -70,8 +70,9 @@ material = SubResource("StandardMaterial3D_TutorialBackdrop")
 size = Vector2(7.5, 1.9)
 
 [sub_resource type="TextMesh" id="TextMesh_P2Shoot"]
-text = "Dorados y potenciadores
-Usa clic izquierdo para disparar."
+text = "Dispara a enemigos dorados
+Y a potenciadores que caen del cielo
+Manten clic  izquierdo para disparar"
 
 [sub_resource type="TextMesh" id="TextMesh_P2Ammo"]
 text = "Balas"
