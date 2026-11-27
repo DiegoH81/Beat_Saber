@@ -2,12 +2,11 @@ import json
 import socket
 import time
 
-from pykinect2 import PyKinectV2
-from pykinect2.PyKinectV2 import *
-from pykinect2 import PyKinectRuntime
+from pykinect2 import PyKinectRuntime, PyKinectV2
 
 UDP_IP = "127.0.0.1"
 UDP_PORT = 49152
+PLAYER_REACQUIRE_SECONDS = 1.0
 
 LANDMARK_TO_KINECT_JOINT = {
     0: PyKinectV2.JointType_HandLeft,
@@ -22,43 +21,29 @@ LANDMARK_TO_KINECT_JOINT = {
 }
 
 
-def get_tracking_data(kinect):
-    results = []
+def get_tracking_data(body):
+    if body is None:
+        return {"body_tracked": False, "landmarks": {}}
 
-    if not kinect.has_new_body_frame():
-        return results
-
-    bodies = kinect.get_last_body_frame()
-    if bodies is None:
-        return results
-
-    for i in range(kinect.max_body_count):
-        body = bodies.bodies[i]
-        if not body.is_tracked:
+    landmarks = {}
+    for landmark_index, joint_type in LANDMARK_TO_KINECT_JOINT.items():
+        joint = body.joints[joint_type]
+        if joint.TrackingState == PyKinectV2.TrackingState_NotTracked:
             continue
 
-        joints = body.joints
-        landmarks = {}
+        visibility = 1.0 if joint.TrackingState == PyKinectV2.TrackingState_Tracked else 0.5
+        landmarks[str(landmark_index)] = [
+            joint.Position.x,
+            joint.Position.y,
+            joint.Position.z,
+            visibility,
+        ]
 
-        for landmark_index, joint_type in LANDMARK_TO_KINECT_JOINT.items():
-            joint = joints[joint_type]
-
-            if joint.TrackingState == PyKinectV2.TrackingState_NotTracked:
-                continue
-
-            visibility = 1.0 if joint.TrackingState == PyKinectV2.TrackingState_Tracked else 0.5
-
-            landmarks[str(landmark_index)] = [
-                joint.Position.x,
-                joint.Position.y,
-                joint.Position.z,
-                visibility,
-            ]
-
-        if landmarks:
-            results.append({"body_index": i, "landmarks": landmarks})
-
-    return results
+    return {
+        "body_tracked": True,
+        "clipped_edges": body.clipped_edges,
+        "landmarks": landmarks,
+    }
 
 
 def main():
@@ -68,17 +53,26 @@ def main():
     print(f"Starting tracking... sending UDP data to {UDP_IP}:{UDP_PORT}")
     print("Ctrl+C to stop.\n")
 
+    player_id = None
+    last_seen = 0.0
     try:
         while True:
-            bodies = get_tracking_data(kinect)
+            if kinect.has_new_body_frame():
+                frame = kinect.get_last_body_frame()
+                if frame is not None:
+                    now = time.monotonic()
+                    tracked = [body for body in frame.bodies if body.is_tracked]
+                    player = next((body for body in tracked if body.tracking_id == player_id), None)
+                    if player is None and tracked and (
+                        player_id is None or now - last_seen >= PLAYER_REACQUIRE_SECONDS
+                    ):
+                        player = tracked[0]
+                    if player is not None:
+                        player_id = player.tracking_id
+                        last_seen = now
 
-            for body in bodies:
-                payload = {"landmarks": body["landmarks"]}
-                message = json.dumps(payload).encode("utf-8")
-                sock.sendto(message, (UDP_IP, UDP_PORT))
-
-            if bodies:
-                print(f"Sent frame with {len(bodies)} body(ies) tracked")
+                    payload = get_tracking_data(player)
+                    sock.sendto(json.dumps(payload).encode("utf-8"), (UDP_IP, UDP_PORT))
 
             time.sleep(0.001)
 

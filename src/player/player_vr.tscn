@@ -104,6 +104,16 @@ move_speed = 0.89
 
 [node name="XRCamera3D" type="XRCamera3D" parent="." unique_id=1535857980]
 
+[node name="TrackingWarning" type="Label3D" parent="XRCamera3D" unique_id=246913859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, -1.5)
+visible = false
+pixel_size = 0.001
+no_depth_test = true
+modulate = Color(1, 0.87, 0.52, 1)
+text = "LABEL"
+font_size = 96
+outline_size = 14
+
 [node name="Ring" type="MeshInstance3D" parent="XRCamera3D" unique_id=1326082409]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14290059, -1.0265579)
 material_override = SubResource("ShaderMaterial_eijg3")
@@ -115,12 +125,13 @@ visible = false
 material_override = SubResource("ShaderMaterial_7evuu")
 mesh = SubResource("QuadMesh_75kqj")
 
-[node name="Body" type="Node3D" parent="." unique_id=9815244 node_paths=PackedStringArray("xr_camera_3d", "head", "body", "left_hand", "left_wrist", "left_elbow", "left_shoulder", "right_hand", "right_wrist", "right_elbow", "right_shoulder")]
+[node name="Body" type="Node3D" parent="." unique_id=9815244 node_paths=PackedStringArray("xr_camera_3d", "head", "body", "tracking_warning", "left_hand", "left_wrist", "left_elbow", "left_shoulder", "right_hand", "right_wrist", "right_elbow", "right_shoulder")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3493397)
 script = ExtResource("2_c1i6f")
 xr_camera_3d = NodePath("../XRCamera3D")
 head = NodePath("Head")
 body = NodePath(".")
+tracking_warning = NodePath("../XRCamera3D/TrackingWarning")
 left_hand = NodePath("Left/LeftHand")
 left_wrist = NodePath("Left/LeftWrist")
 left_elbow = NodePath("Left/LeftElbow")
