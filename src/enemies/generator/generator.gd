@@ -68,6 +68,7 @@ var _tutorial_beam_index: int = 0
 @export_category("Special Enemy")
 @export_range(0.0, 1.0) var second_special_chance: float = 0.35
 @export var special_color: Color = Color(1.0, 0.8, 0.0)
+@export_range(0.1, 3.0, 0.05) var special_speed_multiplier: float = 0.85
 
 @export_category("Armored Enemy")
 ## Probabilidad de que un cubo venga blindado (solo con P2 conectado, nunca en el tutorial).
@@ -248,14 +249,16 @@ func _physics_process(delta: float) -> void:
 	elif duration >= notes[index].exect_time:
 		var enemy: Enemy = notes[index]
 		enemy.movement.direction = -global_transform.basis.z
-		enemy.movement.velocity = (global_position.distance_to(player_vr.global_position) - hit_window) * bpm / (60 * n_beats)
+		var speed: float = (global_position.distance_to(player_vr.global_position) - hit_window) * bpm / (60 * n_beats)
 		points[enemy.lane].add_child(enemy)
 
 		if enemy.is_in_group(SPECIAL_GROUP):
+			speed *= special_speed_multiplier
 			_apply_special_color(enemy)
 		elif enemy.is_in_group(ARMORED_GROUP):
 			_tint(enemy, armored_color)
 
+		enemy.movement.velocity = speed
 		index += 1
 	duration += delta
 
