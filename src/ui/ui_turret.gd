@@ -9,7 +9,6 @@ const SHIELD_DARKENING := {&"normal": 0.57, &"hover": 0.51, &"pressed": 0.51, &"
 @export var turret_buttons_container: HBoxContainer
 @export var shot_button: Button
 @export var generator: Generator
-@export var ammo: Label
 @export var buff: Label
 @export var buff_display_time: float = 0.75
 @export var buff_fade_time: float = 0.32
@@ -26,6 +25,9 @@ var _warning_button: Button
 var _station_flash: ColorRect
 var _station_flash_tween: Tween
 var _buff_tween: Tween
+var _danger: Control
+var _danger_tween: Tween
+var _danger_target := -1
 var _buff_rest_y: float
 
 func _ready() -> void:
@@ -35,6 +37,7 @@ func _ready() -> void:
 		return
 
 	_buff_rest_y = buff.position.y
+	_keep_single_shield_button()
 	_connect_shield_buttons()
 	_apply_shield_color()
 	turret_controller.shield_changed.connect(_on_shield_changed)
@@ -44,25 +47,39 @@ func _ready() -> void:
 	_station_flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_station_flash)
 	_station_flash.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_build_danger_warning()
 	turret_controller.turret_changed.connect(_on_turret_changed)
 	turret_controller.station_attack_changed.connect(_on_station_attack_changed)
 	_on_turret_changed(turret_controller.current_index)
-	turret_controller.ammo_changed.connect(_on_ammo_changed)
 	turret_controller.buff_collected.connect(_on_buff_collected)
-	_on_ammo_changed.call_deferred(turret_controller.ammo, turret_controller.max_ammo)
 	if generator:
 		generator.beam_warning.connect(_on_beam_warning)
 	shot_button.button_down.connect(func(): _shooting = true)
 	shot_button.button_up.connect(func(): _shooting = false)
 
-func _on_ammo_changed(current: int, max_ammo: int) -> void:
-	ammo.text = "%d/%d" % [current, max_ammo]
+# Antes había un botón por fila (Q/W/E); ahora un solo escudo con Espacio.
+# Se resuelve en código porque los niveles heredados sobreescriben los botones.
+func _keep_single_shield_button() -> void:
+	shield_buttons_container.columns = 1
+	var box := shield_buttons_container.get_parent() as BoxContainer
+	if box:
+		box.alignment = BoxContainer.ALIGNMENT_END
+	for i in range(shield_buttons_container.get_child_count() - 1, 0, -1):
+		var extra := shield_buttons_container.get_child(i)
+		shield_buttons_container.remove_child(extra)
+		extra.queue_free()
+	var button := shield_buttons_container.get_child(0) as Button
+	if button:
+		button.text = "ESPACIO"
 
 func _on_turret_changed(index: int) -> void:
 	for i in range(turret_buttons_container.get_child_count()):
 		var button := turret_buttons_container.get_child(i) as Button
 		if button:
 			button.set_pressed_no_signal(i == index)
+	# Si el P2 ya se cambió de torreta, el aviso grande desaparece.
+	if _danger:
+		_danger.visible = _danger_target >= 0 and _danger_target == index
 
 func _on_station_attack_changed(index: int, state: TurrentController.StationState) -> void:
 	if index < 0 or index >= turret_buttons_container.get_child_count():
@@ -70,6 +87,10 @@ func _on_station_attack_changed(index: int, state: TurrentController.StationStat
 	var button := turret_buttons_container.get_child(index) as Button
 	if button == null:
 		return
+	if state == TurrentController.StationState.WARNING:
+		_show_danger(index, button)
+		return
+	_hide_danger(button)
 	button.disabled = state == TurrentController.StationState.OFFLINE
 	if not button.disabled:
 		return
@@ -78,6 +99,50 @@ func _on_station_attack_changed(index: int, state: TurrentController.StationStat
 	_station_flash.color.a = 0.36
 	_station_flash_tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	_station_flash_tween.tween_property(_station_flash, "color:a", 0.0, 0.32)
+
+
+func _build_danger_warning() -> void:
+	_danger = VBoxContainer.new()
+	_danger.name = "TurretDanger"
+	_danger.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_danger.visible = false
+	(_danger as VBoxContainer).alignment = BoxContainer.ALIGNMENT_CENTER
+	_danger.add_theme_constant_override("separation", 0)
+	add_child(_danger)
+	_danger.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
+	_danger.offset_top = 110.0
+	_danger.offset_left = -300.0
+	_danger.offset_right = 300.0
+
+	_danger_text(_danger, 72).text = "PELIGRO"
+	_danger_text(_danger, 30).text = "CAMBIA DE POSICIÓN"
+
+func _danger_text(parent: Control, font_size: int) -> Label:
+	var label := Label.new()
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.add_theme_font_size_override("font_size", font_size)
+	label.add_theme_color_override("font_color", Color(1.0, 0.12, 0.15))
+	label.add_theme_color_override("font_outline_color", Color(0.12, 0.0, 0.01, 0.9))
+	label.add_theme_constant_override("outline_size", 6)
+	parent.add_child(label)
+	return label
+
+func _show_danger(index: int, _button: Button) -> void:
+	_danger_target = index
+	_danger.visible = index == turret_controller.current_index
+	_danger.modulate.a = 1.0
+	if _danger_tween:
+		_danger_tween.kill()
+	_danger_tween = create_tween().set_loops()
+	_danger_tween.tween_property(_danger, "modulate:a", 0.2, 0.18)
+	_danger_tween.tween_property(_danger, "modulate:a", 1.0, 0.18)
+
+func _hide_danger(_button: Button) -> void:
+	_danger_target = -1
+	if _danger_tween:
+		_danger_tween.kill()
+	_danger.visible = false
 
 func _on_buff_collected(kind: String, ammo_gained: int) -> void:
 	var accent := Color(0.96, 0.77, 0.53)
@@ -119,7 +184,7 @@ func _connect_shield_buttons() -> void:
 			print("Shields: fallo al conectar")
 			continue
 
-		button.pressed.connect(_on_shield_button_pressed.bind(i))
+		button.pressed.connect(_on_shield_button_pressed)
 		var fill := ProgressBar.new()
 		fill.name = "ShieldFill"
 		fill.show_percentage = false
@@ -142,7 +207,7 @@ func _connect_shield_buttons() -> void:
 		key_label.add_theme_color_override("font_color", Color.WHITE)
 		button.add_child(key_label)
 		key_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-		_on_shield_changed(i, turret_controller.is_shield_active(i * TurrentController.SHIELD_COLUMNS))
+		_on_shield_changed(turret_controller.is_shield_up())
 
 func _apply_shield_color() -> void:
 	if not is_instance_valid(shield_buttons_container):
@@ -181,12 +246,12 @@ func _connect_turrets_buttons() -> void:
 
 		button.pressed.connect(_on_turret_button_pressed.bind(i))
 
-func _on_shield_button_pressed(index: int) -> void:
-	turret_controller.activate_shield_row(index)
+func _on_shield_button_pressed() -> void:
+	turret_controller.activate_shield()
 
-func _on_shield_changed(index: int, active: bool) -> void:
-	if index >= 0 and index < shield_buttons_container.get_child_count():
-		var button := shield_buttons_container.get_child(index) as Button
+func _on_shield_changed(active: bool) -> void:
+	if shield_buttons_container.get_child_count() > 0:
+		var button := shield_buttons_container.get_child(0) as Button
 		if button:
 			button.disabled = active
 			var fill := button.get_node("ShieldFill") as ProgressBar
@@ -207,10 +272,9 @@ func _on_beam_warning(lane: int, phase: int) -> void:
 		_warning_button = null
 	if phase == 2 or lane < 0:
 			return
-	var row := TurrentController.shield_row_for_lane(lane)
-	if row >= shield_buttons_container.get_child_count():
+	if shield_buttons_container.get_child_count() == 0:
 		return
-	var b := shield_buttons_container.get_child(row) as Button
+	var b := shield_buttons_container.get_child(0) as Button
 
 	if b == null:
 		return

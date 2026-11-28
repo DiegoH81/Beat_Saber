@@ -85,9 +85,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _on_misses_updated(value: float) -> void:
-	if value >= ScoreManager.MAX_MISSES:
-		if multiplayer.is_server():
-			MatchMetrics.finish_round("limite_de_fallos")
+	# Solo el servidor decide el reinicio; el cliente lo recibe vía _start_level.
+	if value >= ScoreManager.MAX_MISSES and multiplayer.is_server():
+		MatchMetrics.finish_round("limite_de_fallos")
 		ScoreManager.misses_updated.disconnect(_on_misses_updated)
 		_restart_level()
 
