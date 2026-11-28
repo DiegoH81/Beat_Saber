@@ -471,7 +471,7 @@ outline_size = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79, 0.055)
 pixel_size = 0.009
 modulate = Color(0.827451, 0.7647059, 0.8235294, 1)
-text = "Protege la fila que parpadea."
+text = "Activa el escudo cuando el rayo se cargue."
 font_size = 24
 outline_size = 0
 
@@ -499,7 +499,7 @@ mesh = SubResource("BoxMesh_1wpk7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.93, 1.01, 0.055)
 pixel_size = 0.009
 modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
-text = "Selecciona una fila"
+text = "Controles"
 font_size = 27
 outline_size = 0
 
@@ -520,8 +520,8 @@ mesh = SubResource("BoxMesh_hex0y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13, 0.3, 0.055)
 pixel_size = 0.009
 modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
-text = "Q"
-font_size = 29
+text = "ESP"
+font_size = 24
 outline_size = 0
 
 [node name="Placa07" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=35395640]
@@ -533,7 +533,7 @@ mesh = SubResource("BoxMesh_8fw0s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56, 0.3, 0.055)
 pixel_size = 0.009
 modulate = Color(0.827451, 0.7647059, 0.8235294, 1)
-text = "Superior"
+text = "Escudo"
 font_size = 24
 outline_size = 0
 
@@ -546,7 +546,7 @@ mesh = SubResource("BoxMesh_um6bs")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13, -0.41, 0.055)
 pixel_size = 0.009
 modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
-text = "W"
+text = "R"
 font_size = 29
 outline_size = 0
 
@@ -559,7 +559,7 @@ mesh = SubResource("BoxMesh_8m0kq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56, -0.41, 0.055)
 pixel_size = 0.009
 modulate = Color(0.91764706, 0.69803923, 0.92156863, 1)
-text = "Central"
+text = "Recargar"
 font_size = 24
 outline_size = 0
 
@@ -572,8 +572,8 @@ mesh = SubResource("BoxMesh_abxs8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13, -1.12, 0.055)
 pixel_size = 0.009
 modulate = Color(0.9529412, 0.92941177, 0.95686275, 1)
-text = "E"
-font_size = 29
+text = "CLIC D"
+font_size = 17
 outline_size = 0
 
 [node name="Placa11" type="MeshInstance3D" parent="DefensaYTorretas" unique_id=1702287606]
@@ -585,7 +585,7 @@ mesh = SubResource("BoxMesh_ybwmr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56, -1.12, 0.055)
 pixel_size = 0.009
 modulate = Color(0.827451, 0.7647059, 0.8235294, 1)
-text = "Inferior"
+text = "Zoom"
 font_size = 24
 outline_size = 0
 

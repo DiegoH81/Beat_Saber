@@ -341,14 +341,13 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 2.3, -8)
 visible = false
 
-[node name="UITurret" type="CanvasLayer" parent="." unique_id=1195384379 node_paths=PackedStringArray("turret_controller", "shield_buttons_container", "turret_buttons_container", "shot_button", "ammo", "buff")]
+[node name="UITurret" type="CanvasLayer" parent="." unique_id=1195384379 node_paths=PackedStringArray("turret_controller", "shield_buttons_container", "turret_buttons_container", "shot_button", "buff")]
 follow_viewport_enabled = true
 script = ExtResource("12_4502m")
 turret_controller = NodePath("../TurretController")
 shield_buttons_container = NodePath("PanelContainer/VBoxContainer/GridContainer")
 turret_buttons_container = NodePath("PanelContainer/HBoxContainer")
 shot_button = NodePath("PanelContainer/Shot")
-ammo = NodePath("PanelContainer/Ammo")
 buff = NodePath("PanelContainer/Crosshair/Buff")
 
 [node name="PanelContainer" type="Control" parent="UITurret" unique_id=1407579917]
@@ -484,19 +483,6 @@ theme_override_colors/font_color = Color(0.93, 0.9, 0.83, 1)
 theme_override_colors/font_outline_color = Color(0.09, 0.1, 0.1, 0.94)
 theme_override_constants/outline_size = 7
 theme_override_font_sizes/font_size = 46
-vertical_alignment = 1
-
-[node name="Ammo" type="Label" parent="UITurret/PanelContainer" unique_id=686020588]
-layout_mode = 0
-offset_left = 45.0
-offset_top = 46.0
-offset_right = 217.0
-offset_bottom = 110.0
-theme_override_colors/font_color = Color(0.93, 0.9, 0.83, 1)
-theme_override_colors/font_outline_color = Color(0.09, 0.1, 0.1, 0.94)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 46
-text = "35/35"
 vertical_alignment = 1
 
 [node name="NetworkStatus" parent="." unique_id=2014900907 instance=ExtResource("16_mn4vy")]

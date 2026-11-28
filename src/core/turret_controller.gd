@@ -10,7 +10,7 @@ const RAIL_MUZZLE_POINT := Vector3(0.0, 1.9134, 3.1176)
 const CADENCE_BOOST_MS := 5000
 const SHIELD_DURATION := 3.0
 const SHIELD_COLUMNS := 4
-const SHIELD_ROW_KEYS := [KEY_Q, KEY_W, KEY_E]
+const SHIELD_KEY := KEY_SPACE
 const STATION_ATTACK_INTERVAL := 18.0
 const STATION_WARNING_TIME := 2.2
 const STATION_RECOVERY_TIME := 5.0
@@ -27,9 +27,10 @@ enum StationState { READY, WARNING, OFFLINE }
 @export var max_pitch: float = 80.0
 
 signal ammo_changed(current: int, max: int)
+signal reload_started(duration: float)
 signal buff_collected(kind: String, ammo_gained: int)
 signal turret_changed(index: int)
-signal shield_changed(row: int, active: bool)
+signal shield_changed(active: bool)
 signal station_attack_changed(index: int, state: StationState)
 
 @export var max_ammo: int = 32
@@ -59,6 +60,7 @@ var _muzzle: Marker3D
 var _turret_mounts: Array[Transform3D] = []
 var _power_cell: Node3D
 var _power_cell_rest: Vector3
+var _ammo_hologram: AmmoHologram
 
 var _bullet_mesh: CapsuleMesh
 var _bullet_halo_mesh: QuadMesh
@@ -72,6 +74,8 @@ var _station_target := -1
 var _station_timer := STATION_ATTACK_INTERVAL
 
 @export var ui_turret: CanvasLayer
+## Posición del holograma de munición relativa a la cabeza de la torreta.
+@export var ammo_hologram_offset := Vector3(0.42, 0.20, -0.30)
 
 @export var ray_length: float = 100.0
 @export var bullet_speed: float = 75.0
@@ -192,6 +196,16 @@ func _setup_turret_visual() -> void:
 	_muzzle_glow.scale = Vector3.ONE * 0.38
 	_muzzle_glow.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	_muzzle.add_child(_muzzle_glow)
+
+	_ammo_hologram = AmmoHologram.new()
+	_ammo_hologram.name = "AmmoHologram"
+	_turret_head.add_child(_ammo_hologram)
+	_ammo_hologram.position = ammo_hologram_offset
+	
+	_ammo_hologram.basis = Basis.looking_at(ammo_hologram_offset - TURRET_CAMERA_OFFSET)
+	ammo_changed.connect(_ammo_hologram.set_ammo)
+	reload_started.connect(_ammo_hologram.start_reload)
+	_ammo_hologram.set_ammo(ammo, max_ammo)
 
 	var lift_motion := create_tween().set_loops().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	lift_motion.tween_property(lift, "position:y", 0.085, 1.6)
@@ -416,6 +430,7 @@ func _reload() -> void:
 	reload_audio.play()
 	var duration := reload_audio.stream.get_length()
 	_animate_turret_reload(duration)
+	reload_started.emit(duration)
 	await get_tree().create_timer(duration, false).timeout
 	ammo = max_ammo
 	_reloading = false
@@ -499,13 +514,10 @@ func changed_to_turret(index: int, value: bool = true) -> void:
 	turret_changed.emit(current_index)
 
 @rpc("call_local", "any_peer", "reliable")
-func set_shield_row_visible(row: int, value: bool) -> void:
-	if row < 0 or row >= SHIELD_ROW_KEYS.size() or row * SHIELD_COLUMNS >= shields.size():
-		return
-	var first := row * SHIELD_COLUMNS
-	for index in range(first, mini(first + SHIELD_COLUMNS, shields.size())):
-		shields[index].visible = value
-	shield_changed.emit(row, value)
+func set_shields_visible(value: bool) -> void:
+	for shield in shields:
+		shield.visible = value
+	shield_changed.emit(value)
 
 func place_shields_on_lanes(lane_points: Array[Node3D], beam_direction: Vector3) -> void:
 	for lane in range(mini(lane_points.size(), shields.size())):
@@ -520,15 +532,17 @@ func shield_distance(lane: int, start: Vector3, direction: Vector3) -> float:
 		return 0.0
 	return direction.dot(shields[index].global_position - start)
 
-func activate_shield_row(row: int) -> void:
-	if multiplayer.is_server() or row < 0 or row >= SHIELD_ROW_KEYS.size():
+# Un solo escudo: activa los 12 paneles a la vez y bloquea el rayo en
+# cualquier carril.
+func activate_shield() -> void:
+	if multiplayer.is_server() or shields.is_empty() or is_shield_up():
 		return
-	var first := row * SHIELD_COLUMNS
-	if first >= shields.size() or shields[first].visible:
-		return
-	set_shield_row_visible.rpc(row, true)
+	set_shields_visible.rpc(true)
 	await get_tree().create_timer(SHIELD_DURATION).timeout
-	set_shield_row_visible.rpc(row, false)
+	set_shields_visible.rpc(false)
+
+func is_shield_up() -> bool:
+	return not shields.is_empty() and shields[0].visible
 
 
 func _input(event: InputEvent) -> void:
@@ -536,9 +550,9 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event is InputEventKey and event.pressed and not event.echo:
-		var shield_row := SHIELD_ROW_KEYS.find(event.keycode)
-		if shield_row >= 0:
-			activate_shield_row(shield_row)
+		if event.keycode == SHIELD_KEY:
+			activate_shield()
+			get_viewport().set_input_as_handled()
 			return
 		if event.keycode == KEY_R:
 			_reload()

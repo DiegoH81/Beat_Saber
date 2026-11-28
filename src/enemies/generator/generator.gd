@@ -30,6 +30,7 @@ const SPECIAL_GAP_MIN := 4.0
 const SPECIAL_GAP_MAX := 7.0
 const BeamEffects := preload("res://src/enemies/generator/beam_effects.gd")
 const BEAM_AURA := preload("res://src/enemies/generator/beam_aura.gdshader")
+const HIT_PARTICLES := preload("res://src/vfx/hit_particles.tscn")
 
 var _beam_effects := BeamEffects.new()
 @onready var _beam_audio: AudioStreamPlayer = $BeamAudio
@@ -85,6 +86,21 @@ func destroy_note(i: int) -> bool:
 	else:
 		e.queue_free()
 	return true
+
+# Servidor -> clientes
+@rpc("authority", "call_remote", "reliable")
+func resolve_note_remote(i: int, hit: bool) -> void:
+	if i < 0 or i >= notes.size():
+		return
+	var e: Enemy = notes[i]
+	if not is_instance_valid(e) or e.is_queued_for_deletion():
+		return
+	if hit and e.is_inside_tree():
+		var particles := HIT_PARTICLES.instantiate() as GPUParticles3D
+		get_tree().current_scene.add_child(particles)
+		particles.global_position = e.global_position
+		AudioManager.play_sfx("swing_audios_sword/swing_%d" % randi_range(1, 24), e.global_position)
+	e.queue_free()
 
 func roll_specials() -> PackedInt32Array:
 	var special_indices := PackedInt32Array()
@@ -145,7 +161,10 @@ func _physics_process(delta: float) -> void:
 		is_song_ended = true
 		return
 
-	if duration >= notes[index].exect_time:
+	if not is_instance_valid(notes[index]) or notes[index].is_queued_for_deletion():
+		# El servidor ya resolvió este cubo antes de que apareciera aquí.
+		index += 1
+	elif duration >= notes[index].exect_time:
 		var enemy: Enemy = notes[index]
 		enemy.movement.direction = -global_transform.basis.z
 		enemy.movement.velocity = (global_position.distance_to(player_vr.global_position) - hit_window) * bpm / (60 * n_beats)
