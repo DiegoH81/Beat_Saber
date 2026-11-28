@@ -15,7 +15,6 @@ const COUNT_Y_SOLO := 0.005
 var _root: Node3D
 
 var _panel: MeshInstance3D
-var _edge: MeshInstance3D
 var _count: Label3D
 var _caption: Label3D
 var _segments: Array[MeshInstance3D] = []
@@ -48,7 +47,7 @@ func start_reload(duration: float) -> void:
 	_count.text = "RECARGANDO"
 	_count.font_size = 58
 	_count.position.y = COUNT_Y
-	_caption.text = "· · ·"
+	_caption.text = ""
 	if _reload_tween:
 		_reload_tween.kill()
 	_reload_tween = create_tween()
@@ -94,8 +93,6 @@ func _set_color(color: Color) -> void:
 	_caption.modulate = Color(color, 0.85)
 	var panel_material := _panel.material_override as StandardMaterial3D
 	panel_material.albedo_color = Color(color.darkened(0.75), 0.38)
-	var edge_material := _edge.material_override as StandardMaterial3D
-	edge_material.albedo_color = Color(color, 0.9)
 	for segment in _segments:
 		var material := segment.material_override as StandardMaterial3D
 		material.albedo_color = Color(color, material.albedo_color.a)
@@ -130,9 +127,6 @@ func _build() -> void:
 	_panel = _quad(PANEL_SIZE, Vector3.ZERO, -1)
 	var glass := _panel.material_override as StandardMaterial3D
 	glass.blend_mode = BaseMaterial3D.BLEND_MODE_MIX
-	_edge = _quad(Vector2(PANEL_SIZE.x, 0.006), Vector3(0, PANEL_SIZE.y * 0.5, 0.001), 0)
-	var bottom_edge := _quad(Vector2(PANEL_SIZE.x * 0.35, 0.004), Vector3(-PANEL_SIZE.x * 0.325, -PANEL_SIZE.y * 0.5, 0.001), 0)
-	bottom_edge.material_override = _edge.material_override
 
 	_count = _label(120, Vector3(0, COUNT_Y_SOLO, 0.002))
 	_caption = _label(34, Vector3(0, -0.045, 0.002))

@@ -9,7 +9,8 @@ func _on_area_entered(area: Area3D) -> void:
 	if not area is Enemy or area.is_queued_for_deletion():
 		return
 	var is_sword := name == "SwordDestructor"
-	if is_sword and area.is_in_group(Generator.SPECIAL_GROUP):
+	# Amarillos y blindados: la espada los atraviesa sin cortarlos.
+	if is_sword and (area.is_in_group(Generator.SPECIAL_GROUP) or area.is_in_group(Generator.ARMORED_GROUP)):
 		return
 
 	if not multiplayer.is_server():
@@ -25,10 +26,21 @@ func _on_area_entered(area: Area3D) -> void:
 		ScoreManager.add_hit()
 		_spawn_hit_particles(impact_position)
 		_play_hit_sfx()
+		_maybe_reward_p2()
+	elif area.is_in_group(Generator.ARMORED_GROUP):
+		ScoreManager.register_miss(true, "blindado")
 	else:
 		ScoreManager.register_miss(area.is_in_group(Generator.SPECIAL_GROUP))
 
 	_notify_clients(note_index, is_sword)
+
+# Cada corte del P1 tiene una probabilidad de darle balas al P2.
+func _maybe_reward_p2() -> void:
+	if multiplayer.get_peers().is_empty():
+		return
+	var level := SceneManager.current_scene as Level
+	if level and level.turret_controller:
+		level.turret_controller.try_grant_p1_ammo()
 
 func _notify_clients(note_index: int, hit: bool) -> void:
 	if note_index < 0 or multiplayer.get_peers().is_empty():

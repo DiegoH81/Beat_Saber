@@ -12,6 +12,9 @@ const BEAM_MISS_COST: float = 0.25
 var current_score: int = 0
 var current_combo: int = 0
 var misses: float = 0.0
+## En el tutorial los errores del P2 (amarillos y rayos) no cuentan, para que
+## el P2 no le reinicie el nivel al P1 mientras aprende.
+var ignore_p2_errors: bool = false
 
 
 var current_multiplier: float = 1.0
@@ -61,12 +64,15 @@ func add_hit(amount: int = 1) -> void:
 	multiplier_updated.emit(progress, multiplier_level, just_leveled_up)
 	_broadcast_state(progress, just_leveled_up)
 
-func register_miss(special: bool = false) -> void:
+## special = el error es del P2 (amarillo o blindado que no rompió).
+func register_miss(special: bool = false, kind: String = "amarillo") -> void:
+	if special and ignore_p2_errors:
+		return
 
 	misses += 1
 	if multiplayer.is_server():
 		if special:
-			MatchMetrics.record_failure("P2", "amarillo", misses)
+			MatchMetrics.record_failure("P2", kind, misses)
 		else:
 			MatchMetrics.record_failure("P1", "bloque", misses)
 	current_combo = 0
@@ -83,6 +89,8 @@ func register_miss(special: bool = false) -> void:
 	_broadcast_state(0.0, false)
 
 func register_beam_hit() -> void:
+	if ignore_p2_errors:
+		return
 	misses += BEAM_MISS_COST
 	if multiplayer.is_server():
 		var player := "P2" if not multiplayer.get_peers().is_empty() else "sin_p2"

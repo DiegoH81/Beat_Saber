@@ -150,6 +150,9 @@ func _on_buff_collected(kind: String, ammo_gained: int) -> void:
 		"ammo":
 			accent = Color(0.73, 0.90, 0.59)
 			buff.text = "+%d balas" % ammo_gained if ammo_gained > 0 else "Munición llena"
+		"p1_ammo":
+			accent = Color(0.79, 0.65, 1.0)
+			buff.text = "+%d balas del P1" % ammo_gained
 		"rate":
 			buff.text = "Cadencia +"
 		"score":

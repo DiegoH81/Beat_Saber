@@ -38,6 +38,9 @@ signal station_attack_changed(index: int, state: StationState)
 @export var min_fire_cooldown: float = 0.05
 @export var ammo_per_powerup: int = 10
 @export var fire_rate_bonus: float = 0.05
+## Probabilidad de que un corte del P1 le dé balas al P2, y cuántas.
+@export_range(0.0, 1.0) var p1_ammo_chance: float = 0.3
+@export var p1_ammo_amount: int = 2
 
 var ammo: int
 var next_shot_time: float = 0.0
@@ -225,6 +228,10 @@ func start_station_attacks(song: Generator) -> void:
 		_station_song = song
 		song.song_ended.connect(_stop_station_attacks, CONNECT_ONE_SHOT)
 
+## Retrasa el primer ataque a la torreta (el tutorial lo pone después del rayo).
+func delay_first_station_attack(seconds: float) -> void:
+	_station_timer = seconds
+
 func _stop_station_attacks() -> void:
 	_station_song = null
 	if _station_target >= 0:
@@ -364,6 +371,9 @@ func raycast_from_camera() -> void:
 		var enemy := _find_enemy(result["collider"])
 		if enemy and enemy.is_in_group(Generator.SPECIAL_GROUP):
 			destroy_special.rpc(enemy.get_meta("note_index", -1))
+		elif enemy and enemy.is_in_group(Generator.ARMORED_GROUP):
+			if generator:
+				generator.break_armor.rpc(enemy.get_meta("note_index", -1))
 		else:
 			var powerup := _find_powerup(result["collider"])
 			if powerup:
@@ -386,6 +396,20 @@ func raycast_from_camera() -> void:
 		show_bullet.rpc(visual_origin, end)
 	if current_turret.is_current():
 		_play_recoil()
+
+## Servidor: tira la probabilidad y, si sale, le manda balas al P2.
+func try_grant_p1_ammo() -> void:
+	if multiplayer.is_server() and randf() < p1_ammo_chance:
+		_grant_p1_ammo.rpc(p1_ammo_amount)
+
+@rpc("authority", "call_remote", "reliable")
+func _grant_p1_ammo(amount: int) -> void:
+	if _reloading or ammo >= max_ammo:
+		return
+	var previous := ammo
+	ammo = mini(ammo + amount, max_ammo)
+	ammo_changed.emit(ammo, max_ammo)
+	buff_collected.emit("p1_ammo", ammo - previous)
 
 func _activate_cadence_boost(now_ms: int) -> void:
 	_cadence_until_ms = now_ms + CADENCE_BOOST_MS

@@ -25,6 +25,11 @@ var _beam_checkpoint: float
 var _beam_travel: Tween
 
 const SPECIAL_GROUP := "special_enemy"
+## Cubos blindados: el P1 no puede cortarlos hasta que el P2 les dispara.
+const ARMORED_GROUP := "armored_enemy"
+const ARMORED_START := 6.0
+const ARMORED_MIN_GAP := 2.5
+const ARMORED_SPECIAL_CLEARANCE := 1.0
 const BEAM_AUDIO_ATTACK_TIME := 0.9
 const SPECIAL_GAP_MIN := 4.0
 const SPECIAL_GAP_MAX := 7.0
@@ -46,9 +51,28 @@ var _beam_effects := BeamEffects.new()
 @export var hit_window: float = 1.5
 @export var points: Array[Node3D]
 
+@export_category("Tutorial")
+## En el tutorial los amarillos y los rayos salen a tiempos fijos de la canción.
+@export var tutorial_mode: bool = false
+## Amarillos sueltos, uno a la vez (segundos de la canción).
+@export var tutorial_single_specials: PackedFloat32Array = [16.5, 20.5, 24.5]
+## Pares de amarillos casi juntos.
+@export var tutorial_pair_specials: PackedFloat32Array = [62.0, 68.0, 74.0]
+## Desde aquí los amarillos vuelven a ser al azar.
+@export var tutorial_random_from: float = 78.0
+## Momento en que impacta cada rayo del tutorial; después vuelve el intervalo normal.
+@export var tutorial_beam_times: PackedFloat32Array = [32.0, 44.0]
+
+var _tutorial_beam_index: int = 0
+
 @export_category("Special Enemy")
 @export_range(0.0, 1.0) var second_special_chance: float = 0.35
 @export var special_color: Color = Color(1.0, 0.8, 0.0)
+
+@export_category("Armored Enemy")
+## Probabilidad de que un cubo venga blindado (solo con P2 conectado, nunca en el tutorial).
+@export_range(0.0, 1.0) var armored_chance: float = 0.08
+@export var armored_color: Color = Color(0.62, 0.25, 1.0)
 
 var notes: Array[Enemy]
 var index: int = 0
@@ -102,9 +126,64 @@ func resolve_note_remote(i: int, hit: bool) -> void:
 		AudioManager.play_sfx("swing_audios_sword/swing_%d" % randi_range(1, 24), e.global_position)
 	e.queue_free()
 
+## Devuelve los amarillos como índices normales y los blindados como -(i + 1),
+## para viajar en el mismo arreglo que ya se manda al P2 al empezar.
 func roll_specials() -> PackedInt32Array:
+	if tutorial_mode:
+		return _roll_tutorial_specials()
+	var indices := _roll_random_specials(0.0)
+	for i in _roll_armored(indices):
+		indices.append(-(i + 1))
+	return indices
+
+func _roll_armored(specials: PackedInt32Array) -> PackedInt32Array:
+	var armored := PackedInt32Array()
+	var special_times: Array[float] = []
+	for i in specials:
+		special_times.append(notes[i].exect_time)
+	var last_time := -INF
+	for i in notes.size():
+		var t := notes[i].exect_time
+		if t < ARMORED_START or t >= duration_max or t - last_time < ARMORED_MIN_GAP:
+			continue
+		if specials.has(i) or special_times.any(func(st: float) -> bool: return absf(st - t) < ARMORED_SPECIAL_CLEARANCE):
+			continue
+		if randf() < armored_chance:
+			armored.append(i)
+			last_time = t
+	return armored
+
+func _roll_tutorial_specials() -> PackedInt32Array:
 	var special_indices := PackedInt32Array()
-	var next_special_time := randf_range(SPECIAL_GAP_MIN, SPECIAL_GAP_MAX)
+	for t in tutorial_single_specials:
+		var i := _note_nearest(t)
+		if i >= 0 and not special_indices.has(i):
+			special_indices.append(i)
+	for t in tutorial_pair_specials:
+		var first := _note_nearest(t)
+		if first < 0 or special_indices.has(first):
+			continue
+		special_indices.append(first)
+		for j in range(first + 1, notes.size()):
+			var gap := notes[j].exect_time - notes[first].exect_time
+			if gap > 1.5:
+				break
+			if gap >= 0.4:
+				special_indices.append(j)
+				break
+	special_indices.append_array(_roll_random_specials(tutorial_random_from))
+	return special_indices
+
+func _note_nearest(t: float) -> int:
+	var best := -1
+	for i in notes.size():
+		if best < 0 or absf(notes[i].exect_time - t) < absf(notes[best].exect_time - t):
+			best = i
+	return best
+
+func _roll_random_specials(from_time: float) -> PackedInt32Array:
+	var special_indices := PackedInt32Array()
+	var next_special_time := from_time + randf_range(SPECIAL_GAP_MIN, SPECIAL_GAP_MAX)
 	for i in notes.size():
 		var first := notes[i]
 		if first.exect_time < next_special_time:
@@ -136,6 +215,8 @@ func start_song(indices: PackedInt32Array, first_beam_delay: float = -1.0) -> vo
 	for i in indices:
 		if i >= 0 and i < notes.size():
 			notes[i].add_to_group(SPECIAL_GROUP)
+		elif i < 0 and -i - 1 < notes.size():
+			notes[-i - 1].add_to_group(ARMORED_GROUP)
 	if first_beam_delay >= 0.0:
 		_beam_timer = beam_interval - first_beam_delay
 	set_physics_process(true)
@@ -152,7 +233,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	_beam_timer += delta
-	if not _beam_busy and _beam_timer >= beam_interval and _is_authority():
+	if not _beam_busy and _is_authority() and _beam_due():
 		_beam_timer = 0.0
 		_run_beam()
 
@@ -172,6 +253,8 @@ func _physics_process(delta: float) -> void:
 
 		if enemy.is_in_group(SPECIAL_GROUP):
 			_apply_special_color(enemy)
+		elif enemy.is_in_group(ARMORED_GROUP):
+			_tint(enemy, armored_color)
 
 		index += 1
 	duration += delta
@@ -185,6 +268,62 @@ func _apply_special_color(node: Node) -> void:
 		node.material_override = mat
 	for child in node.get_children():
 		_apply_special_color(child)
+
+func _beam_due() -> bool:
+	if tutorial_mode and _tutorial_beam_index < tutorial_beam_times.size():
+		# Arranca el aviso a tiempo para que el rayo salga en el segundo indicado.
+		var start_at := tutorial_beam_times[_tutorial_beam_index] - warn_yellow_time - warn_red_time
+		if duration < start_at:
+			return false
+		_tutorial_beam_index += 1
+		return true
+	return _beam_timer >= beam_interval
+
+# Blindaje -------------------------------------------------------------------
+
+## El P2 le disparó: se quita el blindaje y el cubo vuelve a su color normal.
+@rpc("any_peer", "call_local", "reliable")
+func break_armor(i: int) -> void:
+	if i < 0 or i >= notes.size():
+		return
+	var e: Enemy = notes[i]
+	if not is_instance_valid(e) or e.is_queued_for_deletion() or not e.is_in_group(ARMORED_GROUP):
+		return
+	e.remove_from_group(ARMORED_GROUP)
+	_untint(e)
+	if e.is_inside_tree():
+		var particles := HIT_PARTICLES.instantiate() as GPUParticles3D
+		get_tree().current_scene.add_child(particles)
+		particles.global_position = e.global_position
+	if multiplayer.is_server():
+		MatchMetrics.first_action("p2_primer_blindado_s")
+
+func _tint(node: Node, color: Color) -> void:
+	if node is MeshInstance3D:
+		if not node.has_meta("untinted_material"):
+			node.set_meta("untinted_material", node.material_override)
+		var mat := StandardMaterial3D.new()
+		mat.albedo_color = color
+		mat.emission_enabled = true
+		mat.emission = color
+		mat.emission_energy_multiplier = 1.5
+		node.material_override = mat
+	elif node is Light3D:
+		if not node.has_meta("untinted_color"):
+			node.set_meta("untinted_color", node.light_color)
+		node.light_color = color
+	for child in node.get_children():
+		_tint(child, color)
+
+func _untint(node: Node) -> void:
+	if node.has_meta("untinted_material"):
+		node.material_override = node.get_meta("untinted_material")
+		node.remove_meta("untinted_material")
+	if node.has_meta("untinted_color"):
+		node.light_color = node.get_meta("untinted_color")
+		node.remove_meta("untinted_color")
+	for child in node.get_children():
+		_untint(child)
 
 func _is_authority() -> bool:
 	return not multiplayer.has_multiplayer_peer() or multiplayer.is_server()
